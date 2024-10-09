@@ -188,7 +188,7 @@ class TestimonialFree {
 				sprintf( '<a href="%s">%s</a>', admin_url( 'post-new.php?post_type=spt_testimonial' ), __( 'Add Testimonial', 'testimonial-free' ) ),
 				sprintf( '<a href="%s">%s</a>', admin_url( 'edit.php?post_type=spt_shortcodes' ), __( 'Manage Views', 'testimonial-free' ) ),
 			);
-			$links['go_pro'] = sprintf( '<a href="%s" style="%s">%s</a>', 'https://realtestimonials.io/pricing/?ref=1', 'color:#35b747;font-weight:bold', __( 'Go Pro!', 'testimonial-free' ) );
+			$links['go_pro'] = '<a href="https://realtestimonials.io/pricing/?ref=1" style="color:#35b747;font-weight:bold">' . __( 'Go Pro!', 'testimonial-free' ) . '</a>';
 
 			return array_merge( $ui_links, $links );
 

@@ -513,3 +513,8 @@ ul.sp-tfree-pagination li:first-child a,
 ul.sp-tfree-pagination li:first-child span {
 	margin-left: 0;
 }
+
+/* Apply the CSS only when the elementor plugin is activated */
+.elementor .sp-testimonial-free-wrapper .swiper-wrapper {
+	overflow: initial !important;
+}

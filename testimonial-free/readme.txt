@@ -2,8 +2,8 @@
 Contributors: shapedplugin, rubel_miah, khalilu, shamimmiashuhagh
 Tags: testimonials, testimonial slider, customer reviews, social proof, review form
 Requires at least: 4.7
-Tested up to: 6.6.1
-Stable tag: 3.1.2
+Tested up to: 6.6.2
+Stable tag: 3.1.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -316,8 +316,15 @@ Thank you!
 
 == Changelog ==
 
+= 3.1.3 - Oct 09, 2024 =
+* Fix: A few strings were not translatable.
+* Fix: The PHP 7.2 compatibility issue.
+* Fix: The Elementor swiper CSS conflict issue.
+* Updated: The language (.pot) file.
+* Tested: WordPress 6.6.2 compatibility.
+
 = 3.1.2 - Aug 28, 2024 =
-* New: The Rating Star Fill Color and Empty Color option
+* New: The Rating Star Fill Color and Empty Color option.
 * New: The Gap between Rating Stars option.
 * New: The Rating Star Font Size option.
 * Improved: The plugin backend options have been enhanced.

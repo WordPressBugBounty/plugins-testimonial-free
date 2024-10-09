@@ -74,8 +74,12 @@ class TFREE_Functions {
 		if ( 'spt_testimonial' === $screen->post_type || 'spt_shortcodes' === $screen->post_type || 'spt_testimonial_form' === $screen->post_type ) {
 			$url  = 'https://wordpress.org/support/plugin/testimonial-free/reviews/?filter=5#new-post';
 			$text = sprintf(
-				wp_kses_post( 'Enjoying <strong>Real Testimonials?</strong> Please rate us <span class="sprtf-footer-text-star">★★★★★</span> <a href="%s" target="_blank">WordPress.org</a>. Your positive feedback will help us grow more. Thank you! 😊' ),
-				esc_url( $url )
+				/* translators: 1: start strong tag, 2: close strong tag, 3: start span and a tag, 4: close a tag. */
+				__( 'Enjoying %1$sReal Testimonials?%2$s Please rate us %3$sWordPress.org%4$s. Your positive feedback will help us grow more. Thank you! 😊', 'testimonial-free' ),
+				'<strong>',
+				'</strong>',
+				'<span class="sprtf-footer-text-star">★★★★★</span> <a href="' . esc_url( $url ) . '" target="_blank">',
+				'</a>'
 			);
 		}
 		return $text;

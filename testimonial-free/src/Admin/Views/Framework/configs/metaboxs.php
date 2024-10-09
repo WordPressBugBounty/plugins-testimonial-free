@@ -235,7 +235,7 @@ SPFTESTIMONIAL::createSection(
 					/* translators: 1: start link tag, 2: close tag. */
 					__( 'To create eye-catching testimonial layout designs and access to advanced customizations, %1$sUpgrade to Pro!%2$s', 'testimonial-free' ),
 					'<a target="_blank" href="https://realtestimonials.io/pricing/?ref=1"><b>',
-					'</b></a>',
+					'</b></a>'
 				),
 			),
 		),
@@ -427,7 +427,7 @@ SPFTESTIMONIAL::createSection(
 					'<a target="_blank" href="https://realtestimonials.io/pricing/?ref=1"><b>',
 					'</b></a>',
 					'<a target="_blank" href="https://realtestimonials.io/demos/advanced-ajax-features/#group-wise-live-filter-carousel"><b>',
-					'<a target="_blank" href="https://realtestimonials.io/demos/advanced-ajax-features/#live-filter-by-star-rating"><b>',
+					'<a target="_blank" href="https://realtestimonials.io/demos/advanced-ajax-features/#live-filter-by-star-rating"><b>'
 				),
 				'dependency' => array( 'ajax_live_filter|layout', '==|not-any', 'true|filter,thumbnail_slider', true ),
 			),
@@ -597,11 +597,13 @@ SPFTESTIMONIAL::createSection(
 				'title'      => __( 'Button Alignment', 'testimonial-free' ),
 				'subtitle'   => __( 'Set alignment for filter button.', 'testimonial-free' ),
 				'options'    => array(
-					'left'   => '<i class="fa fa-align-left" title="left"></i>',
-					'center' => '<i class="fa fa-align-center" title="center"></i>',
-					'right'  => '<i class="fa fa-align-right" title="right"></i>',
+					'left'          => '<i class="fa fa-align-left" title="left"></i>',
+					'center'        => '<i class="fa fa-align-center" title="center"></i>',
+					'right'         => '<i class="fa fa-align-right" title="right"></i>',
+					'space-between' => '<i class="sptfree-icon-space_between"></i>',
+					'space-around'  => '<i class="sptfree-icon-space_around"></i>',
+					'space-evenly'  => '<i class="sptfree-icon-space_evenly"></i>',
 				),
-				'only_pro'   => true,
 				'default'    => 'center',
 				'dependency' => array( 'ajax_live_filter|layout', '==|not-any', 'true|filter,thumbnail_slider', true ),
 			),
@@ -682,7 +684,7 @@ SPFTESTIMONIAL::createSection(
 					/* translators: 1: start link tag, 2: close tag. */
 					__( 'To unlock the following ajax pagination settings for Grid, Masonry, & List layouts, %1$sUpgrade to Pro!%2$s', 'testimonial-free' ),
 					'<a target="_blank" href="https://realtestimonials.io/pricing/?ref=1"><b>',
-					'</b></a>',
+					'</b></a>'
 				),
 				'dependency' => array(
 					'layout',
@@ -847,7 +849,7 @@ SPFTESTIMONIAL::createSection(
 					/* translators: 1: start link tag, 2: close tag. */
 					__( 'To impress your potential customers with professionally designed testimonial themes/templates, %1$sUpgrade to Pro!%2$s', 'testimonial-free' ),
 					'<a target="_blank" href="https://realtestimonials.io/pricing/?ref=1"><b>',
-					'</b></a>',
+					'</b></a>'
 				),
 			),
 			array(
@@ -859,13 +861,13 @@ SPFTESTIMONIAL::createSection(
 					/* translators: 1: start bold tag, 2: close tag. */
 					__( 'Select which theme style you want to use. %1$sPlease note:%2$s To get the perfect view for certain themes, you need to configure some settings below.', 'testimonial-free' ),
 					'<b>',
-					'</b>',
+					'</b>'
 				),
 				'desc'     => sprintf(
 					/* translators: 1: start link tag, 2: close tag. */
 					__( 'Get Access to 14 Professionally Designed Testimonial Themes with Customization options, %1$sUpgrade to Pro!%2$s', 'testimonial-free' ),
 					'<a target="_blank" href="https://realtestimonials.io/pricing/?ref=1"><b>',
-					'</b></a>',
+					'</b></a>'
 				),
 				'sanitize' => 'sanitize_text_field',
 				'options'  => array(
@@ -1003,7 +1005,7 @@ SPFTESTIMONIAL::createSection(
 					/* translators: 1: start link tag, 2: close tag. */
 					__( 'To unlock the Testimonial Theme-based Advanced Customization options, %1$sUpgrade to Pro!%2$s', 'testimonial-free' ),
 					'<a target="_blank" href="https://realtestimonials.io/pricing/?ref=1"><b>',
-					'</b></a>',
+					'</b></a>'
 				),
 			),
 			array(
@@ -1202,7 +1204,7 @@ SPFTESTIMONIAL::createSection(
 									/* translators: 1: start link tag, 2: close tag. */
 									__( 'Want to display the Average Rating, Ajax Testimonial Search, and more? %1$sUpgrade to Pro!%2$s', 'testimonial-free' ),
 									'<a target="_blank" href="https://realtestimonials.io/pricing/?ref=1"><b>',
-									'</b></a>',
+									'</b></a>'
 								),
 							),
 						),
@@ -1404,7 +1406,7 @@ SPFTESTIMONIAL::createSection(
 									/* translators: 1: start link tag, 2: close tag. */
 									__( 'Want to display more reviewer information and build trust & credibility? %1$sUpgrade to Pro!%2$s', 'testimonial-free' ),
 									'<a target="_blank" href="https://realtestimonials.io/pricing/?ref=1"><b>',
-									'</b></a>',
+									'</b></a>'
 								),
 							),
 							array(
@@ -1762,7 +1764,7 @@ SPFTESTIMONIAL::createSection(
 									/* translators: 1: start link tag, 2: close tag. */
 									__( 'Want to enhance the Reviewer\'s Image using advanced customizations? %1$sUpgrade to Pro!%2$s', 'testimonial-free' ),
 									'<a target="_blank" href="https://realtestimonials.io/pricing/?ref=1"><b>',
-									'</b></a>',
+									'</b></a>'
 								),
 							),
 							array(
@@ -2386,7 +2388,7 @@ SPFTESTIMONIAL::createSection(
 									/* translators: 1: start link tag, 2: close tag. */
 									__( 'Ready to fascinate your audience with beautiful transitions, such as Fade, Flip Horizontally and Vertically? %1$sUpgrade to Pro!%2$s', 'testimonial-free' ),
 									'<a target="_blank" href="https://realtestimonials.io/pricing/?ref=1"><b>',
-									'</b></a>',
+									'</b></a>'
 								),
 							),
 						),
@@ -2402,7 +2404,7 @@ SPFTESTIMONIAL::createSection(
 									/* translators: 1: start link tag, 2: close tag. */
 									__( 'Want even more fine-tuned control over your Slider Navigation display? %1$sUpgrade to Pro!%2$s', 'testimonial-free' ),
 									'<a target="_blank" href="https://realtestimonials.io/pricing/?ref=1"><b>',
-									'</b></a>',
+									'</b></a>'
 								),
 							),
 							array(
@@ -2592,7 +2594,7 @@ SPFTESTIMONIAL::createSection(
 									/* translators: 1: start link tag, 2: close tag. */
 									__( 'Want even more fine-tuned control over your Slider Pagination display? %1$sUpgrade to Pro!%2$s', 'testimonial-free' ),
 									'<a target="_blank" href="https://realtestimonials.io/pricing/?ref=1"><b>',
-									'</b></a>',
+									'</b></a>'
 								),
 							),
 							array(
@@ -2789,7 +2791,7 @@ SPFTESTIMONIAL::createSection(
 					/* translators: 1: start link tag, 2: close tag. */
 					__( 'Want to customize everything (Typography, Colors, Margin) easily? %1$sUpgrade to Pro!%2$s P.S. Note: The color fields work in the lite version.', 'testimonial-free' ),
 					'<a target="_blank" href="https://realtestimonials.io/pricing/?ref=1"><b>',
-					'</b></a>',
+					'</b></a>'
 				),
 			),
 			array(
@@ -3252,7 +3254,7 @@ SPFTESTIMONIAL::createSection(
 					/* translators: 1: start link tag, 2: close tag. */
 					__( 'To unlock the following extra reviewer information fields, %1$sUpgrade to Pro!%2$s', 'testimonial-free' ),
 					'<a target="_blank" href="https://realtestimonials.io/pricing/?ref=1"><b>',
-					'</b></a>',
+					'</b></a>'
 				),
 			),
 			array(

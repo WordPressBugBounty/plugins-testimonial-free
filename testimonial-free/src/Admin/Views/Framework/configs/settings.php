@@ -24,8 +24,11 @@ $prefix = 'sp_testimonial_pro_options';
 //
 $url  = 'https://wordpress.org/support/plugin/testimonial-free/reviews/?filter=5#new-post';
 $text = sprintf(
-	wp_kses_post( 'If you like <strong>Real Testimonials</strong> please leave us a <a href="%s" target="_blank">&#9733;&#9733;&#9733;&#9733;&#9733;</a> rating. Your Review is very important to us as it helps us to grow more.' ),
-	esc_url( $url )
+	/* translators: 1: start strong tag, 2: close strong tag, 3: start and close a tag. */
+	__( 'If you like %1$sReal Testimonials%2$s please leave us a %3$s rating. Your Review is very important to us as it helps us to grow more.', 'testimonial-free' ),
+	'<strong>',
+	'</strong>',
+	'<a href="' . esc_url( $url ) . '" target="_blank">&#9733;&#9733;&#9733;&#9733;&#9733;</a>'
 );
 
 //
@@ -72,7 +75,7 @@ SPFTESTIMONIAL::createSection(
 					'</a>',
 					'<a href="https://www.google.com/recaptcha/admin#list" target="_blank">',
 					'<a target="_blank" href="https://realtestimonials.io/pricing/?ref=1"><b>',
-					'</b></a>',
+					'</b></a>'
 				),
 			),
 			array(
