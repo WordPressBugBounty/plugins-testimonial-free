@@ -3,7 +3,7 @@ Contributors: shapedplugin, rubel_miah, khalilu, shamimmiashuhagh
 Tags: testimonials, testimonial slider, customer reviews, social proof, review form
 Requires at least: 4.7
 Tested up to: 6.7
-Stable tag: 3.1.4
+Stable tag: 3.1.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -315,6 +315,9 @@ Thank you!
 
 
 == Changelog ==
+
+= 3.1.5 - Nov 20, 2024 =
+* Fix: The plugin style issue for RTL sites.
 
 = 3.1.4 - Nov 11, 2024 =
 * Tested: WordPress 6.7 compatibility.
