@@ -8,10 +8,18 @@
  * @subpackage Testimonial_Free/Frontend
  */
 
-if ( $post_query->max_num_pages > 1 ) {
-	$number_of_total_testimonials = isset( $shortcode_data['number_of_total_testimonials'] ) ? $shortcode_data['number_of_total_testimonials'] : '10';
-	$testimonial_per_page         = isset( $shortcode_data['tp_per_page'] ) ? $shortcode_data['tp_per_page'] : '12';
-	if ( ( 'grid' === $layout ) && $grid_pagination && $number_of_total_testimonials > $testimonial_per_page ) {
+if ( $post_query->max_num_pages > 1 && ! empty( $post_query->found_posts ) ) {
+	$number_of_total_testimonials = ! empty( $shortcode_data['number_of_total_testimonials'] ) ? (int) $shortcode_data['number_of_total_testimonials'] : $post_query->found_posts;
+	$testimonial_per_page         = ! empty( $shortcode_data['tp_per_page'] ) ? (int) $shortcode_data['tp_per_page'] : 8;
+
+	if ( ( 'grid' === $layout ) && $grid_pagination && $number_of_total_testimonials >= $testimonial_per_page ) {
+		// No of pages.
+		$max_num_pages = $post_query->max_num_pages;
+		if ( $number_of_total_testimonials < $post_query->found_posts ) {
+			$max_num_pages = ceil( $number_of_total_testimonials / $testimonial_per_page );
+		}
+
+		// Pagination output.
 		echo '<div class="tfree-col-xl-1 sp-tfree-pagination-area">';
 		$paged_format = '?paged' . $post_id . '=%#%';
 		$paged_query  = 'paged' . $post_id;
@@ -21,7 +29,7 @@ if ( $post_query->max_num_pages > 1 ) {
 				'format'    => $paged_format,
 				'prev_next' => true,
 				'current'   => isset( $_GET[ "$paged_query" ] ) ? wp_unslash( absint( $_GET[ "$paged_query" ] ) ) : 1,
-				'total'     => $post_query->max_num_pages,
+				'total'     => $max_num_pages,
 				'type'      => 'array',
 				'prev_text' => '<i class="fa fa-angle-left"></i>',
 				'next_text' => '<i class="fa fa-angle-right"></i>',
@@ -36,4 +44,3 @@ if ( $post_query->max_num_pages > 1 ) {
 
 	}
 }
-

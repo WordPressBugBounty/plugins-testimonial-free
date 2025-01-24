@@ -400,6 +400,23 @@ SPFTESTIMONIAL::createSection(
 				'sanitize' => 'sanitize_text_field',
 			),
 			array(
+				'id'      => 'ajax_live_filter_section',
+				'type'    => 'subheading',
+				'content' => __( 'AJAX LIVE FILTERS (PRO)', 'testimonial-free' ),
+			),
+			array(
+				'type'    => 'notice',
+				'class'   => 'ajax-notice',
+				'content' => sprintf(
+					/* translators: 1: start link tag, 2: close tag. */
+					__( 'To allow your visitors to filter reviews by %3$sGroups%2$s, %4$sStar Ratings%2$s, Ajax Search, and Sort on the frontend, %1$sUpgrade to Pro!%2$s', 'testimonial-free' ),
+					'<a target="_blank" href="https://realtestimonials.io/pricing/?ref=1"><b>',
+					'</b></a>',
+					'<a target="_blank" href="https://realtestimonials.io/demos/advanced-ajax-features/#group-wise-live-filter-carousel"><b>',
+					'<a target="_blank" href="https://realtestimonials.io/demos/advanced-ajax-features/#live-filter-by-star-rating"><b>'
+				),
+			),
+			array(
 				'id'         => 'ajax_live_filter',
 				'type'       => 'switcher',
 				'title'      => __( 'Ajax Live Filters', 'testimonial-free' ),
@@ -412,24 +429,6 @@ SPFTESTIMONIAL::createSection(
 				'text_width' => 100,
 				'only_pro'   => true,
 				'default'    => false,
-			),
-			array(
-				'type'       => 'subheading',
-				'content'    => __( 'AJAX LIVE FILTERS', 'testimonial-free' ),
-				'dependency' => array( 'ajax_live_filter|layout', '==|not-any', 'true|filter,thumbnail_slider', true ),
-			),
-			array(
-				'type'       => 'notice',
-				'class'      => 'ajax-notice',
-				'content'    => sprintf(
-					/* translators: 1: start link tag, 2: close tag. */
-					__( 'To allow your visitors to filter reviews by %3$sGroups%2$s, %4$sStar Ratings%2$s, Ajax Search, and Sort on the frontend, %1$sUpgrade to Pro!%2$s', 'testimonial-free' ),
-					'<a target="_blank" href="https://realtestimonials.io/pricing/?ref=1"><b>',
-					'</b></a>',
-					'<a target="_blank" href="https://realtestimonials.io/demos/advanced-ajax-features/#group-wise-live-filter-carousel"><b>',
-					'<a target="_blank" href="https://realtestimonials.io/demos/advanced-ajax-features/#live-filter-by-star-rating"><b>'
-				),
-				'dependency' => array( 'ajax_live_filter|layout', '==|not-any', 'true|filter,thumbnail_slider', true ),
 			),
 			array(
 				'id'         => 'live_filter_sorter',
@@ -596,6 +595,7 @@ SPFTESTIMONIAL::createSection(
 				'class'      => 'button_set_smaller sp-testimonial-live-filters-options',
 				'title'      => __( 'Button Alignment', 'testimonial-free' ),
 				'subtitle'   => __( 'Set alignment for filter button.', 'testimonial-free' ),
+				'only_pro'   => true,
 				'options'    => array(
 					'left'          => '<i class="fa fa-align-left" title="left"></i>',
 					'center'        => '<i class="fa fa-align-center" title="center"></i>',

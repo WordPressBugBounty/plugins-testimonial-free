@@ -161,7 +161,6 @@ class TestimonialFree {
 		}
 	}
 
-
 	/**
 	 * Load TextDomain for plugin.
 	 *

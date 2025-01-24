@@ -61,7 +61,9 @@ if ( ! class_exists( 'SPFTESTIMONIAL_Field_sortable' ) ) {
 			if ( ! empty( $this->value ) ) {
 
 				foreach ( $this->value as $key => $value ) {
-					$pre_sortby[ $key ] = $pre_fields[ $key ];
+					if ( isset( $pre_fields[ $key ] ) ) {
+						$pre_sortby[ $key ] = $pre_fields[ $key ];
+					}
 				}
 
 				$diff = array_diff_key( $pre_fields, $this->value );

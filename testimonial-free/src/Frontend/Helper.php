@@ -131,12 +131,12 @@ class Helper {
 	 * @return object
 	 */
 	public static function testimonial_query( $shortcode_data, $post_id, $layout, $grid_pagination ) {
-		$number_of_total_testimonials = isset( $shortcode_data['number_of_total_testimonials'] ) ? $shortcode_data['number_of_total_testimonials'] : '10';
+		$number_of_total_testimonials = ! empty( $shortcode_data['number_of_total_testimonials'] ) ? (int) $shortcode_data['number_of_total_testimonials'] : 1000;
 		$order_by                     = isset( $shortcode_data['testimonial_order_by'] ) ? $shortcode_data['testimonial_order_by'] : 'date';
 		$order                        = isset( $shortcode_data['testimonial_order'] ) ? $shortcode_data['testimonial_order'] : 'DESC';
-		$testimonial_per_page         = isset( $shortcode_data['tp_per_page'] ) ? $shortcode_data['tp_per_page'] : '12';
+		$testimonial_per_page         = ! empty( $shortcode_data['tp_per_page'] ) ? (int) $shortcode_data['tp_per_page'] : 8;
 
-		if ( ( 'grid' === $layout ) && $grid_pagination && $number_of_total_testimonials > $testimonial_per_page ) {
+		if ( ( 'grid' === $layout ) && $grid_pagination && $number_of_total_testimonials >= $testimonial_per_page ) {
 			$paged = 'paged' . $post_id;
 			$paged = isset( $_GET[ "$paged" ] ) ? wp_unslash( absint( $_GET[ "$paged" ] ) ) : 1;
 			$args  = array(
@@ -144,7 +144,7 @@ class Helper {
 				'orderby'          => $order_by,
 				'order'            => $order,
 				'paged'            => $paged,
-				'posts_per_page'   => empty( $testimonial_per_page ) ? '12' : $testimonial_per_page,
+				'posts_per_page'   => $testimonial_per_page,
 				'suppress_filters' => apply_filters( 'spt_testimonial_free_suppress_filters', false, $post_id ),
 			);
 		} else {
@@ -152,11 +152,12 @@ class Helper {
 				'post_type'      => 'spt_testimonial',
 				'orderby'        => $order_by,
 				'order'          => $order,
-				'posts_per_page' => empty( $number_of_total_testimonials ) ? '10000' : $number_of_total_testimonials,
+				'posts_per_page' => $number_of_total_testimonials,
 			);
 		}
-		$args       = apply_filters( 'spt_testimonial_pro_query_args', $args, $post_id );
-		$post_query = new \WP_Query( $args );
+		$args                                     = apply_filters( 'spt_testimonial_pro_query_args', $args, $post_id );
+		$post_query                               = new \WP_Query( $args );
+		$post_query->number_of_total_testimonials = $number_of_total_testimonials;
 		return $post_query;
 	}
 
@@ -244,7 +245,12 @@ class Helper {
 		$tpro_total_rating = 0;
 		$testimonial_count = 0;
 		$total_posts       = $post_query->found_posts;
-		$schema_html       = '';
+		// If pagination is enabled and total testimonials are less than the total posts.
+		if ( ! empty( $post_query->number_of_total_testimonials ) && $post_query->number_of_total_testimonials < $post_query->found_posts ) {
+			$total_posts = $post_query->number_of_total_testimonials;
+		}
+
+		$schema_html = '';
 		if ( $post_query->have_posts() ) {
 			while ( $post_query->have_posts() ) :
 				$post_query->the_post();
@@ -276,28 +282,30 @@ class Helper {
 						case 'one_star':
 							$rating_value = '1';
 							break;
+						default:
+							$rating_value = '5';
 					}
 					$tpro_total_rating += (int) $rating_value;
 					$name               = get_the_title() ? esc_attr( wp_strip_all_tags( get_the_title() ) ) : '';
 					$review_body        = get_the_content() ? esc_attr( wp_strip_all_tags( get_the_content() ) ) : '';
-					$date               = get_the_date( 'F j, Y' );
+					$date               = get_the_date( 'Y-m-d' );
 					$schema_html       .= '{
-					"@type": "Review",
-					"datePublished": "' . $date . '",
-					"name": "' . $name . '",
-					"reviewBody": "' . $review_body . '",
-					"reviewRating": {
-						"@type": "Rating",
-						"bestRating": "5",
-						"ratingValue": "' . $rating_value . '",
-						"worstRating": "1"
-					},
-					"author": {
-						"@type": "Person",
-						"name": "' . $tfree_name . '"
-					}
+						"@type": "Review",
+						"datePublished": "' . $date . '",
+						"reviewBody": "' . $review_body . '",
+						"reviewRating": {
+							"@type": "Rating",
+							"bestRating": "5",
+							"ratingValue": "' . $rating_value . '",
+							"worstRating": "1"
+						},
+						"author": {
+							"@type": "Person",
+							"name": "' . $tfree_name . '"
+						}
 					}';
-					if ( ++$testimonial_count !== $total_posts ) {
+					++$testimonial_count;
+					if ( $testimonial_count < $total_posts ) {
 						$schema_html .= ',';
 					}
 				}
@@ -309,15 +317,15 @@ class Helper {
 		} else {
 			echo '<h2 class="sp-not-testimonial-found">' . esc_html__( 'No testimonials found', 'testimonial-free' ) . '</h2>';
 		}
-			wp_reset_postdata();
-			$outline = ob_get_clean();
+		wp_reset_postdata();
+		$outline = ob_get_clean();
 
-			return array(
-				'output'            => $outline,
-				'aggregate_rating'  => $aggregate_rating,
-				'schema_html'       => $schema_html,
-				'total_testimonial' => $total_posts,
-			);
+		return array(
+			'output'            => $outline,
+			'aggregate_rating'  => $aggregate_rating,
+			'schema_html'       => $schema_html,
+			'total_testimonial' => $total_posts,
+		);
 	}
 
 	/**
