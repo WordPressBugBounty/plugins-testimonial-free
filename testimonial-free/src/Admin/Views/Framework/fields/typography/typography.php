@@ -81,7 +81,7 @@ if ( ! class_exists( 'SPFTESTIMONIAL_Field_typography' ) ) {
 					'text_decoration'    => false,
 					'custom_style'       => false,
 					'compact'            => false,
-					'exclude'            => '',
+					'exclude'            => '', // phpcs:ignore
 					'unit'               => 'px',
 					'margin_top'         => false,
 					'margin_right'       => false,

@@ -324,7 +324,7 @@ SPFTESTIMONIAL::createSection(
 						'name'     => __( 'Specific (Pro)', 'testimonial-free' ),
 						'pro_only' => true,
 					),
-					'exclude'               => array(
+					'exclude'               => array( // phpcs:ignore
 						'name'     => __( 'Exclude (Pro)', 'testimonial-free' ),
 						'pro_only' => true,
 					),
