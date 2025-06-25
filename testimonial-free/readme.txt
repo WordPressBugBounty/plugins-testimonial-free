@@ -2,8 +2,8 @@
 Contributors: shapedplugin, rubel_miah, khalilu, shamimmiashuhagh
 Tags: testimonials, testimonial slider, customer reviews, social proof, review form
 Requires at least: 4.7
-Tested up to: 6.8
-Stable tag: 3.1.8
+Tested up to: 6.8.1
+Stable tag: 3.1.9
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -501,6 +501,12 @@ Thank you!
 
 
 == Changelog ==
+
+= 3.1.9 - Jun 25, 2025 =
+* Improved: The plugin setting page tab icons.
+* Updated: The language(.pot) file.
+* Fix: The warning was found rarely in the testimonial grid pagination section.
+* Tested: WordPress 6.8.1 compatibility.
 
 = 3.1.8 - Apr 15, 2025 =
 * Fix: The mismatched text domain issue.

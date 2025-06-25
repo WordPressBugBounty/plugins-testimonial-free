@@ -146,7 +146,7 @@ SPFTESTIMONIAL::createSection(
 	array(
 		'name'   => 'advanced_settings',
 		'title'  => __( 'Advanced', 'testimonial-free' ),
-		'icon'   => 'fa fa-wrench',
+		'icon'   => 'sptfree-icon-advanced',
 		'fields' => array(
 			array(
 				'id'         => 'testimonial_data_remove',
@@ -225,7 +225,7 @@ SPFTESTIMONIAL::createSection(
 	array(
 		'name'   => 'custom_css_section',
 		'title'  => __( 'Custom CSS & JS', 'testimonial-free' ),
-		'icon'   => 'fa fa-file-code-o',
+		'icon'   => 'sptfree-icon-code',
 		'fields' => array(
 			array(
 				'id'       => 'custom_css',

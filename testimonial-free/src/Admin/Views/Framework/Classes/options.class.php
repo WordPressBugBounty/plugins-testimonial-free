@@ -184,7 +184,6 @@ if ( ! class_exists( 'SPFTESTIMONIAL_Options' ) ) {
 
 			// wp enqeueu for typography and output css.
 			parent::__construct();
-
 		}
 
 		/**
@@ -215,7 +214,7 @@ if ( ! class_exists( 'SPFTESTIMONIAL_Options' ) ) {
 					$parents[ $section['parent'] ][] = $section;
 					unset( $sections[ $key ] );
 				}
-				$count++;
+				++$count;
 			}
 
 			foreach ( $sections as $key => $section ) {
@@ -224,7 +223,7 @@ if ( ! class_exists( 'SPFTESTIMONIAL_Options' ) ) {
 					$section['subs'] = wp_list_sort( $parents[ $section['id'] ], array( 'priority' => 'ASC' ), 'ASC', true );
 				}
 				$result[] = $section;
-				$count++;
+				++$count;
 			}
 
 			return wp_list_sort( $result, array( 'priority' => 'ASC' ), 'ASC', true );
@@ -314,7 +313,6 @@ if ( ! class_exists( 'SPFTESTIMONIAL_Options' ) ) {
 					}
 				}
 			}
-
 		}
 		/**
 		 * Ajax_save
@@ -335,7 +333,6 @@ if ( ! class_exists( 'SPFTESTIMONIAL_Options' ) ) {
 					)
 				);
 			}
-
 		}
 
 		/**
@@ -350,7 +347,6 @@ if ( ! class_exists( 'SPFTESTIMONIAL_Options' ) ) {
 			$default = ( isset( $this->args['defaults'][ $field['id'] ] ) ) ? $this->args['defaults'][ $field['id'] ] : $default;
 
 			return $default;
-
 		}
 
 		/**
@@ -371,7 +367,6 @@ if ( ! class_exists( 'SPFTESTIMONIAL_Options' ) ) {
 			if ( $this->args['save_defaults'] && empty( $tmp_options ) ) {
 				$this->save_options( $this->options );
 			}
-
 		}
 
 		/**
@@ -452,12 +447,10 @@ if ( ! class_exists( 'SPFTESTIMONIAL_Options' ) ) {
 							// Sanitize "post" request of field.
 							if ( isset( $field['sanitize'] ) && is_callable( $field['sanitize'] ) ) {
 									$data[ $field_id ] = call_user_func( $field['sanitize'], $field_value );
-							} else {
-								if ( is_array( $field_value ) ) {
+							} elseif ( is_array( $field_value ) ) {
 									$data[ $field_id ] = wp_kses_post_deep( $field_value );
-								} else {
-									$data[ $field_id ] = wp_kses_post( $field_value );
-								}
+							} else {
+								$data[ $field_id ] = wp_kses_post( $field_value );
 							}
 
 							// Validate "post" request of field.
@@ -495,7 +488,6 @@ if ( ! class_exists( 'SPFTESTIMONIAL_Options' ) ) {
 			}
 
 			return false;
-
 		}
 
 		/**
@@ -517,7 +509,6 @@ if ( ! class_exists( 'SPFTESTIMONIAL_Options' ) ) {
 			}
 
 			do_action( "spftestimonial_{$this->unique}_saved", $data, $this );
-
 		}
 
 		/**
@@ -542,7 +533,6 @@ if ( ! class_exists( 'SPFTESTIMONIAL_Options' ) ) {
 			}
 
 			return $this->options;
-
 		}
 
 		/**
@@ -583,7 +573,6 @@ if ( ! class_exists( 'SPFTESTIMONIAL_Options' ) ) {
 			}
 
 			add_action( 'load-' . $menu_page, array( $this, 'add_page_on_load' ) );
-
 		}
 		/**
 		 * Add_page_on_load
@@ -840,7 +829,6 @@ if ( ! class_exists( 'SPFTESTIMONIAL_Options' ) ) {
 			echo '</div>';
 
 			do_action( 'spftestimonial_options_after' );
-
 		}
 	}
 }

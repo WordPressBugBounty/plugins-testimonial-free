@@ -6056,3 +6056,122 @@ div#sp_tpro_live_preview.postbox {
 .spftestimonial-field-image_select.filter_style figure {
 	height: 60px;
 }
+
+/* Update to pro promotional notice */
+.sp_tpro-notice-wrapper {
+	border-width: 1px;
+	border-radius: 5px;
+	padding-top: 8px;
+	padding-bottom: 10px;
+}
+
+#sp_tpro_notice .postbox-header {
+	display: none;
+}
+
+#sp_tpro_shortcode_show .postbox-header {
+	border-top-left-radius: 4px;
+	border-top-right-radius: 4px;
+}
+
+div:is(#sp_tpro_notice, #sp_tpro_builder_option, #sp_tpro_shortcode_show) .eapro-content,
+div:is(#sp_tpro_notice, #sp_tpro_builder_option, #sp_tpro_shortcode_show).postbox {
+	border-radius: 4px;
+}
+
+.sp_tpro-notice-wrapper {
+	border-width: 1px;
+	border-radius: 5px;
+}
+
+.sp_tpro-notice-heading {
+	font-weight: 600;
+	font-size: 16px;
+	line-height: 20px;
+	color: rgba(0, 0, 0, 1);
+}
+
+.sp_tpro-notice-heading span {
+	color: #0C6E63;
+}
+
+.sp_tpro-notice-desc {
+	font-weight: 400;
+	font-size: 13px;
+	line-height: 20px;
+	color: rgba(101, 105, 118, 1);
+	margin-bottom: 20px;
+	margin-top: 10px;
+}
+
+.sp_tpro-notice-wrapper ul li {
+	font-weight: 500;
+	font-size: 13px;
+	line-height: 20px;
+	color: rgba(0, 0, 0, 1);
+	display: inline-flex;
+	gap: 10px;
+}
+
+.sp_tpro-notice-wrapper .sp_tpro-notice-button {
+	position: relative;
+	font-size: 16px;
+	border-radius: 5px;
+	color: #ffffff;
+	border: 1px solid transparent;
+	margin-top: 10px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
+	overflow: hidden;
+	z-index: 0;
+	transition: border-color 0.5s ease;
+}
+
+.sp_tpro-notice-wrapper .sp_tpro-notice-button::before {
+	content: '';
+	position: absolute;
+	inset: 0;
+	background: linear-gradient(90deg, #1565D0 0%, #008FF0 100%);
+	z-index: -1;
+	transition: opacity 0.6s ease;
+	opacity: 1;
+}
+
+.sp_tpro-notice-wrapper .sp_tpro-notice-button::after {
+	content: '';
+	position: absolute;
+	inset: 0;
+	background: linear-gradient(90deg, #008FF0 0%, #1565D0 100%);
+	z-index: -1;
+	opacity: 0;
+	transition: opacity 0.6s ease;
+}
+
+.sp_tpro-notice-wrapper .sp_tpro-notice-button:hover::before,
+.sp_tpro-notice-wrapper .sp_tpro-notice-button:hover::after {
+	opacity: 1;
+}
+
+.sp_tpro-notice-wrapper .sp_tpro-notice-button a {
+	color: #ffffff;
+	text-decoration: none;
+	padding: 14px 30px 14px 30px;
+	position: relative;
+	z-index: 1;
+}
+
+.sp_tpro-notice-wrapper .sp_tpro-notice-button a:focus {
+	box-shadow: none;
+	outline: none;
+}
+
+.sp_tpro-notice-button i {
+	font-size: 16px;
+}
+
+.sp_tpro-notice-wrapper ul li i {
+	color: rgba(74, 184, 102, 1);
+	font-size: 11px;
+}

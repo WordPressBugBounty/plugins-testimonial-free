@@ -68,6 +68,30 @@ SPFTESTIMONIAL::createSection(
 );
 
 SPFTESTIMONIAL::createMetabox(
+	'sp_tpro_notice',
+	array(
+		'title'             => __( 'Unlock Pro Feature', 'testimonial-free' ),
+		'post_type'         => 'spt_shortcodes',
+		'context'           => 'side',
+		'show_restore'      => false,
+		'sp_tpro_shortcode' => false,
+	)
+);
+
+SPFTESTIMONIAL::createSection(
+	'sp_tpro_notice',
+	array(
+		'fields' => array(
+			array(
+				'type'      => 'shortcode',
+				'shortcode' => 'pro_notice',
+				'class'     => 'sp_tpro-admin-sidebar',
+			),
+		),
+	)
+);
+
+SPFTESTIMONIAL::createMetabox(
 	'sp_tpro_layout_options',
 	array(
 		'title'             => __( 'Layout', 'testimonial-free' ),

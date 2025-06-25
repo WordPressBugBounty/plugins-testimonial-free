@@ -142,7 +142,6 @@ class SPFTESTIMONIAL {
 		}
 
 		return self::$instance;
-
 	}
 
 	/**
@@ -162,7 +161,6 @@ class SPFTESTIMONIAL {
 		add_action( 'wp_enqueue_scripts', array( $this, 'add_typography_enqueue_styles' ), 80 );
 		add_action( 'wp_head', array( $this, 'add_custom_css' ), 80 );
 		add_filter( 'admin_body_class', array( $this, 'add_admin_body_class' ) );
-
 	}
 
 	/**
@@ -217,7 +215,6 @@ class SPFTESTIMONIAL {
 		}
 
 		do_action( 'spftestimonial_loaded' );
-
 	}
 
 	// Create options.
@@ -257,7 +254,6 @@ class SPFTESTIMONIAL {
 
 		self::$dir = $dirname;
 		self::$url = $directory_uri . $foldername;
-
 	}
 
 	/**
@@ -301,7 +297,6 @@ class SPFTESTIMONIAL {
 			return self::$dir . '/' . $file;
 
 		}
-
 	}
 
 	/**
@@ -405,7 +400,6 @@ class SPFTESTIMONIAL {
 				}
 			}
 		}
-
 	}
 
 	/**
@@ -437,7 +431,6 @@ class SPFTESTIMONIAL {
 				}
 			}
 		}
-
 	}
 
 	/**
@@ -534,7 +527,6 @@ class SPFTESTIMONIAL {
 			}
 		}
 		do_action( 'spftestimonial_enqueue' );
-
 	}
 
 	/**
@@ -583,7 +575,6 @@ class SPFTESTIMONIAL {
 
 			}
 		}
-
 	}
 
 	/**
@@ -599,7 +590,6 @@ class SPFTESTIMONIAL {
 		}
 
 		return $classes;
-
 	}
 
 	/**
@@ -612,7 +602,6 @@ class SPFTESTIMONIAL {
 		if ( ! empty( self::$css ) ) {
 			echo '<style type="text/css">' . wp_strip_all_tags( self::$css ) . '</style>';
 		}
-
 	}
 
 	/**
@@ -724,9 +713,7 @@ class SPFTESTIMONIAL {
 		echo ( ! empty( $field['title'] ) || ! empty( $field['fancy_title'] ) ) ? '</div>' : '';
 		echo '<div class="clear"></div>';
 		echo '</div>';
-
 	}
-
 }
 
 SPFTESTIMONIAL::init( __FILE__ );

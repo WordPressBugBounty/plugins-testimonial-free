@@ -35,11 +35,13 @@ if ( $post_query->max_num_pages > 1 && ! empty( $post_query->found_posts ) ) {
 				'next_text' => '<i class="fa fa-angle-right"></i>',
 			)
 		);
-		$pagination   = "<ul class=\"sp-tfree-pagination\">\n\t<li>";
-		$pagination  .= join( "</li>\n\t<li>", $items );
-		$pagination  .= "</li>\n</ul>\n";
 
-		echo wp_kses_post( $pagination );
+		if ( is_array( $items ) ) {
+			$pagination  = "<ul class=\"sp-tfree-pagination\">\n\t<li>";
+			$pagination .= join( "</li>\n\t<li>", $items );
+			$pagination .= "</li>\n</ul>";
+			echo wp_kses_post( $pagination );
+		}
 		echo '</div>';
 
 	}
