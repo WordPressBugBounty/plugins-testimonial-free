@@ -46,9 +46,8 @@ if ( ! class_exists( 'SPFTESTIMONIAL_Field_color' ) ) {
 			$default_attr = ( ! empty( $this->field['default'] ) ) ? $this->field['default'] : '';
 
 			echo wp_kses_post( $this->field_before() );
-			echo '<input type="text" name="' . esc_attr( $this->field_name() ) . '" value="' . esc_attr( $this->value ) . '" class="spftestimonial-color" data-default-color="' . esc_attr( $default_attr ) . '" ' . $this->field_attributes() . '/>';// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+			echo '<input type="text" name="' . esc_attr( $this->field_name() ) . '" value="' . esc_attr( $this->value ) . '" class="spftestimonial-color" data-default-color="' . esc_attr( $default_attr ) . '" ' . wp_kses_post( $this->field_attributes() ) . '/>';
 			echo wp_kses_post( $this->field_after() );
-
 		}
 
 		/**
@@ -76,8 +75,6 @@ if ( ! class_exists( 'SPFTESTIMONIAL_Field_color' ) ) {
 			$this->parent->output_css .= $output;
 
 			return $output;
-
 		}
-
 	}
 }

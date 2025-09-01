@@ -8,6 +8,9 @@
  * @subpackage Testimonial_Free/Frontend
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
 $preloader_style = ( $preloader ) ? '' : 'display: none;';
 $preloader_image = SP_TFREE_URL . 'Frontend/assets/img/spinner.svg';
 $preloader_image = apply_filters( 'sp_testimonial_pro_preloader_image', $preloader_image );

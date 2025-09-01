@@ -41,10 +41,7 @@ if ( ! class_exists( 'SPFTESTIMONIAL_Field_subheading' ) ) {
 		 * @return void
 		 */
 		public function render() {
-
 			echo wp_kses_post( ( ! empty( $this->field['content'] ) ) ? $this->field['content'] : '' );
-
 		}
-
 	}
 }

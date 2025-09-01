@@ -579,17 +579,6 @@ SPFTESTIMONIAL::createSection(
 				'content' => esc_html__( 'FORM ACTIONS', 'testimonial-free' ),
 			),
 			array(
-				'id'         => 'ajax_form_submission',
-				'type'       => 'switcher',
-				'class'      => 'pro_switcher',
-				'title'      => __( 'Ajax Form Submission', 'testimonial-free' ),
-				'subtitle'   => __( 'Submit the form without reloading the page.', 'testimonial-free' ),
-				'text_on'    => esc_html__( 'Enabled', 'testimonial-free' ),
-				'text_off'   => esc_html__( 'Disabled', 'testimonial-free' ),
-				'text_width' => 95,
-				'default'    => true,
-			),
-			array(
 				'id'       => 'tpro_redirect',
 				'type'     => 'select',
 				'title'    => __( 'Redirect', 'testimonial-free' ),
@@ -617,7 +606,6 @@ SPFTESTIMONIAL::createSection(
 				'class'    => 'larger_text_input',
 				'subtitle' => __( 'Set a submission error message.', 'testimonial-free' ),
 				'default'  => __( 'We encountered an issue while processing your testimonial.', 'testimonial-free' ),
-				// 'dependency'  => array( 'tpro_redirect', '==', 'same_page' ),
 			),
 			array(
 				'id'         => 'tpro_message_position',
@@ -648,10 +636,6 @@ SPFTESTIMONIAL::createSection(
 				'dependency' => array( 'tpro_redirect', '==', 'custom_url' ),
 			),
 			array(
-				'type'    => 'subheading',
-				'content' => esc_html__( 'FORM DISPLAY MODE', 'testimonial-free' ),
-			),
-			array(
 				'id'       => 'tpro_form_display_mode',
 				'type'     => 'button_set',
 				'title'    => __( 'Display Mode', 'testimonial-free' ),
@@ -664,6 +648,17 @@ SPFTESTIMONIAL::createSection(
 					),
 				),
 				'default'  => 'on_page',
+			),
+			array(
+				'id'         => 'ajax_form_submission',
+				'type'       => 'switcher',
+				'class'      => 'pro_switcher',
+				'title'      => __( 'Ajax Form Submission', 'testimonial-free' ),
+				'subtitle'   => __( 'Submit the form without reloading the page.', 'testimonial-free' ),
+				'text_on'    => esc_html__( 'Enabled', 'testimonial-free' ),
+				'text_off'   => esc_html__( 'Disabled', 'testimonial-free' ),
+				'text_width' => 95,
+				'default'    => true,
 			),
 			array(
 				'type'    => 'notice',
@@ -695,42 +690,40 @@ SPFTESTIMONIAL::createSection(
 				'class'    => 'testimonial_approval_status',
 				'title'    => __( 'Testimonial Status', 'testimonial-free' ),
 				'subtitle' => __( 'Select testimonial approval status for the front-end form submission.', 'testimonial-free' ),
-				'desc'     => sprintf(
-					/* translators: 1: start link tag, 2: close tag. */
-					__( '%1$sTo access this feature, %2$sUpgrade to Pro!%3$s', 'testimonial-free' ),
-					'<div class="testimonial-approval-status-notice">',
-					'<a target="_blank" href="https://realtestimonials.io/pricing/?ref=1"><b>',
-					'</b></a></div>'
-				),
 				'options'  => array(
 					'pending'              => esc_html__( 'Pending Review', 'testimonial-free' ),
 					'private'              => esc_html__( 'Private', 'testimonial-free' ),
 					'draft'                => esc_html__( 'Draft', 'testimonial-free' ),
-					'publish'              => esc_html__( 'Auto Publish', 'testimonial-free' ),
-					'based_on_rating_star' => esc_html__( 'Auto Publish Based on Star Rating', 'testimonial-free' ),
+					'publish'              => esc_html__( 'Auto Publish (Pro)', 'testimonial-free' ),
+					'based_on_rating_star' => esc_html__( 'Auto Publish Based on Star Rating (Pro)', 'testimonial-free' ),
 				),
 				'default'  => 'pending',
 			),
 			array(
-				'id'         => 'tpro_auto_publish_rating',
-				'type'       => 'checkbox',
-				'only_pro'   => true,
-				'class'      => 'tpro-rating-star pro_only_field',
-				'title'      => __( 'Based on Star Rating (Pro)', 'testimonial-free' ),
-				'subtitle'   => __( 'Check which star-rated testimonials will be automatically published ', 'testimonial-free' ),
-				'options'    => array(
+				'id'       => 'tpro_auto_publish_rating',
+				'type'     => 'checkbox',
+				'only_pro' => true,
+				'class'    => 'tpro-rating-star pro_only_field',
+				'title'    => __( 'Based on Star Rating (Pro)', 'testimonial-free' ),
+				'subtitle' => __( 'Check which star-rated testimonials will be automatically published ', 'testimonial-free' ),
+				'options'  => array(
 					'five_star'  => '  ',
 					'four_star'  => '  ',
 					'three_star' => '  ',
 					'two_star'   => '  ',
 					'one_star'   => '  ',
 				),
-				'default'    => array( 'five_star', 'four_star' ),
-				'dependency' => array(
-					'testimonial_approval_status',
-					'==',
-					'based_on_rating_star',
-					true,
+				'default'  => array( 'five_star', 'four_star' ),
+			),
+
+			array(
+				'type'    => 'notice',
+				'class'   => 'tpro-form-notice form_settings',
+				'content' => sprintf(
+					/* translators: 1: start link tag, 2: close tag. */
+					__( 'To receive admin, waiting, and approval notifications when a testimonial is submitted by a reviewer, %1$sUpgrade to Pro!%2$s', 'testimonial-free' ),
+					'<a target="_blank" href="https://realtestimonials.io/pricing/?ref=1"><b>',
+					'</b></a>'
 				),
 			),
 
@@ -742,16 +735,6 @@ SPFTESTIMONIAL::createSection(
 						'title'  => __( 'ADMIN NOTIFICATION', 'testimonial-free' ),
 						'icon'   => '<i class="testimonial--icon sptfree-icon-admin-notification"></i>',
 						'fields' => array(
-							array(
-								'type'    => 'notice',
-								'class'   => 'tpro-form-notice form_settings',
-								'content' => sprintf(
-									/* translators: 1: start link tag, 2: close tag. */
-									__( 'To receive admin notifications when a testimonial is submitted by a reviewer, %1$sUpgrade to Pro!%2$s', 'testimonial-free' ),
-									'<a target="_blank" href="https://realtestimonials.io/pricing/?ref=1"><b>',
-									'</b></a>'
-								),
-							),
 							array(
 								'id'         => 'submission_email_notification',
 								'type'       => 'switcher',
@@ -845,56 +828,6 @@ SPFTESTIMONIAL::createSection(
 									'</b></a>'
 								),
 							),
-							array(
-								'id'         => 'reviewer_awaiting_notification',
-								'type'       => 'switcher',
-								'only_pro'   => true,
-								'class'      => 'pro_only_field form_settings',
-								'title'      => __( 'Reviewer Awaiting Notification', 'testimonial-free' ),
-								'text_on'    => esc_html__( 'Enabled', 'testimonial-free' ),
-								'text_off'   => esc_html__( 'Disabled', 'testimonial-free' ),
-								'text_width' => 95,
-								'default'    => true,
-							),
-							array(
-								'id'       => 'reviewer_awaiting_to',
-								'type'     => 'text',
-								'only_pro' => true,
-								'class'    => 'larger_text_input pro_only_field form_settings',
-								'title'    => __( 'To', 'testimonial-free' ),
-								'default'  => '{email}',
-							),
-							array(
-								'id'       => 'reviewer_awaiting_from',
-								'type'     => 'text',
-								'only_pro' => true,
-								'class'    => 'larger_text_input pro_only_field form_settings',
-								'title'    => __( 'From', 'testimonial-free' ),
-								'default'  => '{site_title} {' . $admin_email . '}',
-							),
-							array(
-								'id'       => 'reviewer_awaiting_email_subject',
-								'type'     => 'text',
-								'only_pro' => true,
-								'class'    => 'larger_text_input pro_only_field form_settings',
-								'title'    => __( 'Subject', 'testimonial-free' ),
-								'default'  => 'Your Testimonial has been Received for {site_title}!',
-							),
-							array(
-								'id'       => 'reviewer_awaiting_email_body',
-								'type'     => 'wp_editor',
-								'only_pro' => true,
-								'class'    => 'email_body_area pro_only_field form_settings',
-								'title'    => __( 'Message Body', 'testimonial-free' ),
-								'default'  => '<h2 style="text-align:center;font-size:24px;">Your Testimonial Received!</h2>
-								Hi {name},
-								Thank you for submitting your testimonial. Your testimonial has been received and is awaiting approval from our website administrator.
-								Thank you again for helping us improve our products and services.',
-								'desc'     => '<div class="template-heading">Available Tags for Subject and Message for Email Template</div>
-									<div class="template-content">
-									{name} {email} {position} {company_name} {location} {phone} {website} {video_url} {testimonial_title} {testimonial_text} {groups} {rating} {site_title}
-									</div>',
-							),
 						),
 					),
 					array(
@@ -910,60 +843,6 @@ SPFTESTIMONIAL::createSection(
 									'<a target="_blank" href="https://realtestimonials.io/pricing/?ref=1"><b>',
 									'</b></a>'
 								),
-							),
-							array(
-								'id'         => 'approval_notification',
-								'type'       => 'switcher',
-								'only_pro'   => true,
-								'class'      => 'pro_only_field form_settings',
-								'title'      => __( 'Testimonial Approval Notification', 'testimonial-free' ),
-								'text_on'    => esc_html__( 'Enabled', 'testimonial-free' ),
-								'text_off'   => esc_html__( 'Disabled', 'testimonial-free' ),
-								'text_width' => 95,
-								'default'    => true,
-							),
-							array(
-								'id'         => 'approval_email_to',
-								'type'       => 'text',
-								'only_pro'   => true,
-								'class'      => 'larger_text_input pro_only_field form_settings',
-								'title'      => __( 'To', 'testimonial-free' ),
-								'default'    => '{email}',
-								'dependency' => array( 'approval_notification', '==', 'true' ),
-							),
-							array(
-								'id'         => 'approval_email_from',
-								'type'       => 'text',
-								'only_pro'   => true,
-								'class'      => 'larger_text_input pro_only_field form_settings',
-								'title'      => __( 'From', 'testimonial-free' ),
-								'default'    => '{site_title} {' . $admin_email . '}',
-								'dependency' => array( 'approval_notification', '==', 'true' ),
-							),
-							array(
-								'id'         => 'approval_email_subject',
-								'type'       => 'text',
-								'only_pro'   => true,
-								'class'      => 'larger_text_input pro_only_field form_settings',
-								'title'      => __( 'Subject', 'testimonial-free' ),
-								'default'    => 'Congratulations! Your Testimonial has been Approved!',
-								'dependency' => array( 'approval_notification', '==', 'true' ),
-							),
-							array(
-								'id'         => 'approval_email_body',
-								'type'       => 'wp_editor',
-								'only_pro'   => true,
-								'class'      => 'email_body_area pro_only_field form_settings',
-								'title'      => __( 'Message Body', 'testimonial-free' ),
-								'default'    => '<h2 style="text-align:center;font-size:24px;">Congrats, Your Testimonial Approved!</h2>
-								Hi {name},
-								Congratulations! We are delighted to inform you that your testimonial has been approved. We appreciate your input and value your loyalty. You can now view it on the website. 
-								Thank you!',
-								'desc'       => '<div class="template-heading">Available Tags for Subject and Message for Email Template</div>
-									<div class="template-content">
-									{name} {email} {position} {company_name} {location} {phone} {website} {video_url} {testimonial_title} {testimonial_text} {groups} {rating} {site_title}
-									</div>',
-								'dependency' => array( 'approval_notification', '==', 'true' ),
 							),
 						),
 					),
@@ -1072,120 +951,6 @@ SPFTESTIMONIAL::createSection(
 					'px',
 					'%',
 				),
-			),
-
-			array(
-				'id'       => 'record_button_color',
-				'type'     => 'color_group',
-				'only_pro' => true,
-				'class'    => 'pro_only_field form_settings',
-				'title'    => __( 'Record Button Color', 'testimonial-free' ),
-				'subtitle' => __( 'Set color for the record button.', 'testimonial-free' ),
-				'options'  => array(
-					'color'            => esc_html__( 'Color', 'testimonial-free' ),
-					'hover-color'      => esc_html__( 'Hover Color', 'testimonial-free' ),
-					'background'       => esc_html__( 'Background', 'testimonial-free' ),
-					'hover-background' => esc_html__( 'Hover Background', 'testimonial-free' ),
-				),
-				'default'  => array(
-					'color'            => '#005BDF',
-					'hover-color'      => '#005BDF',
-					'background'       => 'rgba(0, 91, 223, 0.12)',
-					'hover-background' => 'rgba(0, 91, 223, 0.18)',
-				),
-			),
-			array(
-				'id'       => 'form_rating_color',
-				'type'     => 'color',
-				'only_pro' => true,
-				'class'    => 'pro_only_field form_settings',
-				'title'    => __( 'Rating Color', 'testimonial-free' ),
-				'subtitle' => __( 'Set color for the star rating.', 'testimonial-free' ),
-				'default'  => '#d4d4d4',
-			),
-			array(
-				'id'       => 'submit_button_color',
-				'type'     => 'color_group',
-				'only_pro' => true,
-				'class'    => 'pro_only_field form_settings',
-				'title'    => __( 'Submit Button Color', 'testimonial-free' ),
-				'subtitle' => __( 'Set color for the submit button.', 'testimonial-free' ),
-				'options'  => array(
-					'color'            => esc_html__( 'Color', 'testimonial-free' ),
-					'hover-color'      => esc_html__( 'Hover Color', 'testimonial-free' ),
-					'background'       => esc_html__( 'Background', 'testimonial-free' ),
-					'hover-background' => esc_html__( 'Hover Background', 'testimonial-free' ),
-				),
-				'default'  => array(
-					'color'            => '#ffffff',
-					'hover-color'      => '#ffffff',
-					'background'       => '#005BDF',
-					'hover-background' => '#005BDF',
-				),
-			),
-			array(
-				'id'       => 'form_shadow_type',
-				'type'     => 'button_set',
-				'only_pro' => true,
-				'class'    => 'pro_only_field form_settings',
-				'title'    => __( 'Box-Shadow', 'testimonial-free' ),
-				'subtitle' => __( 'Choose box-shadow type for the testimonial form.', 'testimonial-free' ),
-				'options'  => array(
-					'inset'  => __( 'Inset', 'testimonial-free' ),
-					'outset' => __( 'Outset', 'testimonial-free' ),
-					'none'   => __( 'None', 'testimonial-free' ),
-				),
-				'default'  => 'none',
-			),
-			array(
-				'id'         => 'testimonial_form_box_shadow_properties',
-				'type'       => 'box_shadow',
-				'only_pro'   => true,
-				'class'      => 'pro_only_field form_settings',
-				'title'      => __( 'Box-Shadow Values', 'testimonial-free' ),
-				'subtitle'   => __( 'Set box-shadow property values for the testimonial form.', 'testimonial-free' ),
-				'default'    => array(
-					'horizontal' => '0',
-					'vertical'   => '0',
-					'blur'       => '6',
-					'spread'     => '0',
-					'color'      => 'rgba(10,10,10,0.1)',
-				),
-				'dependency' => array( 'form_shadow_type', '!=', 'none', true ),
-			),
-			array(
-				'id'       => 'form_alignment',
-				'type'     => 'button_set',
-				'only_pro' => true,
-				'class'    => 'button_set_smaller pro_only_field form_settings',
-				'title'    => __( 'Form Alignment', 'testimonial-free' ),
-				'subtitle' => __( 'Set alignment for the form.', 'testimonial-free' ),
-				'options'  => array(
-					'left'   => '<i class="fa fa-align-left" title="left"></i>',
-					'center' => '<i class="fa fa-align-center" title="center"></i>',
-					'right'  => '<i class="fa fa-align-right" title="right"></i>',
-				),
-				'default'  => 'center',
-			),
-			array(
-				'id'          => 'form_inner_padding',
-				'type'        => 'spacing',
-				'only_pro'    => true,
-				'class'       => 'testimonial_inner_padding pro_only_field form_settings',
-				'title'       => __( 'Padding', 'testimonial-free' ),
-				'subtitle'    => __( 'Set padding for testimonial form.', 'testimonial-free' ),
-				'default'     => array(
-					'top'    => '32',
-					'right'  => '32',
-					'bottom' => '32',
-					'left'   => '32',
-				),
-				'top_text'    => __( 'Top', 'testimonial-free' ),
-				'right_text'  => __( 'Right', 'testimonial-free' ),
-				'bottom_text' => __( 'Bottom', 'testimonial-free' ),
-				'left_text'   => __( 'Left', 'testimonial-free' ),
-				'unit'        => true,
-				'units'       => array( 'px' ),
 			),
 		),
 	)

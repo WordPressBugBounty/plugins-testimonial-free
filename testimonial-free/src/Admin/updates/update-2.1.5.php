@@ -1,7 +1,17 @@
 <?php
 /**
- * Update version.
+ * Update options for the version 2.1.5
+ *
+ * @link       https://shapedplugin.com
+ *
+ * @package    testimonial_free
+ * @subpackage testimonial_free/Admin/updates
  */
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
+
 update_option( 'testimonial_version', '2.1.5' );
 update_option( 'testimonial_db_version', '2.1.5' );
 
@@ -61,7 +71,9 @@ function covert_old_to_new_shortcode_meta_2_1_5() {
 			$position_color            = get_post_meta( $post_id, 'tfree_position_color', true );
 
 			add_post_meta(
-				$post_id, 'sp_tpro_shortcode_options', array(
+				$post_id,
+				'sp_tpro_shortcode_options',
+				array(
 					'layout'                               => $slider_layout,
 					'theme_style'                          => $theme_style,
 					'display_testimonials_from'            => $testimonials_from,

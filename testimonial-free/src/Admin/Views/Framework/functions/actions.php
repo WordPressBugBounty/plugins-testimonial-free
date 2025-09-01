@@ -56,7 +56,6 @@ if ( ! function_exists( 'spftestimonial_get_icons' ) ) {
 		$content = ob_get_clean();
 
 		wp_send_json_success( array( 'content' => $content ) );
-
 	}
 	add_action( 'wp_ajax_spftestimonial-get-icons', 'spftestimonial_get_icons' );
 }
@@ -105,6 +104,7 @@ if ( ! function_exists( 'spftestimonial_import_ajax' ) ) {
 
 		$nonce  = ( ! empty( $_POST['nonce'] ) ) ? sanitize_text_field( wp_unslash( $_POST['nonce'] ) ) : '';
 		$unique = ( ! empty( $_POST['unique'] ) ) ? sanitize_text_field( wp_unslash( $_POST['unique'] ) ) : '';
+		// @codingStandardsIgnoreLine
 		$data   = ( ! empty( $_POST['data'] ) ) ? wp_kses_post_deep( json_decode( wp_unslash( trim( $_POST['data'] ) ), true ) ) : array();
 
 		if ( ! wp_verify_nonce( $nonce, 'spftestimonial_backup_nonce' ) ) {
@@ -123,7 +123,6 @@ if ( ! function_exists( 'spftestimonial_import_ajax' ) ) {
 		update_option( $unique, $data );
 
 		wp_send_json_success();
-
 	}
 	add_action( 'wp_ajax_spftestimonial-import', 'spftestimonial_import_ajax' );
 }
@@ -147,7 +146,6 @@ if ( ! function_exists( 'spftestimonial_reset_ajax' ) ) {
 		delete_option( $unique );
 
 		wp_send_json_success();
-
 	}
 	add_action( 'wp_ajax_spftestimonial-reset', 'spftestimonial_reset_ajax' );
 }
@@ -163,6 +161,7 @@ if ( ! function_exists( 'spftestimonial_chosen_ajax' ) ) {
 		$nonce = ( ! empty( $_POST['nonce'] ) ) ? sanitize_text_field( wp_unslash( $_POST['nonce'] ) ) : '';
 		$type  = ( ! empty( $_POST['type'] ) ) ? sanitize_text_field( wp_unslash( $_POST['type'] ) ) : '';
 		$term  = ( ! empty( $_POST['term'] ) ) ? sanitize_text_field( wp_unslash( $_POST['term'] ) ) : '';
+		// @codingStandardsIgnoreLine
 		$query = ( ! empty( $_POST['query_args'] ) ) ? wp_kses_post_deep( $_POST['query_args'] ) : array();
 
 		if ( ! wp_verify_nonce( $nonce, 'spftestimonial_chosen_ajax_nonce' ) ) {
@@ -183,7 +182,6 @@ if ( ! function_exists( 'spftestimonial_chosen_ajax' ) ) {
 		$options = SPFTESTIMONIAL_Fields::field_data( $type, $term, $query );
 
 		wp_send_json_success( $options );
-
 	}
 	add_action( 'wp_ajax_spftestimonial-chosen', 'spftestimonial_chosen_ajax' );
 }

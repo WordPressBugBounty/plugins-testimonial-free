@@ -47,7 +47,6 @@ if ( ! class_exists( 'SPFTESTIMONIAL_Abstract' ) ) {
 				add_action( 'wp_enqueue_scripts', array( $this, 'collect_output_css_and_typography' ), 10 );
 				SPFTESTIMONIAL::$css = apply_filters( "spftestimonial_{$this->unique}_output_css", SPFTESTIMONIAL::$css, $this );
 			}
-
 		}
 		/**
 		 * Add output CSS and typography.
@@ -149,8 +148,6 @@ if ( ! class_exists( 'SPFTESTIMONIAL_Abstract' ) ) {
 					}
 				}
 			}
-
 		}
-
 	}
 }

@@ -80,7 +80,6 @@ if ( ! class_exists( 'SPFTESTIMONIAL_Field_sorter' ) ) {
 			}
 
 			echo wp_kses_post( $this->field_after() );
-
 		}
 
 		/**
@@ -93,6 +92,5 @@ if ( ! class_exists( 'SPFTESTIMONIAL_Field_sorter' ) ) {
 				wp_enqueue_script( 'jquery-ui-sortable' );
 			}
 		}
-
 	}
 }

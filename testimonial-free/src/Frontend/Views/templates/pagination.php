@@ -8,6 +8,9 @@
  * @subpackage Testimonial_Free/Frontend
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
 if ( $post_query->max_num_pages > 1 && ! empty( $post_query->found_posts ) ) {
 	$number_of_total_testimonials = ! empty( $shortcode_data['number_of_total_testimonials'] ) ? (int) $shortcode_data['number_of_total_testimonials'] : $post_query->found_posts;
 	$testimonial_per_page         = ! empty( $shortcode_data['tp_per_page'] ) ? (int) $shortcode_data['tp_per_page'] : 8;
@@ -23,12 +26,14 @@ if ( $post_query->max_num_pages > 1 && ! empty( $post_query->found_posts ) ) {
 		echo '<div class="tfree-col-xl-1 sp-tfree-pagination-area">';
 		$paged_format = '?paged' . $post_id . '=%#%';
 		$paged_query  = 'paged' . $post_id;
-		$big          = 999999999; // need an unlikely integer.
-		$items        = paginate_links(
+		$current_page = isset( $_GET[ "$paged_query" ] ) ? wp_unslash( absint( $_GET[ "$paged_query" ] ) ) : 1; // phpcs:ignore WordPress.Security.NonceVerification -- read-only operation, so can safely ignore it.
+
+		$big   = 999999999; // need an unlikely integer.
+		$items = paginate_links(
 			array(
 				'format'    => $paged_format,
 				'prev_next' => true,
-				'current'   => isset( $_GET[ "$paged_query" ] ) ? wp_unslash( absint( $_GET[ "$paged_query" ] ) ) : 1,
+				'current'   => $current_page,
 				'total'     => $max_num_pages,
 				'type'      => 'array',
 				'prev_text' => '<i class="fa fa-angle-left"></i>',
@@ -43,6 +48,5 @@ if ( $post_query->max_num_pages > 1 && ! empty( $post_query->found_posts ) ) {
 			echo wp_kses_post( $pagination );
 		}
 		echo '</div>';
-
 	}
 }

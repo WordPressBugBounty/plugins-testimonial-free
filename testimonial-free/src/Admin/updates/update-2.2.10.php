@@ -1,7 +1,17 @@
 <?php
 /**
- * Update version.
+ * Update options for the version 2.2.10
+ *
+ * @link       https://shapedplugin.com
+ *
+ * @package    testimonial_free
+ * @subpackage testimonial_free/Admin/updates
  */
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
+
 update_option( 'testimonial_version', '2.2.10' );
 update_option( 'testimonial_db_version', '2.2.10' );
 
@@ -12,6 +22,7 @@ function sp_change_shortcodes_post_type() {
 	global $wpdb;
 	$old_post_types = array( 'sp_tfree_shortcodes' => 'spt_shortcodes' );
 	foreach ( $old_post_types as $old_type => $type ) {
+		// @codingStandardsIgnoreLine WordPress.DB.DirectDatabaseQuery.DirectQuery
 		$wpdb->query(
 			$wpdb->prepare(
 				"UPDATE {$wpdb->posts} SET post_type = REPLACE(post_type, %s, %s) 
@@ -21,6 +32,7 @@ function sp_change_shortcodes_post_type() {
 				$old_type
 			)
 		);
+		// @codingStandardsIgnoreLine WordPress.DB.DirectDatabaseQuery.DirectQuery
 		$wpdb->query(
 			$wpdb->prepare(
 				"UPDATE {$wpdb->posts} SET guid = REPLACE(guid, %s, %s) 
@@ -30,6 +42,7 @@ function sp_change_shortcodes_post_type() {
 				"%post_type={$type}%"
 			)
 		);
+		// @codingStandardsIgnoreLine WordPress.DB.DirectDatabaseQuery.DirectQuery
 		$wpdb->query(
 			$wpdb->prepare(
 				"UPDATE {$wpdb->posts} SET guid = REPLACE(guid, %s, %s) 

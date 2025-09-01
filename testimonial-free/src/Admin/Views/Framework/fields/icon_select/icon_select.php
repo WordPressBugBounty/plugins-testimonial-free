@@ -1,12 +1,15 @@
-<?php if ( ! defined( 'ABSPATH' ) ) {
-	die; } // Cannot access directly.
+<?php
 /**
- *
  * Field: icon_select
  *
  * @since 1.0.0
  * @version 1.0.0
+ * @package Testimonial_free
  */
+
+if ( ! defined( 'ABSPATH' ) ) {
+	die; } // Cannot access directly.
+
 if ( ! class_exists( 'SPFTESTIMONIAL_Field_icon_select' ) ) {
 	class SPFTESTIMONIAL_Field_icon_select extends SPFTESTIMONIAL_Fields {
 
@@ -29,7 +32,6 @@ if ( ! class_exists( 'SPFTESTIMONIAL_Field_icon_select' ) ) {
 		 * @return void
 		 */
 		public function render() {
-
 			$args = wp_parse_args(
 				$this->field,
 				array(
@@ -39,17 +41,12 @@ if ( ! class_exists( 'SPFTESTIMONIAL_Field_icon_select' ) ) {
 			);
 
 			$value = ( is_array( $this->value ) ) ? $this->value : array_filter( (array) $this->value );
-
 			echo wp_kses_post( $this->field_before() );
-
 			if ( ! empty( $args['options'] ) ) {
-
 				echo '<div class="spftestimonial-siblings spftestimonial--image-group" data-multiple="' . esc_attr( $args['multiple'] ) . '">';
-
 				$num = 1;
 
 				foreach ( $args['options'] as $key => $option ) {
-
 					$type           = ( $args['multiple'] ) ? 'checkbox' : 'radio';
 					$extra          = ( $args['multiple'] ) ? '[]' : '';
 					$active         = ( in_array( $key, $value ) ) ? ' spftestimonial--active' : '';
@@ -62,20 +59,13 @@ if ( ! class_exists( 'SPFTESTIMONIAL_Field_icon_select' ) ) {
 					} else {
 						echo '<span class="' . esc_attr( $option ) . '"/></span>';
 					}
-					echo '<input type="' . esc_attr( $type ) . '" name="' . esc_attr( $this->field_name( $extra ) ) . '" value="' . esc_attr( $key ) . '"' . $this->field_attributes() . esc_attr( $checked ) . '/>';
+					echo '<input type="' . esc_attr( $type ) . '" name="' . esc_attr( $this->field_name( $extra ) ) . '" value="' . esc_attr( $key ) . '"' . wp_kses_post( $this->field_attributes() ) . esc_attr( $checked ) . '/>';
 					echo '</div>';
-
 				}
-
 				echo '</div>';
-
 			}
-
 			echo '<div class="clear"></div>';
-
 			echo wp_kses_post( $this->field_after() );
-
 		}
-
 	}
 }

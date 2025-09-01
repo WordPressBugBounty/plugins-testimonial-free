@@ -11,6 +11,10 @@
 
 namespace ShapedPlugin\TestimonialFree\Admin\ElementAddons_Deprecated;
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
+
 use ShapedPlugin\TestimonialFree\Frontend\Helper;
 use ShapedPlugin\TestimonialFree\Frontend\Frontend;
 
@@ -166,7 +170,6 @@ class Shortcode_Widget_Deprecated extends \Elementor\Widget_Base {
 			<script>
 			jQuery('#sp-testimonial-preloader-' + <?php echo esc_attr( $generator_id ); ?>).animate({ opacity: 0, zIndex: -99 }, 600);
 			</script>
-			<script src="<?php echo esc_url( SP_TFREE_URL . 'Frontend/assets/js/sp-scripts.min.js' ); ?>" ></script>
 			<?php
 		} else {
 			echo do_shortcode( '[sp_testimonial id="' . esc_attr( $generator_id ) . '"]' );

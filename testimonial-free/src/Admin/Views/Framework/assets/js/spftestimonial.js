@@ -502,54 +502,29 @@
 	//
 	$.fn.spftestimonial_field_code_editor = function () {
 		return this.each(function () {
-
-			if (typeof CodeMirror !== 'function') { return; }
+			if (typeof wp === 'undefined' || typeof wp.codeEditor === 'undefined') {
+				return;
+			}
 
 			var $this = $(this),
 				$textarea = $this.find('textarea'),
-				$inited = $this.find('.CodeMirror'),
-				data_editor = $textarea.data('editor');
+				settings = $textarea.data('editor') || {};
 
-			if ($inited.length) {
-				$inited.remove();
-			}
+			// Merge with WP defaults
+			var editorSettings = wp.codeEditor.defaultSettings ? _.clone(wp.codeEditor.defaultSettings) : {};
+			editorSettings.codemirror = _.extend(
+				{},
+				editorSettings.codemirror,
+				settings
+			);
 
-			var interval = setInterval(function () {
-				if ($this.is(':visible')) {
-
-					var code_editor = CodeMirror.fromTextArea($textarea[0], data_editor);
-
-					// load code-mirror theme css.
-					if (data_editor.theme !== 'default' && SPFTESTIMONIAL.vars.code_themes.indexOf(data_editor.theme) === -1) {
-
-						var $cssLink = $('<link>');
-
-						$('#spftestimonial-codemirror-css').after($cssLink);
-
-						$cssLink.attr({
-							rel: 'stylesheet',
-							id: 'spftestimonial-codemirror-' + data_editor.theme + '-css',
-							href: data_editor.cdnURL + '/theme/' + data_editor.theme + '.min.css',
-							type: 'text/css',
-							media: 'all'
-						});
-
-						SPFTESTIMONIAL.vars.code_themes.push(data_editor.theme);
-
-					}
-
-					CodeMirror.modeURL = data_editor.cdnURL + '/mode/%N/%N.min.js';
-					CodeMirror.autoLoadMode(code_editor, data_editor.mode);
-
-					code_editor.on('change', function (editor, event) {
-						$textarea.val(code_editor.getValue()).trigger('change');
-					});
-
-					clearInterval(interval);
-
-				}
+			// Initialize editor
+			var editor = wp.codeEditor.initialize($textarea[0], editorSettings);
+			//editor.codemirror.setOption('theme', 'monokai');
+			// Sync changes back to textarea
+			editor.codemirror.on('change', function () {
+				$textarea.val(editor.codemirror.getValue()).trigger('change');
 			});
-
 		});
 	};
 
@@ -1459,7 +1434,8 @@
 						$buttons.prop('disabled', true);
 
 						window.wp.ajax.post('spftestimonial_' + $panel.data('unique') + '_ajax_save', {
-							data: $('#spftestimonial-form').serializeJSONSPFTESTIMONIAL()
+							data: $('#spftestimonial-form').serializeJSONSPFTESTIMONIAL(),
+							nonce: $('#spftestimonial_options_nonce' + $panel.data('unique')).val(),
 						})
 							.done(function (response) {
 
@@ -1870,7 +1846,7 @@
 		return this.each(function () {
 
 			var $this = $(this),
-				$siblings = $this.find('.spftestimonial--sibling'),
+				$siblings = $this.find('.spftestimonial--sibling:not(.spftestimonial-pro-only):not(.pro-feature)'),
 				multiple = $this.data('multiple') || false;
 
 			$siblings.on('click', function () {
@@ -2000,7 +1976,7 @@
 				$this.children('.spftestimonial-field-switcher').spftestimonial_field_switcher();
 				$this.children('.spftestimonial-field-slider').spftestimonial_field_slider();
 				$this.children('.spftestimonial-field-tabbed').spftestimonial_field_tabbed();
-				$this.children('.spftestimonial-field-typography').spftestimonial_field_typography();
+				//  $this.children('.spftestimonial-field-typography').spftestimonial_field_typography();
 				$this.children('.spftestimonial-field-wp_editor').spftestimonial_field_wp_editor();
 
 				// Field colors
@@ -2562,7 +2538,7 @@
 
 	$("select option:contains((Pro))").attr('disabled', true).css('opacity', '0.8');
 	$(".addition_extra_fields_pro select option").attr('disabled', true).css('opacity', '0.8');
-	$("label:contains((Pro))").css({ 'pointer-events': 'none' }).css('opacity', '0.8');
+	$("label:contains((Pro))").css({ 'pointer-events': 'none' }).css('opacity', '0.5');
 
 	/* Show/Hide dependency of 'Slider Settings' tab on page load. */
 	var layout_val = $(".tfree-layout-preset .spftestimonial--active").find('input:checked').val();
@@ -2573,9 +2549,7 @@
 	}
 
 	$(".tfree-layout-preset").on('click', '.spftestimonial--sibling', function (e) {
-		var layout_val = $(".tfree-layout-preset .spftestimonial--active").find('input:checked').val(),
-			slider_mode = $('.spftestimonial-field.sp_slider_mode .spftestimonial--active').find("input:checked").val(),
-			carousel_mode = $('.spftestimonial-field.sp_carousel_mode .spftestimonial--active').find("input:checked").val();
+		var layout_val = $(".tfree-layout-preset .spftestimonial--active").find('input:checked').val();
 
 		// Define column values based on layout and slider mode.
 		var columnValues = {
@@ -2595,7 +2569,7 @@
 			},
 		};
 		// Set column values based on conditions
-		var responsiveColumns = ((layout_val == "slider" && slider_mode == 'standard') || layout_val == "list") ? columnValues.standard : columnValues.default;
+		var responsiveColumns = (layout_val == "slider" || layout_val == "list") ? columnValues.standard : columnValues.default;
 
 		$.each(responsiveColumns, function (key, value) {
 			$("input.spftestimonial-number[name='sp_tpro_shortcode_options[columns][" + key + "]']").val(value);
@@ -2620,7 +2594,7 @@
 		$(approvalStatusNotice).hide();
 	}
 	// show hide text of carousel navigation.
-	if (navigationVal != 'vertical_outer') {
+	if (navigationVal != 'vertical_outer' && navigationVal != 'top_right') {
 		$('.sp_carousel-navigation-notice').show();
 	} else {
 		$('.sp_carousel-navigation-notice').hide();
@@ -2661,7 +2635,7 @@
 		var str = "";
 		$(selector + ' option:selected').each(function () {
 			str = $(this).val();
-			if (str != 'vertical_outer') {
+			if (str != 'vertical_outer' && str != 'top_right') {
 				$('.sp_carousel-navigation-notice').show();
 			} else {
 				$('.sp_carousel-navigation-notice').hide();

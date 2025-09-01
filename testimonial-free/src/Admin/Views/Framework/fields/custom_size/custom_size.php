@@ -42,7 +42,6 @@ if ( ! class_exists( 'SPFTESTIMONIAL_Field_custom_size' ) ) {
 		 * @return void
 		 */
 		public function render() {
-
 			$args = wp_parse_args(
 				$this->field,
 				array(
@@ -81,7 +80,6 @@ if ( ! class_exists( 'SPFTESTIMONIAL_Field_custom_size' ) ) {
 			$properties = ( array( 'width', 'height' ) === $properties ) ? array_reverse( $properties ) : $properties;
 			echo '<div class="spftestimonial--inputs" data-depend-id="' . esc_attr( $this->field['id'] ) . '">';
 			foreach ( $properties as $property ) {
-
 				$placeholder = ( ! empty( $args[ $property . '_placeholder' ] ) ) ? $args[ $property . '_placeholder' ] : '';
 
 				echo '<div class="spftestimonial--input">';
@@ -107,8 +105,6 @@ if ( ! class_exists( 'SPFTESTIMONIAL_Field_custom_size' ) ) {
 			echo '<div class="clear"></div>';
 
 			echo wp_kses_post( $this->field_after() );
-
 		}
-
 	}
 }

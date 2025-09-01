@@ -12,6 +12,10 @@
 
 namespace ShapedPlugin\TestimonialFree\Admin\Views\Notices;
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
+
 /**
  * Admin review notice class.
  */
@@ -68,11 +72,11 @@ class Testimonial_Review {
 			</div>
 			<div class="sp-testimonial-notice-text">
 				<h3>Enjoying <strong>Real Testimonials</strong>?</h3>
-				<p>We hope you had a wonderful experience using <strong>Real Testimonials</strong>. Please take a moment to leave a review on <a href="https://wordpress.org/support/plugin/testimonial-free/reviews/?filter=5#new-post" target="_blank"><strong>WordPress.org</strong></a>?
+				<p>We hope you had a wonderful experience using <strong>Real Testimonials</strong>. Please take a moment to leave a review on <a href="https://wordpress.org/support/plugin/testimonial-free/reviews/" target="_blank"><strong>WordPress.org</strong></a>?
 				Your positive review will help us improve. Thank you! 😊</p>
 
 				<p class="sp-testimonial-review-actions">
-					<a href="https://wordpress.org/support/plugin/testimonial-free/reviews/?filter=5#new-post" target="_blank" class="button button-primary notice-dismissed rate-testimonial">Ok, you deserve ★★★★★</a>
+					<a href="https://wordpress.org/support/plugin/testimonial-free/reviews/" target="_blank" class="button button-primary notice-dismissed rate-testimonial">Ok, you deserve ★★★★★</a>
 					<a href="#" class="notice-dismissed remind-me-later"><span class="dashicons dashicons-clock"></span>Nope, maybe later
 					</a>
 					<a href="#" class="notice-dismissed never-show-again"><span class="dashicons dashicons-dismiss"></span>Never show again</a>
@@ -128,7 +132,10 @@ class Testimonial_Review {
 		if ( ! $review ) {
 			$review = array();
 		}
-		switch ( isset( $post_data['notice_dismissed_data'] ) ? $post_data['notice_dismissed_data'] : '' ) {
+
+		$dismiss_status = isset( $post_data['notice_dismissed_data'] ) ? sanitize_text_field( wp_unslash( $post_data['notice_dismissed_data'] ) ) : '';
+
+		switch ( $dismiss_status ) {
 			case '1':
 				$review['time']      = time();
 				$review['dismissed'] = true;

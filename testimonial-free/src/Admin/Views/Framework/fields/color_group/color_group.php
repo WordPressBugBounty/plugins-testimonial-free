@@ -55,15 +55,13 @@ if ( ! class_exists( 'SPFTESTIMONIAL_Field_color_group' ) ) {
 
 					echo '<div class="spftestimonial--left spftestimonial-field-color">';
 					echo '<div class="spftestimonial--title">' . esc_html( $option ) . '</div>';
-					echo '<input type="text" name="' . esc_attr( $this->field_name( '[' . $key . ']' ) ) . '" value="' . esc_attr( $color_value ) . '" class="spftestimonial-color" data-default-color="' . esc_attr( $default_attr ) . '"' . $this->field_attributes() . '/>';// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+					echo '<input type="text" name="' . esc_attr( $this->field_name( '[' . $key . ']' ) ) . '" value="' . esc_attr( $color_value ) . '" class="spftestimonial-color" data-default-color="' . esc_attr( $default_attr ) . '"' . wp_kses_post( $this->field_attributes() ) . '/>';
 					echo '</div>';
 
 				}
 			}
 
 			echo wp_kses_post( $this->field_after() );
-
 		}
-
 	}
 }

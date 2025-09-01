@@ -8,5 +8,8 @@
  * @subpackage Testimonial_Free/Frontend
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
 ?>
-<div class="sp-tpro-form-validation-msg"><?php echo stripslashes( $validation_msg ); ?></div>
+<div class="sp-tpro-form-validation-msg"><?php echo wp_kses_post( stripslashes( $validation_msg ) ); ?></div>

@@ -8,6 +8,9 @@
  * @subpackage Testimonial_Free/Frontend
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
 ?>
 <div id="testimonial_form_<?php echo esc_attr( $form_id ); ?>" class="sp-tpro-fronted-form" data-form_id='<?php echo esc_attr( $form_id ); ?>'>
 <div class="sp-testimonial-form-container">

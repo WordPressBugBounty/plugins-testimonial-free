@@ -79,9 +79,7 @@ if ( ! class_exists( 'SPFTESTIMONIAL_Field_sortable' ) ) {
 			}
 
 			foreach ( $pre_sortby as $key => $field ) {
-
 				echo '<div class="spftestimonial-sortable-item">';
-
 				echo '<div class="spftestimonial-sortable-content">';
 
 				$field_default = ( isset( $this->field['default'][ $key ] ) ) ? $this->field['default'][ $key ] : '';
@@ -91,17 +89,12 @@ if ( ! class_exists( 'SPFTESTIMONIAL_Field_sortable' ) ) {
 				SPFTESTIMONIAL::field( $field, $field_value, $unique_id, 'field/sortable' );
 
 				echo '</div>';
-
 				echo '<div class="spftestimonial-sortable-helper"><i class="fa fa-arrows-alt"></i></div>';
-
 				echo '</div>';
-
 			}
 
 			echo '</div>';
-
 			echo wp_kses_post( $this->field_after() );
-
 		}
 
 		/**
@@ -114,6 +107,5 @@ if ( ! class_exists( 'SPFTESTIMONIAL_Field_sortable' ) ) {
 				wp_enqueue_script( 'jquery-ui-sortable' );
 			}
 		}
-
 	}
 }

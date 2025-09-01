@@ -7,6 +7,9 @@
  * @package Testimonial
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
 ?>
 <div class="sp-testimonial-item <?php echo esc_attr( $item_class ); ?>">
 <div class="sp-testimonial-free">
@@ -14,6 +17,9 @@
 if ( $client_image && has_post_thumbnail( $post_query->post->ID ) ) {
 	include self::sp_testimonial_locate_template( 'testimonial/thumbnail.php' );
 }
+if ( 'theme-one-v2' === $theme_style ) :
+	echo '<div class="sp-testimonial-details">';
+endif;
 if ( $testimonial_title && ! empty( get_the_title() ) ) {
 	include self::sp_testimonial_locate_template( 'testimonial/title.php' );
 }
@@ -29,6 +35,9 @@ if ( $star_rating && ! empty( $tfree_rating_star ) ) {
 if ( $reviewer_position && ! empty( $tfree_designation ) ) {
 	include self::sp_testimonial_locate_template( 'testimonial/designation.php' );
 }
+if ( 'theme-one-v2' === $theme_style ) :
+	echo '</div>';
+endif;
 ?>
 </div> <!-- sp-testimonial-free. -->
 </div> <!--sp-testimonial-item.-->

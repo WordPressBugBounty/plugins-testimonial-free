@@ -6,6 +6,10 @@
  * @subpackage Testimonial_Free/Frontend
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
+
 $label_position         = isset( $form_data['label_position'] ) ? $form_data['label_position'] : '';
 $testimonial_form_width = isset( $form_data['testimonial_form_width']['top'] ) ? $form_data['testimonial_form_width']['top'] : '680';
 $label_color            = isset( $form_data['label_color'] ) ? $form_data['label_color'] : '';

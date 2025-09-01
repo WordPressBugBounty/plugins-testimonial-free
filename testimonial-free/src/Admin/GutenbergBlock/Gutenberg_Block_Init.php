@@ -12,6 +12,10 @@
 
 namespace ShapedPlugin\TestimonialFree\Admin\GutenbergBlock;
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
+
 use ShapedPlugin\TestimonialFree\Frontend\Helper;
 
 // Exit if accessed directly.
@@ -305,17 +309,11 @@ if ( ! class_exists( 'ShapedPlugin\TestimonialFree\Admin\GutenbergBlock\Gutenber
 				return '<div class="' . esc_attr( $class_name ) . '">' . do_shortcode( '[sp_testimonial_form id="' . sanitize_text_field( $attributes['shortcode'] ) . '"]' ) . '</div>';
 			}
 
-			$dynamic_style    = Helper::load_form_dynamic_style( $form_id, $form_data, $setting_options );
-			$enqueue_fonts    = Helper::load_google_fonts( $dynamic_style['typography'] );
-			$load_google_font = '';
-
-			// Google font link enqueue.
-			if ( ! empty( $enqueue_fonts ) ) {
-				$load_google_font .= '<link rel="stylesheet" href="' . esc_url( 'https://fonts.googleapis.com/css?family=' . implode( '|', $enqueue_fonts ) ) . '" media="all">';
-			}
+			$dynamic_style = Helper::load_form_dynamic_style( $form_id, $form_data, $setting_options );
+			// $enqueue_fonts    = Helper::load_google_fonts( $dynamic_style['typography'] );
 
 			$edit_page_link = get_edit_post_link( sanitize_text_field( $attributes['shortcode'] ) );
-			return $load_google_font . '<div id="testimonial_form_' . esc_attr( $form_id ) . ' " class="' . esc_attr( $class_name ) . '"><a href="' . esc_url( $edit_page_link ) . '" target="_blank" class="sp_testimonial_block_edit_button">Edit View</a>' . do_shortcode( '[sp_testimonial_form id="' . sanitize_text_field( $attributes['shortcode'] ) . '"]' ) . '</div>';
+			return '<div id="testimonial_form_' . esc_attr( $form_id ) . ' " class="' . esc_attr( $class_name ) . '"><a href="' . esc_url( $edit_page_link ) . '" target="_blank" class="sp_testimonial_block_edit_button">Edit View</a>' . do_shortcode( '[sp_testimonial_form id="' . sanitize_text_field( $attributes['shortcode'] ) . '"]' ) . '</div>';
 		}
 	}
 }

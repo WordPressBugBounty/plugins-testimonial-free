@@ -70,9 +70,9 @@ if ( ! class_exists( 'SPFTESTIMONIAL_Field_button_set' ) ) {
 						$checked        = ( in_array( $key, $value ) || ( empty( $value ) && empty( $key ) ) ) ? ' checked' : '';
 						$pro_only_class = ( isset( $option['pro_only'] ) && $option['pro_only'] ) ? ' spftestimonial-pro-only' : '';
 						echo '<div class="spftestimonial--sibling spftestimonial--button' . esc_attr( $active . $pro_only_class ) . '">';
-						echo '<input type="' . esc_attr( $type ) . '" name="' . esc_attr( $this->field_name( $extra ) ) . '" value="' . esc_attr( $key ) . '"' . $this->field_attributes() . esc_attr( $checked ) . '/>';
+						echo '<input type="' . esc_attr( $type ) . '" name="' . esc_attr( $this->field_name( $extra ) ) . '" value="' . esc_attr( $key ) . '"' . wp_kses_post( $this->field_attributes() ) . esc_attr( $checked ) . '/>';
 						if ( isset( $option['option_name'] ) && ! empty( $option['option_name'] ) ) {
-							echo wp_kses_post( $option['option_name'] );
+							echo '<span>' . wp_kses_post( $option['option_name'] ) . '</span>';
 						} else {
 							echo wp_kses_post( $option );
 						}
@@ -85,6 +85,5 @@ if ( ! class_exists( 'SPFTESTIMONIAL_Field_button_set' ) ) {
 			}
 			echo wp_kses_post( $this->field_after() );
 		}
-
 	}
 }

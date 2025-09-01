@@ -24,7 +24,6 @@ if ( ! defined( 'WPINC' ) ) {
 	die;
 }
 
-
 /**
  * TestimonialFree
  */
@@ -116,8 +115,6 @@ class TestimonialFree {
 	 * @return void
 	 */
 	public function init_actions() {
-
-		add_action( 'plugins_loaded', array( $this, 'load_text_domain' ) );
 		add_action( 'manage_spt_shortcodes_posts_custom_column', array( $this, 'add_shortcode_form' ), 10, 2 );
 		add_action( 'manage_spt_testimonial_posts_custom_column', array( $this, 'add_testimonial_extra_column' ), 10, 2 );
 		add_action( 'activated_plugin', array( $this, 'redirect_help_page' ) );
@@ -159,15 +156,6 @@ class TestimonialFree {
 		if ( ! defined( $name ) ) {
 			define( $name, $value );
 		}
-	}
-
-	/**
-	 * Load TextDomain for plugin.
-	 *
-	 * @since 2.0
-	 */
-	public function load_text_domain() {
-		load_plugin_textdomain( 'testimonial-free', false, dirname( dirname( dirname( plugin_basename( __FILE__ ) ) ) ) . '/languages/' );
 	}
 
 	/**

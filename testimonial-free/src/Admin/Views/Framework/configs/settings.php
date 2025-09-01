@@ -22,7 +22,7 @@ $prefix = 'sp_testimonial_pro_options';
 //
 // Review text.
 //
-$url  = 'https://wordpress.org/support/plugin/testimonial-free/reviews/?filter=5#new-post';
+$url  = 'https://wordpress.org/support/plugin/testimonial-free/reviews/';
 $text = sprintf(
 	/* translators: 1: start strong tag, 2: close strong tag, 3: start and close a tag. */
 	__( 'If you like %1$sReal Testimonials%2$s please leave us a %3$s rating. Your Review is very important to us as it helps us to grow more.', 'testimonial-free' ),
@@ -50,63 +50,6 @@ SPFTESTIMONIAL::createOptions(
 		'show_footer'      => false,
 		'footer_credit'    => $text,
 		'framework_title'  => __( 'Settings', 'testimonial-free' ),
-	)
-);
-
-// Field: reCAPTCHA.
-SPFTESTIMONIAL::createSection(
-	$prefix,
-	array(
-		'id'     => 'google_recaptcha',
-		'title'  => __( 'reCAPTCHA', 'testimonial-free' ),
-		'icon'   => 'fa fa-shield',
-		'fields' => array(
-			array(
-				'type'    => 'submessage',
-				'class'   => 'testimonial_backend-notice',
-				'style'   => 'info',
-				'content' => sprintf(
-					/* translators: 1: start link tag, 2: close tag. */
-					__(
-						'%1$sreCAPTCHA%2$s is a free anti-spam service of Google that protects your website from spam and abuse. %3$s Get your API Keys%2$s. %4$s(Available in Pro)%5$s',
-						'testimonial-free'
-					),
-					'<a href="https://www.google.com/recaptcha" target="_blank">',
-					'</a>',
-					'<a href="https://www.google.com/recaptcha/admin#list" target="_blank">',
-					'<a target="_blank" href="https://realtestimonials.io/pricing/?ref=1"><b>',
-					'</b></a>'
-				),
-			),
-			array(
-				'id'      => 'captcha_version',
-				'class'   => 'pro_only_field',
-				'type'    => 'radio',
-				'title'   => __( 'reCAPTCHA', 'testimonial-free' ),
-				'options' => array(
-					'v2' => __( 'v2', 'testimonial-free' ),
-					'v3' => __( 'v3', 'testimonial-free' ),
-				),
-				'default' => 'v2',
-				'inline'  => true,
-			),
-			array(
-				'id'         => 'captcha_site_key',
-				'type'       => 'text',
-				'class'      => 'pro_only_field',
-				'attributes' => array( 'disabled' => 'disabled' ),
-				'title'      => __( 'Site Key', 'testimonial-free' ),
-				'sanitize'   => 'spftestimonial_sanitize_text',
-			),
-			array(
-				'id'         => 'captcha_secret_key',
-				'type'       => 'text',
-				'class'      => 'pro_only_field',
-				'attributes' => array( 'disabled' => 'disabled' ),
-				'title'      => __( 'Secret Key', 'testimonial-free' ),
-				'sanitize'   => 'spftestimonial_sanitize_text',
-			),
-		),
 	)
 );
 
@@ -232,7 +175,7 @@ SPFTESTIMONIAL::createSection(
 				'type'     => 'code_editor',
 				'sanitize' => 'wp_strip_all_tags',
 				'settings' => array(
-					'theme' => 'dracula',
+					'theme' => 'default',
 					'mode'  => 'css',
 				),
 				'title'    => __( 'Custom CSS', 'testimonial-free' ),
@@ -242,10 +185,67 @@ SPFTESTIMONIAL::createSection(
 				'type'     => 'code_editor',
 				'sanitize' => 'wp_strip_all_tags',
 				'settings' => array(
-					'theme' => 'dracula',
+					'theme' => 'default',
 					'mode'  => 'javascript',
 				),
 				'title'    => __( 'Custom JS', 'testimonial-free' ),
+			),
+		),
+	)
+);
+
+// Field: reCAPTCHA.
+SPFTESTIMONIAL::createSection(
+	$prefix,
+	array(
+		'id'     => 'google_recaptcha',
+		'title'  => __( 'reCAPTCHA (Pro)', 'testimonial-free' ),
+		'icon'   => 'fa fa-shield',
+		'fields' => array(
+			array(
+				'type'    => 'submessage',
+				'class'   => 'testimonial_backend-notice',
+				'style'   => 'info',
+				'content' => sprintf(
+					/* translators: 1: start link tag, 2: close tag. */
+					__(
+						'%1$sreCAPTCHA%2$s is a free anti-spam service of Google that protects your website from spam and abuse. %3$s Get your API Keys%2$s. %4$s(Available in Pro)%5$s',
+						'testimonial-free'
+					),
+					'<a href="https://www.google.com/recaptcha" target="_blank">',
+					'</a>',
+					'<a href="https://www.google.com/recaptcha/admin#list" target="_blank">',
+					'<a target="_blank" href="https://realtestimonials.io/pricing/?ref=1"><b>',
+					'</b></a>'
+				),
+			),
+			array(
+				'id'      => 'captcha_version',
+				'class'   => 'pro_only_field',
+				'type'    => 'radio',
+				'title'   => __( 'reCAPTCHA', 'testimonial-free' ),
+				'options' => array(
+					'v2' => __( 'v2', 'testimonial-free' ),
+					'v3' => __( 'v3', 'testimonial-free' ),
+				),
+				'default' => 'v2',
+				'inline'  => true,
+			),
+			array(
+				'id'         => 'captcha_site_key',
+				'type'       => 'text',
+				'class'      => 'pro_only_field',
+				'attributes' => array( 'disabled' => 'disabled' ),
+				'title'      => __( 'Site Key', 'testimonial-free' ),
+				'sanitize'   => 'spftestimonial_sanitize_text',
+			),
+			array(
+				'id'         => 'captcha_secret_key',
+				'type'       => 'text',
+				'class'      => 'pro_only_field',
+				'attributes' => array( 'disabled' => 'disabled' ),
+				'title'      => __( 'Secret Key', 'testimonial-free' ),
+				'sanitize'   => 'spftestimonial_sanitize_text',
 			),
 		),
 	)

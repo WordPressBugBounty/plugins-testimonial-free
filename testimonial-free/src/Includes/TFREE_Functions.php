@@ -72,7 +72,7 @@ class TFREE_Functions {
 	public function admin_footer( $text ) {
 		$screen = get_current_screen();
 		if ( 'spt_testimonial' === $screen->post_type || 'spt_shortcodes' === $screen->post_type || 'spt_testimonial_form' === $screen->post_type ) {
-			$url  = 'https://wordpress.org/support/plugin/testimonial-free/reviews/?filter=5#new-post';
+			$url  = 'https://wordpress.org/support/plugin/testimonial-free/reviews/';
 			$text = sprintf(
 				/* translators: 1: start strong tag, 2: close strong tag, 3: start span and a tag, 4: close a tag. */
 				__( 'Enjoying %1$sReal Testimonials?%2$s Please rate us %3$sWordPress.org%4$s. Your positive feedback will help us grow more. Thank you! 😊', 'testimonial-free' ),

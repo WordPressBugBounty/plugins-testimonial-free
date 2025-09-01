@@ -82,7 +82,7 @@ if ( ! class_exists( 'SPFTESTIMONIAL_Field_image_sizes' ) ) {
 				$sizes,
 				array(
 					'full'   => __( 'Original uploaded image', 'testimonial-free' ),
-					'custom' => __( 'Set custom size', 'testimonial-free' ),
+					'custom' => __( 'Set custom size (Pro)', 'testimonial-free' ),
 				)
 			);
 
@@ -134,8 +134,6 @@ if ( ! class_exists( 'SPFTESTIMONIAL_Field_image_sizes' ) ) {
 			}
 
 			echo wp_kses_post( $this->field_after() );
-
 		}
-
 	}
 }

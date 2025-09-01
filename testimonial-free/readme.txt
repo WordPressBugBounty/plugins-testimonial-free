@@ -1,403 +1,131 @@
-=== Real Testimonials – Testimonial Slider, Carousel, Grid | Collect Customer Reviews and Video Testimonial with Testimonial Form | Social Proof Reviews and Review Slider ===
+=== Real Testimonials – Testimonial Slider, Collect Customer Reviews and Video Testimonials ===
 Contributors: shapedplugin, rubel_miah, khalilu, shamimmiashuhagh
-Tags: testimonials, testimonial slider, customer reviews, social proof, review form
-Requires at least: 4.7
-Tested up to: 6.8.1
-Stable tag: 3.1.9
+Tags: testimonials, testimonial slider, video testimonials, social proof, review form
+Requires at least: 5.0
+Tested up to: 6.8
+Requires PHP: 7.0
+Stable tag: 3.1.10
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Best Testimonial plugin to Automate Collecting, Filtering, and Publishing Customer Reviews. Review Form, Testimonial Slider, Grid & More to Grow Sales
+A Customizable Testimonial plugin to Automate Collecting, Filtering, and Publishing Customer Reviews. Testimonial Slider, Grid & More to Grow Sales
 
 == Description ==
 
-= The #1 WordPress Testimonial Plugin [Boost Conversion up to 200%] 🚀 =
+= Responsive WordPress Testimonial Plugin =
 
-[__Real Testimonials__](https://realtestimonials.io/) is the best testimonial plugin for creating customer review forms, stunning testimonial showcases, and automated testimonial publishing on your WordPress site in minutes.
+**Real Testimonials** is a responsive testimonial plugin for creating customer review forms, testimonial showcases, and publishing customer reviews on your WordPress site in minutes.
 
-Customer reviews are strong social proof and an effective sales tool. This powerful and user-friendly review showcase plugin helps you create next-level review sliders and grids that boost sales growth and brand loyalty in the long run.
-
-Real Testimonials offers many responsive templates, along with a wide range of robust and easy-to-use customizations with live previews. Consequently, even a beginner can easily create awesome testimonial sliders, carousels, grids, and lists.
-
-## 🏆 WHY DO I NEED TESTIMONIALS ON MY WEBSITE? ##
-
-Testimonials significantly help your business and organization grow in many ways:
-
-✅ **Grow Trust with Strong Social Proof** — Customer testimonials are the most powerful social proof and more trustworthy than any other copy on your site. 
-✅ **Influence Customer's Decisions** — 93% of customers read online reviews before making a purchase. 
-✅ **Boost Sales & Conversion** — Positive feedback from real customers can exponentially boost sales and conversion growth with their genuine happy stories.
-✅ **Gain Valuable Insights** — Real users' reviews provide insightful pros and cons about your products or services, allowing you to plan your next strategies.
-✅ **Enhance Brand Reputation** — Over time, testimonials help build a strong brand reputation. 
-
-🌐 [__Official Website__](https://realtestimonials.io/) 🖥 [__Live Demo__](https://realtestimonials.io/demos/real-testimonials-lite-version-demo/) | 📚 [__Documentation__](https://docs.shapedplugin.com/docs/testimonial/overview/) | 🛟 [__Support__](https://shapedplugin.com/create-support-ticket/) | 💎 [__Upgrade To Pro»__](https://realtestimonials.io/pricing/?ref=1)
+Customer reviews serve as social proof and can be an effective sales tool. This plugin helps you create review sliders and grids that can help increase sales and build brand loyalty.
 
 
-## 🏆 WATCH HOW TO USE REAL TESTIMONIALS ##
+**Why You Need Testimonials on Your Website**
+
+Testimonials significantly help your business and organization grow in several ways:
+
+✅ Grow Trust with Social Proof — Customer reviews are often more trustworthy than other content on your site.
+✅ Influence Customer Decisions — Many customers read reviews before making a purchase.
+✅ Improve Sales & Conversion — Positive feedback from customers can help increase sales.
+✅ Gain Valuable Insights — Users' reviews provide feedback about your products or services.
+✅ Enhance Brand Reputation — Over time, reviews help build a strong brand reputation. 
+
+ [__Live Demo__](https://realtestimonials.io/demos/real-testimonials-lite-version-demo/) | [__Documentation__](https://docs.shapedplugin.com/docs/testimonial/overview/) | [__Support__](https://shapedplugin.com/create-support-ticket/)
+
+
+## WATCH HOW TO USE##
 
 [youtube https://www.youtube.com/watch?list=PLoUb-7uG-5jPTDu5wiWwKhJNuWFWSyA5T&v=58a3L4q_8Tc]
 
 
-## 🏆 WHAT YOU CAN DO WITH REAL TESTIMONIALS ⚡ ##
-
-You can do all you need to grow your business with customers’ reviews and testimonials. While some advanced features may require an [upgrade to the pro](https://realtestimonials.io/pricing/?ref=1) version, you will have all the essential options for free to manage customer reviews.
-
-
-## 📝 Build Multiple Testimonial Forms ##
-
-Real Testimonials provides a drag-and-drop review form builder with necessary fields and customizations, allowing you to create beautiful review forms effortlessly.
-
-
-## ▶️ Collect Video Testimonials 🔥🔥 ##
-
-Besides written text-based testimonials, you can easily collect video testimonials by including a [__Record Video__](https://realtestimonials.io/demos/testimonial-forms/#video-record-form) button or a field for **Video URL Links** on your review forms. This allows your customers to record and submit video testimonials instantly, or they can also provide links to uploaded videos.
-
-
-## 🤖 Automate Collecting, Filtering, & Publishing Testimonials 🔥🔥🔥 ##
-
-You can set up a system to gather testimonials on **autopilot**. Create a simple testimonial or review form and set up automation to filter reviews without manual intervention. This system collects, filters based on star ratings, and publishes testimonials more efficiently than a human review manager.
-
-
-## ⭐ Create and Manage Testimonial Showcases ##
-
-Real Testimonials provides many responsive testimonial templates and layouts, such as slider, carousel, and grid, along with extensive customizations. Thus, you can create sophisticated review showcases in minutes.
-
-
-## 🎨 Design Everything Your Way ##
-
-Real Testimonials gives you full freedom over designing your testimonial forms and showcases. It offers you tons of functions and style options to make your review forms and showcases functionally and aesthetically super pleasing, all without coding.
-
-
-## 📊 Enable Schema Markup for Testimonials ##
-
-With just a single click, enable Schema Markup to organize testimonials in a structure that helps search engines understand them better and rank your testimonials higher in search results.
-
-
-## 🔁 Easily Import and Export Testimonials ##
-
-The plugin saves time by effortlessly importing and exporting testimonials. It can create CSV files for seamless import and export in both CSV and JSON formats.
-
-
-## 🚀 Grow Your Business with Real Customer Feedback ​​📈 ##
-
-Collecting feedback from real customers is crucial for your business's success. Genuine insights, whether shared publicly or not, benefit both you and your customers. Real Testimonials Pro simplifies this process with forms that gather detailed feedback, including star ratings for various aspects of your service—offering surprising and valuable insights.
-
-
-## 🏆 KEY FEATURES OF REAL TESTIMONIALS ##
-
-## 👉 High-Converting Testimonial Forms Builder ##
-
-Real Testimonials offers a drag-and-drop review form editor with necessary fields and customizations, allowing you to effortlessly create professional review forms and collect more testimonials than ever before. See [Live Demo](https://realtestimonials.io/demos/testimonial-forms/).
-
-**Available Drag & Drop Form Fields:**
-
-* Reviewer’s Full Name
-* Reviewer’s E-mail Address
-* Reviewer’s Designation
-* Reviewer’s Company Name with Logo (Pro) 🔥
-* Testimonial Title
-* Testimonial Content
-* Groups (Pro)
-* Reviewer’s Image
-* Location with Country Selector (Pro)
-* Reviewer’s Phone or Mobile (Pro)
-* Reviewer’s Website (Pro)
-* Video Record/URL (Pro)
-* Star Rating (Pro)
-* **Additional Custom Fields (Pro)** 🔥🔥🔥
-* Reviewer’s Social Profiles (Pro)
-* **Google reCAPTCHA (Pro)**
-* Consent Checkbox
-* Submit Button
-
-**Testimonial Form Configurations:**
-
-* 2 Beautiful Testimonial Form Templates 
-* Full Control over Styling
-* Custom Color for Buttons and Ratings (Pro) 
-* Custom Spacing, Box-Shadow, & Alignment (Pro) 
-* Custom Required Notice
-* Ajax Form Submission and Redirection Options (Pro) 
-* Custom Success and Error Messages
-
-
-## Display Form in Popup or Lightbox 🔥 ##
-
-You can display the Testimonial Submission Form inside a popup/lightbox easily.
-
-
-## Anti-Spam reCAPTCHA ##
-
-Real Testimonials offers the powerful Google reCAPTCHA to prevent automated bots from abusing your testimonial forms. 
-
-
-## Enhanced Thank-you Emails and Admin Notifications 🔥🔥 ##
-
-You can set the custom success and error messages to appear just after a reviewer submits feedback. Plus, the plugin offers three customizable, automated email options for both admins and reviewers:
-
-✅ **Thank-you Email** – It will be sent to the reviewer right after submitting a review. 
-✅ **New Testimonial Email** – This new testimonial notification email will be sent to one or multiple admins. 
-✅ **Publish Email** – It will be sent to the reviewer after publishing the review.
-
-Customize the email templates properly to show your professionalism and care about reviewers.
-
-
-## 👉 14+ Responsive Testimonial Layouts ##
-
-Real Testimonials provides responsive and beautiful testimonial layouts to showcase your customers’ reviews.
-
-
-
-[__Testimonial Slider:__](https://realtestimonials.io/demos/slider/) Testimonial Sliders and Carousels are the most popular ways to showcase testimonials on your home page, landing page, sales page, and so on in an animated and attention-grabbing way.
-
-[__Testimonial Thumbnails Slider (Pro):__](https://realtestimonials.io/demos/thumbnails-slider/) A testimonial thumbnail slider is a highly interactive and stylish slideshow where reviewers' images are displayed as thumbnails, and their reviews are showcased in the main area.
-
-[__Testimonial Carousel:__](https://realtestimonials.io/demos/carousel/) Testimonial Carousel displays multiple testimonials at a transition.
-
-[__Center Mode Testimonial Carousel (Pro):__](https://realtestimonials.io/demos/carousel/#center-mode) If you want to display multiple testimonials in a slide but highlight a single one, a center mode review carousel is the best choice for you. This layout emphasizes the central slide.
-
-[__Ticker Testimonial Carousel (Pro):__](https://realtestimonials.io/demos/carousel/#ticker-carousel) The Ticker carousel has a dynamic and attention-grabbing layout. It showcases reviews in a seamless loop, creating a smooth and continuous motion.
-
-[__Multi-Row Testimonial Carousel (Pro):__](https://realtestimonials.io/demos/carousel/#multi-rows-carousel) If you want to create the impression of a wide collection of testimonials, you can consider using the multi-row carousel layout for your testimonial views.
-
-**Slider Key Configurations:**
-
-* Slider AutoPlay and Transition Speed
-* Infinite Loop and Pause on Hover
-* RTL & LTR Directions  
-* Fade and Flip (Horizontal & Vertical) Effects (Pro)
-* 8 Navigation Arrow Styles & 9 Positions (Pro)
-* Full Control over Navigation Styling
-* Bullets, Dynamic, Strokes, Scrollbar, Fraction, and Number Paginations
-* Hiding Navigation and Pagination on Mobile (Pro)
-* Touch Swipe, Mouse Dragging, and Mouse Wheeling to Slide (Pro)
-
-[__Testimonial Grid:__](https://realtestimonials.io/demos/grid/) Create beautiful testimonial grids to showcase your customer reviews. Designers generally use the review grid layouts on the dedicated review pages.
-
-[__Testimonial Masonry (Pro):__](https://realtestimonials.io/demos/masonry/) Masonry layout is a stylish and space-optimized way to display testimonials. If you want to show the full content of your testimonials, the Masonry layout is the best option.
-
-[__Testimonial List (Pro):__](https://realtestimonials.io/demos/list/) You can also choose the List Layout to display your testimonials in a simple sequential manner for easy navigation, clarity, and readability.
-
-[__Testimonial Isotope Frontend Filter (Pro):__](https://realtestimonials.io/demos/isotope-shuffle-filter/) If you want to display your testimonials in various categories or groups, choose the Isotope even or masonry layout. It provides your visitors with dynamic filters for easy navigation with animation effects.
-
-
-## 👉 14 Elegant Ready Testimonial Themes 🔥🔥 ##
-
-Real Testimonials offers super attractive review themes to create sophisticated review showcases easily and quickly. It also offers a lot of customizations, including: 
-
-* Reviewer’s Info Alignment 
-* Flexible Positions for Reviewer Image (Pro)
-* Custom Testimonial Background and Border
-* Custom Inner Padding for Testimonials   
-* Custom Gradient Color for Testimonial Background (Pro)
-* Customize Info Background, Border, and Spacing (Pro)
-* Testimonial Info on Top Bottom Right, or Left (Pro)
-* Enable Testimonial Equal Height (Pro)
-
-
-**Excellent Theme Options:**
-
-✅ 3 Flat Card Box Themes 🔥🔥
-✅ Rounded Speech Bubbles (Control Radius)
-✅ Flat Speech Bubbles 
-✅ Quote Marks
-✅ Separate Color for Reviewer Info & Body
-
-
-## 👉 Control Columns, Rows, and Spacing ##
-
-You can customize columns and grids for desktops, laptops, tablets, and mobile devices individually and adjust spacing to create a clean, organized display.
-
-
-## 👉 Video Testimonials – Allow Customers to Record & Submit Video! 🔥🔥🔥 ##
-
-With Real Testimonials, you can add a [Video Record] option to your testimonial form to let your reviewers effortlessly record a video in less than 3 minutes and submit it. Collect and display fresh video testimonials on your website and boost your conversion rate magically! See [Live Demo](https://realtestimonials.io/demos/video-testimonials/#record-&-submit-video-testimonial)
-
-✅ Supports MP4, Webm videos, & URL
-✅ You can set a Maximum Recording Time 
-✅ Customers can Preview the recorded video and Add or Record it again.
-
-[youtube https://www.youtube.com/watch?v=6TcPUVYwgUo&list=PLoUb-7uG-5jM2sjscSqBVj07VXOqt0qHZ&index=15&ab_channel=ShapedPlugin]
-
-
-## 👉 Video Popup/Lightbox or Inline Video Play 🔥 ##
-
-Visitors can play videos inline for a quick view or in a popup for a more immersive experience. Set your preferred play mode to share authentic stories that build trust and connect with potential customers. See [Live Demo](https://realtestimonials.io/demos/video-testimonials/#inline-play-video)
-
-
-## 👉 Add Images to Testimonials to Stand Out ##
-
-Add images to testimonials to enhance their impact and provide a face behind the feedback. This powerful tool for social proof boosts trust and connection.
-
-**Reviewer’s Image Configurations:**
-
-* Show/hide Reviewer Image
-* Circle Shape for Reviewer Image 
-* Reviewer’s Image Background Color
-* Custom Padding and Box-Shadow
-* Image Custom Dimensions
-* Circle, Rounded, and Square Image Shapes (Pro)
-* Custom Image Background (Pro)
-* Custom Border: Width, Style, and Color (Pro)
-* Image Lightbox and Zoom (Pro)
-* Image Modes – Grayscale (Pro) 
-
-
-## 👉 Retina Ready ##
-
-Real Testimonials supports retina-ready displays, ensuring reviewer images look sharp. To use this feature, simply upload high-quality images twice the display size (e.g., 240px for a 120px display). This will not affect your website's speed or performance.
-
-
-## 👉 Reviewer Fallback Images (Pro) ##
-
-If a featured image is not set, a fallback image can be used for reviewers. We offer several default images, including the Mystery Person and our Smart Text Avatars, which display the client's initials over bold colors. See [Live Demo](https://realtestimonials.io/demos/reviewer-image-styles/#reviewer-fallback-image)
-
-✅ Mystery Person
-✅ Smart Text Avatars 🔥🔥
-
-
-## 👉 Strengthen Reputation with Top Company Logo (Pro) ##
-
-Has a renowned company or brand shared feedback about your products or services? It's easy! Simply add the company’s logo and include a link to their website. This not only boosts your credibility but also elevates your status. 
-
-
-## 👉 Advanced Link Options (Pro) ##
-
-The plugin lets you link the reviewer's designation, position, or company name to a single or custom page—ideal for case studies. You can also use Lightbox links with featured images!
-
-
-## 👉 Total Trust with Social Profiles & Info (Pro) ##
-
-Don’t just provide reviewer information—include the author’s Facebook, LinkedIn, or Twitter profile URL for verification. A social media icon next to the author’s name will link to their profile, allowing visitors to confirm they are reading a testimonial from a real person. This builds trust!
-
-
-## 👉 Average Rating Widget (Pro) 🔥🔥 ##
-
-To attract customers, you can add an average rating widget to provide a quick, consolidated view of overall customer satisfaction and product quality.
-
-
-## 👉 Star Ratings Styles & Color ##
-
-Although yellow is traditionally used for ratings, designers nowadays use other colors. Real Testimonials lets you use any color for your customer ratings on your testimonial showcases.
-
-
-## 👉 Reviewer's Country and/or Flag (Country Selector) ##
-
-Real Testimonials lets you add a one-click country selector to Testimonial Forms, allowing reviewers to share their location. Display their country name or flag to highlight your global client base and build trust.
-
-
-## 👉 Random Testimonials Display (Pro) ##
-
-Random testimonial display order keeps showcases engaging and prevents visitor boredom, especially with a limited number of testimonials. It also helps hide the total number of testimonials.
-
-
-## 👉 Testimonial Filters for Admins (Pro) ##
-
-It allows you to filter and display the latest testimonials, specific testimonials, or those from particular groups with certain star ratings.
-
-
-## 👉 Filtering and Publishing Automation (Pro) 🔥🔥🔥 ##
-
-Select the **"Auto Publish Based on Star Ratings"** option from the dropdown menu. Then, check the boxes for 4-star and 5-star ratings. Once you've done that, **you can relax**—the plugin will automatically filter and publish your top-rated reviews. There's **no need to spend extra time managing your customer testimonials** or reviews.
-
-
-## 👉 Advanced Ajax Live Filters for Visitors (Pro) 🔥🔥 ##
-
-Elevate your website visitors' experience with Interactive Ajax Live Filters for Testimonials and Reviews! These dynamic filters allow visitors to effortlessly navigate to the specific categories of products faster.
-
-
-## 👉 Ajax Testimonial Search (Pro) ##
-
-Make it quicker to find specific testimonials with certain keywords in a testimonial search bar. 
-
-
-## 👉 Ajax Loading and Pagination (Pro) ##
-
-Real Testimonials provides AJAX-based loading for testimonials in live mode. Organized testimonial lists will make your website look more professional easy to navigate, and result in a better user experience. Key options are as follows:
-
-* Ajax Load More Button
-* Ajax Number
-* Ajax Infintite Scroll 🔥
-* Normal Pagination
-* Testimonials to Show Per Page/Click
-* Custom Load More Button Label
-
-
-## 👉 Advanced Typography & Styling (Pro) ##
-
-Want to match your testimonial style with your website? Real Testimonials offers **1,500+ Google Fonts** and **200+ Visual Customization Options** for your content, titles, and reviewer names.
-
-
-## 🧩 Works with Your Themes, Plugins, & Page Builders ##
-
-Real Testimonials is fully compatible with all standard themes, plugins, and page builders. So it seamlessly works with: 
-
-* Gutenberg Editor
-* Elementor
-* Divi
-* WPBakery
-* Oxygen
-* Beaver Builder
-* Bricks
-* SiteOrigin
-* Fusion Builder
-
-
-## 🔗 Multisite Supported ##
-
-[__Real Testimonials__](https://realtestimonials.io/) is fully compatible with WordPress multisite, including network-activated and activated on individual sites.
-
-
-## 🌐 Multilingual & Translation Ready ##
-
-Real Testimonials is completely translatable with the following top translation plugins:
-
-* WPML
-* WeGlot
-* Polylang
-* qTranslate-x
-* Loco Translate 
-* TranslatePress
-* GTranslate, etc. 
-
-## 🧑🏻‍💻 Author – Backed By A Trusted Team 🔥 ##
-
-**Real Testimonials** plugin is designed and developed by [__ShapedPlugin LLC__](https://shapedplugin.com/), a Dedicated WordPress plugin development Team trusted by **332,000+** happy, active users worldwide. 🌎
-
-
-## 🔎 Explore More Solutions from ShapedPlugin LLC 🔥 ##
-
-Explore our exciting plugins to enhance your WordPress website, saving time and effort.
-
-❇️ [WP Team](https://wordpress.org/plugins/team-free/)
-❇️ [Easy Accordion](https://wordpress.org/plugins/easy-accordion-free/)
-❇️ [WP Carousel](https://wordpress.org/plugins/wp-carousel-free/)
-❇️ [WP Tabs](https://wordpress.org/plugins/wp-expand-tabs-free/)
-❇️ [Location Weather](https://wordpress.org/plugins/location-weather/) 🌦️
-❇️ [Logo Carousel](https://wordpress.org/plugins/logo-carousel-free/)
-❇️ [Smart Post Show](https://wordpress.org/plugins/post-carousel/)
-❇️ [Product Slider for WooCommerce](https://wordpress.org/plugins/woo-product-slider/)
-❇️ [WooGallery](https://wordpress.org/plugins/gallery-slider-for-woocommerce/)
-❇️ [WooCategory](https://wordpress.org/plugins/woo-category-slider-grid/)
-
-
-
-
+**Key Features List**
+
+* Build Multiple Testimonial Forms
+* Collect, Filter, and Publish Testimonials
+* Create and Manage Testimonial Showcases.
+* Fully Responsive and Mobile-friendly.
+* Easy To Use – No Coding Required.
+* Shortcode Generator with live preview.
+* Add unlimited testimonials and display them anywhere you want.
+* Import/Export testimonials.
+* Enable/Disable autoplay & control speed.
+* Stop on the hover slider.
+* Infinite loop for the slider.
+* Control Columns, Rows, and Spacing
+* Show/hide navigation arrows & pagination dots.
+* Control slider pagination speed.
+* Star rating system.
+* Show/hide section title.
+* Show/hide testimonial title or tagline.
+* Show/hide testimonial content or review message.
+* Show/hide reviewer name.
+* Show/hide star rating.
+* Show/hide reviewer identity or position.
+* Show/hide testimonial image.
+* Set testimonial/reviewer image size.
+* Unlimited color options for every field.
+* Multiple testimonial sliders or showcases (supports more than one slider per page).
+* Unique settings for each testimonial slider.
+* Control the number of testimonial columns on different devices.
+* Testimonials order & order by.
+* Enable/Disable adaptive height for testimonials slider.
+* Touch, swipe, or tap on iOS, Android, and any other touch devices.
+* Enable/Disable mouse drag.
+* Easy to customize and developer-friendly.
+* Ready for translation with WPML, Polylang, qTranslate-x, etc.
+* Widget & RTL ready.
+* Compatible with any theme.
+* Schema.org compliant JSON-LD markup & optimized for speed.
+* Enable Schema Markup for Testimonials
+* Easily Import and Export Testimonials
+* Support all modern browsers: Firefox, Chrome, IE, Safari, etc.
+* And many more options.
+
+
+= For Support, Features Request, and Bug Reporting =
+
+>Ask us at [__Support.__](https://shapedplugin.com/create-support-ticket/)
+
+== Real Testimonials Pro Features ==
+While the free version includes all essential options for managing customer reviews, some advanced features are available in the [Pro version](https://realtestimonials.io/).
+
+### Pro Features Include:
+* **Customizable Testimonial Forms Builder** - Create professional review forms with a drag-and-drop editor and necessary fields, and collect more testimonials. [Live Demo](https://realtestimonials.io/demos/testimonial-forms/)
+* **Ready Testimonial Layouts and Themes** - Choose from responsive layouts and multiple themes to display customer reviews.
+* **Form Display in Popup/Lightbox** - Show testimonial submission forms in a pop-up window.
+* **Anti-Spam Protection** - Implement Google reCAPTCHA to prevent automated bots from submitting forms.
+* **Enhanced Email Notifications** - Set up customizable automated emails:
+  * Thank-you emails for reviewers
+  * New testimonial notifications for admins
+  * Publication notifications for reviewers
+* **Record and Submit Video Testimonials** - Allow customers to record and submit video testimonials directly through your front-end form.
+* **Flexible Video Display Options** - Choose between inline playback or lightbox display for video testimonials.
+* **Advanced Image Options** - Add retina-ready images with custom styling options, including borders, backgrounds, and display modes.
+* **Reviewer Fallback Images** - Use default images when reviewers don't provide one.
+* **Average Rating Widget** - Display overall customer satisfaction ratings.
+* **Automated Review Publishing** - Automatically publish reviews based on star ratings.
+* **Live Filters & Search Option for Visitors** - Implement Ajax-powered filters and search option for visitors.
+* **Enhanced Typography & Styling** - Access additional Google Fonts and customization options.
+
+
+= Author =
+
+Designed and Developed by [__ShapedPlugin, LLC__](https://shapedplugin.com/)
 
 
 == Installation ==
 
 = MINIMUM REQUIREMENTS =
 
-* PHP 5.6 or later
+* PHP 7.0 or later
 * MySQL 5.6 or later
-* WordPress 4.7 or later
+* WordPress 5.0 or later
 
 **This section describes how to install the plugin and get it working**
 
 = AUTOMATIC INSTALLATION (EASIEST WAY) =
 
-To do an automatic install of Real Testimonials, login to your WordPress dashboard, navigate to the Plugins menu and click Add New.
-In the search field type “Real Testimonials by ShapedPlugin”. Once you have found it you can install it by simply clicking "Install Now" and then "Activate".
+To do an automatic install of Real Testimonials, log in to your WordPress dashboard, navigate to the Plugins menu, and click Add New.
+In the search field, type “Real Testimonials by ShapedPlugin”. Once you have found it, you can install it by simply clicking "Install Now" and then "Activate".
 
 = MANUAL INSTALLATION =
 
@@ -425,52 +153,33 @@ The WordPress codex contains <a href="https://wordpress.org/documentation/articl
 == Frequently Asked Questions ==
 
 = How can I Showcase Testimonials? =
-After activating the plugin, you will see “Real Testimonials” in WordPress Admin Dashboard.
+After activating the plugin, you will see “Real Testimonials” in the WordPress Admin Dashboard.
 
-Firstly, Go to “Add New” and add your testimonials as many as you want.
+Firstly, go to “Add New” and add your testimonials as many as you want.
 
-Secondly, Go to Manage Views > Add New.
+Secondly, go to Manage Views > Add New.
 
-You can customize the setting fields how you want & publish and you will see a generated shortcode in the top area.
+You can customize the setting fields as you like and publish, and you will see a generated shortcode in the top area.
 
-Finally, You need to insert it any page or post through TinyMCE button easily.
+Finally, you need to insert it into any page or post through the TinyMCE button easily.
 
 = Is the Real Testimonials fully responsive? =
-Yes, the Real Testimonials is fully responsive & columns structured. You can control to show the number of testimonial columns on different devices (Desktop, Tablet, Mobile etc.).
+Yes, the Real Testimonials is fully responsive & column-structured. You can control the number of testimonial columns on different devices (Desktop, Tablet, Mobile, etc.).
 
-= Do I need coding skills to showcase testimonials? =
-No coding skills required - very easy to use. No more pain writing any shortcode attributes to display testimonial on your website. With just a few clicks, you can amazingly showcase your testimonials using a very intuitive Shortcode Generator settings.
-
-= Will it automatically use my existing testimonials when Upgrade to Pro? =
+= Will it automatically use my existing testimonials when upgrading to Pro? =
 Yes. If you already have testimonials in the free version on your theme or site, you will automatically get the testimonials to use in the Pro version.
 
 = Should I purchase the Pro version? =
-Real Testimonials Pro includes tons of amazing and useful features that can definitely increase your conversion rate. If you’re interested to get the Real Testimonials Pro, Please go to [Upgrade to Pro!](https://realtestimonials.io/pricing/?ref=1) Page and browse [Live Demo](https://realtestimonials.io/demos/slider/).
+Real Testimonials Pro includes additional features that extend the functionality of the free version. If you're interested in these advanced features, you can learn more at the [Upgrade to Pro!](https://realtestimonials.io/pricing/?ref=1) page and view the [Live Demo](https://realtestimonials.io/demos/slider/).
 
 = Is the Real Testimonials compatible with my theme or design? =
-Real Testimonials works nicely with any theme if themes are developed according to WordPress standard.
+Real Testimonials works nicely with any theme if themes are developed according to the WordPress standard.
 
-= How can I get support if the plugin is not working? =
-If you face any problem with our plugin or something is not working as it should, first follow the preliminary steps:
-Test the plugin with a WordPress default theme, to be sure that the error is not caused by the theme you are currently using.
+= Is the Real Testimonials translation ready? =
+Yes, Real Testimonials is fully translation-ready, supporting .pot language files! You can translate into your language with the following popular plugins, such as WPML, Polylang, qTranslate-x, GTranslate, Google Language Translator, WPGlobus, etc.
 
-Deactivate all plugins you are using and check if the problem is still occurring.
-Ensure that your plugin version and your theme version are updated and that the problem you are experiencing has not already been solved in a later plugin update.
-
-If none of the previously listed actions help you solve the problem, then, submit a ticket in the forum and describe your problem accurately, specify WordPress and Plugin versions you are using and any other information that might help us solve your problem as quickly as possible.
-
-PRO version users [Support](https://shapedplugin.com/support/) and Free or Lite Version [Support](https://shapedplugin.com/support/?user=lite).
-
-= Is Real Testimonials translation ready? =
-Yes, Real Testimonials is fully Translation ready, supporting .pot language files! You can translate into your language with the following popular plugins like WPML, Polylang, qTranslate-x, GTranslate, Google Language Translator, WPGlobus etc.
-
-= Where can I report bugs? =
-Bugs can be reported in our **[Support](https://shapedplugin.com/support/?user=lite)**.
-
-= Do you want to encourage us for future improvement? =
-If you like this plugin, please give [5 stars](https://wordpress.org/support/plugin/testimonial-free/reviews/?filter=5#new-post) to encourage us for future improvement
-
-Thank you!
+= For Support and Bug Reporting =
+If you encounter an issue or find any bugs, post it in the [support](https://shapedplugin.com/create-new-ticket/). You can also get support via [WordPress.org](https://wordpress.org/support/plugin/testimonial-free/).
 
 
 
@@ -502,6 +211,13 @@ Thank you!
 
 == Changelog ==
 
+= 3.1.10 - Aug 22, 2025 =
+* New: A New Testimonial Theme added.
+* New: The Slider Navigation: Top Right option.
+* New: The Slider Pagination: Dynamic option.
+* New: A new rating icon has been added.
+* Improved: The plugin's options are enhanced to make it more user-friendly.
+
 = 3.1.9 - Jun 25, 2025 =
 * Improved: The plugin setting page tab icons.
 * Updated: The language(.pot) file.
@@ -514,7 +230,7 @@ Thank you!
 * Tested: WordPress 6.8 compatibility.
 
 = 3.1.7 - Feb 10, 2025 =
-* Improved: The plugin security improved.
+* Improved: The plugin security has improved.
 * Fix: The shortcode select option gap issue was found in the gutenberg block.
 
 = 3.1.6 - Jan 24, 2025 =
@@ -547,7 +263,7 @@ Thank you!
 * Improved: The rating options were moved to a sub-section called Star Rating.
 * Improved: The Swipe to Slide option was renamed to the MouseWheel option.
 * Fix: The testimonial date issue in the case of export-import testimonials.
-* Fix The grid layout item padding issue when the border is used.
+* Fix: The grid layout item padding issue when the border is used.
 
 = 3.1.1 - Aug 09, 2024 =
 * New: Testimonial Form Block feature.
@@ -556,12 +272,12 @@ Thank you!
 
 = 3.1.0 - May 07, 2024 =
 * New: The CSV import and export feature to import or export testimonials.
-* New: The Form Live Preview feature to check the testimonial form design before using in any pages or posts.
-* New: The Form Width option to increase or decrease the width of testimonial form.
+* New: The Form Live Preview feature to check the testimonial form design before using it on any pages or posts.
+* New: The Form Width option to increase or decrease the width of the testimonial form.
 * Improved: The style of  Testimonial Form options and Testimonial View options.
 * Improved: The Testimonial Export Import feature.
 * Updated: The language (.pot) file.
-* Fix: When admin selects the based on star rating/auto publish status in the form settings, the submitted testimonial was not shown in all testimonial list.
+* Fix: When the admin selects based on star rating/auto publish status in the form settings, the submitted testimonial was not shown in the testimonial list.
 * Fix: The demo link issue.
 * Tested: WordPress 6.5.2 compatibility.
 
@@ -584,13 +300,13 @@ Thank you!
 * Improved: The 'Slider Controls' tab was renamed 'Slider Settings.'
 * Improved: The Display Setting tab options were reorganized into nested tabs.
 * Improved: The options for the Carousel Setting tab were reorganized into nested tabs.
-* Improved: The Hide on Mobile option for carouse/slider navigation and pagination was separated from the Navigation and Pagination options, respectively.
+* Improved: The Hide on Mobile option for carousel/slider navigation and pagination was separated from the Navigation and Pagination options, respectively.
 * Improved: The Help Page has been redesigned to make it more user-friendly.
 * Updated: The language (.pot) file.
 * Fix: The grid limit issue when pagination was enabled.
 
 = 2.6.9 - Mar 28, 2024 =
-* Fix: The warning was found when the plugin was activated via the WP-Cli command.
+* Fix: The warning was found when the plugin was activated via the WP-CLI command.
 * Tested: WordPress 6.5 compatibility.
 
 = 2.6.8 - Nov 09, 2023 =
@@ -616,11 +332,11 @@ Thank you!
 * Tested: WordPress 6.2 compatibility.
 
 = 2.6.3 - Feb 22, 2023 =
-* Improved: The default background is set to transparent for theme one layout.
-* Fix: The offset warning for carousel layout after last update.
+* Improved: The default background is set to transparent for the theme one layout.
+* Fix: The offset warning for carousel layout after the last update.
 
 = 2.6.2 - Feb 20, 2023 =
-* Fix: The offset warning for grid layout after last update.
+* Fix: The offset warning for grid layout after the last update.
 
 = 2.6.1 - Feb 16, 2023 =
 * New: The Margin Between Testimonials option.
@@ -632,14 +348,14 @@ Thank you!
 * New: The Grid Layout feature
 * New: The alignment, color, background color, and border color options of grid pagination.
 * Improved: Plugin security improved.
-* Fix: Extra margin of the carousel of mobile view when the navigation is hidden in mobile.
+* Fix: Extra margin of the carousel in mobile view when the navigation is hidden in mobile.
 * Removed: The deprecated  'testimonial-free' shortcode has been removed.
 
 = 2.5.11 - Nov 17, 2022 =
 * Tested: WordPress 6.1.1 compatibility.
 
 = 2.5.10 - Oct 14, 2022 =
-* Improved: Load dynamic style according to shortcode on the page.
+* Improved: Load dynamic style according to the shortcode on the page.
 
 = 2.5.9 - Oct 03, 2022 =
 * New: The Free mode of the Slider layout.
@@ -649,8 +365,8 @@ Thank you!
 * Fix: Few Deprecated JS warnings on the plugin admin page.
 
 = 2.5.7 - Aug 03, 2022 =
-* Improved: Migrated to Swiper from Slick js for Carousel/Slider.
-* Fix: The Dequeue options of Advanced Settings do not work along with Elementor Plugin.
+* Improved: Migrated to Swiper from Slick.js for Carousel/Slider.
+* Fix: The Dequeue options of Advanced Settings do not work along with the Elementor Plugin.
 
 = 2.5.6 - Jun 14, 2022 =
 * Fix: The premium page warnings.
@@ -659,18 +375,18 @@ Thank you!
 
 = 2.5.5 - May 17, 2022 =
 * Tested: WordPress 6.0 compatibility.
-* Fix: Deprecated warning of Elementor block.
+* Fix: Deprecated warning of the Elementor block.
 * Fix: Image height is distorted with Twenty Twenty-Two.
 
 = 2.5.4 - Apr 23, 2022 =
-* Fix: Some assets of the Real Testimonial admin panel are not loaded properly in a few websites as that hosting directory is different.
+* Fix: Some assets of the Real Testimonial admin panel are not loaded properly on a few websites, as the hosting directory is different.
 
 = 2.5.3 - Mar 28, 2022 =
 * New: Elementor addon to insert the shortcode for preview.
 * New: A hook 'sp_wp_tabs_allow_import_tags' added to modify import option filter.
-* Improved: SVG preloading icon has been added as a pre-loader image.
-* Improved: The existing images, SVGs in the plugin are optimized.
-* Fix: The custom class field of Gutenberg block of Real Testimonial does not work.
+* Improved: SVG preloading icon has been added as a preloader image.
+* Improved: The existing images, SVGs in the plugin, are optimized.
+* Fix: The custom class field of the Gutenberg block of Real Testimonial does not work.
 * Removed: Unused images from the plugin.
 * Removed: The TinyMCE button from the classic editor.
 
@@ -682,14 +398,14 @@ Thank you!
 * Removed: Setting menu link from admin tap bar.
 
 = 2.5.0 - Feb 14, 2022 =
-* New: The template modification feature added.
-* New: Preloader image's alter tag added.
+* New: The template modification feature has been added.
+* New: Preloader image's alt tag added.
 * Improved: Schema markup improved.
 * Fix: Testimonial icon was not shown in the review notice.
 * Fix: Testimonial importing issue.
 * Fix: An undefined variable warning ($review) when Review Notice has been dismissed.
 * Fix: Extra padding removed for the mobile view when the navigation 'hide in mobile' option is set.
-* Fix: Large-sized image loading issue at 'All Testimonials' page.
+* Fix: Large-sized image loading issue at the 'All Testimonials' page.
 
 = 2.4.4 - Jan 27, 2022 =
 * Tested: WordPress 5.9 compatibility.
@@ -697,8 +413,8 @@ Thank you!
 = 2.4.3 - Jan 20, 2022 =
 * Improved: Settings page with a new layout.
 * Improved: Code improved.
-* Improved: The export-import option improved.
-* Fix: Image width with twenty-twenty-one theme issue.
+* Improved: The export-import option has improved.
+* Fix: Image width with the twenty-twenty-one theme issue.
 * Fix: Carousel navigation accessibility issue.
 * Fix: Some minor issues.
 
@@ -706,7 +422,7 @@ Thank you!
 * New: New video tutorial added.
 
 = 2.4.1 - Nov 05, 2021 =
-* Fix: Blank space at right side issue.
+* Fix: Blank space on the right side.
 
 = 2.4.0 - Nov 03, 2021 =
 * New: Plugin name changed to 'Real Testimonials'.
@@ -722,8 +438,8 @@ Thank you!
 
 = 2.3.0 - Oct 09, 2021 =
 * New: Live Preview option.
-* Fix: Few sites case, different plugin_dir issues.
-* Fix: Adaptive height issue to carousel layout when multi-column(s) is used.
+* Fix: A Few cases of sites, different plugin_dir issues.
+* Fix: Adaptive height issue in carousel layout when multi-column(s) are used.
 * Fix: Accessibility issues.
 * Fix: Several minor issues.
 * Improved: Shortcode settings panel text.
@@ -733,20 +449,20 @@ Thank you!
 * Removed: Unused code.
 
 = 2.2.18 - Aug 18, 2021 =
-* Fix: Schema markup undefine issue.
+* Fix: Schema markup undefined issue.
 
 = 2.2.17 - Aug 11, 2021 =
-* Fix: Rating value undefine issue.
+* Fix: Rating value undefined issue.
 
 = 2.2.16 - Jul 08, 2021 =
-* New: HTML Tag for reviewer full name.
+* New: HTML Tag for the reviewer's full name.
 * Fix: Minor tweaking.
 
 = 2.2.15 - Jun 18, 2021 =
-* Updated: Themes design typo updated.
+* Updated: Theme design typo updated.
 
 = 2.2.14 - Jun 14, 2021 =
-* New: Export and import option.
+* New: Export and import options.
 
 = 2.2.13 - Jun 03, 2021 =
 * Fix: AutoPlay dependency with pause on hover.
@@ -756,7 +472,7 @@ Thank you!
 = 2.2.12 - Apr 17, 2021 =
 * Fix: Review image issue.
 * Fix:  Backend shortcode select responsive issue.
-* Fix: Help tooltip text align issue.
+* Fix: Help tooltip text alignment issue.
 * Improved: Shortcode area redesigned.
 * Improved: Dynamic version added for admin script & style.
 
@@ -778,7 +494,7 @@ Thank you!
 * New: FontAwesome enqueue/dequeue option.
 * New: Slick enqueue/dequeue option.
 * New: Menu settings.
-* Fix: Image column height width issue in All Testimonials page.
+* Fix: Image column height and width issue in the All Testimonials page.
 * Fix: Number field control issue.
 * Improved: Dashboard Settings panel.
 
@@ -818,7 +534,7 @@ Thank you!
 * New: Settings page added.
 * New: Custom CSS option.
 * New: Schema markup enable/disable option.
-* Fix: Schema markup issue on Google search console.
+* Fix: Schema markup issue on Google Search Console.
 * Improved: Client name HTML tag.
 
 = 2.1.6 - Jan 10, 2020 =
@@ -873,10 +589,10 @@ Thank you!
 = 1.3 =
 * Removed view link
 * Removed attribute "id"
-* Added shortcode in back-end
+* Added shortcode in the back-end
 
 = 1.2 =
-* Navigation css issue fixed
+* Navigation CSS issue fixed
 
 = 1.1 =
 * Navigation issue fixed

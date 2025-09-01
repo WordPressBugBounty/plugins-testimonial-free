@@ -61,7 +61,7 @@ if ( ! class_exists( 'SPFTESTIMONIAL_Field_rating' ) ) {
 					echo '<div class="sp-tpro-client-rating">';
 					foreach ( $options as $sub_key => $sub_value ) {
 						$checked = ( $sub_key == $this->value ) ? ' checked' : '';
-						echo '<input type="radio" name="' . esc_attr( $this->field_name() ) . '" id="' . esc_attr( $sub_key ) . '" value="' . esc_attr( $sub_key ) . '"' . $this->field_attributes() . esc_attr( $checked ) . '/><label for="' . esc_attr( $sub_key ) . '" title="' . esc_attr( $sub_value ) . '"><i class="fa fa-star"></i></label>';// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+						echo '<input type="radio" name="' . esc_attr( $this->field_name() ) . '" id="' . esc_attr( $sub_key ) . '" value="' . esc_attr( $sub_key ) . '"' . wp_kses_post( $this->field_attributes() ) . esc_attr( $checked ) . '/><label for="' . esc_attr( $sub_key ) . '" title="' . esc_attr( $sub_value ) . '"><i class="fa fa-star"></i></label>';
 					}
 					echo '</div>';
 
@@ -72,12 +72,9 @@ if ( ! class_exists( 'SPFTESTIMONIAL_Field_rating' ) ) {
 				}
 			} else {
 				$label = ( isset( $this->field['label'] ) ) ? $this->field['label'] : '';
-				echo '<label><input type="radio" name="' . esc_attr( $this->field_name() ) . '" value="1"' . $this->field_attributes() . checked( $this->value, 1, false ) . '/> ' . esc_html( $label ) . '</label>';// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+				echo '<label><input type="radio" name="' . esc_attr( $this->field_name() ) . '" value="1"' . wp_kses_post( $this->field_attributes() ) . checked( $this->value, 1, false ) . '/> ' . esc_html( $label ) . '</label>';
 			}
-
 			echo wp_kses_post( $this->field_after() );
-
 		}
-
 	}
 }

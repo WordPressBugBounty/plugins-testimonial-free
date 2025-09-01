@@ -138,7 +138,8 @@ div.sp-testimonial-free-section.slick-initialized {
 	list-style: none;
 	align-items: center;
 	justify-content: center;
-	display: flex;
+	/* display: flex; */
+	display: inline-block;
 }
 
 .sp-testimonial-free-section .testimonial-pagination .swiper-pagination-bullet {
@@ -192,6 +193,18 @@ div.sp-testimonial-free-section.slick-initialized {
 	left: auto;
 }
 
+.sp-testimonial-free-section .swiper-button-next.testimonial-nav-arrow.top_right {
+	top: 22px;
+	right: 4px;
+	transform: unset;
+}
+.sp-testimonial-free-section .swiper-button-prev.testimonial-nav-arrow.top_right {
+	top: 22px;
+	right: 44px;
+	transform: unset;
+	left: auto;
+}
+
 .sp-testimonial-free-section .testimonial-nav-arrow::after {
 	font-size: 20px;
 }
@@ -199,6 +212,14 @@ div.sp-testimonial-free-section.slick-initialized {
 .sp-testimonial-free-wrapper .sp-testimonial-free-section .testimonial-nav-arrow:after {
 	content: "";
 	display: none;
+}
+
+.tfree-style-theme-one-v2 .sp-testimonial-item .sp-testimonial-free{
+	display: flex;
+	flex-direction: column-reverse;
+}
+.tfree-style-theme-one-v2 .sp-testimonial-free .sp-testimonial-client-image {
+	margin: 20px 0 0 0;
 }
 
 /* Preloader */
@@ -233,7 +254,6 @@ div.sp-testimonial-free-section.slick-initialized {
 .sp-testimonial-free-section:not(.swiper-initialized, .tfree-layout-grid) {
 	display: flex;
 	flex-wrap: wrap;
-	margin: 0 50px;
 	padding: unset !important;
 	overflow: hidden;
 	margin-bottom: 50px;

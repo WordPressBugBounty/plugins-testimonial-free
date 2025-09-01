@@ -53,14 +53,12 @@ if ( ! class_exists( 'SPFTESTIMONIAL_Field_switcher' ) ) {
 			echo '<span class="spftestimonial--on">' . esc_attr( $text_on ) . '</span>';
 			echo '<span class="spftestimonial--off">' . esc_attr( $text_off ) . '</span>';
 			echo '<span class="spftestimonial--ball"></span>';
-			echo '<input type="hidden" name="' . esc_attr( $this->field_name() ) . '" value="' . esc_attr( $this->value ) . '"' . $this->field_attributes() . ' />';// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+			echo '<input type="hidden" name="' . esc_attr( $this->field_name() ) . '" value="' . esc_attr( $this->value ) . '"' . wp_kses_post( $this->field_attributes() ) . ' />';
 			echo '</div>';
 
 			echo ( ! empty( $this->field['label'] ) ) ? '<span class="spftestimonial--label">' . esc_attr( $this->field['label'] ) . '</span>' : '';
 
 			echo wp_kses_post( $this->field_after() );
-
 		}
-
 	}
 }

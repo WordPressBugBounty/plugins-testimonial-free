@@ -123,7 +123,6 @@ if ( ! class_exists( 'SPFTESTIMONIAL_Fields' ) ) {
 			}
 
 			return $atts;
-
 		}
 		/**
 		 * Field before.
@@ -144,7 +143,6 @@ if ( ! class_exists( 'SPFTESTIMONIAL_Fields' ) ) {
 			$output .= ( ! empty( $this->field['help'] ) ) ? '<div class="spftestimonial-help"><span class="spftestimonial-help-text">' . $this->field['help'] . '</span><i class="fa fa-question-circle"></i></div>' : '';
 			$output .= ( ! empty( $this->field['_error'] ) ) ? '<div class="spftestimonial-error-text">' . $this->field['_error'] . '</div>' : '';
 			return $output;
-
 		}
 		/**
 		 * Field Data.
@@ -362,7 +360,6 @@ if ( ! class_exists( 'SPFTESTIMONIAL_Fields' ) ) {
 			}
 
 			return $options;
-
 		}
 		/**
 		 * WP Query data title
@@ -462,8 +459,6 @@ if ( ! class_exists( 'SPFTESTIMONIAL_Fields' ) ) {
 			}
 
 			return $options;
-
 		}
-
 	}
 }

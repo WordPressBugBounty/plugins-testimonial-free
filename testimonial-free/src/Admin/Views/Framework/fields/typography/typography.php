@@ -439,7 +439,6 @@ if ( ! class_exists( 'SPFTESTIMONIAL_Field_typography' ) ) {
 			echo '</div>';
 
 			echo wp_kses_post( $this->field_after() );
-
 		}
 		/**
 		 * Create select
@@ -475,157 +474,8 @@ if ( ! class_exists( 'SPFTESTIMONIAL_Field_typography' ) ) {
 			$output .= '</select>';
 
 			return $output;
-
 		}
-		/**
-		 * Enqueue
-		 *
-		 * @return void
-		 */
-		public function enqueue() {
 
-			if ( ! wp_script_is( 'spftestimonial-webfontloader' ) ) {
-
-				SPFTESTIMONIAL::include_plugin_file( 'fields/typography/google-fonts.php' );
-
-				// wp_enqueue_script( 'spftestimonial-webfontloader', 'https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js', array( 'spftestimonial' ), '1.6.28', true );.
-
-				$webfonts = array();
-
-				$customwebfonts = apply_filters( 'spftestimonial_field_typography_customwebfonts', array() );
-
-				if ( ! empty( $customwebfonts ) ) {
-					$webfonts['custom'] = array(
-						'label' => esc_html__( 'Custom Web Fonts', 'testimonial-free' ),
-						'fonts' => $customwebfonts,
-					);
-				}
-
-				$webfonts['safe'] = array(
-					'label' => esc_html__( 'Safe Web Fonts', 'testimonial-free' ),
-					'fonts' => apply_filters(
-						'spftestimonial_field_typography_safewebfonts',
-						array(
-							'Arial',
-							'Arial Black',
-							'Helvetica',
-							'Times New Roman',
-							'Courier New',
-							'Tahoma',
-							'Verdana',
-							'Impact',
-							'Trebuchet MS',
-							'Comic Sans MS',
-							'Lucida Console',
-							'Lucida Sans Unicode',
-							'Georgia, serif',
-							'Palatino Linotype',
-						)
-					),
-				);
-
-				$defaultstyles = apply_filters( 'spftestimonial_field_typography_defaultstyles', array( 'normal', 'italic', '700', '700italic' ) );
-
-				$googlestyles = apply_filters(
-					'spftestimonial_field_typography_googlestyles',
-					array(
-						'100'       => 'Thin 100',
-						'100italic' => 'Thin 100 Italic',
-						'200'       => 'Extra-Light 200',
-						'200italic' => 'Extra-Light 200 Italic',
-						'300'       => 'Light 300',
-						'300italic' => 'Light 300 Italic',
-						'normal'    => 'Normal 400',
-						'italic'    => 'Normal 400 Italic',
-						'500'       => 'Medium 500',
-						'500italic' => 'Medium 500 Italic',
-						'600'       => 'Semi-Bold 600',
-						'600italic' => 'Semi-Bold 600 Italic',
-						'700'       => 'Bold 700',
-						'700italic' => 'Bold 700 Italic',
-						'800'       => 'Extra-Bold 800',
-						'800italic' => 'Extra-Bold 800 Italic',
-						'900'       => 'Black 900',
-						'900italic' => 'Black 900 Italic',
-					)
-				);
-
-				$webfonts = apply_filters( 'spftestimonial_field_typography_webfonts', $webfonts );
-
-				wp_localize_script(
-					'spftestimonial',
-					'spftestimonial_typography_json',
-					array(
-						'webfonts'      => $webfonts,
-						'defaultstyles' => $defaultstyles,
-						'googlestyles'  => $googlestyles,
-					)
-				);
-
-			}
-
-		}
-		/**
-		 * Enqueue google fonts.
-		 *
-		 * @param mixed $method method.
-		 * @return mixed
-		 */
-		public function enqueue_google_fonts( $method = 'enqueue' ) {
-
-			$is_google = false;
-
-			if ( ! empty( $this->value['type'] ) ) {
-				$is_google = ( 'google' === $this->value['type'] ) ? true : false;
-			} else {
-				SPFTESTIMONIAL::include_plugin_file( 'fields/typography/google-fonts.php' );
-				$is_google = ( array_key_exists( $this->value['font-family'], spftestimonial_get_google_fonts() ) ) ? true : false;
-			}
-
-			if ( $is_google ) {
-
-				// set style.
-				$font_family = ( ! empty( $this->value['font-family'] ) ) ? $this->value['font-family'] : '';
-				$font_weight = ( ! empty( $this->value['font-weight'] ) ) ? $this->value['font-weight'] : '';
-				$font_style  = ( ! empty( $this->value['font-style'] ) ) ? $this->value['font-style'] : '';
-
-				if ( $font_weight || $font_style ) {
-					$style = $font_weight . $font_style;
-					if ( ! empty( $style ) ) {
-						$style = ( 'normal' === $style ) ? '400' : $style;
-						SPFTESTIMONIAL::$webfonts[ $method ][ $font_family ][ $style ] = $style;
-					}
-				} else {
-					SPFTESTIMONIAL::$webfonts[ $method ][ $font_family ] = array();
-				}
-
-				// set extra styles.
-				if ( ! empty( $this->value['extra-styles'] ) ) {
-					foreach ( $this->value['extra-styles'] as $extra_style ) {
-						if ( ! empty( $extra_style ) ) {
-							$extra_style = ( 'normal' === $extra_style ) ? '400' : $extra_style;
-							SPFTESTIMONIAL::$webfonts[ $method ][ $font_family ][ $extra_style ] = $extra_style;
-						}
-					}
-				}
-
-				// set subsets.
-				if ( ! empty( $this->value['subset'] ) ) {
-					$this->value['subset'] = ( is_array( $this->value['subset'] ) ) ? $this->value['subset'] : array_filter( (array) $this->value['subset'] );
-					foreach ( $this->value['subset'] as $subset ) {
-						if ( ! empty( $subset ) ) {
-							SPFTESTIMONIAL::$subsets[ $subset ] = $subset;
-						}
-					}
-				}
-
-				return true;
-
-			}
-
-			return false;
-
-		}
 		/**
 		 * Output
 		 *
@@ -688,8 +538,6 @@ if ( ! class_exists( 'SPFTESTIMONIAL_Field_typography' ) ) {
 			$this->parent->output_css .= $output;
 
 			return $output;
-
 		}
-
 	}
 }

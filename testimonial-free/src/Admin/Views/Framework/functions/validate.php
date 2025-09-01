@@ -28,7 +28,6 @@ if ( ! function_exists( 'spftestimonial_validate_email' ) ) {
 		if ( ! filter_var( $value, FILTER_VALIDATE_EMAIL ) ) {
 			return esc_html__( 'Please enter a valid email address.', 'testimonial-free' );
 		}
-
 	}
 }
 
@@ -47,7 +46,6 @@ if ( ! function_exists( 'spftestimonial_validate_numeric' ) ) {
 		if ( ! is_numeric( $value ) ) {
 			return esc_html__( 'Please enter a valid number.', 'testimonial-free' );
 		}
-
 	}
 }
 
@@ -66,7 +64,6 @@ if ( ! function_exists( 'spftestimonial_validate_required' ) ) {
 		if ( empty( $value ) ) {
 			return esc_html__( 'This field is required.', 'testimonial-free' );
 		}
-
 	}
 }
 
@@ -84,6 +81,5 @@ if ( ! function_exists( 'spftestimonial_validate_url' ) ) {
 		if ( ! filter_var( $value, FILTER_VALIDATE_URL ) ) {
 			return esc_html__( 'Please enter a valid URL.', 'testimonial-free' );
 		}
-
 	}
 }

@@ -8,6 +8,9 @@
  * @subpackage Testimonial_Free/Frontend
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
 $image = get_the_post_thumbnail( $post_query->post->ID, $image_sizes, array( 'class' => 'tfree-client-image' ) );
 ?>
 

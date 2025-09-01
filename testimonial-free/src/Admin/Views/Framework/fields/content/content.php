@@ -44,12 +44,8 @@ if ( ! class_exists( 'SPFTESTIMONIAL_Field_content' ) ) {
 		public function render() {
 
 			if ( ! empty( $this->field['content'] ) ) {
-
 				echo wp_kses_post( $this->field['content'] );
-
 			}
-
 		}
-
 	}
 }

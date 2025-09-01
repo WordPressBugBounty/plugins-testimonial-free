@@ -41,12 +41,9 @@ if ( ! class_exists( 'SPFTESTIMONIAL_Field_submessage' ) ) {
 		 * @return void
 		 */
 		public function render() {
-
 			$style = ( ! empty( $this->field['style'] ) ) ? $this->field['style'] : 'normal';
 
 			echo '<div class="spftestimonial-submessage spftestimonial-submessage-' . esc_attr( $style ) . '">' . wp_kses_post( $this->field['content'] ) . '</div>';
-
 		}
-
 	}
 }

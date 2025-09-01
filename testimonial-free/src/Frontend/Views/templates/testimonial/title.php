@@ -8,6 +8,9 @@
  * @subpackage Testimonial_Free/Frontend
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
 ?>
 <div class="sp-testimonial-title">
 	<?php do_action( 'sptpro_before_testimonial_title' ); ?>

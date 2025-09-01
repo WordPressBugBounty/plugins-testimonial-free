@@ -55,17 +55,14 @@ if ( ! class_exists( 'SPFTESTIMONIAL_Field_tabbed' ) ) {
 			echo wp_kses_post( $this->field_before() );
 			echo '<div class="spftestimonial-tabbed-nav">';
 			foreach ( $this->field['tabs'] as $key => $tab ) {
-
 				$tabbed_icon   = ( ! empty( $tab['icon'] ) ) ? $tab['icon'] : '';
 				$tabbed_active = ( empty( $key ) ) ? ' class="spftestimonial-tabbed-active"' : '';
 
-				echo '<a class="sp_testimonial-tab-item-' . esc_attr( $key ) . '" href="#"' . wp_kses_post( $tabbed_active ) . '>' . $tabbed_icon . wp_kses_post( $tab['title'] ) . '</a>';
+				echo '<a class="sp_testimonial-tab-item-' . esc_attr( $key ) . '" href="#"' . wp_kses_post( $tabbed_active ) . '>' . $tabbed_icon . wp_kses_post( $tab['title'] ) . '</a>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Allowing SVG output here.
 			}
 			echo '</div>';
-
 			echo '<div class="spftestimonial-tabbed-sections">';
 			foreach ( $this->field['tabs'] as $key => $tab ) {
-
 				$tabbed_hidden = ( ! empty( $key ) ) ? ' hidden' : '';
 				echo '<div class="spftestimonial-tabbed-section' . esc_attr( $tabbed_hidden ) . '">';
 

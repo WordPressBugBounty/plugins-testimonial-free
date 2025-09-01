@@ -131,8 +131,6 @@ if ( ! class_exists( 'SPFTESTIMONIAL_Field_select_f' ) ) {
 			}
 
 			echo wp_kses_post( $this->field_after() );
-
 		}
-
 	}
 }

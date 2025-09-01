@@ -1,7 +1,17 @@
 <?php
 /**
- * Update version for gutenberg block.
+ * Update options for the version 2.5.5
+ *
+ * @link       https://shapedplugin.com
+ *
+ * @package    testimonial_free
+ * @subpackage testimonial_free/Admin/updates
  */
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
+
 update_option( 'testimonial_version', '2.5.5' );
 update_option( 'testimonial_db_version', '2.5.5' );
 

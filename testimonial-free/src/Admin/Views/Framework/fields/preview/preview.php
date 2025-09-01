@@ -21,16 +21,6 @@ if ( ! class_exists( 'SPFTESTIMONIAL_Field_preview' ) ) {
 	 * @version 1.0.0
 	 */
 	class SPFTESTIMONIAL_Field_preview extends SPFTESTIMONIAL_Fields {
-
-		/**
-		 * Shortcode field constructor.
-		 *
-		 * @param array  $field The field type.
-		 * @param string $value The values of the field.
-		 * @param string $unique The unique ID for the field.
-		 * @param string $where To where show the output CSS.
-		 * @param string $parent The parent args.
-		 */
 		/**
 		 * Field constructor.
 		 *
@@ -57,6 +47,5 @@ if ( ! class_exists( 'SPFTESTIMONIAL_Field_preview' ) ) {
 		public function render() {
 			echo '<div class="sp_tpro-preview-box"><div id="sp_tpro-preview-box"></div></div>';
 		}
-
 	}
 }

@@ -11,6 +11,10 @@
 
 namespace ShapedPlugin\TestimonialFree\Admin;
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
+
 /**
  * Elementor shortcode block.
  */

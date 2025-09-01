@@ -8,5 +8,8 @@
  * @subpackage Testimonial_Free/Frontend
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
 ?>
 <h2 class="sp-testimonial-free-section-title"><?php echo wp_kses_post( $main_section_title ); ?></h2>

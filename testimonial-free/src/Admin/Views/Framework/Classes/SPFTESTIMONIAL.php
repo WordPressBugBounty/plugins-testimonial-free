@@ -158,7 +158,6 @@ class SPFTESTIMONIAL {
 		add_action( 'init', array( $this, 'setup' ) );
 		add_action( 'switch_theme', array( $this, 'setup' ) );
 		add_action( 'admin_enqueue_scripts', array( $this, 'add_admin_enqueue_scripts' ) );
-		add_action( 'wp_enqueue_scripts', array( $this, 'add_typography_enqueue_styles' ), 80 );
 		add_action( 'wp_head', array( $this, 'add_custom_css' ), 80 );
 		add_filter( 'admin_body_class', array( $this, 'add_admin_body_class' ) );
 	}
@@ -472,13 +471,7 @@ class SPFTESTIMONIAL {
 			wp_enqueue_style( 'wp-color-picker' );
 			wp_enqueue_script( 'wp-color-picker' );
 
-			// Font awesome 4 and 5 loader.
-			if ( apply_filters( 'spftestimonial_fa4', true ) ) {
-				wp_enqueue_style( 'spftestimonial-fa', 'https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome' . $min . '.css', array(), '4.7.0', 'all' );
-			} else {
-				wp_enqueue_style( 'spftestimonial-fa5', 'https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all' . $min . '.css', array(), '5.15.5', 'all' );
-				wp_enqueue_style( 'spftestimonial-fa5-v4-shims', 'https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/v4-shims' . $min . '.css', array(), '5.15.5', 'all' );
-			}
+			wp_enqueue_style( 'spftestimonial-font-awesome-icons', self::include_plugin_url( 'assets/css/font-awesome.min.css' ), array(), self::$version, 'all' );
 
 			// Main style.
 			wp_enqueue_style( 'spftestimonial', self::include_plugin_url( 'assets/css/spftestimonial.css' ), array(), self::$version, 'all' );
@@ -530,54 +523,6 @@ class SPFTESTIMONIAL {
 	}
 
 	/**
-	 * Typography Enqueue admin and fields styles and scripts.
-	 *
-	 * @return void
-	 */
-	public static function add_typography_enqueue_styles() {
-
-		if ( ! empty( self::$webfonts ) ) {
-
-			if ( ! empty( self::$webfonts['enqueue'] ) ) {
-
-				$query = array();
-				$fonts = array();
-
-				foreach ( self::$webfonts['enqueue'] as $family => $styles ) {
-					$fonts[] = $family . ( ( ! empty( $styles ) ) ? ':' . implode( ',', $styles ) : '' );
-				}
-
-				if ( ! empty( $fonts ) ) {
-					$query['family'] = implode( '%7C', $fonts );
-				}
-
-				if ( ! empty( self::$subsets ) ) {
-					$query['subset'] = implode( ',', self::$subsets );
-				}
-
-				$query['display'] = 'swap';
-
-				wp_enqueue_style( 'spftestimonial-google-web-fonts', esc_url( add_query_arg( $query, '//fonts.googleapis.com/css' ) ), array(), null );
-
-			}
-
-			if ( ! empty( self::$webfonts['async'] ) ) {
-
-				$fonts = array();
-
-				foreach ( self::$webfonts['async'] as $family => $styles ) {
-					$fonts[] = $family . ( ( ! empty( $styles ) ) ? ':' . implode( ',', $styles ) : '' );
-				}
-
-				wp_enqueue_script( 'spftestimonial-google-web-fonts', esc_url( '//ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js' ), array(), null );
-
-				wp_localize_script( 'spftestimonial-google-web-fonts', 'WebFontConfig', array( 'google' => array( 'families' => $fonts ) ) );
-
-			}
-		}
-	}
-
-	/**
 	 * Admin body class
 	 *
 	 * @param string $classes admin body class.
@@ -600,6 +545,7 @@ class SPFTESTIMONIAL {
 	public static function add_custom_css() {
 
 		if ( ! empty( self::$css ) ) {
+			// @codingStandardsIgnoreLine
 			echo '<style type="text/css">' . wp_strip_all_tags( self::$css ) . '</style>';
 		}
 	}
@@ -677,11 +623,6 @@ class SPFTESTIMONIAL {
 			}
 
 			if ( ! empty( $field['title'] ) ) {
-				// echo '<div class="spftestimonial-title">';
-				// echo '<h4>' . wp_kses_post( $field['title'] ) . '</h4>';
-				// echo ( ! empty( $field['subtitle'] ) ) ? '<div class="spftestimonial-subtitle-text">' . wp_kses_post( $field['subtitle'] ) . '</div>' : '';
-				// echo '</div>';
-
 				echo '<div class="spftestimonial-title">';
 					$help_title = ( ! empty( $field['title_help'] ) ) ? '
 					<div class="spftestimonial-help spftestimonial-title-help">

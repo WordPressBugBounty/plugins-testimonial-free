@@ -1,12 +1,15 @@
-<?php if ( ! defined( 'ABSPATH' ) ) {
-	die; } // Cannot access directly.
+<?php
 /**
  *
  * Field: fieldset
  *
  * @since 1.0.0
  * @version 1.0.0
+ * @package Testimonial_free
  */
+
+if ( ! defined( 'ABSPATH' ) ) {
+	die; } // Cannot access directly.
 
 use ShapedPlugin\TestimonialFree\Admin\Views\Framework\Classes\SPFTESTIMONIAL;
 

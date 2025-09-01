@@ -11,6 +11,10 @@
 
 namespace ShapedPlugin\TestimonialFree\Admin\Views;
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
+
 /**
  * Real Testimonials Widget class
  *
@@ -78,14 +82,14 @@ class TFREE_Widget extends \WP_Widget {
 
 		if ( count( $shortcodes ) > 0 ) {
 
-			echo sprintf( '<p><label for="%1$s">%2$s</label>', esc_attr( $this->get_field_id( 'title' ) ), esc_html__( 'Title:', 'testimonial-free' ) );
-			echo sprintf( '<input type="text" class="widefat" id="%1$s" name="%2$s" value="%3$s" /></p>', esc_attr( $this->get_field_id( 'title' ) ), esc_attr( $this->get_field_name( 'title' ) ), esc_attr( $title ) );
+			printf( '<p><label for="%1$s">%2$s</label>', esc_attr( $this->get_field_id( 'title' ) ), esc_html__( 'Title:', 'testimonial-free' ) );
+			printf( '<input type="text" class="widefat" id="%1$s" name="%2$s" value="%3$s" /></p>', esc_attr( $this->get_field_id( 'title' ) ), esc_attr( $this->get_field_name( 'title' ) ), esc_attr( $title ) );
 
-			echo sprintf( '<p><label>%s</label>', esc_html__( 'Testimonial Shortcodes:', 'testimonial-free' ) );
-			echo sprintf( '<select class="widefat" name="%s">', esc_attr( $this->get_field_name( 'shortcode_id' ) ) );
+			printf( '<p><label>%s</label>', esc_html__( 'Testimonial Shortcodes:', 'testimonial-free' ) );
+			printf( '<select class="widefat" name="%s">', esc_attr( $this->get_field_name( 'shortcode_id' ) ) );
 			foreach ( $shortcodes as $shortcode ) {
 				$selected = $shortcode->id === $shortcode_id ? 'selected="selected"' : '';
-				echo sprintf(
+				printf(
 					'<option value="%1$d" %3$s>%2$s</option>',
 					esc_attr( $shortcode->id ),
 					esc_html( $shortcode->title ),
@@ -95,7 +99,7 @@ class TFREE_Widget extends \WP_Widget {
 			echo '</select></p>';
 
 		} else {
-			echo sprintf(
+			printf(
 				'<p>%1$s <a href="' . esc_url( admin_url( 'post-new.php?post_type=spt_shortcodes' ) ) . '">%3$s</a> %2$s</p>',
 				esc_html__( 'You did not generate any shortcode yet.', 'testimonial-free' ),
 				esc_html__( 'to generate a new shortcode now.', 'testimonial-free' ),
@@ -145,5 +149,4 @@ class TFREE_Widget extends \WP_Widget {
 			$shortcodes
 		);
 	}
-
 }

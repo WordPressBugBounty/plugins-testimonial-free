@@ -111,12 +111,8 @@ if ( ! class_exists( 'SPFTESTIMONIAL_Field_checkbox' ) ) {
 				echo '<input type="checkbox" name="_pseudo" class="spftestimonial--checkbox"' . esc_attr( checked( $this->value, 1, false ) ) . '/>';
 				echo ( ! empty( $this->field['label'] ) ) ? '<span class="spftestimonial--text">' . esc_attr( $this->field['label'] ) . '</span>' : '';
 				echo '</label>';
-
 			}
-
 			echo wp_kses_post( $this->field_after() );
-
 		}
-
 	}
 }

@@ -1,7 +1,17 @@
 <?php
 /**
- * Update version.
+ * Update options for the version 2.2.5
+ *
+ * @link       https://shapedplugin.com
+ *
+ * @package    testimonial_free
+ * @subpackage testimonial_free/Admin/updates
  */
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
+
 update_option( 'testimonial_version', '2.2.5' );
 update_option( 'testimonial_db_version', '2.2.5' );
 
@@ -85,7 +95,7 @@ if ( count( $shortcode_ids ) > 0 ) {
 			unset( $shortcode_data['pagination_active_color'] );
 		}
 
-		$rtl_mode                    = isset( $shortcode_data['rtl_mode'] ) ? $shortcode_data['rtl_mode'] : '';
+		$rtl_mode         = isset( $shortcode_data['rtl_mode'] ) ? $shortcode_data['rtl_mode'] : '';
 		$slider_direction = 'ltr';
 		if ( true == $rtl_mode ) {
 			$slider_direction = 'rtl';

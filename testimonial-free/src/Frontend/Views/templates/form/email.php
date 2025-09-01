@@ -8,6 +8,10 @@
  * @subpackage Testimonial_Free/Frontend
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
+
 ?>
 <div class="sp-tpro-form-field">
 <div class="sp-testimonial-label-section">

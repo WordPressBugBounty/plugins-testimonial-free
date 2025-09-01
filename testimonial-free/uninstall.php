@@ -1,4 +1,14 @@
 <?php
+/**
+ * Uninstall file.
+ *
+ * @link       http://shapedplugin.com
+ * @since      1.0.0
+ *
+ * @package    Testimonial
+ * @subpackage Testimonial/uninstall
+ */
+
 defined( 'WP_UNINSTALL_PLUGIN' ) || exit;
 
 // Load TPro file.
@@ -8,29 +18,30 @@ $setting_options         = get_option( 'sp_testimonial_pro_options' );
 $testimonial_data_remove = isset( $setting_options['testimonial_data_remove'] ) ? $setting_options['testimonial_data_remove'] : false;
 if ( $testimonial_data_remove ) {
 
-	// Delete testimonials and shortcodes.
-	global $wpdb;
-	$wpdb->query( "DELETE FROM wp_posts WHERE post_type = 'spt_testimonial'" );
-	$wpdb->query( "DELETE FROM wp_posts WHERE post_type = 'spt_shortcodes'" );
-	$wpdb->query( 'DELETE FROM wp_postmeta WHERE post_id NOT IN (SELECT id FROM wp_posts)' );
-	$wpdb->query( 'DELETE FROM wp_term_relationships WHERE object_id NOT IN (SELECT id FROM wp_posts)' );
-	$wpdb->query( "DELETE FROM wp_term_taxonomy WHERE taxonomy = 'testimonial_cat' AND term_taxonomy_id NOT IN (SELECT term_taxonomy_id FROM wp_term_relationships)" );
-	$wpdb->query( 'DELETE FROM wp_terms WHERE term_id NOT IN (SELECT term_id FROM wp_term_taxonomy)' );
+	// Delete member post type.
+	$testimonials = get_posts(
+		array(
+			'numberposts' => -1,
+			'post_type'   => array( 'spt_testimonial', 'spt_shortcodes', 'spt_testimonial_form' ),
+			'post_status' => array( 'any', 'trash' ),
+		)
+	);
+	foreach ( $testimonials as $testimonial ) {
+		wp_delete_post( $testimonial->ID, true );
+	}
 
-	// Remove Option.
-	delete_option( 'sp_testimonial_pro_options' );
-	delete_option( 'testimonial_cat_children' );
-	delete_option( 'testimonial_version' );
-	delete_option( 'testimonial_first_version' );
-	delete_option( 'testimonial_activation_date' );
-	delete_option( 'testimonial_db_version' );
+	// Delete plugin options.
+	$plugin_options = array(
+		'sp_testimonial_pro_options',
+		'testimonial_cat_children',
+		'testimonial_version',
+		'testimonial_first_version',
+		'testimonial_activation_date',
+		'testimonial_db_version',
+	);
 
-	// Site options in Multisite.
-	delete_site_option( 'sp_testimonial_pro_options' );
-	delete_site_option( 'testimonial_cat_children' );
-	delete_site_option( 'testimonial_version' );
-	delete_site_option( 'testimonial_first_version' );
-	delete_site_option( 'testimonial_activation_date' );
-	delete_site_option( 'testimonial_db_version' );
-
+	foreach ( $plugin_options as $plugin_option ) {
+		delete_option( $plugin_option );
+		delete_site_option( $plugin_option ); // for multisite.
+	}
 }

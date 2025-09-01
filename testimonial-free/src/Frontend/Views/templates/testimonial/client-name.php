@@ -8,6 +8,9 @@
  * @subpackage Testimonial_Free/Frontend
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
 ?>
 <<?php echo esc_attr( $reviewer_name_tag ); ?> class="sp-testimonial-client-name">
 <?php

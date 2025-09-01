@@ -6,6 +6,10 @@
  * @subpackage Testimonial_Free/Frontend
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
+
 use ShapedPlugin\TestimonialPro\Frontend\Helper;
 
 if ( isset( $_SERVER['REQUEST_METHOD'] ) && 'POST' === $_SERVER['REQUEST_METHOD'] && ! empty( $_POST['action'] ) && 'testimonial_form' . $form_id === $_POST['action'] ) {
@@ -19,14 +23,12 @@ if ( isset( $_SERVER['REQUEST_METHOD'] ) && 'POST' === $_SERVER['REQUEST_METHOD'
 		$tpro_location                       = isset( $_POST['tpro_client_location'] ) ? sanitize_text_field( wp_unslash( $_POST['tpro_client_location'] ) ) : '';
 		$tpro_phone                          = isset( $_POST['tpro_client_phone'] ) ? preg_replace( '/[^0-9+-]/', '', sanitize_text_field( wp_unslash( $_POST['tpro_client_phone'] ) ) ) : '';
 		$tpro_website                        = isset( $_POST['tpro_client_website'] ) ? esc_url( sanitize_text_field( wp_unslash( $_POST['tpro_client_website'] ) ) ) : '';
-		$tpro_video_url                      = isset( $_POST['tpro_client_video_url'] ) ? esc_url( sanitize_text_field( wp_unslash( $_POST['tpro_client_video_url'] ) ) ) : '';
-		$tpro_client_testimonial_cat         = isset( $_POST['tpro_client_testimonial_cat'] ) ? wp_kses_post_deep( wp_unslash( $_POST['tpro_client_testimonial_cat'] ) ) : '';
 		$tpro_testimonial_title              = isset( $_POST['tpro_testimonial_title'] ) ? sanitize_text_field( wp_unslash( $_POST['tpro_testimonial_title'] ) ) : '';
 		$tpro_testimonial_text               = isset( $_POST['tpro_client_testimonial'] ) ? sanitize_textarea_field( wp_unslash( $_POST['tpro_client_testimonial'] ) ) : '';
 		$tpro_rating_star                    = isset( $_POST['tpro_client_rating'] ) ? sanitize_key( $_POST['tpro_client_rating'] ) : '';
 		$tpro_client_video_upload            = isset( $_POST['tpro_client_video_upload'] ) ? sanitize_key( $_POST['tpro_client_video_upload'] ) : '';
-		$tpro_social_profiles                = isset( $_POST['tpro_social_profiles'] ) ? wp_unslash( $_POST['tpro_social_profiles'] ) : '';
-		$tpro_client_checkbox                = isset( $_POST['tpro_client_checkbox'] ) && $_POST['tpro_client_checkbox'] ? '1' : '0';
+		$tpro_social_profiles = isset( $_POST['tpro_social_profiles'] ) ? wp_kses_post_deep( wp_unslash( $_POST['tpro_social_profiles'] ) ) : ''; // phpcs:ignore -- WordPress.Security.NonceVerification.Missing -- Nonce already verified earlier.
+		$tpro_client_checkbox                = ! empty( $_POST['tpro_client_checkbox'] ) && ! empty( sanitize_text_field( wp_unslash( $_POST['tpro_client_checkbox'] ) ) ) ? '1' : '0';
 		$tpro_auto_publish_ratings           = isset( $form_data['tpro_auto_publish_rating'] ) ? $form_data['tpro_auto_publish_rating'] : '';
 		$tpro_admin_email                    = isset( $form_data['submission_email_to'] ) ? $form_data['submission_email_to'] : '';
 		$tpro_reviewer_awaiting_notification = isset( $form_data['reviewer_awaiting_notification'] ) ? $form_data['reviewer_awaiting_notification'] : '';
@@ -51,7 +53,6 @@ if ( isset( $_SERVER['REQUEST_METHOD'] ) && 'POST' === $_SERVER['REQUEST_METHOD'
 					'tpro_location'        => $tpro_location,
 					'tpro_phone'           => $tpro_phone,
 					'tpro_website'         => $tpro_website,
-					'tpro_video_url'       => $tpro_video_url,
 					'tpro_rating'          => $tpro_rating_star,
 					'tpro_social_profiles' => $tpro_social_profiles,
 					'tpro_client_checkbox' => $tpro_client_checkbox,
@@ -67,9 +68,7 @@ if ( isset( $_SERVER['REQUEST_METHOD'] ) && 'POST' === $_SERVER['REQUEST_METHOD'
 		$pid            = wp_insert_post( $testimonial_form );
 		$validation_msg = '';
 		if ( $pid ) {
-			wp_set_post_terms( $pid, $tpro_client_testimonial_cat, 'testimonial_cat' );
 			// Thanks message.
-
 			$validation_msg .= $form_data['successful_message'];
 			self::tpro_redirect( get_page_link() . '#submit' );
 		}
@@ -84,18 +83,17 @@ if ( isset( $_SERVER['REQUEST_METHOD'] ) && 'POST' === $_SERVER['REQUEST_METHOD'
 		if ( $pid ) {
 			if ( $_FILES ) {
 				foreach ( $_FILES as $file => $array ) {
-					if ( UPLOAD_ERR_OK !== $_FILES[ $file ]['error'] ) {
-					} else {
+
+					// Check if 'error' exists and is UPLOAD_ERR_OK.
+					if ( ! isset( $array['error'] ) || UPLOAD_ERR_OK !== $array['error'] ) {
+						continue; // skip this file.
+					}
+
+					if ( 'image/jpeg' === $array['type'] || 'image/jpg' === $array['type'] || 'image/png' === $array['type'] ) {
 						$attach_id = media_handle_upload( $file, $pid );
 						if ( ! is_wp_error( $attach_id ) && $attach_id > 0 ) {
 							// Set post image.
-							if ( 'video/mp4' === $array['type'] || 'video/webm' === $array['type'] || 'video/x-matroska' === $array['type'] ) {
-								$testimonial_data                   = get_post_meta( $pid, 'sp_tpro_meta_options', true );
-								$testimonial_data['tpro_video_url'] = wp_get_attachment_url( $attach_id );
-								update_post_meta( $pid, 'sp_tpro_meta_options', $testimonial_data );
-							} else {
-								update_post_meta( $pid, '_thumbnail_id', $attach_id );
-							}
+							update_post_meta( $pid, '_thumbnail_id', $attach_id );
 						}
 					}
 				}

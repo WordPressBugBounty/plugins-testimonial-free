@@ -61,10 +61,12 @@ class Helper {
 		$autoplay_disable_on_mobile = isset( $shortcode_data['carousel_autoplay']['autoplay_disable_on_mobile'] ) ? $shortcode_data['carousel_autoplay']['autoplay_disable_on_mobile'] : 'false';
 		$slider_auto_play_mobile    = ( ! $autoplay_disable_on_mobile && $slider_auto_play_data ) ? 'true' : 'false';
 
-		$slider_auto_play_speed = isset( $shortcode_data['slider_auto_play_speed'] ) ? $shortcode_data['slider_auto_play_speed'] : '3000';
-		$slider_scroll_speed    = isset( $shortcode_data['slider_scroll_speed'] ) ? (int) $shortcode_data['slider_scroll_speed'] : 600;
-		$slider_pause_on_hover  = isset( $shortcode_data['slider_pause_on_hover'] ) && $shortcode_data['slider_pause_on_hover'] ? 'true' : 'false';
-		$slider_infinite        = isset( $shortcode_data['slider_infinite'] ) && $shortcode_data['slider_infinite'] ? 'true' : 'false';
+		$slider_auto_play_speed   = isset( $shortcode_data['slider_auto_play_speed'] ) ? $shortcode_data['slider_auto_play_speed'] : '3000';
+		$slider_scroll_speed      = isset( $shortcode_data['slider_scroll_speed'] ) ? (int) $shortcode_data['slider_scroll_speed'] : 600;
+		$slider_pause_on_hover    = isset( $shortcode_data['slider_pause_on_hover'] ) && $shortcode_data['slider_pause_on_hover'] ? 'true' : 'false';
+		$slider_infinite          = isset( $shortcode_data['slider_infinite'] ) && $shortcode_data['slider_infinite'] ? 'true' : 'false';
+		$carousel_pagination_type = isset( $shortcode_data['carousel_pagination_type'] ) ? $shortcode_data['carousel_pagination_type'] : 'dots';
+		$navigation_position      = isset( $shortcode_data['navigation_position'] ) ? $shortcode_data['navigation_position'] : 'vertical_center';
 
 		// Navigation.
 		$show_navigation    = isset( $shortcode_data['spt_carousel_navigation']['navigation'] ) ? $shortcode_data['spt_carousel_navigation']['navigation'] : false;
@@ -108,7 +110,7 @@ class Helper {
 			if ( $dequeue_swiper_js ) {
 				wp_enqueue_script( 'sp-testimonial-swiper-js' );
 			}
-			$slider_attr = '{"dots": ' . esc_attr( $slider_pagination ) . ', "spaceBetween": ' . esc_attr( (int) $space['top'] ) . ', "adaptiveHeight": ' . esc_attr( $adaptive_height ) . ', "pauseOnHover": ' . esc_attr( $slider_pause_on_hover ) . ', "slidesToShow": ' . esc_attr( $responsive_columns['large_desktop'] ) . ', "speed": ' . esc_attr( $slider_scroll_speed ) . ', "arrows": "' . esc_attr( $show_navigation ) . '", "autoplay": ' . esc_attr( $slider_auto_play ) . ', "autoplaySpeed": ' . esc_attr( $slider_auto_play_speed ) . ', "swipe": ' . esc_attr( $slider_swipe ) . ', "swipeToSlide": ' . esc_attr( $swipe_to_slide ) . ', "draggable": ' . esc_attr( $slider_draggable ) . ', "freeMode": ' . esc_attr( $free_mode ) . ', "rtl": ' . esc_attr( $rtl_mode ) . ', "infinite": ' . esc_attr( $slider_infinite ) . ',"slidesPerView": {"lg_desktop":' . $responsive_columns['large_desktop'] . ' , "desktop": ' . $responsive_columns['desktop'] . ', "laptop":' . $responsive_columns['laptop'] . ' , "tablet": ' . $responsive_columns['tablet'] . ', "mobile": ' . $responsive_columns['mobile'] . '},"navigation_mobile": ' . $nav_on_mobile . ', "pagination_mobile":' . $pagination_on_mobile . ', "autoplay_mobile":' . $slider_auto_play_mobile . '}';
+			$slider_attr = '{"dots": ' . esc_attr( $slider_pagination ) . ',"pagination_type": "' . $carousel_pagination_type . '", "spaceBetween": ' . esc_attr( (int) $space['top'] ) . ', "adaptiveHeight": ' . esc_attr( $adaptive_height ) . ', "pauseOnHover": ' . esc_attr( $slider_pause_on_hover ) . ', "slidesToShow": ' . esc_attr( $responsive_columns['large_desktop'] ) . ', "speed": ' . esc_attr( $slider_scroll_speed ) . ', "arrows": "' . esc_attr( $show_navigation ) . '", "autoplay": ' . esc_attr( $slider_auto_play ) . ', "autoplaySpeed": ' . esc_attr( $slider_auto_play_speed ) . ', "swipe": ' . esc_attr( $slider_swipe ) . ', "swipeToSlide": ' . esc_attr( $swipe_to_slide ) . ', "draggable": ' . esc_attr( $slider_draggable ) . ', "freeMode": ' . esc_attr( $free_mode ) . ', "rtl": ' . esc_attr( $rtl_mode ) . ', "infinite": ' . esc_attr( $slider_infinite ) . ',"slidesPerView": {"lg_desktop":' . $responsive_columns['large_desktop'] . ' , "desktop": ' . $responsive_columns['desktop'] . ', "laptop":' . $responsive_columns['laptop'] . ' , "tablet": ' . $responsive_columns['tablet'] . ', "mobile": ' . $responsive_columns['mobile'] . '},"navigation_mobile": ' . $nav_on_mobile . ', "pagination_mobile":' . $pagination_on_mobile . ', "autoplay_mobile":' . $slider_auto_play_mobile . '}';
 			include self::sp_testimonial_locate_template( 'slider.php' );
 		} else {
 			include self::sp_testimonial_locate_template( 'grid.php' );
@@ -138,7 +140,7 @@ class Helper {
 
 		if ( ( 'grid' === $layout ) && $grid_pagination && $number_of_total_testimonials >= $testimonial_per_page ) {
 			$paged = 'paged' . $post_id;
-			$paged = isset( $_GET[ "$paged" ] ) ? wp_unslash( absint( $_GET[ "$paged" ] ) ) : 1;
+			$paged = isset( $_GET[ "$paged" ] ) ? wp_unslash( absint( $_GET[ "$paged" ] ) ) : 1; // phpcs:ignore WordPress.Security.NonceVerification -- read-only operation, so can safely ignore it.
 			$args  = array(
 				'post_type'        => 'spt_testimonial',
 				'orderby'          => $order_by,
@@ -258,9 +260,9 @@ class Helper {
 				$tfree_designation = ( isset( $testimonial_data['tpro_designation'] ) ? $testimonial_data['tpro_designation'] : '' );
 				$tfree_name        = ( isset( $testimonial_data['tpro_name'] ) ? $testimonial_data['tpro_name'] : '' );
 				$tfree_rating_star = ( isset( $testimonial_data['tpro_rating'] ) ? $testimonial_data['tpro_rating'] : '' );
-				if ( 'theme-one' === $theme_style ) {
-					include self::sp_testimonial_locate_template( 'theme/theme-one.php' );
-				}
+				// Add theme output html file.
+				include self::sp_testimonial_locate_template( 'theme/theme-one.php' );
+
 				if ( $show_schema_markup ) {
 					$testimonial_data  = get_post_meta( get_the_ID(), 'sp_tpro_meta_options', true );
 					$tfree_name        = ( isset( $testimonial_data['tpro_name'] ) ? $testimonial_data['tpro_name'] : '' );
@@ -448,7 +450,7 @@ class Helper {
 			$string .= '</script>';
 		}
 
-		echo $string;
+		echo $string; // phpcs:ignore -- already escaped above.
 	}
 
 	/**

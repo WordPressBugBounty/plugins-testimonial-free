@@ -432,7 +432,7 @@ class Help {
 						<div class="sprtf-video-area">
 							<h2 class='sprtf-section-title'>Welcome to Real Testimonials!</h2>
 							<span class='sprtf-normal-paragraph'>Thank you for installing Real Testimonials! This video will help you get started with the plugin. Enjoy!</span>
-							<iframe width="724" height="405" src="https://www.youtube.com/embed/4wtkBqZ4Urw?si=MFlR-StiiQcSDj3E" title="YouTube video player" frameborder="0" allowfullscreen></iframe>
+							<iframe width="724" height="405" src="https://www.youtube.com/embed/H3UrHpMXBgI?si=VbnttCKKzJ6ybAH_" title="YouTube video player" frameborder="0" allowfullscreen></iframe>
 							<ul>
 								<li><a class='sprtf-medium-btn' href="<?php echo esc_url( home_url( '/' ) . 'wp-admin/post-new.php?post_type=spt_shortcodes' ); ?>">Create a Testimonial View</a></li>
 								<li><a target="_blank" class='sprtf-medium-btn' href="https://realtestimonials.io/demos/real-testimonials-lite-version-demo/">Live Demo</a></li>
@@ -750,7 +750,7 @@ class Help {
 							</div>
 						</div>
 						<div class="sprtf-about-img">
-							<img src="https://shapedplugin.com/wp-content/uploads/2024/01/shapedplugin-team.jpg" alt="">
+							<img src="<?php echo esc_url( SP_TFREE_URL . 'Admin/HelpPage/img/shapedplugin-team.jpg' ); ?>" alt="Shapedplugin Team">
 							<span>Team ShapedPlugin LLC at WordCamp Sylhet</span>
 						</div>
 					</div>
@@ -770,13 +770,13 @@ class Help {
 								<i class="sprtf-icon-button-arrow-icon"></i>
 								<img src="<?php echo esc_url( $plugin_icon['wp-carousel-free'] ); ?>" alt="WP Carousel">
 								<h4>WP Carousel</h4>
-								<p>The most powerful and user-friendly multi-purpose carousel, slider, & gallery plugin for WordPress.</p>
+								<p>The powerful and user-friendly multi-purpose carousel, slider, & gallery plugin for WordPress.</p>
 							</a>
 							<a target="_blank" class="sprtf-our-plugin-list-box" href="https://realtestimonials.io/?ref=1">
 								<i class="sprtf-icon-button-arrow-icon"></i>
 								<img src="<?php echo esc_url( $plugin_icon['location-weather'] ); ?>" alt="Location Weather">
 								<h4>Location Weather</h4>
-								<p>The most powerful and easy-to-use WordPress weather forecast plugin.</p>
+								<p>The powerful and easy-to-use WordPress weather forecast plugin.</p>
 							</a>
 							<a target="_blank" class="sprtf-our-plugin-list-box" href="https://smartpostshow.com/?ref=1">
 								<i class="sprtf-icon-button-arrow-icon"></i>
@@ -798,8 +798,8 @@ class Help {
 							</a>
 							<a target="_blank" class="sprtf-our-plugin-list-box" href="https://getwpteam.com/?ref=1">
 								<i class="sprtf-icon-button-arrow-icon"></i>
-								<img src="<?php echo esc_url( $plugin_icon['team-free'] ); ?>" alt="WP Team">
-								<h4>WP Team</h4>
+								<img src="<?php echo esc_url( $plugin_icon['team-free'] ); ?>" alt="Smart Team">
+								<h4>Smart Team</h4>
 								<p>Display your team members smartly who are at the heart of your company or organization!</p>
 							</a>
 							<a target="_blank" class="sprtf-our-plugin-list-box" href="https://logocarousel.com/?ref=1">
@@ -822,9 +822,9 @@ class Help {
 							</a>
 							<a target="_blank" class="sprtf-our-plugin-list-box" href="https://wptabs.com/?ref=1">
 								<i class="sprtf-icon-button-arrow-icon"></i>
-								<img src="<?php echo esc_url( $plugin_icon['wp-expand-tabs-free'] ); ?>" alt="WP Tabs">
-								<h4>WP Tabs</h4>
-								<p>Display tabbed content smartly & quickly on your WordPress site without coding skills.</p>
+								<img src="<?php echo esc_url( $plugin_icon['wp-expand-tabs-free'] ); ?>" alt="Smart Tabs">
+								<h4>Smart Tabs</h4>
+								<p>A customizable plugin to create and manage WooCommerce product tabs and WordPress tabs to organize content.</p>
 							</a>
 							<a target="_blank" class="sprtf-our-plugin-list-box" href="https://shapedplugin.com/quick-view-for-woocommerce/?ref=1">
 								<i class="sprtf-icon-button-arrow-icon"></i>

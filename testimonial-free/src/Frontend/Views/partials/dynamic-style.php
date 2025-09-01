@@ -5,6 +5,9 @@
  * @package    Testimonial_Free
  * @subpackage Testimonial_Free/Frontend
  */
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
 
 	$layout = isset( $layout_data['layout'] ) ? $layout_data['layout'] : 'slider';
 	// Slider Pagination.
@@ -129,10 +132,19 @@
 	}';
 	}
 
+	$navigation_position = isset( $shortcode_data['navigation_position'] ) ? $shortcode_data['navigation_position'] : 'vertical_outer';
+
 	if ( ( 'slider' === $layout || 'carousel' === $layout ) && ( $show_navigation || $nav_hide_on_mobile ) ) {
-		$outline .= '#sp-testimonial-free-wrapper-' . $post_id . ' .sp-testimonial-free-section{
-		margin: 0 50px;
-	}';
+		if ( 'vertical_outer' === $navigation_position ) {
+			$outline .= '#sp-testimonial-free-wrapper-' . $post_id . ' .sp-testimonial-free-section{
+			margin: 0 50px;
+		}';
+		}
+		if ( 'top_right' === $navigation_position ) {
+			$outline .= '#sp-testimonial-free-wrapper-' . $post_id . ' .sp-testimonial-free-section{
+			margin-top: 50px;
+		}';
+		}
 	}
 
 	if ( ( 'slider' === $layout || 'carousel' === $layout ) && ( $slider_pagination || $pagination_hide_on_mobile ) ) {
@@ -196,6 +208,7 @@
 	}
 
 	if ( $star_rating ) { // Load testimonial rating color if rating found.
+		$star_rating_style = isset( $shortcode_data['tpro_star_icon'] ) ? $shortcode_data['tpro_star_icon'] : 'rating-star-1';
 		$star_rating_color = isset( $shortcode_data['testimonial_client_rating_color']['color'] ) ? $shortcode_data['testimonial_client_rating_color'] : array(
 			'color'       => '#bbc2c7',
 			'hover-color' => '#ffb900',
@@ -213,6 +226,11 @@
 		#sp-testimonial-free-wrapper-' . $post_id . ' .sp-testimonial-free-section .sp-testimonial-client-rating i.fa-star{
 			color: ' . $star_rating_color['hover-color'] . ';
 		}';
+		if ( 'rating-star-2' === $star_rating_style ) {
+			$outline .= '#sp-testimonial-free-wrapper-' . $post_id . ' .sp-testimonial-free-section .sp-testimonial-client-rating i.fa-star-o::before{
+				content: "\f005";
+			}';
+		}
 	}
 	if ( $reviewer_position ) { // Load testimonial designation color if designation/position found.
 		$client_designation_color = isset( $shortcode_data['client_designation_company_typography'] ) ? $shortcode_data['client_designation_company_typography']['color'] : '#444444';

@@ -8,6 +8,10 @@
  * @subpackage testimonial_free/Admin/updates
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
+
 update_option( 'testimonial_version', '3.1.2' );
 update_option( 'testimonial_db_version', '3.1.2' );
 

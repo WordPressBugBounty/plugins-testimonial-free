@@ -8,6 +8,9 @@
  * @subpackage Testimonial_Free/Frontend
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
 ?>
 <div id="sp-testimonial-free-wrapper-<?php echo esc_attr( $post_id ); ?>" class="sp-testimonial-free-wrapper">
 <?php
@@ -19,11 +22,9 @@ if ( $section_title ) {
 }
 
 ?>
-<div id="sp-testimonial-free-<?php echo esc_attr( $post_id ); ?>" class="sp-testimonial-free-section tfree-layout-grid tfree-style-<?php echo esc_attr( $theme_style ); ?>" dir="<?php echo esc_attr( $slider_direction ); ?>" data-preloader="<?php echo esc_attr( $preloader ); ?>" <?php echo $the_rtl; ?>>
+<div id="sp-testimonial-free-<?php echo esc_attr( $post_id ); ?>" class="sp-testimonial-free-section tfree-layout-grid tfree-style-<?php echo esc_attr( $theme_style ); ?>" dir="<?php echo esc_attr( $slider_direction ); ?>" data-preloader="<?php echo esc_attr( $preloader ); ?>" <?php echo wp_kses_post( $the_rtl ); ?>>
 <div class="tfree-grid-items">
-<?php
-	echo $testimonial_items['output']; // phpcs:ignore
-?>
+<?php echo $testimonial_items['output']; // phpcs:ignore -- Ignored for video, iframe, audio support. ?>
 </div>
 <?php require self::sp_testimonial_locate_template( 'pagination.php' ); ?>
 </div>

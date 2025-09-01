@@ -60,7 +60,7 @@ if ( ! class_exists( 'SPFTESTIMONIAL_Field_slider' ) ) {
 			echo '<div class="spftestimonial--wrap">';
 			echo '<div class="spftestimonial-slider-ui"></div>';
 			echo '<div class="spftestimonial--input">';
-			echo '<input type="number" name="' . esc_attr( $this->field_name() ) . '" value="' . esc_attr( $this->value ) . '"' . $this->field_attributes( array( 'class' => 'spftestimonial-input-number' . esc_attr( $is_unit ) ) ) . ' data-min="' . esc_attr( $args['min'] ) . '" data-max="' . esc_attr( $args['max'] ) . '" data-step="' . esc_attr( $args['step'] ) . '" step="any" />';// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+			echo '<input type="number" name="' . esc_attr( $this->field_name() ) . '" value="' . esc_attr( $this->value ) . '"' . $this->field_attributes( array( 'class' => 'spftestimonial-input-number' . esc_attr( $is_unit ) ) ) . ' data-min="' . esc_attr( $args['min'] ) . '" data-max="' . esc_attr( $args['max'] ) . '" data-step="' . esc_attr( $args['step'] ) . '" step="any" />'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			echo ( ! empty( $args['unit'] ) ) ? '<span class="spftestimonial--unit">' . esc_attr( $args['unit'] ) . '</span>' : '';
 			echo '</div>';
 			echo '</div>';

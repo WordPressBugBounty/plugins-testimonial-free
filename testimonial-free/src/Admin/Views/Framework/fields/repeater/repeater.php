@@ -109,7 +109,7 @@ if ( ! class_exists( 'SPFTESTIMONIAL_Field_repeater' ) ) {
 						echo '</div>';
 						echo '</div>';
 
-						$num++;
+						++$num;
 
 					}
 				}
@@ -123,7 +123,6 @@ if ( ! class_exists( 'SPFTESTIMONIAL_Field_repeater' ) ) {
 				echo wp_kses_post( $this->field_after() );
 
 			}
-
 		}
 
 		/**
@@ -136,8 +135,6 @@ if ( ! class_exists( 'SPFTESTIMONIAL_Field_repeater' ) ) {
 			if ( ! wp_script_is( 'jquery-ui-sortable' ) ) {
 				wp_enqueue_script( 'jquery-ui-sortable' );
 			}
-
 		}
-
 	}
 }

@@ -370,124 +370,189 @@ if ( ! class_exists( 'SPFTESTIMONIAL_Options' ) ) {
 		}
 
 		/**
+		 * Sanitize Real Testimonial Pro plugin options.
+		 *
+		 * @param array $options Raw options array.
+		 * @return array Sanitized options array.
+		 */
+		public function sanitize_options( $options ) {
+			if ( ! is_array( $options ) ) {
+				return array();
+			}
+
+			$sanitized = array();
+			foreach ( $options as $key => $value ) {
+				switch ( $key ) {
+					case 'spftestimonial_transient':
+						$sanitized['spftestimonial_transient'] = array();
+						if ( is_array( $value ) ) {
+							foreach ( $value as $sub_key => $sub_val ) {
+								$sanitized['spftestimonial_transient'][ $sub_key ] = sanitize_text_field( $sub_val );
+							}
+						}
+						break;
+
+					case 'spftestimonial_options_noncesp_testimonial_pro_options':
+					case '_wp_http_referer':
+						$sanitized[ $key ] = sanitize_text_field( $value );
+						break;
+
+					case 'sp_testimonial_pro_options':
+						$sanitized['sp_testimonial_pro_options'] = array();
+						if ( is_array( $value ) ) {
+							foreach ( $value as $sub_key => $sub_val ) {
+								switch ( $sub_key ) {
+									// Boolean-like flags (0/1).
+									case 'testimonial_data_remove':
+									case 'tf_dequeue_slick_js':
+									case 'tf_dequeue_slick_css':
+									case 'tf_dequeue_fa_css':
+										$sanitized['sp_testimonial_pro_options'][ $sub_key ] = (int) $sub_val;
+										break;
+
+									// Text fields.
+									case 'tpro_singular_name':
+									case 'tpro_plural_name':
+										$sanitized['sp_testimonial_pro_options'][ $sub_key ] = sanitize_text_field( $sub_val );
+										break;
+
+									// Custom CSS → strip all tags.
+									case 'custom_css':
+										$sanitized['sp_testimonial_pro_options'][ $sub_key ] = wp_strip_all_tags( $sub_val );
+										break;
+
+									// Custom JS → allow safe HTML.
+									case 'custom_js':
+										$sanitized['sp_testimonial_pro_options'][ $sub_key ] = wp_kses_post( $sub_val );
+										break;
+
+									default:
+										$sanitized['sp_testimonial_pro_options'][ $sub_key ] = sanitize_text_field( $sub_val );
+										break;
+								}
+							}
+						}
+						break;
+					default:
+						// Fallback sanitization.
+						$sanitized[ $key ] = is_scalar( $value ) ? wp_kses_post( $value ) : '';
+						break;
+				}
+			}
+
+			return $sanitized;
+		}
+
+		/**
 		 * Set options.
 		 *
 		 * @param  mixed $ajax value.
 		 * @return bool
 		 */
 		public function set_options( $ajax = false ) {
+			// Retrieve nonce.
+			$nonce = '';
+			if ( $ajax && ! empty( $_POST['nonce'] ) ) {
+				// Nonce sent via AJAX request.
+				$nonce = sanitize_text_field( wp_unslash( $_POST['nonce'] ) );
+			} elseif ( ! empty( $_POST[ 'spftestimonial_options_nonce' . $this->unique ] ) ) {
+				// Nonce sent via standard form (with unique field key).
+				$nonce = sanitize_text_field( wp_unslash( $_POST[ 'spftestimonial_options_nonce' . $this->unique ] ) );
+			}
+
+			if ( empty( $nonce ) || ! wp_verify_nonce( $nonce, 'spftestimonial_options_nonce' ) ) {
+				return false;
+			}
 
 			// XSS ok.
 			// No worries, This "POST" requests is sanitizing in the below foreach.
-			$response = ( $ajax && ! empty( $_POST['data'] ) ) ? json_decode( wp_unslash( trim( $_POST['data'] ) ), true ) : $_POST;// phpcs:ignore
+			$response = ( $ajax && ! empty( $_POST['data'] ) ) ? json_decode( wp_unslash( trim( $_POST['data'] ) ), true ) : wp_unslash( $_POST );// phpcs:ignore
+			$response = $this->sanitize_options( $response );
 
 			// Set variables.
 			$data      = array();
-			$noncekey  = 'spftestimonial_options_nonce' . $this->unique;
-			$nonce     = ( ! empty( $response[ $noncekey ] ) ) ? $response[ $noncekey ] : '';
 			$options   = ( ! empty( $response[ $this->unique ] ) ) ? $response[ $this->unique ] : array();
 			$transient = ( ! empty( $response['spftestimonial_transient'] ) ) ? $response['spftestimonial_transient'] : array();
 
-			if ( wp_verify_nonce( $nonce, 'spftestimonial_options_nonce' ) ) {
+			$importing  = false;
+			$section_id = ( ! empty( $transient['section'] ) ) ? $transient['section'] : '';
 
-				$importing  = false;
-				$section_id = ( ! empty( $transient['section'] ) ) ? $transient['section'] : '';
+			if ( ! $ajax && ! empty( $response['spftestimonial_import_data'] ) ) {
 
-				if ( ! $ajax && ! empty( $response['spftestimonial_import_data'] ) ) {
+				// XSS ok.
+				// No worries, This "POST" requests is sanitizing in the below foreach.
+				$import_data  = json_decode( wp_unslash( trim( $response['spftestimonial_import_data'] ) ), true );
+				$options      = ( is_array( $import_data ) && ! empty( $import_data ) ) ? $import_data : array();
+				$importing    = true;
+				$this->notice = esc_html__( 'Settings successfully imported.', 'testimonial-free' );
 
-					// XSS ok.
-					// No worries, This "POST" requests is sanitizing in the below foreach.
-					$import_data  = json_decode( wp_unslash( trim( $response['spftestimonial_import_data'] ) ), true );
-					$options      = ( is_array( $import_data ) && ! empty( $import_data ) ) ? $import_data : array();
-					$importing    = true;
-					$this->notice = esc_html__( 'Settings successfully imported.', 'testimonial-free' );
+			}
 
+			if ( ! empty( $transient['reset'] ) ) {
+				foreach ( $this->pre_fields as $field ) {
+					if ( ! empty( $field['id'] ) ) {
+						$data[ $field['id'] ] = $this->get_default( $field );
+					}
 				}
+				$this->notice = esc_html__( 'Default settings restored.', 'testimonial-free' );
 
-				if ( ! empty( $transient['reset'] ) ) {
-
-					foreach ( $this->pre_fields as $field ) {
+			} elseif ( ! empty( $transient['reset_section'] ) && ! empty( $section_id ) ) {
+				if ( ! empty( $this->pre_sections[ $section_id - 1 ]['fields'] ) ) {
+					foreach ( $this->pre_sections[ $section_id - 1 ]['fields'] as $field ) {
 						if ( ! empty( $field['id'] ) ) {
 							$data[ $field['id'] ] = $this->get_default( $field );
 						}
 					}
+				}
 
-					$this->notice = esc_html__( 'Default settings restored.', 'testimonial-free' );
+				$data         = wp_parse_args( $data, $this->options );
+				$this->notice = esc_html__( 'Default settings restored.', 'testimonial-free' );
+			} else {
 
-				} elseif ( ! empty( $transient['reset_section'] ) && ! empty( $section_id ) ) {
+				// Sanitize and validate.
+				foreach ( $this->pre_fields as $field ) {
+					if ( ! empty( $field['id'] ) ) {
+						$field_id    = $field['id'];
+						$field_value = isset( $options[ $field_id ] ) ? $options[ $field_id ] : '';
 
-					if ( ! empty( $this->pre_sections[ $section_id - 1 ]['fields'] ) ) {
-
-						foreach ( $this->pre_sections[ $section_id - 1 ]['fields'] as $field ) {
-							if ( ! empty( $field['id'] ) ) {
-								$data[ $field['id'] ] = $this->get_default( $field );
-							}
+						// Ajax and Importing doing wp_unslash already.
+						if ( ! $ajax && ! $importing ) {
+							$field_value = wp_unslash( $field_value );
 						}
-					}
 
-					$data = wp_parse_args( $data, $this->options );
+						// Sanitize "post" request of field.
+						if ( isset( $field['sanitize'] ) && is_callable( $field['sanitize'] ) ) {
+							$data[ $field_id ] = call_user_func( $field['sanitize'], $field_value );
+						} elseif ( is_array( $field_value ) ) {
+							$data[ $field_id ] = wp_kses_post_deep( $field_value );
+						} else {
+							$data[ $field_id ] = wp_kses_post( $field_value );
+						}
 
-					$this->notice = esc_html__( 'Default settings restored.', 'testimonial-free' );
+						// Validate "post" request of field.
+						if ( isset( $field['validate'] ) && is_callable( $field['validate'] ) ) {
 
-				} else {
+							$has_validated = call_user_func( $field['validate'], $field_value );
+							if ( ! empty( $has_validated ) ) {
+								$data[ $field_id ]         = ( isset( $this->options[ $field_id ] ) ) ? $this->options[ $field_id ] : '';
+								$this->errors[ $field_id ] = $has_validated;
 
-					// Sanitize and validate.
-					foreach ( $this->pre_fields as $field ) {
-
-						if ( ! empty( $field['id'] ) ) {
-
-							$field_id    = $field['id'];
-							$field_value = isset( $options[ $field_id ] ) ? $options[ $field_id ] : '';
-
-							// Ajax and Importing doing wp_unslash already.
-							if ( ! $ajax && ! $importing ) {
-								$field_value = wp_unslash( $field_value );
-							}
-
-							// Sanitize "post" request of field.
-							if ( isset( $field['sanitize'] ) && is_callable( $field['sanitize'] ) ) {
-									$data[ $field_id ] = call_user_func( $field['sanitize'], $field_value );
-							} elseif ( is_array( $field_value ) ) {
-									$data[ $field_id ] = wp_kses_post_deep( $field_value );
-							} else {
-								$data[ $field_id ] = wp_kses_post( $field_value );
-							}
-
-							// Validate "post" request of field.
-							if ( isset( $field['validate'] ) && is_callable( $field['validate'] ) ) {
-
-								$has_validated = call_user_func( $field['validate'], $field_value );
-
-								if ( ! empty( $has_validated ) ) {
-
-									$data[ $field_id ]         = ( isset( $this->options[ $field_id ] ) ) ? $this->options[ $field_id ] : '';
-									$this->errors[ $field_id ] = $has_validated;
-
-								}
 							}
 						}
 					}
 				}
-
-				$data = apply_filters( "spftestimonial_{$this->unique}_save", $data, $this );
-
-				do_action( "spftestimonial_{$this->unique}_save_before", $data, $this );
-
-				$this->options = $data;
-
-				$this->save_options( $data );
-
-				do_action( "spftestimonial_{$this->unique}_save_after", $data, $this );
-
-				if ( empty( $this->notice ) ) {
-					$this->notice = esc_html__( 'Settings saved.', 'testimonial-free' );
-				}
-
-				return true;
-
 			}
 
-			return false;
+			$data = apply_filters( "spftestimonial_{$this->unique}_save", $data, $this );
+			do_action( "spftestimonial_{$this->unique}_save_before", $data, $this );
+			$this->options = $data;
+			$this->save_options( $data );
+			do_action( "spftestimonial_{$this->unique}_save_after", $data, $this );
+			if ( empty( $this->notice ) ) {
+				$this->notice = esc_html__( 'Settings saved.', 'testimonial-free' );
+			}
+
+			return true;
 		}
 
 		/**

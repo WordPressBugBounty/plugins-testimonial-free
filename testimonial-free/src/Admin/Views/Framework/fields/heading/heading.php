@@ -1,13 +1,21 @@
-<?php if ( ! defined( 'ABSPATH' ) ) {
-	die; } // Cannot access directly.
+<?php
 /**
  *
  * Field: heading
  *
  * @since 1.0.0
  * @version 1.0.0
+ * @package Testimonial_free
  */
+
+if ( ! defined( 'ABSPATH' ) ) {
+	die; } // Cannot access directly.
+
 if ( ! class_exists( 'SPFTESTIMONIAL_Field_heading' ) ) {
+
+	/**
+	 * Field: heading
+	 */
 	class SPFTESTIMONIAL_Field_heading extends SPFTESTIMONIAL_Fields {
 
 		/**
@@ -35,8 +43,6 @@ if ( ! class_exists( 'SPFTESTIMONIAL_Field_heading' ) ) {
 			echo ( ! empty( $this->field['image'] ) ) ? '<div class="heading-wrapper"><img src="' . esc_url( $this->field['image'] ) . '"><span class="sp-testimonial-version">' . esc_html( $version ) . '</span></div>' : '';
 
 			echo ( ! empty( $this->field['after'] ) && ! empty( $this->field['link'] ) ) ? '<span class="spftestimonial-support-area"><span class="support">' . $this->field['after'] . '</span><div class="spftestimonial-help-text  spftestimonial-support"><div class="spftestimonial-info-label">Documentation</div>Check out our documentation and more information about what you can do with the Real Testimonials.<a class="spftestimonial-open-docs browser-docs" href="https://docs.shapedplugin.com/docs/testimonial-pro/introduction/" target="_blank">Browse Docs</a><div class="spftestimonial-info-label">Need Help or Missing a Feature?</div>Feel free to get help from our friendly support team or request a new feature if needed. We appreciate your suggestions to make the plugin better.<a class="spftestimonial-open-docs support" href="https://shapedplugin.com/create-new-ticket/" target="_blank">Get Help</a><a class="spftestimonial-open-docs feature-request" href="https://shapedplugin.com/contact-us/" target="_blank">Request a Feature</a></div></span>' : '';//phpcs:ignore
-
 		}
-
 	}
 }

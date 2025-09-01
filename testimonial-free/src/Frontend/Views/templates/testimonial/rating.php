@@ -8,6 +8,9 @@
  * @subpackage Testimonial_Free/Frontend
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
 $full_star_icon  = '<i class="fa fa-star" aria-hidden="true"></i>';
 $empty_star_icon = '<i class="fa fa-star-o" aria-hidden="true"></i>';
 $full_star_icon  = apply_filters( 'testimonial_client_rating_full_star_icon', $full_star_icon, get_the_ID() );

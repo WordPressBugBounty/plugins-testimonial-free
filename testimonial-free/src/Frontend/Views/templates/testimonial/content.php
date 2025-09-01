@@ -8,13 +8,20 @@
  * @subpackage Testimonial_Free/Frontend
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
 $content     = apply_filters( 'the_content', get_the_content() );
 $review_text = apply_filters( 'sp_testimonial_review_content', $content, $post_id );
 $review_text = str_replace( ']]>', ']]&gt;', $review_text );
 ?>
 <div class="sp-testimonial-client-testimonial">
 	<?php do_action( 'sptpro_before_testimonial_content' ); ?>
-	<div class="sp-testimonial-content"><?php echo $review_text; ?>
+	<div class="sp-testimonial-content">
+	<?php
+	    // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Output is already sanitized or allowed for video/audio HTML content.
+		echo $review_text;
+	?>
 	</div>
 	<?php do_action( 'sptpro_after_testimonial_content' ); ?>
 </div>

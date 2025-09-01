@@ -445,6 +445,7 @@ if ( ! class_exists( 'SPFTESTIMONIAL_Metabox' ) ) {
 
 			// XSS ok.
 			// No worries, This "POST" requests is sanitizing in the below foreach.
+			// @codingStandardsIgnoreLine
 			$request = ( ! empty( $_POST[ $this->unique ] ) ) ? wp_unslash( $_POST[ $this->unique ] ) : array();
 
 			if ( ! empty( $request ) ) {
@@ -566,6 +567,7 @@ if ( ! class_exists( 'SPFTESTIMONIAL_Metabox' ) ) {
 			$outline = '<style>';
 			include SP_TFREE_PATH . 'Frontend/Views/partials/dynamic-style.php';
 			$outline .= '</style>';
+			// @codingStandardsIgnoreLine
 			echo $outline;
 			Helper::sp_testimonial_html_show( $post_id, $setting_options, $shortcode_data, $layout_data, $main_section_title );
 			die();

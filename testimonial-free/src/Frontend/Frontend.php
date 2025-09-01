@@ -96,7 +96,8 @@ class Frontend {
 			wp_enqueue_style( 'tfree-style' );
 			$dynamic_style = self::load_dynamic_style( $post_id, $shortcode_data, $layout_data );
 			// Load dynamic style.
-			echo '<style id="sp_testimonial_dynamic_css' . esc_attr( $post_id ) . '">' . $dynamic_style['dynamic_css'] . '</style>';
+			// @codingStandardsIgnoreLine
+			echo '<style id="sp_testimonial_dynamic_css' . esc_attr( $post_id ) . '">' . wp_strip_all_tags( $dynamic_style['dynamic_css'] ) . '</style>';
 		}
 
 		// Update options if the existing shortcode id option not found.
@@ -326,6 +327,7 @@ class Frontend {
 		$dynamic_style = Helper::load_form_dynamic_style( $form_id, $form_data, $setting_options );
 
 		ob_start();
+		// @codingStandardsIgnoreLine
 		echo '<style>' . wp_strip_all_tags( $dynamic_style['dynamic_css'] ) . '</style>';
 		Helper::frontend_form_html( $form_id, $form_elements, $form_data );
 		return ob_get_clean();

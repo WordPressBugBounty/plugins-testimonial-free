@@ -54,8 +54,8 @@ class Import_Export {
 				foreach ( $shortcodes as $shortcode ) {
 					if ( 'all_testimonial' !== $shortcode_ids ) {
 						$shortcode_export = array(
-							'title'       => $shortcode->post_title,
-							'original_id' => $shortcode->ID,
+							'title'       => sanitize_text_field( $shortcode->post_title ),
+							'original_id' => absint( $shortcode->ID ),
 							'spt_post'    => $post_type,
 							'meta'        => array(),
 						);
@@ -63,9 +63,9 @@ class Import_Export {
 					if ( 'all_testimonial' === $shortcode_ids ) {
 						$terms            = get_the_terms( $shortcode->ID, 'testimonial_cat' );
 						$shortcode_export = array(
-							'title'           => $shortcode->post_title,
-							'post_date'       => $shortcode->post_date,
-							'original_id'     => $shortcode->ID,
+							'title'           => sanitize_text_field( $shortcode->post_title ),
+							'post_date'       => sanitize_text_field( $shortcode->post_date ),
+							'original_id'     => absint( $shortcode->ID ),
 							'content'         => 'csv_file' === $file_type ? $this->filter_description_field( $shortcode->post_content ) : $shortcode->post_content,
 							'image'           => get_the_post_thumbnail_url( $shortcode->ID, 'single-post-thumbnail' ),
 							'category'        => $terms,
@@ -76,7 +76,9 @@ class Import_Export {
 					}
 
 					foreach ( get_post_meta( $shortcode->ID ) as $metakey => $value ) {
-						$shortcode_export['meta'][ $metakey ] = $value[0];
+						$meta_key                              = sanitize_key( $metakey );
+						$meta_value                            = is_serialized( $value[0] ) ? $value[0] : sanitize_text_field( $value[0] );
+						$shortcode_export['meta'][ $meta_key ] = $meta_value;
 					}
 
 					$export['shortcode'][] = $shortcode_export;
@@ -106,6 +108,12 @@ class Import_Export {
 			);
 		}
 
+		// Check user capabilities.
+		$_capability = apply_filters( 'sp_testimonial_import_export_user_capability', 'manage_options' );
+		if ( ! current_user_can( $_capability ) ) {
+			wp_send_json_error( array( 'error' => esc_html__( 'You do not have permission to export.', 'testimonial-free' ) ) );
+		}
+
 		$file_type     = isset( $_POST['file_type'] ) ? sanitize_text_field( wp_unslash( $_POST['file_type'] ) ) : 'json';
 		$shortcode_ids = '';
 		if ( isset( $_POST['lcp_ids'] ) ) {
@@ -120,14 +128,17 @@ class Import_Export {
 		$export = $this->export( $shortcode_ids, $text_ids, $file_type );
 		if ( 'csv_file' === $file_type ) {
 			foreach ( $export['shortcode'] as $key => $value ) {
-				$export['shortcode'][ $key ]['meta']['sp_tpro_meta_options'] = isset( $export['shortcode'][ $key ]['meta']['sp_tpro_meta_options'] ) ? unserialize( $export['shortcode'][ $key ]['meta']['sp_tpro_meta_options'] ) : '';
+				$export['shortcode'][ $key ]['meta']['sp_tpro_meta_options'] =
+				isset( $export['shortcode'][ $key ]['meta']['sp_tpro_meta_options'] )
+					? maybe_unserialize( $export['shortcode'][ $key ]['meta']['sp_tpro_meta_options'] )
+					: '';
 			}
 		}
 
 		if ( is_wp_error( $export ) ) {
 			wp_send_json_error(
 				array(
-					'message' => $export->get_error_message(),
+					'message' => esc_html( $export->get_error_message() ),
 				),
 				400
 			);
@@ -163,7 +174,7 @@ class Import_Export {
 			$page_title,
 			$post_type
 		);
-		$page = $wpdb->get_var( $sql );
+		$page = $wpdb->get_var( $sql ); // phpcs:ignore -- WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching
 		if ( $page ) {
 			return get_post( $page, $output );
 		}
@@ -203,7 +214,7 @@ class Import_Export {
 			$attachment = $this->sp_testimonial_get_page_by_title( $attachment_title, OBJECT, 'attachment' );
 			if ( ! empty( $attachment ) ) {
 				$attachment_id = $attachment->ID;
-				return $attachment_id;
+				return absint( $attachment_id );
 			}
 		}
 		$http     = new \WP_Http();
@@ -223,8 +234,8 @@ class Import_Export {
 
 		$post_info = array(
 			'guid'           => $wp_upload_dir['url'] . '/' . $file_name,
-			'post_mime_type' => $file_type['type'],
-			'post_title'     => $attachment_title,
+			'post_mime_type' => sanitize_mime_type( $file_type['type'] ),
+			'post_title'     => sanitize_text_field( $attachment_title ),
 			'post_content'   => '',
 			'post_status'    => 'inherit',
 		);
@@ -280,9 +291,9 @@ class Import_Export {
 				}
 				$new_shortcode_id = wp_insert_post(
 					array(
-						'post_title'   => isset( $shortcode['title'] ) ? $shortcode['title'] : '',
-						'post_date'    => isset( $shortcode['post_date'] ) ? $shortcode['post_date'] : gmdate( 'Y/m/d' ),
-						'post_content' => isset( $shortcode['content'] ) ? $shortcode['content'] : '',
+						'post_title'   => isset( $shortcode['title'] ) ? sanitize_text_field( $shortcode['title'] ) : '',
+						'post_date'    => isset( $shortcode['post_date'] ) ? sanitize_text_field( $shortcode['post_date'] ) : gmdate( 'Y/m/d' ),
+						'post_content' => isset( $shortcode['content'] ) ? wp_kses_post( $shortcode['content'] ) : '',
 						'post_status'  => 'publish',
 						'post_type'    => $spt_post_type,
 					),
@@ -290,10 +301,17 @@ class Import_Export {
 				);
 
 				if ( isset( $shortcode['all_testimonial'] ) ) {
-					$url = isset( $shortcode['image'] ) && ! empty( $shortcode['image'] ) ? $shortcode['image'] : '';
+					$url = isset( $shortcode['image'] ) && ! empty( $shortcode['image'] ) ? esc_url_raw( $shortcode['image'] ) : '';
 					// Insert attachment id.
-					$thumb_id                           = $this->insert_attachment_from_url( $url, $new_shortcode_id );
-					$shortcode['meta']['_thumbnail_id'] = $thumb_id;
+					if ( $url ) {
+						// Insert attachment ID from sanitized URL.
+						$thumb_id = $this->insert_attachment_from_url( $url, absint( $new_shortcode_id ) );
+
+						if ( $thumb_id ) {
+							// Always sanitize integer IDs.
+							$shortcode['meta']['_thumbnail_id'] = absint( $thumb_id );
+						}
+					}
 				}
 				if ( is_wp_error( $new_shortcode_id ) ) {
 					throw new \Exception( $new_shortcode_id->get_error_message() );
@@ -359,22 +377,37 @@ class Import_Export {
 			);
 		}
 
+		// Check user capabilities.
+		$_capability = apply_filters( 'sp_testimonial_import_export_user_capability', 'manage_options' );
+		if ( ! current_user_can( $_capability ) ) {
+			wp_send_json_error( array( 'error' => esc_html__( 'You do not have permission to import.', 'testimonial-free' ) ) );
+		}
+
 		// Don't worry sanitize after JSON decode below.
-		// phpcs:ignore
-		$data         = isset( $_POST['shortcode'] ) ? wp_unslash( $_POST['shortcode'] ) : '';
-		$file_type    = isset( $_POST['file_type'] ) ? wp_unslash( sanitize_key( $_POST['file_type'] ) ) : '';
-		$data         = json_decode( $data );
-		$data         = json_decode( $data, true );
-		$import_value = apply_filters( 'sp_wp_tabs_allow_import_tags', false );
-		$shortcodes   = $import_value ? $data['shortcode'] : wp_kses_post_deep( $data['shortcode'] );
+		// phpcs:ignore -- Santized at line number: 410.
+		$data = isset( $_POST['shortcode'] ) ? wp_unslash( $_POST['shortcode'] ) : '';
 		if ( ! $data ) {
+			wp_send_json_error( array( 'message' => esc_html__( 'Nothing to import.', 'testimonial-free' ) ), 400 );
+		}
+
+		$file_type = isset( $_POST['file_type'] ) ? wp_unslash( sanitize_key( $_POST['file_type'] ) ) : '';
+
+		// Decode JSON with error checking.
+		$decoded_data = json_decode( $data, true );
+		if ( is_string( $decoded_data ) ) {
+			$decoded_data = json_decode( $decoded_data, true );
+		}
+		if ( json_last_error() !== JSON_ERROR_NONE ) {
 			wp_send_json_error(
 				array(
-					'message' => __( 'Nothing to import.', 'testimonial-free' ),
+					'message' => esc_html__( 'Invalid JSON data.', 'testimonial-free' ),
 				),
 				400
 			);
 		}
+
+		$import_value = apply_filters( 'sp_testimonial_allow_import_tags', false ); // Allow admins to enable specific HTML tags (e.g., <iframe>) in testimonial content via filter.
+		$shortcodes   = $import_value ? $decoded_data['shortcode'] : wp_kses_post_deep( $decoded_data['shortcode'] );
 
 		$status = $this->import( $shortcodes, $file_type );
 
