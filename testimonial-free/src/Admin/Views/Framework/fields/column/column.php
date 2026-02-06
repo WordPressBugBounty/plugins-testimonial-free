@@ -101,12 +101,10 @@ if ( ! class_exists( 'SPFTESTIMONIAL_Field_column' ) ) {
 				echo '<input type="number" name="' . esc_attr( $this->field_name( '[' . $property . ']' ) ) . '" value="' . esc_attr( $value[ $property ] ) . '" placeholder="' . esc_attr( $placeholder ) . '" class="spftestimonial-number" step="any" min="1" required />';
 				echo '</div>';
 				echo '</div>';
-
 			}
+
 			echo '</div>';
-
 			echo '<div class="clear"></div>';
-
 			echo wp_kses_post( $this->field_after() );
 		}
 	}

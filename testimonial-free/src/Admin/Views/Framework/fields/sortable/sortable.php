@@ -44,9 +44,7 @@ if ( ! class_exists( 'SPFTESTIMONIAL_Field_sortable' ) ) {
 		 * @return void
 		 */
 		public function render() {
-
 			echo wp_kses_post( $this->field_before() );
-
 			echo '<div class="spftestimonial-sortable" data-depend-id="' . esc_attr( $this->field['id'] ) . '">';
 
 			$pre_sortby = array();
@@ -59,7 +57,6 @@ if ( ! class_exists( 'SPFTESTIMONIAL_Field_sortable' ) ) {
 
 			// Set sort by by saved-value or default-value.
 			if ( ! empty( $this->value ) ) {
-
 				foreach ( $this->value as $key => $value ) {
 					if ( isset( $pre_fields[ $key ] ) ) {
 						$pre_sortby[ $key ] = $pre_fields[ $key ];

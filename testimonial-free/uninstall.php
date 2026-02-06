@@ -44,4 +44,8 @@ if ( $testimonial_data_remove ) {
 		delete_option( $plugin_option );
 		delete_site_option( $plugin_option ); // for multisite.
 	}
+
+	// Delete offer banner related option keys.
+	delete_option( 'shapedplugin_offer_banner_dismissed_black_friday_2025' );
+	delete_option( 'shapedplugin_offer_banner_dismissed_new_year_2026' );
 }

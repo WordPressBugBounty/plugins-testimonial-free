@@ -29,7 +29,7 @@ class Element_Shortcode_Block {
 	 *
 	 * @var Element_Shortcode_Block The single instance of the class.
 	 */
-	private static $_instance = null;
+	private static $instance = null;
 
 	/**
 	 * Instance
@@ -45,10 +45,10 @@ class Element_Shortcode_Block {
 	 */
 	public static function instance() {
 
-		if ( is_null( self::$_instance ) ) {
-			self::$_instance = new self();
+		if ( is_null( self::$instance ) ) {
+			self::$instance = new self();
 		}
-		return self::$_instance;
+		return self::$instance;
 	}
 
 	/**

@@ -14,6 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 } // Cannot access directly.
 
 use ShapedPlugin\TestimonialFree\Admin\Views\Framework\Classes\SPFTESTIMONIAL;
+
 if ( ! class_exists( 'SPFTESTIMONIAL_Field_accordion' ) ) {
 	/**
 	 *

@@ -2,9 +2,9 @@
 Contributors: shapedplugin, rubel_miah, khalilu, shamimmiashuhagh
 Tags: testimonials, testimonial slider, video testimonials, social proof, review form
 Requires at least: 5.0
-Tested up to: 6.8
+Tested up to: 6.9
 Requires PHP: 7.0
-Stable tag: 3.1.10
+Stable tag: 3.1.12
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -210,6 +210,14 @@ If you encounter an issue or find any bugs, post it in the [support](https://sha
 
 
 == Changelog ==
+
+= 3.1.12 - Dec 29, 2025 =
+* Improved: Standardized singleton instance property naming.
+* Improved: Code readability and maintainability improved.
+* Improved: Plugin detection logic optimized for better clarity and reliability.
+
+= 3.1.11 - Nov 19, 2025 =
+* Tested: WordPress 6.9 compatibility.
 
 = 3.1.10 - Aug 22, 2025 =
 * New: A New Testimonial Theme added.

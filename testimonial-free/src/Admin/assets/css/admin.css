@@ -61,7 +61,7 @@
   * 02. 01. Theme Dark
   */
 .spt-main-class .spftestimonial-metabox .spftestimonial-nav ul li a {
-	background-color: #1B73E8;  
+  background-color: #1B73E8;
   font-size: 14px;
   padding: 15px 15px;
   line-height: 1.4;
@@ -120,8 +120,8 @@
 
 .spt-main-class.spftestimonial-theme-light .spftestimonial-nav ul li .spftestimonial-active {
   box-shadow: 3px 0 0 0 #1B73E8 inset;
-	background-color: #ffffff;
-	color: #1B73E8;
+  background-color: #ffffff;
+  color: #1B73E8;
 }
 
 .spt-main-class.spftestimonial-theme-light .spftestimonial-nav ul ul li a {
@@ -141,7 +141,7 @@
 }
 
 /*ShortCode Area*/
-.spftestimonial-metabox .sp-tpro-banner {  
+.spftestimonial-metabox .sp-tpro-banner {
   background-color: #1595ce;
   padding: 20px 28px;
   overflow: hidden;
@@ -150,31 +150,31 @@
 }
 
 .sp-tpro-banner {
-	display: flex;
-	justify-content: space-between;
-	background-color: #fff;
-	padding: 16px 28px;
-	overflow: hidden;
-	background-color: #EA6A1D;
-	background-image: linear-gradient(62deg, #bd4600 26%, #EA6A1D 100%);
+  display: flex;
+  justify-content: space-between;
+  background-color: #fff;
+  padding: 16px 28px;
+  overflow: hidden;
+  background-color: #EA6A1D;
+  background-image: linear-gradient(62deg, #bd4600 26%, #EA6A1D 100%);
 }
 
 .sp-tpro-banner .spftestimonial-submit-options:focus {
-	outline: none;
+  outline: none;
 }
 
 .sp-tpro-banner .spftestimonial-submit-options {
-	position: relative;
+  position: relative;
 }
 
 .sp-tpro-banner .spftestimonial-submit-options::before {
-	content: '';
-	width: 100%;
-	height: 50px;
-	position: absolute;
-	top: 80%;
-	z-index: 10;
-	cursor: pointer;
+  content: '';
+  width: 100%;
+  height: 50px;
+  position: absolute;
+  top: 80%;
+  z-index: 10;
+  cursor: pointer;
 }
 
 .spftestimonial-metabox .sp-tpro-logo {
@@ -634,7 +634,7 @@ div.sp-testimonial-help .sp-testimonial-upgrade-sticky-footer a.button {
   border-radius: 5px;
   margin: 20px 20px 0 0;
   margin-bottom: 20px;
-  box-shadow: 0 0 20px 0 rgba(36,39,50,.08);
+  box-shadow: 0 0 20px 0 rgba(36, 39, 50, .08);
 }
 
 #sp-testimonial-review-notice .sp-testimonial-plugin-icon {
@@ -793,10 +793,12 @@ div#sp_tpro_live_preview {
   padding: 0;
   margin: -7px -13px 6px;
 }
+
 .sp-testimonial-column-image {
   width: 50px;
   height: auto;
 }
+
 /* Gutenberg selector field style */
 .sprtf-gutenberg-shortcode.editor-styles-wrapper {
   padding: 0;
@@ -821,44 +823,50 @@ div#sp_tpro_live_preview {
   font-size: 13px;
   padding-right: 25px;
 }
-.block-editor-page .editor-styles-wrapper i{
+
+.block-editor-page .editor-styles-wrapper i {
   font-style: normal;
 }
 
 /* Go Pro Menu */
-#adminmenu #menu-posts-spt_testimonial li:nth-child(9) a{
+#adminmenu #menu-posts-spt_testimonial li:nth-child(9) a {
   color: #f9be48;
 }
+
 #adminmenu #menu-posts-spt_testimonial li a .sp-go-pro-icon {
-    background-image: url(../images/premium.svg);
-    width: 20px;
-    height: 20px;
-    display: block;
-    float: left;
-    margin-right: 1px;
-    margin-left: -2px;
-	margin-top: -1px;
+  background-image: url(../images/premium.svg);
+  width: 20px;
+  height: 20px;
+  display: block;
+  float: left;
+  margin-right: 1px;
+  margin-left: -2px;
+  margin-top: -1px;
 }
+
 a.sp_testimonial_block_edit_button {
-	font-size: 16px;
-	margin: 10px 0;
+  font-size: 16px;
+  margin: 10px 0;
 }
+
 .sprtf-footer-text-star {
   color: #dba617;
 }
+
 #sp_tpro_live_preview .handle-actions,
 #sp_tpro_builder_option .handle-actions,
 #sp_tpro_shortcode_show .handle-actions,
 .post-type-spt_testimonial_form #sp_tpro_form_code_options .handle-actions {
-	display: none;
+  display: none;
 }
 
 #sp_tpro_live_preview .postbox-header,
 #sp_tpro_builder_option .postbox-header,
 #sp_tpro_shortcode_show .postbox-header,
 .post-type-spt_testimonial_form #sp_tpro_form_code_options .postbox-header {
-	pointer-events: none;
+  pointer-events: none;
 }
+
 #sp_tpro_layout_options .handlediv,
 #sp_tpro_layout_options .hndle,
 #sp_tpro_layout_options .postbox-header,
@@ -869,23 +877,26 @@ a.sp_testimonial_block_edit_button {
 .js #sp_tpro_shortcode_options.postbox .hndle,
 .js #sp_tpro_meta_options.postbox .handlediv,
 .js #sp_tpro_meta_options.postbox .hndle {
-	display: none;
-}
-#sp_tpro_layout_options.postbox #sp_tpro_live_preview .postbox-header {
-	display: block;
-	border: 1px solid #dddddd;
-	border-top: none;
-}
-#sp_tpro_layout_options.postbox #sp_tpro_live_preview .spftestimonial-metabox {
-	border-left: 1px solid #dddddd;
-	border-right: 1px solid #dddddd;
-}
-.spftestimonial-field-tabbed .spftestimonial-tabbed-nav i.testimonial--icon.fa.fa-star-o {
-	padding-right: 8px;
-	font-size: 16px;
+  display: none;
 }
 
-.rtl  #sp-testimonial-review-notice {
+#sp_tpro_layout_options.postbox #sp_tpro_live_preview .postbox-header {
+  display: block;
+  border: 1px solid #dddddd;
+  border-top: none;
+}
+
+#sp_tpro_layout_options.postbox #sp_tpro_live_preview .spftestimonial-metabox {
+  border-left: 1px solid #dddddd;
+  border-right: 1px solid #dddddd;
+}
+
+.spftestimonial-field-tabbed .spftestimonial-tabbed-nav i.testimonial--icon.fa.fa-star-o {
+  padding-right: 8px;
+  font-size: 16px;
+}
+
+.rtl #sp-testimonial-review-notice {
   margin: 20px 0 0 20px;
   padding: 18px 0 18px 15px;
 }
@@ -893,4 +904,31 @@ a.sp_testimonial_block_edit_button {
 .rtl #sp-testimonial-review-notice .sp-testimonial-plugin-icon {
   float: right;
   margin: 0 0 0 8px;
+}
+
+/* Admin offer banner */
+#shapedplugin-offer-banner {
+  padding: 0;
+  border: 0;
+  line-height: 0;
+  background: transparent;
+}
+
+#shapedplugin-offer-banner a:focus {
+  outline: 0;
+  box-shadow: none;
+}
+
+#shapedplugin-offer-banner .notice-dismiss:focus {
+  outline: 0;
+  box-shadow: none;
+}
+
+#shapedplugin-offer-banner button.shapedplugin-offer-banner-dismiss:before {
+  color: #fff;
+  font-size: 22px;
+}
+
+#shapedplugin-offer-banner button.shapedplugin-offer-banner-dismiss:hover:before {
+  color: #f30808;
 }

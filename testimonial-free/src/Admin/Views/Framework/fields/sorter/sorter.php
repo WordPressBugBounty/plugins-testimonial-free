@@ -12,7 +12,6 @@ if ( ! class_exists( 'SPFTESTIMONIAL_Field_sorter' ) ) {
 	 * @version 1.0.0
 	 */
 	class SPFTESTIMONIAL_Field_sorter extends SPFTESTIMONIAL_Fields {
-
 		/**
 		 * Field constructor.
 		 *

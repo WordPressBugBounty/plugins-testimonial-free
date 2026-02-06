@@ -62,7 +62,7 @@ class TestimonialFree {
 	 * @var null
 	 * @since 2.0
 	 */
-	protected static $_instance = null;
+	protected static $instance = null;
 
 	/**
 	 * Initialize the SP_Testimonial_FREE() class.
@@ -71,11 +71,11 @@ class TestimonialFree {
 	 * @since 2.0
 	 */
 	public static function instance() {
-		if ( is_null( self::$_instance ) ) {
-			self::$_instance = new self();
+		if ( is_null( self::$instance ) ) {
+			self::$instance = new self();
 		}
 
-		return self::$_instance;
+		return self::$instance;
 	}
 
 	/**

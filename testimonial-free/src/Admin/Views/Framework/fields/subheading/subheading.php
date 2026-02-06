@@ -21,7 +21,6 @@ if ( ! class_exists( 'SPFTESTIMONIAL_Field_subheading' ) ) {
 	 * @version 1.0.0
 	 */
 	class SPFTESTIMONIAL_Field_subheading extends SPFTESTIMONIAL_Fields {
-
 		/**
 		 * Field constructor.
 		 *

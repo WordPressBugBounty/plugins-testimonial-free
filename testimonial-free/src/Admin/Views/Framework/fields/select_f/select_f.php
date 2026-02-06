@@ -126,7 +126,6 @@ if ( ! class_exists( 'SPFTESTIMONIAL_Field_select_f' ) ) {
 				} else {
 
 					echo ! empty( $this->field['empty_message'] ) ? wp_kses_post( $this->field['empty_message'] ) : esc_html__( 'No data provided for this option type.', 'testimonial-free' );
-
 				}
 			}
 

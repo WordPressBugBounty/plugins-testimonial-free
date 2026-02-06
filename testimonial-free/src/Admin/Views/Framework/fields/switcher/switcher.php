@@ -21,7 +21,6 @@ if ( ! class_exists( 'SPFTESTIMONIAL_Field_switcher' ) ) {
 	 * @version 1.0.0
 	 */
 	class SPFTESTIMONIAL_Field_switcher extends SPFTESTIMONIAL_Fields {
-
 		/**
 		 * Field constructor.
 		 *
@@ -41,7 +40,6 @@ if ( ! class_exists( 'SPFTESTIMONIAL_Field_switcher' ) ) {
 		 * @return void
 		 */
 		public function render() {
-
 			$active     = ( ! empty( $this->value ) ) ? ' spftestimonial--active' : '';
 			$text_on    = ( ! empty( $this->field['text_on'] ) ) ? $this->field['text_on'] : esc_html__( 'On', 'testimonial-free' );
 			$text_off   = ( ! empty( $this->field['text_off'] ) ) ? $this->field['text_off'] : esc_html__( 'Off', 'testimonial-free' );

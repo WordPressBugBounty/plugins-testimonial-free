@@ -668,7 +668,6 @@ if ( ! class_exists( 'SPFTESTIMONIAL_Options' ) ) {
 		 * @return statement
 		 */
 		public function error_check( $sections, $err = '' ) {
-
 			if ( ! $this->args['ajax_save'] ) {
 
 				if ( ! empty( $sections['fields'] ) ) {
@@ -880,19 +879,13 @@ if ( ! class_exists( 'SPFTESTIMONIAL_Options' ) ) {
 
 				echo '<div class="clear"></div>';
 				echo '</div>';
-
 			}
 
 			echo '</form>';
-
 			echo '</div>';
-
 			echo '<div class="clear"></div>';
-
 			echo ( ! empty( $this->args['footer_after'] ) ) ? wp_kses_post( $this->args['footer_after'] ) : '';
-
 			echo '</div>';
-
 			do_action( 'spftestimonial_options_after' );
 		}
 	}

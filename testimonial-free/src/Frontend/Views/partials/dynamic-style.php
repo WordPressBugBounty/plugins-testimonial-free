@@ -5,6 +5,7 @@
  * @package    Testimonial_Free
  * @subpackage Testimonial_Free/Frontend
  */
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }

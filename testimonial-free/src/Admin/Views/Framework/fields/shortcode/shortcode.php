@@ -14,7 +14,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 } // Cannot access directly.
 
 if ( ! class_exists( 'SPFTESTIMONIAL_Field_shortcode' ) ) {
-
 	/**
 	 *
 	 * Field: Shortcode
@@ -23,8 +22,6 @@ if ( ! class_exists( 'SPFTESTIMONIAL_Field_shortcode' ) ) {
 	 * @version 1.0.0
 	 */
 	class SPFTESTIMONIAL_Field_shortcode extends SPFTESTIMONIAL_Fields {
-
-
 		/**
 		 * Field constructor.
 		 *

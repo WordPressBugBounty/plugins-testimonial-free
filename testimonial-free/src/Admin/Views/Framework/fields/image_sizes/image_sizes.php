@@ -94,7 +94,6 @@ if ( ! class_exists( 'SPFTESTIMONIAL_Field_image_sizes' ) ) {
 				$placeholder_attr = ( $args['chosen'] && $args['placeholder'] ) ? ' data-placeholder="' . $args['placeholder'] . '"' : '';
 
 				if ( ! empty( $sizes ) ) {
-
 					echo '<select name="' . esc_attr( $this->field_name( $multiple_name ) ) . '"' . wp_kses_post( $multiple_attr . $chosen_attr . $placeholder_attr . $this->field_attributes() ) . '>';
 
 					if ( $args['placeholder'] && empty( $args['multiple'] ) ) {
@@ -108,7 +107,6 @@ if ( ! class_exists( 'SPFTESTIMONIAL_Field_image_sizes' ) ) {
 					foreach ( $sizes as $option_key => $option ) {
 
 						if ( is_array( $option ) && ! empty( $option ) ) {
-
 							echo '<optgroup label="' . esc_attr( $option_key ) . '">';
 
 							foreach ( $option as $sub_key => $sub_value ) {
@@ -117,7 +115,6 @@ if ( ! class_exists( 'SPFTESTIMONIAL_Field_image_sizes' ) ) {
 							}
 
 							echo '</optgroup>';
-
 						} else {
 							$selected = ( in_array( $option_key, $this->value ) ) ? ' selected' : '';
 							echo '<option value="' . esc_attr( $option_key ) . '" ' . esc_attr( $selected ) . '>' . esc_html( $option ) . '</option>';
@@ -125,11 +122,8 @@ if ( ! class_exists( 'SPFTESTIMONIAL_Field_image_sizes' ) ) {
 					}
 
 					echo '</select>';
-
 				} else {
-
 					echo ! empty( $this->field['empty_message'] ) ? esc_html( $this->field['empty_message'] ) : esc_html__( 'No image sizes found.', 'testimonial-free' );
-
 				}
 			}
 

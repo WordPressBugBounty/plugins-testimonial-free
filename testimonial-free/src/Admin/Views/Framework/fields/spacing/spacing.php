@@ -21,7 +21,6 @@ if ( ! class_exists( 'SPFTESTIMONIAL_Field_spacing' ) ) {
 	 * @version 1.0.0
 	 */
 	class SPFTESTIMONIAL_Field_spacing extends SPFTESTIMONIAL_Fields {
-
 		/**
 		 * Field constructor.
 		 *

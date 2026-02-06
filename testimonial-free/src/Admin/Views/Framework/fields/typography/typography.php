@@ -205,7 +205,6 @@ if ( ! class_exists( 'SPFTESTIMONIAL_Field_typography' ) ) {
 				}
 
 				echo '</div>';
-
 			}
 
 			//
@@ -437,7 +436,6 @@ if ( ! class_exists( 'SPFTESTIMONIAL_Field_typography' ) ) {
 			echo '<input type="hidden" name="' . esc_attr( $this->field_name( '[unit]' ) ) . '" class="spftestimonial--unit-save" value="' . esc_attr( $args['unit'] ) . '" />';
 
 			echo '</div>';
-
 			echo wp_kses_post( $this->field_after() );
 		}
 		/**

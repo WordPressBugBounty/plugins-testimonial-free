@@ -102,7 +102,6 @@ if ( ! class_exists( 'SPFTESTIMONIAL_Field_checkbox' ) ) {
 				} else {
 
 					echo ! empty( $this->field['empty_message'] ) ? esc_attr( $this->field['empty_message'] ) : esc_html__( 'No data available.', 'testimonial-free' );
-
 				}
 			} else {
 

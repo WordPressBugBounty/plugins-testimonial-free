@@ -119,7 +119,7 @@ if ( ! class_exists( 'SPFTESTIMONIAL_Abstract' ) ) {
 										$field_value = ( isset( $this->options[ $field_id ] ) ) ? $this->options[ $field_id ] : '';
 
 									}
-								} elseif ( $field_check && ( 'metabox' === $this->abstract && is_singular() || 'taxonomy' === $this->abstract && is_archive() ) ) {
+								} elseif ( $field_check && ( ( 'metabox' === $this->abstract && is_singular() ) || ( 'taxonomy' === $this->abstract && is_archive() ) ) ) {
 
 									if ( ! empty( $combine_field ) ) {
 
@@ -142,7 +142,6 @@ if ( ! class_exists( 'SPFTESTIMONIAL_Abstract' ) ) {
 								}
 
 								unset( $instance );
-
 							}
 						}
 					}

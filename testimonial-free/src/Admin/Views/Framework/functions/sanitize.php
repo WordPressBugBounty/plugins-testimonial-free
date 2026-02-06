@@ -28,7 +28,6 @@ if ( ! function_exists( 'spftestimonial_sanitize_replace_a_to_b' ) ) {
 	}
 }
 
-
 if ( ! function_exists( 'spftestimonial_sanitize_title' ) ) {
 	/**
 	 *
@@ -44,7 +43,6 @@ if ( ! function_exists( 'spftestimonial_sanitize_title' ) ) {
 	}
 }
 
-
 if ( ! function_exists( 'spftestimonial_sanitize_number_array_field' ) ) {
 	/**
 	 *
@@ -55,7 +53,6 @@ if ( ! function_exists( 'spftestimonial_sanitize_number_array_field' ) ) {
 	 * @version 1.0.0
 	 */
 	function spftestimonial_sanitize_number_array_field( $array ) {
-
 		foreach ( $array as $key => $value ) {
 			if ( 'unit' === $key ) {
 				$array[ $key ] = wp_filter_nohtml_kses( $value );
@@ -93,7 +90,6 @@ if ( ! function_exists( 'spftestimonial_sanitize_border_field' ) ) {
 	 * @version 1.0.0
 	 */
 	function spftestimonial_sanitize_border_field( $array ) {
-
 		foreach ( $array as $key => $value ) {
 			if ( 'style' == $key ) {
 				$array[ $key ] = sanitize_text_field( $value );

@@ -196,7 +196,6 @@ if ( ! class_exists( 'SPFTESTIMONIAL_Field_border' ) ) {
 				echo ( ! empty( $args['unit'] ) ) ? '<span class="spftestimonial--label spftestimonial--unit">' . esc_attr( $args['unit'] ) . '</span>' : '';
 				echo '</div>';
 				echo '</div>';
-
 			}
 			echo wp_kses_post( $this->field_after() );
 		}

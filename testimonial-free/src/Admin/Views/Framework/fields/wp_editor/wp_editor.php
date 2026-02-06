@@ -84,15 +84,12 @@ if ( ! class_exists( 'SPFTESTIMONIAL_Field_wp_editor' ) ) {
 		 * @return void
 		 */
 		public function enqueue() {
-
 			if ( spftestimonial_wp_editor_api() && function_exists( 'wp_enqueue_editor' ) ) {
-
 				wp_enqueue_editor();
 
 				$this->setup_wp_editor_settings();
 
 				add_action( 'print_default_editor_scripts', array( $this, 'setup_wp_editor_media_buttons' ) );
-
 			}
 		}
 
