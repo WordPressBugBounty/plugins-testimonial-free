@@ -4,7 +4,7 @@ Tags: testimonials, testimonial slider, video testimonials, social proof, review
 Requires at least: 5.0
 Tested up to: 6.9
 Requires PHP: 7.0
-Stable tag: 3.1.12
+Stable tag: 3.1.13
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -210,6 +210,11 @@ If you encounter an issue or find any bugs, post it in the [support](https://sha
 
 
 == Changelog ==
+
+= 3.1.13 - Mar 25, 2026 =
+* Improved: Plugin detection logic optimized.
+* Improved: Code maintainability improved.
+* Tested: WordPress 6.9.4 compatibility.
 
 = 3.1.12 - Dec 29, 2025 =
 * Improved: Standardized singleton instance property naming.

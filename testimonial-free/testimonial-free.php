@@ -12,7 +12,7 @@
  * Plugin Name:     Real Testimonials
  * Plugin URI:      https://realtestimonials.io/?ref=1
  * Description:     Real Testimonials is a responsive and customizable testimonial plugin for WordPress. Easily collect customer reviews and video testimonials with review forms, display them in beautiful layouts, and publishing—all in just a few minutes.
- * Version:         3.1.12
+ * Version:         3.1.13
  * Author:          ShapedPlugin LLC
  * Author URI:      https://shapedplugin.com/
  * License: GPLv2 or later
@@ -26,29 +26,29 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 require_once __DIR__ . '/vendor/autoload.php';
+
+define( 'SP_TFREE_NAME', 'Real Testimonials' );
+define( 'SP_TFREE_VERSION', '3.1.13' );
+define( 'SP_TFREE_PATH', plugin_dir_path( __FILE__ ) . 'src/' );
+define( 'SP_TFREE_URL', plugin_dir_url( __FILE__ ) . 'src/' );
+define( 'SP_TFREE_BASENAME', plugin_basename( __FILE__ ) );
+
 /**
  * Pro version check.
  *
  * @return boolean
  */
 function is_testimonial_pro_active() {
-	if ( ! function_exists( 'is_plugin_active' ) ) {
-		include_once ABSPATH . 'wp-admin/includes/plugin.php';
+	require_once ABSPATH . 'wp-admin/includes/plugin.php';
+
+	if (
+		is_plugin_active( 'testimonial-pro/testimonial-pro.php' ) ||
+		is_plugin_active_for_network( 'testimonial-pro/testimonial-pro.php' )
+	) {
+		return true;
 	}
 
-	return is_plugin_active( 'testimonial-pro/testimonial-pro.php' )
-	|| is_plugin_active_for_network( 'testimonial-pro/testimonial-pro.php' );
-}
-
-define( 'SP_TFREE_NAME', 'Real Testimonials' );
-define( 'SP_TFREE_VERSION', '3.1.12' );
-define( 'SP_TFREE_PATH', plugin_dir_path( __FILE__ ) . 'src/' );
-define( 'SP_TFREE_URL', plugin_dir_url( __FILE__ ) . 'src/' );
-define( 'SP_TFREE_BASENAME', plugin_basename( __FILE__ ) );
-
-if ( ! is_testimonial_pro_active() ) {
-	new ShapedPlugin\TestimonialFree\Admin\Views\Notices\Testimonial_Review();
-	new ShapedPlugin\TestimonialFree\Admin\Views\Framework\Classes\SPFTESTIMONIAL();
+	return false;
 }
 
 /**
@@ -70,11 +70,6 @@ function sp_testimonial_free() {
 	new ShapedPlugin\TestimonialFree\Includes\TestimonialFree();
 }
 
-if ( function_exists( 'sp_testimonial_free' ) && ! is_testimonial_pro_active() ) {
-	// sp_testimonial_free instance.
-	sp_testimonial_free();
-}
-
 // End of the class.
 if ( ! function_exists( 'sp_testimonial' ) ) {
 	/**
@@ -86,4 +81,10 @@ if ( ! function_exists( 'sp_testimonial' ) ) {
 	function sp_testimonial( $post_id ) {
 		echo do_shortcode( '[sp_testimonial id="' . esc_attr( $post_id ) . '"]' );
 	}
+}
+
+if ( ! is_testimonial_pro_active() ) {
+	sp_testimonial_free();
+	new ShapedPlugin\TestimonialFree\Admin\Views\Notices\Testimonial_Review();
+	new ShapedPlugin\TestimonialFree\Admin\Views\Framework\Classes\SPFTESTIMONIAL();
 }
