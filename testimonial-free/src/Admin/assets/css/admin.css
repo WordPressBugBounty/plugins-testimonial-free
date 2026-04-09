@@ -717,6 +717,8 @@ div.sp-testimonial-help .sp-testimonial-upgrade-sticky-footer a.button {
 /* Shortcode column border css */
 .post-type-spt_shortcodes td.shortcode.column-shortcode input {
   border: 1px solid #cbcbcb;
+  min-height: 30px;
+  line-height: 2;
 }
 
 /* Shortcode */
@@ -931,4 +933,9 @@ a.sp_testimonial_block_edit_button {
 
 #shapedplugin-offer-banner button.shapedplugin-offer-banner-dismiss:hover:before {
   color: #f30808;
+}
+
+.spftestimonial-field-border .spftestimonial--input input[type="number"] {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
 }
