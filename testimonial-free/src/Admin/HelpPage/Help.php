@@ -138,7 +138,7 @@ class Help {
 	public function sprtf_plugins_info_api_help_page() {
 		$plugins_arr = get_transient( 'sprtf_plugins' );
 		if ( false === $plugins_arr ) {
-			$args    = (object) array(
+			$args = (object) array(
 				'author'   => 'shapedplugin',
 				'per_page' => '120',
 				'page'     => '1',
@@ -156,34 +156,32 @@ class Help {
 					'icons',
 				),
 			);
-			$request = array(
-				'action'  => 'query_plugins',
-				'timeout' => 30,
-				'request' => serialize( $args ),
-			);
-			// https://codex.wordpress.org/WordPress.org_API.
-			$url      = 'http://api.wordpress.org/plugins/info/1.0/';
-			$response = wp_remote_post( $url, array( 'body' => $request ) );
 
-			if ( ! is_wp_error( $response ) ) {
+			if ( ! function_exists( 'plugins_api' ) ) {
+				require_once ABSPATH . 'wp-admin/includes/plugin-install.php';
+			}
+			// https://codex.wordpress.org/WordPress.org_API.
+			$api_response = plugins_api( 'query_plugins', $args );
+
+			if ( ! is_wp_error( $api_response ) && isset( $api_response->plugins ) ) {
 
 				$plugins_arr = array();
-				$plugins     = unserialize( $response['body'] );
+				$plugins     = $api_response->plugins;
 
-				if ( isset( $plugins->plugins ) && ( count( $plugins->plugins ) > 0 ) ) {
-					foreach ( $plugins->plugins as $pl ) {
-						if ( ! in_array( $pl->slug, self::$not_show_plugin_list, true ) ) {
+				if ( isset( $plugins ) && ( count( $plugins ) > 0 ) ) {
+					foreach ( $plugins as $pl ) {
+						if ( ! in_array( $pl['slug'], self::$not_show_plugin_list, true ) ) {
 							$plugins_arr[] = array(
-								'slug'              => $pl->slug,
-								'name'              => $pl->name,
-								'version'           => $pl->version,
-								'downloaded'        => $pl->downloaded,
-								'active_installs'   => $pl->active_installs,
-								'last_updated'      => strtotime( $pl->last_updated ),
-								'rating'            => $pl->rating,
-								'num_ratings'       => $pl->num_ratings,
-								'short_description' => $pl->short_description,
-								'icons'             => $pl->icons['2x'],
+								'slug'              => $pl['slug'],
+								'name'              => $pl['name'],
+								'version'           => $pl['version'],
+								'downloaded'        => $pl['downloaded'],
+								'active_installs'   => $pl['active_installs'],
+								'last_updated'      => strtotime( $pl['last_updated'] ),
+								'rating'            => $pl['rating'],
+								'num_ratings'       => $pl['num_ratings'],
+								'short_description' => $pl['short_description'],
+								'icons'             => $pl['icons']['2x'],
 							);
 						}
 					}
@@ -193,7 +191,8 @@ class Help {
 		}
 
 		if ( is_array( $plugins_arr ) && ( count( $plugins_arr ) > 0 ) ) {
-			array_multisort( array_column( $plugins_arr, 'active_installs' ), SORT_DESC, $plugins_arr );
+			$active_installs = array_column( $plugins_arr, 'active_installs' );
+			array_multisort( $active_installs, SORT_DESC, $plugins_arr );
 
 			foreach ( $plugins_arr as $plugin ) {
 				$plugin_slug = $plugin['slug'];
@@ -389,7 +388,7 @@ class Help {
 		}
 
 		if ( isset( $action, $plugin ) && ( 'deactivate' === $action ) && wp_verify_nonce( $_wpnonce, 'deactivate-plugin_' . $plugin ) ) {
-			deactivate_plugins( $plugin, '', false, true );
+			deactivate_plugins( $plugin, '', false );
 		}
 
 		?>

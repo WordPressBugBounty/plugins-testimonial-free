@@ -123,7 +123,12 @@
   	height: 30px;
 	line-height: 2;
 }
-
+.spftestimonial-field select:focus,
+.spftestimonial-field input:focus,
+.post-type-spt_shortcodes td.shortcode.column-shortcode input:focus {
+	outline: none;
+	box-shadow: none;
+}
 /**
  * 01. 01. Header
  */

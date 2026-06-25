@@ -4,7 +4,7 @@ Tags: testimonials, testimonial slider, video testimonials, social proof, review
 Requires at least: 5.0
 Tested up to: 7.0
 Requires PHP: 7.0
-Stable tag: 3.1.14
+Stable tag: 3.1.15
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -210,6 +210,10 @@ If you encounter an issue or find any bugs, post it in the [support](https://sha
 
 
 == Changelog ==
+
+= 3.1.15 - Jun 25, 2026 =
+* Improved: The focus style for plugin option.
+* Fix: Few WPCS-related warnings.
 
 = 3.1.14 - Apr 09, 2026 =
 * Improved: Admin UI styling has been improved.
