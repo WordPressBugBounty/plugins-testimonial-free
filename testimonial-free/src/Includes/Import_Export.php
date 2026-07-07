@@ -46,7 +46,7 @@ class Import_Export {
 				'post_status'      => array( 'inherit', 'publish' ),
 				'orderby'          => 'modified',
 				'suppress_filters' => 1, // wpml, ignore language filter.
-				'posts_per_page'   => -1,
+				'posts_per_page'   => apply_filters( 'sp_tfree_export_limit', 1000 ),
 				'post__in'         => $post_in,
 			);
 			$shortcodes = get_posts( $args );
@@ -130,7 +130,7 @@ class Import_Export {
 			foreach ( $export['shortcode'] as $key => $value ) {
 				$export['shortcode'][ $key ]['meta']['sp_tpro_meta_options'] =
 				isset( $export['shortcode'][ $key ]['meta']['sp_tpro_meta_options'] )
-					? maybe_unserialize( $export['shortcode'][ $key ]['meta']['sp_tpro_meta_options'] )
+					? $this->maybe_unserialize( $export['shortcode'][ $key ]['meta']['sp_tpro_meta_options'] )
 					: '';
 			}
 		}
@@ -153,32 +153,20 @@ class Import_Export {
 		wp_send_json( $export, 200 );
 	}
 
-
 	/**
-	 * Get page by title
+	 * Maybe unserialize data if it is serialized.
 	 *
-	 * @param string $page_title Page title.
-	 * @param string $output Optional.
-	 * @param string $post_type Post type.
-	 * @return obj.
+	 * @param  mixed $data Data to maybe unserialize.
+	 * @param  mixed $options Options for unserialization.
+	 * @return mixed
 	 */
-	public function sp_testimonial_get_page_by_title( $page_title, $output = OBJECT, $post_type = 'page' ) {
-		global $wpdb;
-		$sql  = $wpdb->prepare(
-			"
-			SELECT ID
-			FROM $wpdb->posts
-			WHERE post_title = %s
-			AND post_type = %s
-		",
-			$page_title,
-			$post_type
-		);
-		$page = $wpdb->get_var( $sql ); // phpcs:ignore -- WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching
-		if ( $page ) {
-			return get_post( $page, $output );
+	public function maybe_unserialize( $data, $options = array() ) {
+		if ( is_serialized( $data ) ) {
+			$default_option = array( 'allowed_classes' => false );
+			$options        = wp_parse_args( $options, $default_option );
+			return unserialize( $data, $options ); // phpcs:ignore -- dissallowed any classes.
 		}
-		return null;
+		return $data;
 	}
 
 	/**
@@ -209,13 +197,9 @@ class Import_Export {
 			include_once ABSPATH . WPINC . '/class-http.php';
 		}
 		$attachment_title = sanitize_file_name( pathinfo( $url, PATHINFO_FILENAME ) );
-		// Does the attachment already exist ?
-		if ( post_exists( $attachment_title, '', '', 'attachment' ) ) {
-			$attachment = $this->sp_testimonial_get_page_by_title( $attachment_title, OBJECT, 'attachment' );
-			if ( ! empty( $attachment ) ) {
-				$attachment_id = $attachment->ID;
-				return absint( $attachment_id );
-			}
+		$attachment_id    = post_exists( $attachment_title, '', '', 'attachment' );
+		if ( ! empty( $attachment_id ) ) {
+			return $attachment_id;
 		}
 		$http     = new \WP_Http();
 		$response = $http->request( $url );
@@ -332,7 +316,7 @@ class Import_Export {
 				if ( isset( $shortcode['meta'] ) && is_array( $shortcode['meta'] ) ) {
 					foreach ( $shortcode['meta'] as $key => $value ) {
 						if ( is_string( $value ) ) {
-							$value = maybe_unserialize( str_replace( '{#ID#}', $new_shortcode_id, $value ) );
+							$value = $this->maybe_unserialize( str_replace( '{#ID#}', $new_shortcode_id, $value ) );
 						}
 						update_post_meta(
 							$new_shortcode_id,

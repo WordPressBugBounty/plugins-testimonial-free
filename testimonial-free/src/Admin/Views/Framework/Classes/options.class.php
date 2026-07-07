@@ -464,6 +464,12 @@ if ( ! class_exists( 'SPFTESTIMONIAL_Options' ) ) {
 				return false;
 			}
 
+			// Check user capabilities.
+			$capability = apply_filters( 'sp_tfree_ui_permission', 'manage_options' );
+			if ( ! current_user_can( $capability ) ) {
+				return false;
+			}
+
 			// XSS ok.
 			// No worries, This "POST" requests is sanitizing in the below foreach.
 			$response = ( $ajax && ! empty( $_POST['data'] ) ) ? json_decode( wp_unslash( trim( $_POST['data'] ) ), true ) : wp_unslash( $_POST );// phpcs:ignore

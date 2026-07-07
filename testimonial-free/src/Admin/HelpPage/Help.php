@@ -383,11 +383,11 @@ class Help {
 		$plugin   = isset( $_GET['plugin'] ) ? sanitize_text_field( wp_unslash( $_GET['plugin'] ) ) : '';
 		$_wpnonce = isset( $_GET['_wpnonce'] ) ? sanitize_text_field( wp_unslash( $_GET['_wpnonce'] ) ) : '';
 
-		if ( isset( $action, $plugin ) && ( 'activate' === $action ) && wp_verify_nonce( $_wpnonce, 'activate-plugin_' . $plugin ) ) {
+		if ( isset( $action, $plugin ) && ( 'activate' === $action ) && wp_verify_nonce( $_wpnonce, 'activate-plugin_' . $plugin ) && current_user_can( 'activate_plugins' ) ) {
 			activate_plugin( $plugin, '', false, true );
 		}
 
-		if ( isset( $action, $plugin ) && ( 'deactivate' === $action ) && wp_verify_nonce( $_wpnonce, 'deactivate-plugin_' . $plugin ) ) {
+		if ( isset( $action, $plugin ) && ( 'deactivate' === $action ) && wp_verify_nonce( $_wpnonce, 'deactivate-plugin_' . $plugin ) && current_user_can( 'deactivate_plugins' ) ) {
 			deactivate_plugins( $plugin, '', false );
 		}
 
@@ -761,7 +761,8 @@ class Help {
 							$plugin_icon[ $plugin['slug'] ] = $plugin['icons'];
 						}
 					}
-					?>
+					if ( ! empty( $plugin_icon['wp-carousel-free'] ) ) :
+						?>
 					<div class="sprtf-our-plugin-list">
 						<h3 class="sprtf-section-title">Upgrade your Website with our High-quality Plugins!</h3>
 						<div class="sprtf-our-plugin-list-wrap">
@@ -839,6 +840,7 @@ class Help {
 							</a>
 						</div>
 					</div>
+					<?php endif; ?>
 				</div>
 			</section>
 

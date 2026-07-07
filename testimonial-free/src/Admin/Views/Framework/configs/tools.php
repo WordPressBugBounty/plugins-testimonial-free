@@ -72,7 +72,7 @@ SPFTESTIMONIAL::createSection(
 				'placeholder' => __( 'Choose testimonial view(s)', 'testimonial-free' ),
 				'query_args'  => array(
 					'post_type'      => 'spt_shortcodes',
-					'posts_per_page' => -1,
+					'posts_per_page' => apply_filters( 'sp_tfree_tools_query_limit', 500 ),
 				),
 				'dependency'  => array( 'spt_what_export', '==', 'selected_spt_shortcodes', true ),
 			),

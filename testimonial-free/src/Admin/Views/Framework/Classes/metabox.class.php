@@ -552,6 +552,12 @@ if ( ! class_exists( 'SPFTESTIMONIAL_Metabox' ) ) {
 				return;
 			}
 
+			// Check user capabilities.
+			$capability = apply_filters( 'sp_tfree_ui_permission', 'manage_options' );
+			if ( ! current_user_can( $capability ) ) {
+				wp_die( esc_html__( 'You do not have permission to preview.', 'testimonial-free' ) );
+			}
+
 			$setting = array();
 			// XSS ok.
 			// No worries, This "POST" requests is sanitizing in the below foreach.
@@ -583,6 +589,13 @@ if ( ! class_exists( 'SPFTESTIMONIAL_Metabox' ) ) {
 			if ( ! wp_verify_nonce( $nonce, 'spftestimonial_metabox_nonce' ) ) {
 				return;
 			}
+
+			// Check user capabilities.
+			$capability = apply_filters( 'sp_tfree_ui_permission', 'manage_options' );
+			if ( ! current_user_can( $capability ) ) {
+				wp_die( esc_html__( 'You do not have permission to preview.', 'testimonial-free' ) );
+			}
+
 			$setting = array();
 			// XSS ok.
 			// No worries, This "POST" requests is sanitizing in the below array map.

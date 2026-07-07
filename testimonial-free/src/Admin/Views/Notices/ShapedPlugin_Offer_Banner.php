@@ -153,6 +153,13 @@ class ShapedPlugin_Offer_Banner {
 	 */
 	public function dismiss_offer_banner() {
 		check_ajax_referer( 'smart_tabs_offer_dismiss', 'nonce' );
+
+		// Check user capabilities.
+		$capability = apply_filters( 'sp_tfree_ui_permission', 'manage_options' );
+		if ( ! current_user_can( $capability ) ) {
+			wp_send_json_error( array( 'error' => esc_html__( 'Unauthorized', 'testimonial-free' ) ) );
+		}
+
 		$offer_id = isset( $_POST['offer_id'] ) ? sanitize_text_field( wp_unslash( $_POST['offer_id'] ) ) : '';
 
 		update_option( 'shapedplugin_offer_banner_dismissed_' . $offer_id, true );

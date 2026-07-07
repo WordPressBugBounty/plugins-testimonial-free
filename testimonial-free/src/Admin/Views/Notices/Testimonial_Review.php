@@ -127,6 +127,13 @@ class Testimonial_Review {
 		if ( ! isset( $post_data['nonce'] ) || ! wp_verify_nonce( sanitize_key( $post_data['nonce'] ), 'sp_tfree_review_notice' ) ) {
 			return;
 		}
+
+		// Check user capabilities.
+		$capability = apply_filters( 'sp_tfree_ui_permission', 'manage_options' );
+		if ( ! current_user_can( $capability ) ) {
+			return;
+		}
+
 		// Variable default value.
 		$review = get_option( 'sp_testimonial_review_notice_dismiss' );
 		if ( ! $review ) {
