@@ -2,9 +2,9 @@
 Contributors: shapedplugin, rubel_miah, khalilu, shamimmiashuhagh
 Tags: testimonials, testimonial slider, video testimonials, social proof, review form
 Requires at least: 5.0
-Tested up to: 7.0
+Tested up to: 7.1
 Requires PHP: 7.0
-Stable tag: 3.1.16
+Stable tag: 3.1.17
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -210,6 +210,12 @@ If you encounter an issue or find any bugs, post it in the [support](https://sha
 
 
 == Changelog ==
+
+= 3.1.17 – Aug 21, 2026 =
+* Fixed: The testimonial blocks not working in the WordPress 7.1 iframed editor canvas.
+* Improved: Block asset loading for iframe canvas compatibility.
+* Improved: Block initialization for cross-window execution context.
+* Tested: WordPress 7.1 compatibility.
 
 = 3.1.16 - Jul 07, 2026 =
 * Improved: Enhanced security for unserialization, disallowing any classes.

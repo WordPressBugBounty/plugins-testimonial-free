@@ -2,9 +2,9 @@ import { escapeHTML } from "@wordpress/escape-html";
 import testimonialEdit from "./testimonials/testimonial";
 import testimonialEditForm from "./testimonialForms/form";
 import { CategoryIcon, TestimonialFormIcon, TestimonialIcon } from "../assets/testimonialIcons";
+import { registerBlockType, updateCategory } from "@wordpress/blocks";
 
 const { __ } = wp.i18n;
-const { registerBlockType, updateCategory } = wp.blocks;
 /**
  * Register: Gutenberg Blocks.
  */
@@ -12,6 +12,9 @@ updateCategory('testimonial-free', { icon: < CategoryIcon /> });
 
 const dynamicBlockGenerator = (name, title, description, icon, edit) => {
   registerBlockType(name, {
+    // Block API v3 marks the block as compatible with the iframed editor canvas,
+    // which WordPress 7.1 uses for every editor.
+    apiVersion: 3,
     title: escapeHTML(title),
     description: escapeHTML(description),
     icon: icon,

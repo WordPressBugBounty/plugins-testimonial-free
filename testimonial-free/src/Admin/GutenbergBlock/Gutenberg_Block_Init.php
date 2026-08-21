@@ -40,6 +40,7 @@ if ( ! class_exists( 'ShapedPlugin\TestimonialFree\Admin\GutenbergBlock\Gutenber
 			add_action( 'init', array( $this, 'sptf_gutenberg_shortcode_block' ) );
 			add_action( 'init', array( $this, 'sptf_gutenberg_form_shortcode_block' ) );
 			add_action( 'enqueue_block_editor_assets', array( $this, 'sptf_block_editor_assets' ) );
+			add_action( 'enqueue_block_assets', array( $this, 'sptf_block_canvas_assets' ) );
 		}
 
 		/**
@@ -74,23 +75,113 @@ if ( ! class_exists( 'ShapedPlugin\TestimonialFree\Admin\GutenbergBlock\Gutenber
 
 		/**
 		 * Register block editor script for backend.
+		 *
+		 * This hook only reaches the outer editor document. Since WordPress 6.3 the
+		 * block canvas is an iframe and WordPress 7.1 iframes it unconditionally, so
+		 * everything the rendered testimonial needs is enqueued in
+		 * `sptf_block_canvas_assets()` instead.
 		 */
 		public function sptf_block_editor_assets() {
+			$asset_file = SP_TFREE_PATH . 'Admin/GutenbergBlock/build/index.asset.php';
+			$asset      = file_exists( $asset_file ) ? require $asset_file : array();
+
+			$dependencies = isset( $asset['dependencies'] ) ? $asset['dependencies'] : array(
+				'react-jsx-runtime',
+				'wp-block-editor',
+				'wp-blocks',
+				'wp-components',
+				'wp-element',
+				'wp-escape-html',
+				'wp-i18n',
+				'wp-server-side-render',
+			);
+			$version      = isset( $asset['version'] ) ? $asset['version'] : SP_TFREE_VERSION;
+
 			wp_enqueue_script(
 				'sp-testimonial-pro-shortcode-block',
 				plugins_url( '/GutenbergBlock/build/index.js', __DIR__ ),
-				array( 'jquery', 'wp-blocks', 'wp-i18n', 'wp-element', 'wp-components' ),
-				SP_TFREE_VERSION,
+				$dependencies,
+				$version,
 				true
 			);
 
 			/**
+			 * The block configuration has to ride on the script that reads it. It used
+			 * to be localized onto a front-end handle that only existed because it was
+			 * listed as the block's `editor_script`.
+			 */
+			wp_localize_script(
+				'sp-testimonial-pro-shortcode-block',
+				'sp_testimonial_free',
+				array(
+					'ajax_url'      => admin_url( 'admin-ajax.php' ),
+					'url'           => esc_url( SP_TFREE_URL ),
+					'loadScript'    => SP_TFREE_URL . 'Frontend/assets/js/sp-scripts.min.js',
+					'link'          => esc_url( admin_url( 'post-new.php?post_type=spt_shortcodes' ) ),
+					'shortCodeList' => $this->sptf_post_list(),
+				)
+			);
+
+			wp_localize_script(
+				'sp-testimonial-pro-shortcode-block',
+				'sp_testimonial_form_free',
+				array(
+					'ajax_url'      => admin_url( 'admin-ajax.php' ),
+					'url'           => esc_url( SP_TFREE_URL ),
+					'link'          => esc_url( admin_url( 'post-new.php?post_type=spt_shortcodes' ) ),
+					'shortCodeList' => $this->sptf_form_shortcode_list(),
+				)
+			);
+
+			/**
 			 * Register block editor css file enqueue for backend.
+			 *
+			 * Kept for WordPress versions that still render the canvas in the same
+			 * document as the editor chrome.
 			 */
 			wp_enqueue_style( 'sp-testimonial-swiper' );
 			wp_enqueue_style( 'tfree-font-awesome' );
 			wp_enqueue_style( 'tfree-deprecated-style' );
 			wp_enqueue_style( 'tfree-style' );
+		}
+
+		/**
+		 * Enqueue the testimonial front-end assets for the block editor canvas.
+		 *
+		 * `enqueue_block_editor_assets` only reaches the outer editor document, while
+		 * WordPress collects `enqueue_block_assets` output for the iframed canvas in
+		 * `_wp_get_iframed_editor_assets()`. Registering the assets here is what puts
+		 * the testimonial CSS, jQuery and Swiper in the same document as the markup
+		 * `ServerSideRender` renders.
+		 *
+		 * In the admin this hook only fires on block editor screens, and the
+		 * `is_admin()` guard keeps the assets off front-end pages, where the shortcode
+		 * keeps enqueueing them on demand.
+		 *
+		 * @since 3.1.17
+		 */
+		public function sptf_block_canvas_assets() {
+			if ( ! is_admin() ) {
+				return;
+			}
+
+			wp_enqueue_style( 'sp-testimonial-swiper' );
+			wp_enqueue_style( 'tfree-font-awesome' );
+			wp_enqueue_style( 'tfree-deprecated-style' );
+			wp_enqueue_style( 'tfree-style' );
+
+			wp_enqueue_script( 'sp-testimonial-swiper-js' );
+			wp_enqueue_script( 'sp-testimonial-scripts' );
+
+			/**
+			 * The admin stylesheet is not loaded inside the canvas, and its block rules
+			 * are scoped to the `block-editor-page` body class of the outer document,
+			 * so the placeholder needs its own rules here.
+			 */
+			wp_add_inline_style(
+				'tfree-style',
+				'.sprtf-gutenberg-shortcode{padding:0;line-height:24px}.sprtf-gutenberg-shortcode::after{display:none}.sprtf_block_shortcode img{box-shadow:none}select.sprtf-shortcode-selector,select.sprtf-shortcode-selector:focus,select.sprtf-shortcode-selector:focus-visible{width:250px;padding:5px 25px 5px 5px;border:1px solid #ccc;font-size:13px}a.sp_testimonial_block_edit_button{font-size:16px;margin:10px 0}'
+			);
 		}
 
 		/**
@@ -155,27 +246,14 @@ if ( ! class_exists( 'ShapedPlugin\TestimonialFree\Admin\GutenbergBlock\Gutenber
 		 */
 		public function sptf_gutenberg_shortcode_block() {
 			/**
-			 * Register block editor js file enqueue for backend.
-			 */
-			wp_register_script( 'tfree-swiper-active', SP_TFREE_URL . 'Frontend/assets/js/sp-scripts.min.js', array( 'jquery' ), SP_TFREE_VERSION, true );
-
-			wp_localize_script(
-				'tfree-swiper-active',
-				'sp_testimonial_free',
-				array(
-					'ajax_url'      => admin_url( 'admin-ajax.php' ),
-					'url'           => esc_url( SP_TFREE_URL ),
-					'loadScript'    => SP_TFREE_URL . 'Frontend/assets/js/sp-scripts.min.js',
-					'link'          => esc_url( admin_url( 'post-new.php?post_type=spt_shortcodes' ) ),
-					'shortCodeList' => $this->sptf_post_list(),
-				)
-			);
-			/**
 			 * Register Gutenberg block on server-side.
 			 */
 			register_block_type(
 				'sp-testimonial-pro/shortcode',
 				array(
+					// Block API v3 tells WordPress the block is safe to render inside the
+					// iframed editor canvas, which WordPress 7.1 always uses.
+					'api_version'     => 3,
 					'attributes'      => array(
 						'shortcode'          => array(
 							'type'    => 'string',
@@ -199,11 +277,6 @@ if ( ! class_exists( 'ShapedPlugin\TestimonialFree\Admin\GutenbergBlock\Gutenber
 							'preview' => true,
 						),
 					),
-					// Enqueue blocks.editor.build.js in the editor only.
-					'editor_script'   => array(
-						'sp-testimonial-swiper-js',
-						'tfree-swiper-active',
-					),
 					// Enqueue blocks.editor.build.css in the editor only.
 					'editor_style'    => array(),
 					'render_callback' => array( $this, 'sp_testimonial_free_render_shortcode' ),
@@ -216,23 +289,15 @@ if ( ! class_exists( 'ShapedPlugin\TestimonialFree\Admin\GutenbergBlock\Gutenber
 		public function sptf_gutenberg_form_shortcode_block() {
 			wp_register_style( 'tfree-form-css', SP_TFREE_URL . 'Frontend/assets/css/form.css', array(), SP_TFREE_VERSION, '' );
 
-			wp_localize_script(
-				'tfree-swiper-active',
-				'sp_testimonial_form_free',
-				array(
-					'ajax_url'      => admin_url( 'admin-ajax.php' ),
-					'url'           => esc_url( SP_TFREE_URL ),
-					'loadScript'    => SP_TFREE_PATH . 'Frontend/assets/css/form.min.css',
-					'link'          => esc_url( admin_url( 'post-new.php?post_type=spt_shortcodes' ) ),
-					'shortCodeList' => $this->sptf_form_shortcode_list(),
-				)
-			);
 			/**
 			 * Register Gutenberg block on server-side.
 			 */
 			register_block_type(
 				'sp-testimonial-pro/form',
 				array(
+					// Block API v3 tells WordPress the block is safe to render inside the
+					// iframed editor canvas, which WordPress 7.1 always uses.
+					'api_version'     => 3,
 					'attributes'      => array(
 						'shortcode'          => array(
 							'type'    => 'string',

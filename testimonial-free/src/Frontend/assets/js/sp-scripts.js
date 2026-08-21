@@ -104,6 +104,16 @@
 		});
 	}
 
+	/**
+	 * Expose the initializer globally.
+	 *
+	 * The block editor canvas is an iframe since WordPress 6.3, so the editor has to
+	 * be able to run the initializer on the window that owns the markup instead of
+	 * pulling this file into the wrong document. Re-running it is safe: initialized
+	 * carousels are skipped and hiding an already hidden preloader is a no-op.
+	 */
+	window.spTestimonialFreeInit = SPTestimonialCarouselInit;
+
 	// Initialize the carousel when the document is ready
 	$(document).ready(function () {
 		SPTestimonialCarouselInit();
