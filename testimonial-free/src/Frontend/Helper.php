@@ -484,7 +484,6 @@ class Helper {
 
 		$required_notice       = isset( $form_data['required_notice'] ) ? $form_data['required_notice'] : '';
 		$required_notice_label = isset( $form_data['notice_label'] ) ? $form_data['notice_label'] : '';
-		// $rating                     = $form_fields['rating'];
 		$submit_btn = $form_fields['submit_btn'];
 		// Testimonial submit form.
 		include SP_TFREE_PATH . 'Frontend/Views/partials/submit-form.php';

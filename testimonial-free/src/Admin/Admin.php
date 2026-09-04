@@ -12,7 +12,8 @@
 namespace ShapedPlugin\TestimonialFree\Admin;
 
 use ShapedPlugin\TestimonialFree\Admin\DBUpdates;
-use ShapedPlugin\TestimonialFree\Admin\HelpPage\Help;
+use ShapedPlugin\TestimonialFree\Admin\AdminNotices\AdminNotices;
+use ShapedPlugin\TestimonialFree\Blocks\Includes\BlocksHelper;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
@@ -32,10 +33,11 @@ class Admin {
 		add_filter( 'init', array( $this, 'register_shortcode_post_type' ) );
 		add_action( 'admin_head', array( $this, 'spt_testimonial_form_admin_head' ) );
 		add_action( 'admin_enqueue_scripts', array( $this, 'admin_scripts' ) );
+		add_action( 'admin_footer-edit.php', array( $this, 'print_block_editor_shortcut' ) );
 		add_action( 'widgets_init', array( $this, 'sp_testimonial_free_widget' ) );
+		add_filter( 'use_block_editor_for_post_type', array( $this, 'sp_real_disable_block_editor_for_testimonial' ), 100, 2 );
 		new DBUpdates();
-		// Help Page.
-		Help::instance();
+		new AdminNotices();
 	}
 
 	/**
@@ -58,12 +60,135 @@ class Admin {
 	}
 
 	/**
-	 * Enqueue admin scripts
+	 * Enqueue admin styles.
+	 *
+	 * The global stylesheet is tiny and targets elements that exist on every
+	 * admin screen (the plugin's admin menu item and its admin notices). The
+	 * screen specific stylesheet is limited to the plugin's own screens: any
+	 * style enqueued on a block editor screen is copied into the editor iframe
+	 * by WordPress, which triggers the "was added to the iframe incorrectly"
+	 * warning and leaks admin styles into the post content.
 	 *
 	 * @return void
 	 */
 	public function admin_scripts() {
-		wp_enqueue_style( 'testimonial-free-admin', SP_TFREE_URL . 'Admin/assets/css/admin.min.css', array(), SP_TFREE_VERSION );
+		if ( $this->is_plugin_classic_screen() ) {
+			wp_enqueue_style( 'testimonial-free-admin', SP_TFREE_URL . 'Admin/assets/css/admin.min.css', array(), SP_TFREE_VERSION );
+		}
+		if ( $this->is_shortcodes_list_screen() ) {
+			wp_add_inline_style( 'testimonial-free-admin', $this->get_block_editor_shortcut_style() );
+		}
+	}
+
+	/**
+	 * Offer a block editor shortcut beside "Add New View" on the Manage Views list table.
+	 *
+	 * The list table exposes no hook between its title and the "Add New View" link, so the
+	 * anchor is printed in the footer and moved next to that button on the client.
+	 * `rtpblock_inserter` makes the new page open with the inserter scrolled to the
+	 * Real Testimonials block category.
+	 *
+	 * @since 4.0.0
+	 * @return void
+	 */
+	public function print_block_editor_shortcut() {
+		if ( ! $this->is_shortcodes_list_screen() || ! current_user_can( 'edit_pages' ) ) {
+			return;
+		}
+
+		$shortcut = sprintf(
+			'<a href="%1$s" class="sp-real-visual-block-editor-btn">%2$s</a>',
+			esc_url( admin_url( 'post-new.php?post_type=page&rtpblock_inserter=true' ) ),
+			esc_html__( 'Start With Testimonial Blocks', 'testimonial-free' )
+		);
+
+		wp_print_inline_script_tag(
+			sprintf(
+				'( function() {
+					var addNew = document.querySelector( ".wrap .page-title-action" );
+					if ( ! addNew || document.querySelector( ".sp-real-visual-block-editor-btn" ) ) {
+						return;
+					}
+					addNew.insertAdjacentHTML( "afterend", %s );
+				}() );',
+				wp_json_encode( $shortcut )
+			)
+		);
+	}
+
+	/**
+	 * Whether the request is rendering the Manage Views list table.
+	 *
+	 * @since 4.0.0
+	 * @return bool
+	 */
+	private function is_shortcodes_list_screen() {
+		$screen = get_current_screen();
+
+		return $screen instanceof \WP_Screen && 'edit' === $screen->base && 'spt_shortcodes' === $screen->post_type;
+	}
+
+	/**
+	 * Styles for the block editor shortcut button.
+	 *
+	 * Kept inline because the shortcut ships on a single screen and `admin.css` is mirrored
+	 * by a hand-maintained `admin.min.css`.
+	 *
+	 * @since 4.0.0
+	 * @return string
+	 */
+	private function get_block_editor_shortcut_style() {
+		return '.sp-real-visual-block-editor-btn {
+			position: relative;
+			top: -3px;
+			display: inline-flex;
+			align-items: center;
+			margin-inline-start: 8px;
+			padding: 6px 12px;
+			background: #1a74e4;
+			border: 1px solid #1a74e4;
+			border-radius: 4px;
+			color: #fff;
+			font: 600 13px/18px Roboto, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+			text-decoration: none;
+			transition: background 0.2s ease;
+		}
+		.sp-real-visual-block-editor-btn:hover,
+		.sp-real-visual-block-editor-btn:focus {
+			background: #1565c0;
+			border-color: #1565c0;
+			color: #fff;
+		}
+		.sp-real-visual-block-editor-btn:focus {
+			outline: 2px solid transparent;
+			box-shadow: 0 0 0 1px #fff, 0 0 0 3px #1a74e4;
+		}';
+	}
+
+	/**
+	 * Whether the current admin screen belongs to this plugin.
+	 *
+	 * @since 3.1.18
+	 *
+	 * @return bool
+	 */
+	public function is_plugin_classic_screen() {
+		if ( ! function_exists( 'get_current_screen' ) ) {
+			return false;
+		}
+
+		$screen = get_current_screen();
+
+		if ( ! $screen ) {
+			return false;
+		}
+
+		// Block editor screens never need the admin styles; they are iframed.
+		if ( method_exists( $screen, 'is_block_editor' ) && $screen->is_block_editor() ) {
+			return false;
+		}
+
+		return true;
 	}
 
 	/**
@@ -81,6 +206,7 @@ class Admin {
 				'label'              => __( 'Manage Views', 'testimonial-free' ),
 				'description'        => __( 'Manage Views', 'testimonial-free' ),
 				'public'             => false,
+				'show_in_rest'       => true,
 				'has_archive'        => false,
 				'publicly_queryable' => false,
 				'show_ui'            => $show_ui,
@@ -114,7 +240,8 @@ class Admin {
 				'public'              => false,
 				'has_archive'         => false,
 				'publicaly_queryable' => false,
-				'show_ui'             => $show_ui,
+				// Hide the Testimonial Form submenu + edit screens when the module is off.
+				'show_ui'             => $show_ui && BlocksHelper::is_active_module( 'testimonial_form' ),
 				'show_in_menu'        => 'edit.php?post_type=spt_testimonial',
 				'hierarchical'        => false,
 				'query_var'           => false,
@@ -166,6 +293,27 @@ class Admin {
 				wp_die( esc_html__( 'You are only allowed to have one form in lite version.', 'testimonial-free' ) );
 			}
 		}
+	}
+
+	/**
+	 * Force the classic editor on the testimonial post type.
+	 *
+	 * The whole testimonial UI lives in the "Testimonial Options" metabox
+	 * (reviewer details, rating, custom fields), which the block editor pushes
+	 * into a collapsed compatibility panel. The post type keeps `show_in_rest`
+	 * so REST consumers are unaffected — only the editor changes.
+	 *
+	 * @since 3.1.17
+	 *
+	 * @param bool   $use_block_editor Whether the block editor is enabled.
+	 * @param string $post_type Post type slug.
+	 * @return bool
+	 */
+	public function sp_real_disable_block_editor_for_testimonial( $use_block_editor, $post_type ) {
+		if ( 'spt_testimonial' === $post_type ) {
+			return false;
+		}
+		return $use_block_editor;
 	}
 
 	/**

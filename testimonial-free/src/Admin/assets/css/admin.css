@@ -939,3 +939,92 @@ a.sp_testimonial_block_edit_button {
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
 }
+
+/*
+ * FOOTER STYLES - Made with heart and social links.
+ */
+.sp-real-footer-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  width: 50%;
+  float: left;
+}
+
+.sp-real-footer-left {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.sp-real-footer-left span,
+.sp-real-footer-left a {
+  color: #6e6a69;
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.sp-real-footer-team-link {
+  color: #1e67d8 !important;
+  text-decoration: underline;
+}
+
+.sp-real-footer-team-link:hover {
+  color: #0a53b3 !important;
+  text-decoration: underline !important;
+}
+
+.sp-real-footer-team-link:focus {
+  border: none;
+  box-shadow: none;
+}
+
+.sp-real-footer-heart {
+  vertical-align: middle;
+  width: 16px;
+  height: 16px;
+}
+
+.sp-real-footer-social {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.sp-real-footer-social-link {
+  display: inline-flex;
+  align-items: center;
+  transition: transform 0.2s ease;
+}
+
+.sp-real-footer-social-link:hover {
+  transform: scale(1.1);
+}
+
+.sp-real-footer-social-link:hover svg path {
+  fill: #1e67d8;
+}
+
+.sp-real-footer-social-link svg {
+  display: block;
+}
+
+.sp-real-footer-text {
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.sp-real-footer-text:hover {
+  color: #1e67d8;
+}
+
+@media (max-width: 782px) {
+  .sp-real-footer-container {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+}

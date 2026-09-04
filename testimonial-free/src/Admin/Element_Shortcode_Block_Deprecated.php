@@ -1,6 +1,6 @@
 <?php
 /**
- * Framework options.class file.
+ * Deprecated Elementor shortcode block.
  *
  * @link https://shapedplugin.com
  * @since 2.0.0

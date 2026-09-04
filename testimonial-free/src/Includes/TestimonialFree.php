@@ -12,12 +12,14 @@
 namespace ShapedPlugin\TestimonialFree\Includes;
 
 use ShapedPlugin\TestimonialFree\Admin\Admin;
+use ShapedPlugin\TestimonialFree\Admin\Dashboard\Dashboard;
 use ShapedPlugin\TestimonialFree\Includes\TFREE_Functions;
 use ShapedPlugin\TestimonialFree\Includes\Import_Export;
 use ShapedPlugin\TestimonialFree\Frontend\Frontend;
-use ShapedPlugin\TestimonialFree\Admin\Gutenberg_Block;
 use ShapedPlugin\TestimonialFree\Admin\Element_Shortcode_Block;
 use ShapedPlugin\TestimonialFree\Admin\Element_Shortcode_Block_Deprecated;
+use ShapedPlugin\TestimonialFree\Blocks\BlocksInit;
+use ShapedPlugin\TestimonialFree\Admin\PageBuilders\Manager;
 
 // If this file is called directly, abort.
 if ( ! defined( 'WPINC' ) ) {
@@ -28,6 +30,7 @@ if ( ! defined( 'WPINC' ) ) {
  * TestimonialFree
  */
 class TestimonialFree {
+
 	/**
 	 * Plugin version
 	 *
@@ -133,7 +136,11 @@ class TestimonialFree {
 		 * Gutenberg block.
 		 */
 		if ( version_compare( $GLOBALS['wp_version'], '5.3', '>=' ) ) {
-			new Gutenberg_Block();
+			new Dashboard();
+			BlocksInit::instance();
+
+			// Page Builder Integrations (Elementor, Divi, WPBakery, Beaver, Bricks, Oxygen).
+			Manager::init();
 		}
 
 		// Elementor shortcode block.
@@ -196,7 +203,8 @@ class TestimonialFree {
 	 */
 	public function after_testimonial_free_row_meta( $plugin_meta, $file ) {
 		if ( SP_TFREE_BASENAME === $file ) {
-			$plugin_meta[] = '<a href="https://realtestimonials.io/demos/real-testimonials-lite-version-demo/" target="_blank">' . __( 'Live Demo', 'testimonial-free' ) . '</a>';
+			$plugin_meta[] = '<a href="https://docs.realtestimonials.io/guide/introduction" target="_blank">' . __( 'Docs', 'testimonial-free' ) . '</a>';
+			$plugin_meta[] = '<a href="https://demos.realtestimonials.io/real-testimonials-lite-version-demo/" target="_blank">' . __( 'Live Demo', 'testimonial-free' ) . '</a>';
 		}
 
 		return $plugin_meta;
@@ -372,7 +380,7 @@ class TestimonialFree {
 	 */
 	public function redirect_help_page( $plugin ) {
 		if ( SP_TFREE_BASENAME === $plugin && ! ( defined( 'DOING_AJAX' ) && DOING_AJAX ) && ! ( defined( 'WP_CLI' ) && WP_CLI ) ) {
-			wp_safe_redirect( admin_url( 'edit.php?post_type=spt_testimonial&page=tfree_help' ) );
+			wp_safe_redirect( admin_url( 'edit.php?post_type=spt_testimonial&page=rtp_dashboard' ) );
 			exit();
 		}
 	}

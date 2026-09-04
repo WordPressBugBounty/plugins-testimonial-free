@@ -171,8 +171,6 @@ class SPFTESTIMONIAL {
 
 		// Configs.
 		self::include_plugin_file( 'configs/metaboxs.php' );
-		self::include_plugin_file( 'configs/settings.php' );
-		self::include_plugin_file( 'configs/tools.php' );
 		self::include_plugin_file( 'configs/form.php' );
 
 		// Setup admin option framework.

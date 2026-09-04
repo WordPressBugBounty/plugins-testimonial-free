@@ -13,6 +13,21 @@
             "ShapedPlugin\\TestimonialFree\\": "src/"
         }
     },
+    "autoload-dev": {
+        "psr-4": {
+            "ShapedPlugin\\TestimonialFree\\Tests\\": "tests/php/"
+        }
+    },
+    "require": {},
+    "require-dev": {},
+    "scripts": {
+        "test": "@php tests/php/run.php"
+    },
+    "config": {
+        "allow-plugins": {
+            "dealerdirect/phpcodesniffer-composer-installer": true
+        }
+    },
     "minimum-stability": "dev",
-    "require": {}
+    "prefer-stable": true
 }

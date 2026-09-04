@@ -12,7 +12,9 @@
  * Plugin Name:     Real Testimonials
  * Plugin URI:      https://realtestimonials.io/?ref=1
  * Description:     Real Testimonials is a responsive and customizable testimonial plugin for WordPress. Easily collect customer reviews and video testimonials with review forms, display them in beautiful layouts, and publishing—all in just a few minutes.
- * Version:         3.1.17
+ * Version:         4.0.0
+ * Requires at least: 6.3
+ * Requires PHP:      7.4
  * Author:          ShapedPlugin LLC
  * Author URI:      https://shapedplugin.com/
  * License: GPLv2 or later
@@ -28,10 +30,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 require_once __DIR__ . '/vendor/autoload.php';
 
 define( 'SP_TFREE_NAME', 'Real Testimonials' );
-define( 'SP_TFREE_VERSION', '3.1.17' );
-define( 'SP_TFREE_PATH', plugin_dir_path( __FILE__ ) . 'src/' );
-define( 'SP_TFREE_URL', plugin_dir_url( __FILE__ ) . 'src/' );
+define( 'SP_TFREE_VERSION', '4.0.0' );
+define( 'SP_RT_PLUGIN_PATH', plugin_dir_path( __FILE__ ) );
+define( 'SP_RT_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
+define( 'SP_TFREE_PATH', SP_RT_PLUGIN_PATH . 'src/' );
+define( 'SP_TFREE_URL', SP_RT_PLUGIN_URL . 'src/' );
 define( 'SP_TFREE_BASENAME', plugin_basename( __FILE__ ) );
+define( 'SP_TFREE_SDR_KEY', '994rrss275890de8eFFdf90EE60d7734c8469211' );
 
 /**
  * Pro version check.

@@ -12,6 +12,7 @@
 namespace ShapedPlugin\TestimonialFree\Frontend;
 
 use ShapedPlugin\TestimonialFree\Frontend\Helper;
+use ShapedPlugin\TestimonialFree\Blocks\Includes\BlocksHelper;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; }  // if direct access
@@ -313,6 +314,10 @@ class Frontend {
 	 * @since 2.0
 	 */
 	public function frontend_form( $attributes ) {
+		// Bail when the Testimonial Collection Form module is turned off.
+		if ( ! BlocksHelper::is_active_module( 'testimonial_form' ) ) {
+			return;
+		}
 		$form_id = esc_attr( (int) $attributes['id'] );
 		if ( empty( $form_id ) || 'spt_testimonial_form' !== get_post_type( $form_id ) || 'trash' === get_post_status( $form_id ) ) {
 			return;

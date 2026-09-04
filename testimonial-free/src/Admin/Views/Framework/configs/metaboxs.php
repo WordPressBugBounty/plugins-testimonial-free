@@ -121,50 +121,50 @@ SPFTESTIMONIAL::createSection(
 					'slider'           => array(
 						'image'           => SP_TFREE_URL . '/Admin/Views/Framework/assets/images/layouts/slider.svg',
 						'name'            => __( 'Slider', 'testimonial-free' ),
-						'option_demo_url' => 'https://realtestimonials.io/demos/slider/',
+						'option_demo_url' => 'https://demos.realtestimonials.io/slider/',
 					),
 					'carousel'         => array(
 						'image'           => SP_TFREE_URL . '/Admin/Views/Framework/assets/images/layouts/carousel.svg',
 						'name'            => __( 'Carousel', 'testimonial-free' ),
-						'option_demo_url' => 'https://realtestimonials.io/demos/carousel/',
+						'option_demo_url' => 'https://demos.realtestimonials.io/carousel/',
 					),
 					'grid'             => array(
 						'image'           => SP_TFREE_URL . '/Admin/Views/Framework/assets/images/layouts/grid.svg',
 						'name'            => __( 'Grid', 'testimonial-free' ),
-						'option_demo_url' => 'https://realtestimonials.io/demos/grid/',
+						'option_demo_url' => 'https://demos.realtestimonials.io/grid/',
 					),
 					'thumbnail_slider' => array(
 						'image'           => SP_TFREE_URL . '/Admin/Views/Framework/assets/images/layouts/thumbnails_slider.svg',
 						'name'            => __( 'Thumbnails Slider', 'testimonial-free' ),
-						'option_demo_url' => 'https://realtestimonials.io/demos/thumbnails-slider/',
+						'option_demo_url' => 'https://demos.realtestimonials.io/thumbnails-slider/',
 						'pro_only'        => true,
 						'class'           => 'pro-feature',
 					),
 					'multi_rows'       => array(
 						'image'           => SP_TFREE_URL . '/Admin/Views/Framework/assets/images/carousel-mode/multi_rows.svg',
 						'name'            => __( 'Multi-row', 'testimonial-free' ),
-						'option_demo_url' => 'https://realtestimonials.io/demos/carousel/#multi-rows-carousel',
+						'option_demo_url' => 'https://demos.realtestimonials.io/carousel/#multi-rows-carousel',
 						'pro_only'        => true,
 						'class'           => 'pro-feature',
 					),
 					'masonry'          => array(
 						'image'           => SP_TFREE_URL . '/Admin/Views/Framework/assets/images/layouts/filter_masonry.svg',
 						'name'            => __( 'Masonry', 'testimonial-free' ),
-						'option_demo_url' => 'https://realtestimonials.io/demos/masonry/',
+						'option_demo_url' => 'https://demos.realtestimonials.io/masonry/',
 						'pro_only'        => true,
 						'class'           => 'pro-feature',
 					),
 					'list'             => array(
 						'image'           => SP_TFREE_URL . '/Admin/Views/Framework/assets/images/layouts/list.svg',
 						'name'            => __( 'List', 'testimonial-free' ),
-						'option_demo_url' => 'https://realtestimonials.io/demos/list/',
+						'option_demo_url' => 'https://demos.realtestimonials.io/list/',
 						'pro_only'        => true,
 						'class'           => 'pro-feature',
 					),
 					'filter'           => array(
 						'image'           => SP_TFREE_URL . '/Admin/Views/Framework/assets/images/layouts/isotope.svg',
 						'name'            => __( 'Isotope', 'testimonial-free' ),
-						'option_demo_url' => 'https://realtestimonials.io/demos/isotope-shuffle-filter/',
+						'option_demo_url' => 'https://demos.realtestimonials.io/isotope-shuffle-filter/',
 						'pro_only'        => true,
 						'class'           => 'pro-feature',
 					),
@@ -351,8 +351,8 @@ SPFTESTIMONIAL::createSection(
 					__( 'To allow your visitors to filter reviews by %3$sGroups%2$s, %4$sStar Ratings%2$s, Ajax Search, and Sort on the frontend, %1$sUpgrade to Pro!%2$s', 'testimonial-free' ),
 					'<a target="_blank" href="https://realtestimonials.io/pricing/?ref=1"><b>',
 					'</b></a>',
-					'<a target="_blank" href="https://realtestimonials.io/demos/advanced-ajax-features/#group-wise-live-filter-carousel"><b>',
-					'<a target="_blank" href="https://realtestimonials.io/demos/advanced-ajax-features/#live-filter-by-star-rating"><b>'
+					'<a target="_blank" href="https://demos.realtestimonials.io/advanced-ajax-features/#group-wise-live-filter-carousel"><b>',
+					'<a target="_blank" href="https://demos.realtestimonials.io/advanced-ajax-features/#live-filter-by-star-rating"><b>'
 				),
 			),
 			array(
@@ -362,7 +362,7 @@ SPFTESTIMONIAL::createSection(
 				'class'      => 'testimonial-live-filter pro_switcher',
 				'sanitize'   => 'rest_sanitize_boolean',
 				'subtitle'   => __( 'Enable the Ajax Live Filters by groups or star ratings.', 'testimonial-free' ),
-				'title_help' => '<div class="spftestimonial-img-tag"><img src="' . SP_TFREE_URL . 'Admin/Views/Framework/assets/images/help-visuals/ajax_live_filter.svg" alt="' . __( 'Ajax Live Filter', 'testimonial-free' ) . '"></div><div class="spftestimonial-info-label">' . __( 'Ajax Live Filter (Pro)', 'testimonial-free' ) . '</div><a class="spftestimonial-open-live-demo" href="https://realtestimonials.io/demos/advanced-ajax-features/" target="_blank">' . __( 'Live Demo', 'testimonial-free' ) . '</a>',
+				'title_help' => '<div class="spftestimonial-img-tag"><img src="' . SP_TFREE_URL . 'Admin/Views/Framework/assets/images/help-visuals/ajax_live_filter.svg" alt="' . __( 'Ajax Live Filter', 'testimonial-free' ) . '"></div><div class="spftestimonial-info-label">' . __( 'Ajax Live Filter (Pro)', 'testimonial-free' ) . '</div><a class="spftestimonial-open-live-demo" href="https://demos.realtestimonials.io/advanced-ajax-features/" target="_blank">' . __( 'Live Demo', 'testimonial-free' ) . '</a>',
 				'text_on'    => __( 'Enabled', 'testimonial-free' ),
 				'text_off'   => __( 'Disabled', 'testimonial-free' ),
 				'text_width' => 100,
@@ -1431,8 +1431,8 @@ SPFTESTIMONIAL::createSection(
 									__( 'To allow customers to %4$sRecord Videos%2$s or Collect them manually to easily display %3$sVideo Testimonials%2$s and boost sales, %1$sUpgrade to Pro!%2$s', 'testimonial-free' ),
 									'<a target="_blank" href="https://realtestimonials.io/pricing/?ref=1"><b>',
 									'</b></a>',
-									'<a target="_blank" href="https://realtestimonials.io/demos/video-testimonials/"><b>',
-									'<a target="_blank" href="https://realtestimonials.io/demos/testimonial-forms/#video-record-form"><b>'
+									'<a target="_blank" href="https://demos.realtestimonials.io/video-testimonials/"><b>',
+									'<a target="_blank" href="https://demos.realtestimonials.io/testimonial-forms/#video-record-form"><b>'
 								),
 							),
 							array(

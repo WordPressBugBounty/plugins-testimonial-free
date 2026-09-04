@@ -1,10 +1,10 @@
 === Real Testimonials – Testimonial Slider, Collect Customer Reviews and Video Testimonials ===
 Contributors: shapedplugin, rubel_miah, khalilu, shamimmiashuhagh
 Tags: testimonials, testimonial slider, video testimonials, social proof, review form
-Requires at least: 5.0
+Requires at least: 6.3
 Tested up to: 7.1
-Requires PHP: 7.0
-Stable tag: 3.1.17
+Requires PHP: 7.4
+Stable tag: 4.0.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -29,12 +29,12 @@ Testimonials significantly help your business and organization grow in several w
 ✅ Gain Valuable Insights — Users' reviews provide feedback about your products or services.
 ✅ Enhance Brand Reputation — Over time, reviews help build a strong brand reputation. 
 
- [__Live Demo__](https://realtestimonials.io/demos/real-testimonials-lite-version-demo/) | [__Documentation__](https://docs.shapedplugin.com/docs/testimonial/overview/) | [__Support__](https://shapedplugin.com/create-support-ticket/)
+ [__Live Demo__](https://realtestimonials.io/patterns/#free) | [__Documentation__](https://docs.realtestimonials.io/guide/introduction) | [__Support__](https://shapedplugin.com/create-support-ticket/)
 
 
 ## WATCH HOW TO USE##
 
-[youtube https://www.youtube.com/watch?list=PLoUb-7uG-5jPTDu5wiWwKhJNuWFWSyA5T&v=58a3L4q_8Tc]
+[youtube https://www.youtube.com/watch?v=-eSIbpv8Hik&list=PLoUb-7uG-5jM2sjscSqBVj07VXOqt0qHZ]
 
 
 **Key Features List**
@@ -80,6 +80,39 @@ Testimonials significantly help your business and organization grow in several w
 * Support all modern browsers: Firefox, Chrome, IE, Safari, etc.
 * And many more options.
 
+= Dedicated Gutenberg Blocks =
+
+The plugin ships a complete block system for the block editor. Each block is fully responsive and configurable right from the editor sidebar:
+
+* **Testimonial Slider** — A classic slider showcase with autoplay, navigation arrows, pagination dots, and adaptive height.
+* **Testimonial Carousel** — A multi-column carousel with per-device columns, slide-to-scroll, column gap, and infinite loop.
+* **Testimonial Grid** — A responsive grid layout with device-wise column control, ordering, and pagination.
+* **Testimonial Group** — A parent block that holds child blocks and renders them as one combined showcase.
+* **AJAX Pagination** — A child block that adds AJAX-powered pagination to a parent showcase without page reloads.
+* **Testimonial Submission Form** — A native front-end review form with configurable fields, photo upload, AJAX submit, and moderation (pending, hold as private, or draft).
+* **Testimonial Shortcode** — Place any existing testimonial view (shortcode) directly as a block.
+* **Testimonial Form Shortcode** — Place an existing collection form shortcode as a block.
+
+= Powerful Admin Dashboard = 
+
+* **Getting Started** — An interactive dashboard to set the plugin up quickly.
+* **Settings** — All plugin settings in one place, including Custom CSS/JS with a built-in code editor.
+* **Block Visibility** — Enable or disable individual blocks site-wide with one click.
+* **Saved Templates** — Save any showcase you build as a reusable template and insert it anywhere.
+* **Ready Patterns** — A library of pre-built testimonial patterns; preview and insert with one click.
+* **Import/Export** — Export testimonials to CSV and import them back, or move them between sites.
+* **SEO Schema Markup** — Schema.org compliant JSON-LD markup for testimonials to support rich results.
+
+= Works With Your Favorite Page Builder =
+
+Saved templates can be inserted with dedicated addons for:
+
+* Elementor
+* Divi 4 & Divi 5 (native Divi 5 module)
+* WPBakery Page Builder
+* Beaver Builder
+* Bricks Builder
+* Oxygen Builder
 
 = For Support, Features Request, and Bug Reporting =
 
@@ -89,7 +122,7 @@ Testimonials significantly help your business and organization grow in several w
 While the free version includes all essential options for managing customer reviews, some advanced features are available in the [Pro version](https://realtestimonials.io/).
 
 ### Pro Features Include:
-* **Customizable Testimonial Forms Builder** - Create professional review forms with a drag-and-drop editor and necessary fields, and collect more testimonials. [Live Demo](https://realtestimonials.io/demos/testimonial-forms/)
+* **Customizable Testimonial Forms Builder** - Create professional review forms with a drag-and-drop editor and necessary fields, and collect more testimonials. [Live Demo](https://demos.realtestimonials.io/testimonial-forms/)
 * **Ready Testimonial Layouts and Themes** - Choose from responsive layouts and multiple themes to display customer reviews.
 * **Form Display in Popup/Lightbox** - Show testimonial submission forms in a pop-up window.
 * **Anti-Spam Protection** - Implement Google reCAPTCHA to prevent automated bots from submitting forms.
@@ -102,6 +135,7 @@ While the free version includes all essential options for managing customer revi
 * **Advanced Image Options** - Add retina-ready images with custom styling options, including borders, backgrounds, and display modes.
 * **Reviewer Fallback Images** - Use default images when reviewers don't provide one.
 * **Average Rating Widget** - Display overall customer satisfaction ratings.
+* **AI Review Summary** — An AI-generated summary block built from your collected reviews.
 * **Automated Review Publishing** - Automatically publish reviews based on star ratings.
 * **Live Filters & Search Option for Visitors** - Implement Ajax-powered filters and search option for visitors.
 * **Enhanced Typography & Styling** - Access additional Google Fonts and customization options.
@@ -116,9 +150,9 @@ Designed and Developed by [__ShapedPlugin, LLC__](https://shapedplugin.com/)
 
 = MINIMUM REQUIREMENTS =
 
-* PHP 7.0 or later
+* PHP 7.4 or later
 * MySQL 5.6 or later
-* WordPress 5.0 or later
+* WordPress 6.3 or later
 
 **This section describes how to install the plugin and get it working**
 
@@ -170,7 +204,7 @@ Yes, the Real Testimonials is fully responsive & column-structured. You can cont
 Yes. If you already have testimonials in the free version on your theme or site, you will automatically get the testimonials to use in the Pro version.
 
 = Should I purchase the Pro version? =
-Real Testimonials Pro includes additional features that extend the functionality of the free version. If you're interested in these advanced features, you can learn more at the [Upgrade to Pro!](https://realtestimonials.io/pricing/?ref=1) page and view the [Live Demo](https://realtestimonials.io/demos/slider/).
+Real Testimonials Pro includes additional features that extend the functionality of the free version. If you're interested in these advanced features, you can learn more at the [Upgrade to Pro!](https://realtestimonials.io/pricing/?ref=1) page and view the [Live Demo](https://demos.realtestimonials.io/slider/).
 
 = Is the Real Testimonials compatible with my theme or design? =
 Real Testimonials works nicely with any theme if themes are developed according to the WordPress standard.
@@ -184,32 +218,60 @@ If you encounter an issue or find any bugs, post it in the [support](https://sha
 
 
 == Screenshots ==
-1. Testimonial Slider
-2. Testimonial Carousel
-3. Testimonial Grid
-4. Testimonial Form
-5. Add New Testimonials
-6. All Testimonials
-7. All Testimonial Views (Shortcodes)
-8. General Settings
-9. Theme Settings
-10. Basic Preferences
-11. Testimonial Content
-12. Reviewer Information
-13. Star Rating
-14. Reviewer Image
-15. Slider Basics
-16. Navigation
-17. Pagination
-18. Miscellaneous
-19. Typography
-20. Create Testimonial Form
-21. Testimonial Form Styles
-22. Form Status Control
-23. Form Labels and Message
+1. Testimonial Carousel block
+2. Testimonial Slider block
+3. Testimonial Grid block
+4. Testimonial Submission Form block
+5. Saved Templates
+6. Settings Page
+7. Testimonial Slider with Shortcode
+8. Testimonial Carousel with Shortcode
+9. Testimonial Grid with Shortcode
+10. Testimonial Form with Shortcode
+11. Add New Testimonials
+12. All Testimonials
+13. All Testimonial Views (Shortcodes)
+14. General Settings
+15. Theme Settings
+16. Basic Preferences
+17. Testimonial Content
+18. Reviewer Information
+19. Star Rating
+20. Reviewer Image
+21. Slider Basics
+22. Navigation
+23. Pagination
+24. Miscellaneous
+25. Typography
+26. Create Testimonial Form
+27. Testimonial Form Styles
+28. Form Status Control
+29. Form Labels and Message
 
 
 == Changelog ==
+
+= 4.0.0 – Sep 04, 2026 =
+* New: Testimonial Slider block
+* New: Testimonial Carousel block
+* New: Testimonial Grid block
+* New: Testimonial Group block
+* New: Testimonial Submission Form block (AJAX submit, photo upload, moderation)
+* New: AJAX Pagination block
+* New: Completely redesigned React-powered dashboard with a new Quick Start page, personalized welcome screen, and Ready Patterns library.
+* New: Block visibility manager with parent/child grouping.
+* New: Saved Templates feature to use blocks anywhere on the website using a shortcode.
+* New: 225+ (Free + Pro) Ready Patterns library for testimonial showcases and forms.
+* New: Page builder integrations for Divi 5, Elementor, Beaver Builder, Bricks, Oxygen, and WPBakery.
+* New: SEO Schema Markup module.
+* Improved: Both classic shortcode blocks enhanced.
+* Improved: Demos, documentation, and footer links updated
+* Improved: Export/import feature moved to the Dashboard Tools page.
+* Improved: Custom CSS/JS editor switched from Monaco to CodeMirror.
+* Updated: Plugin minimum required WP version set to 6.3.
+* Updated: Plugin minimum required PHP version set to 7.4.
+* Updated: Language (.pot) file
+* Tested: WordPress 7.1 compatibility
 
 = 3.1.17 – Aug 21, 2026 =
 * Fixed: The testimonial blocks not working in the WordPress 7.1 iframed editor canvas.

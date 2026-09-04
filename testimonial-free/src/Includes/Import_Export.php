@@ -247,7 +247,9 @@ class Import_Export {
 	 * @return string
 	 */
 	public function parse_description_field( $description ) {
-		$description = str_replace( '\\dq', '"', $description );
+		// Export writes the marker into a JSON-escaped CSV cell, so it can come back with
+		// its backslash doubled; handle both shapes.
+		$description = str_replace( array( '\\\\dq', '\\dq' ), '"', $description );
 		return $description;
 	}
 
@@ -273,19 +275,30 @@ class Import_Export {
 				if ( 'csv' === $file_type ) {
 					$content = $this->parse_description_field( $content );
 				}
+
+				// CSV rows carry no post_date column, so the fallback has to be a valid MySQL
+				// datetime: 'Y/m/d' makes wp_insert_post() bail with an invalid_date WP_Error.
+				$post_date = isset( $shortcode['post_date'] ) ? sanitize_text_field( $shortcode['post_date'] ) : current_time( 'mysql' );
+
 				$new_shortcode_id = wp_insert_post(
 					array(
 						'post_title'   => isset( $shortcode['title'] ) ? sanitize_text_field( $shortcode['title'] ) : '',
-						'post_date'    => isset( $shortcode['post_date'] ) ? sanitize_text_field( $shortcode['post_date'] ) : gmdate( 'Y/m/d' ),
-						'post_content' => isset( $shortcode['content'] ) ? wp_kses_post( $shortcode['content'] ) : '',
+						'post_date'    => $post_date,
+						'post_content' => wp_kses_post( $content ),
 						'post_status'  => 'publish',
 						'post_type'    => $spt_post_type,
 					),
 					true
 				);
 
+				// Must run before the ID is used as an int anywhere below, or PHP prints a
+				// warning into the AJAX response and the JSON parse fails on the client.
+				if ( is_wp_error( $new_shortcode_id ) ) {
+					throw new \Exception( $new_shortcode_id->get_error_message() );
+				}
+
 				if ( isset( $shortcode['all_testimonial'] ) ) {
-					$url = isset( $shortcode['image'] ) && ! empty( $shortcode['image'] ) ? esc_url_raw( $shortcode['image'] ) : '';
+					$url = ! empty( $shortcode['image'] ) ? esc_url_raw( $shortcode['image'] ) : '';
 					// Insert attachment id.
 					if ( $url ) {
 						// Insert attachment ID from sanitized URL.
@@ -296,21 +309,6 @@ class Import_Export {
 							$shortcode['meta']['_thumbnail_id'] = absint( $thumb_id );
 						}
 					}
-				}
-				if ( is_wp_error( $new_shortcode_id ) ) {
-					throw new \Exception( $new_shortcode_id->get_error_message() );
-				}
-
-				if ( isset( $shortcode['all_testimonial'] ) ) {
-					$url = isset( $shortcode['image'] ) && ! empty( $shortcode['image'] ) ? $shortcode['image'] : '';
-					if ( $url ) {
-						// Insert attachment id.
-						$thumb_id                           = $this->insert_attachment_from_url( $url, $new_shortcode_id );
-						$shortcode['meta']['_thumbnail_id'] = $thumb_id;
-					}
-				}
-				if ( is_wp_error( $new_shortcode_id ) ) {
-					throw new \Exception( $new_shortcode_id->get_error_message() );
 				}
 
 				if ( isset( $shortcode['meta'] ) && is_array( $shortcode['meta'] ) ) {
@@ -328,8 +326,11 @@ class Import_Export {
 			} catch ( \Exception $e ) {
 				array_push( $errors[ $index ], $e->getMessage() );
 
-				// If there was a failure somewhere, clean up.
-				wp_trash_post( $new_shortcode_id );
+				// If there was a failure somewhere, clean up. A failed wp_insert_post() leaves a
+				// WP_Error here, which wp_trash_post() would warn on while casting it to int.
+				if ( $new_shortcode_id && ! is_wp_error( $new_shortcode_id ) ) {
+					wp_trash_post( $new_shortcode_id );
+				}
 			}
 
 			// If no errors, remove the index.
@@ -385,6 +386,15 @@ class Import_Export {
 			wp_send_json_error(
 				array(
 					'message' => esc_html__( 'Invalid JSON data.', 'testimonial-free' ),
+				),
+				400
+			);
+		}
+
+		if ( ! isset( $decoded_data['shortcode'] ) || ! is_array( $decoded_data['shortcode'] ) ) {
+			wp_send_json_error(
+				array(
+					'message' => esc_html__( 'The file does not contain any importable testimonials.', 'testimonial-free' ),
 				),
 				400
 			);

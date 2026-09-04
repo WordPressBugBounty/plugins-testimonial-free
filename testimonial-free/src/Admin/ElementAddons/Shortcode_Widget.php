@@ -44,7 +44,7 @@ class Shortcode_Widget extends \Elementor\Widget_Base {
 	 * @return string Widget title.
 	 */
 	public function get_title() {
-		return __( 'Real Testimonial', 'testimonial-free' );
+		return __( 'Real Testimonials Shortcode', 'testimonial-free' );
 	}
 
 	/**
