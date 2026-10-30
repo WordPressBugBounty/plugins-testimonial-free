@@ -2,7 +2,7 @@
     "$schema": "https://schemas.wp.org/trunk/block.json",
     "apiVersion": 3,
     "name": "sp-testimonial-pro/form",
-    "title": "Testimonials Form Shortcode",
+    "title": "Classic Form Shortcode",
     "category": "sp-testimonial-pro",
     "description": "Insert a saved testimonial submission form (shortcode) into your page.",
     "textdomain": "testimonial-free",

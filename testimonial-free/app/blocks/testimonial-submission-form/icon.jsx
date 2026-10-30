@@ -1,3 +1,5 @@
+import { __ } from "@wordpress/i18n";
+
 export const SubmissionFormBlockIcon = () => (
 	<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
 		<path
@@ -44,8 +46,8 @@ export const InputStyleTwoIcon = ({ isActive }) => (
 );
 
 export const INPUT_STYLE_ITEMS = [
-	{ label: "Style One", value: "style-one", Icon: InputStyleOneIcon },
-	{ label: "Style Two", value: "style-two", Icon: InputStyleTwoIcon },
+	{ label: __("Style One", "testimonial-free"), value: "style-one", Icon: InputStyleOneIcon },
+	{ label: __("Style Two", "testimonial-free"), value: "style-two", Icon: InputStyleTwoIcon },
 ];
 
 export const TestimonialSubmissionFormPreviewImage = () => (

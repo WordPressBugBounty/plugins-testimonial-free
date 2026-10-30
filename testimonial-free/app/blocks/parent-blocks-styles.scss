@@ -1,4 +1,22 @@
-// SWIPER BLOCK CSS. 
+// SWIPER BLOCK CSS.
+// Swiper 12 fills the last loop group with blank slides it leaves visible.
+.sp-real-swiper-wrapper > .swiper-slide-blank {
+    visibility: hidden;
+}
+
+// The swiper is pinned to dir="ltr" (Swiper reads its mode from it), so on an
+// RTL site the cards get their text direction back here — on the card, so a
+// Cube/Flip group keeps the same left-to-right card order as Slide. The arrow
+// row and the pagination sit outside it and must stay LTR to match.
+[dir="rtl"] .sp-testimonial-swiper[dir="ltr"] .sp-real-testimonial-card {
+    direction: rtl;
+}
+
+.sp-real-swiper-nav-arrows,
+.sp-real-swiper-pagination {
+    direction: ltr;
+}
+
 // Pagination CSS.
 .sp-real-swiper-pagination {
     // override default css.
@@ -104,27 +122,65 @@
     &.sp-real-nav-pos-bottom_center {
         justify-content: center;
     }
-}
 
-// RTL support
-[dir="rtl"] {
-    .sp-swiper-button-prev {
-        left: auto;
-        right: -20px;
-
-        @media (max-width: 1024px) {
-            right: 10px;
-            left: auto;
-        }
+    // Top and bottom rows sit in the flow, so the block's own height holds them
+    // and they never ride over the content above or below. A `%` Offset Y
+    // resolves against an auto height and does nothing here — which is what
+    // neutralises the `-12%` older blocks saved.
+    &.sp-real-nav-pos-top_left,
+    &.sp-real-nav-pos-top_center,
+    &.sp-real-nav-pos-top_right {
+        position: relative;
+        order: -1;
+        margin-bottom: 10px;
     }
 
-    .sp-swiper-button-next {
-        right: auto;
-        left: -20px;
+    &.sp-real-nav-pos-bottom_left,
+    &.sp-real-nav-pos-bottom_center,
+    &.sp-real-nav-pos-bottom_right {
+        position: relative;
+        margin-top: 10px;
+    }
+}
 
-        @media (max-width: 1024px) {
-            left: 10px;
-            right: auto;
+// A top row prints after the slider; a column flex lifts it above. Swiper's
+// auto side margins would stop the slider stretching, hence the width.
+.sp-real-template-wrapper {
+    &:has(> .sp-real-nav-pos-top_left, > .sp-real-nav-pos-top_center, > .sp-real-nav-pos-top_right) {
+        display: flex;
+        flex-direction: column;
+
+        > .swiper {
+            width: 100%;
+        }
+    }
+}
+
+// LIST BLOCK CSS.
+.sp-real-zigzag-list {
+    .sp-real-card-inner {
+        align-items: center;
+        flex-direction: row;
+        gap: 24px;
+    }
+
+    .sp-real-client-image {
+        width: auto;
+        flex: 0 0 auto;
+    }
+
+    .sp-real-card-content-wrapper {
+        flex: 1 1 auto;
+        min-width: 0;
+    }
+
+    @media (max-width: 599px) {
+        .sp-real-card-inner {
+            flex-direction: column !important;
+        }
+
+        .sp-real-client-image {
+            width: 100%;
         }
     }
 }
@@ -188,6 +244,20 @@
 
         .sp-real-tsf-field__note:not(.sp-tsf-rating-note) {
             text-align: right;
+        }
+
+        // The counter is part of the label section, which sits beside the input
+        // here — lift it out to the top-right of the input instead.
+        .sp-real-tsf-field:has(.sp-real-tsf-field__length) {
+            position: relative;
+            padding-top: 22px;
+        }
+
+        .sp-real-tsf-field__length {
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: auto;
         }
     }
 
@@ -333,7 +403,7 @@
 
     .sp-tsf-full-btn {
         .sp-real-tsf-submit {
-            width: 100%;
+            flex-grow: 1;
         }
     }
 

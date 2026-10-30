@@ -71,6 +71,7 @@ class Dashboard {
 		if ( BlocksHelper::is_active_module( 'saved_templates' ) ) {
 			new SavedTemplates();
 		}
+		BlockUsage::register_hooks();
 	}
 
 	/**
@@ -236,11 +237,26 @@ class Dashboard {
 		/**
 		 * Enqueue block admin dashboard main script.
 		 */
-		wp_enqueue_script( 'sp_real_dashboard_script', SP_RT_PLUGIN_URL . 'dist/rtp-dashboard.js', $dependencies, SP_TFREE_VERSION, true );
+		// The bundles are versioned by file mtime, not SP_TFREE_VERSION: dist
+		// can be rebuilt between releases, and a mid-cycle rebuild would
+		// otherwise stay cached behind an unchanged ?ver.
+		wp_enqueue_script(
+			'sp_real_dashboard_script',
+			SP_RT_PLUGIN_URL . 'dist/rtp-dashboard.js',
+			$dependencies,
+			(string) filemtime( SP_RT_PLUGIN_PATH . 'dist/rtp-dashboard.js' ),
+			true
+		);
 		/**
 		 * Enqueue block admin dashboard main style.
 		 */
-		wp_enqueue_style( 'sp_real_dashboard_style', SP_RT_PLUGIN_URL . 'dist/rtp-dashboard.css', array(), SP_TFREE_VERSION, 'all' );
+		wp_enqueue_style(
+			'sp_real_dashboard_style',
+			SP_RT_PLUGIN_URL . 'dist/rtp-dashboard.css',
+			array(),
+			(string) filemtime( SP_RT_PLUGIN_PATH . 'dist/rtp-dashboard.css' ),
+			'all'
+		);
 
 		/**
 		 * Admin Settings page localization.

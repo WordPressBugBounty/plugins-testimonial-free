@@ -33,6 +33,7 @@ import {
 	RoleManagementModuleIcon,
 	SkeletonLoaderModuleIcon,
 } from "./Icons";
+import { GenerateWithAIModuleIcon } from "../../../ai-builder/icons";
 import { generateDocLink } from "@testimonial/constants";
 
 // Central source of truth for the Modules page.
@@ -100,6 +101,17 @@ export const freeModules = [
 		),
 		videoLink: "#",
 		docLink: generateDocLink("dashboard/modules#seo-schema-markup"),
+	},
+	{
+		id: 7,
+		key: "ai_block_builder",
+		Icon: GenerateWithAIModuleIcon,
+		label: __("Build with AI", "testimonial-free"),
+		desc: __(
+			"Describe a testimonial block in plain words and let AI build it, using an AI provider connected under Settings → Connectors or AI Configuration.",
+			"testimonial-free"
+		),
+		docLink: generateDocLink("dashboard/modules#build-with-ai"),
 	},
 ];
 

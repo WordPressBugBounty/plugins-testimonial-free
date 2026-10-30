@@ -11,7 +11,7 @@ const FormEdit = ({ clientId, attributes, setAttributes }) => {
 			<div className="components-placeholder is-large">
 				<div className="components-placeholder__label sp-d-flex sp-align-center sp-gap-8px">
 					<TestimonialFormShortcodeBlockIcon />
-					<span>{__("Testimonials Form", "testimonial-free")}</span>
+					<span>{__("Classic Form Shortcode", "testimonial-free")}</span>
 				</div>
 				{shortCodeList?.length > 0 ? (
 					<div className="sp-real-gutenberg-shortcode editor-styles-wrapper">

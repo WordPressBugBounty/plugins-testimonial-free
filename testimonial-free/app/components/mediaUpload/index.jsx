@@ -188,8 +188,8 @@ const MediaPicker = ({
 						<Popover toggleIcon={<PopOverImgToggleIcon />}>
 							<ButtonGroup
 								items={[
-									{ label: "Collapsed", value: "collapsed" },
-									{ label: "Expanded", value: "expanded" },
+									{ label: __("Collapsed", "testimonial-free"), value: "collapsed" },
+									{ label: __("Expanded", "testimonial-free"), value: "expanded" },
 								]}
 								attributes={toggleState}
 								onClick={(value) => updateToggleState(value)}
@@ -205,9 +205,9 @@ const MediaPicker = ({
 							<ButtonGroup
 								label={__("Image Scale", "testimonial-free")}
 								items={[
-									{ label: "Cover", value: "cover" },
-									{ label: "Contain", value: "contain" },
-									{ label: "Fill", value: "fill" },
+									{ label: __("Cover", "testimonial-free"), value: "cover" },
+									{ label: __("Contain", "testimonial-free"), value: "contain" },
+									{ label: __("Fill", "testimonial-free"), value: "fill" },
 								]}
 								attributes={toggleStateScale}
 								onClick={(value) => updateScale(value)}

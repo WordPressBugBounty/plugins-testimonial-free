@@ -82,7 +82,9 @@ class APIHelper {
 		$status = self::resolve_tsf_status( $block_attributes );
 
 		return array(
-			'post_title'   => $title ? $title : $name,
+			// The title is the reviewer's own words, not their name: an empty
+			// title stays empty (the card renders no title row then).
+			'post_title'   => $title,
 			'post_content' => $content,
 			'post_status'  => $status,
 			'post_type'    => 'spt_testimonial',

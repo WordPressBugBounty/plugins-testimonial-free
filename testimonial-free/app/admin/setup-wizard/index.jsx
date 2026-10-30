@@ -82,7 +82,7 @@ const SetupWizard = () => {
 								className="sp-real-setup-wizard-nav-btn prev-btn"
 								href={`${homeUrl}wp-admin/admin.php?page=rtp_dashboard`}
 							>
-								{"Skip it"}
+								{__("Skip it", "testimonial-free")}
 							</a>
 						)}
 						{stepNumber !== setupSteps.length - 1 && (
@@ -100,7 +100,7 @@ const SetupWizard = () => {
 				<img
 					className="setup-wizard-bg"
 					src={`${pluginUrl}src/Admin/assets/images/setup-wizard/setup-wizard-bg.svg`}
-					alt="setup wizard"
+					alt={__("setup wizard", "testimonial-free")}
 				/>
 				<Toaster
 					position="top-right"

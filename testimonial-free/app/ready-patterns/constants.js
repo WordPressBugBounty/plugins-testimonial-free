@@ -2,6 +2,8 @@
  * Constants for Smart Design Library
  */
 
+import { __ } from "@wordpress/i18n";
+
 // API Endpoints
 export const API_ENDPOINTS = {
 	PATTERNS: "/real-testimonial/v2/get_premade_patterns",
@@ -34,8 +36,7 @@ export const DEFAULTS = {
 // (e.g. the "Start with Ready Patterns" button on the Quick Start page).
 export const AUTO_OPEN = {
 	QUERY_ARG: "realpatterns",
-	// Optional block slug to preselect in the Block Type facet. Set by the
-	// dashboard Blocks cards via `generatePatternLibraryLink()`.
+	// Optional block slug to preselect in the Block Type facet.
 	BLOCK_ARG: "rtp_pattern_block",
 	POLL_INTERVAL: 200,
 	MAX_ATTEMPTS: 50,
@@ -52,8 +53,8 @@ export const KEYBOARD_KEYS = {
 // Filter Options
 export const FILTER_OPTIONS = {
 	TREND: [
-		{ value: "default", label: "Sort By" },
-		{ value: "popular", label: "Popular" },
-		{ value: "latest", label: "Latest" },
+		{ value: "default", label: __("Sort By", "testimonial-free") },
+		{ value: "popular", label: __("Popular", "testimonial-free") },
+		{ value: "latest", label: __("Latest", "testimonial-free") },
 	],
 };

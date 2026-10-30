@@ -1,20 +1,16 @@
+import { __ } from "@wordpress/i18n";
 import Toggle from "react-toggle";
 import { memo } from "@wordpress/element";
-import { generatePatternLibraryLink, testimonialBlocksInfo } from "@testimonial/constants";
+import { generateDemoLink, testimonialBlocksInfo } from "@testimonial/constants";
 import { Demos, Docs } from "../Icons";
 
-const ToggleCard = ({ attributes, blockShowHideHandler, adminUrl, isPro = false }) => {
+const ToggleCard = ({ attributes, blockShowHideHandler, isPro = false }) => {
 	const { show, name } = attributes;
 	// return if block info don't exist.
 	if (!testimonialBlocksInfo[name]) {
 		return;
 	}
 	const { Icon, patternSlug, docLink, title } = testimonialBlocksInfo[name];
-	// Only blocks the pattern catalog actually covers carry a `patternSlug`, so
-	// child/shortcode blocks never link to an empty library. Deliberately not
-	// gated on the `pattern_library` module — the deep link opens the library
-	// either way (see maybeAutoOpen() in ready-patterns/ToolbarButton.jsx).
-	const showDemoLink = patternSlug && adminUrl;
 
 	return (
 		<div className={`sp-real-visibility-setting-card sp-d-flex sp-justify-between sp-align-center`}>
@@ -26,7 +22,7 @@ const ToggleCard = ({ attributes, blockShowHideHandler, adminUrl, isPro = false 
 							fill="#4ab866"
 						/>
 					</svg>
-					<span>Pro</span>
+					<span>{__("Pro", "testimonial-free")}</span>
 				</div>
 			)}
 			<div className="sp-real-visibility-setting-card-info sp-d-flex sp-align-center">
@@ -46,19 +42,19 @@ const ToggleCard = ({ attributes, blockShowHideHandler, adminUrl, isPro = false 
 									target="_blank"
 									rel="noreferrer"
 								>
-									<Docs /> Docs
+									<Docs /> {__("Docs", "testimonial-free")}
 								</a>
 							</li>
 						)}
-						{showDemoLink && (
+						{patternSlug && (
 							<li className="sp-real-demo-link">
 								<a
 									className="sp-d-flex sp-align-center"
-									href={generatePatternLibraryLink(adminUrl, patternSlug)}
+									href={generateDemoLink(patternSlug)}
 									target="_blank"
 									rel="noreferrer"
 								>
-									<Demos /> Demo
+									<Demos /> {__("Demo", "testimonial-free")}
 								</a>
 							</li>
 						)}

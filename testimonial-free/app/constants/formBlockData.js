@@ -1,3 +1,5 @@
+import { __ } from "@wordpress/i18n";
+
 // default field set — used by the RESET action to restore the original fields.
 // Free ships name/email/designation/rating/title/text; company name, website,
 // phone, video, location, groups, and custom fields are Pro-only.
@@ -87,11 +89,11 @@ export const ALL_FORM_FIELDS = [...DEFAULT_FORM_FIELDS, ...FORM_ADDITIONAL_FIELD
 // Pro-only fields — shown as locked "(Pro)" teasers in the "Add New Field"
 // popup. Not addable in free; the label mirrors the Pro plugin's popup.
 export const PRO_FORM_FIELDS = [
-	{ key: "company_name", label: "Company Name" },
-	{ key: "website", label: "Website" },
-	{ key: "phone", label: "Phone or Mobile" },
-	{ key: "video", label: "Video Testimonial" },
-	{ key: "social", label: "Social Profile" },
-	{ key: "media", label: "Testimonial Media" },
-	{ key: "custom", label: "Custom Field" },
+	{ key: "company_name", label: __("Company Name", "testimonial-free") },
+	{ key: "website", label: __("Website", "testimonial-free") },
+	{ key: "phone", label: __("Phone or Mobile", "testimonial-free") },
+	{ key: "video", label: __("Video Testimonial", "testimonial-free") },
+	{ key: "social", label: __("Social Profile", "testimonial-free") },
+	{ key: "media", label: __("Testimonial Media", "testimonial-free") },
+	{ key: "custom", label: __("Custom Field", "testimonial-free") },
 ];

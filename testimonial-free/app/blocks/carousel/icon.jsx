@@ -1,3 +1,5 @@
+import { __ } from "@wordpress/i18n";
+
 export const CarouselBlockIcon = () => (
 	<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
 		<path
@@ -224,10 +226,10 @@ export const CarouselTemplateThreeIcon = ({ isActive }) => (
 );
 
 export const carouselTemplateIcons = [
-	{ label: "Standard", value: "default", Icon: CarouselTemplateOneIcon },
+	{ label: __("Standard", "testimonial-free"), value: "default", Icon: CarouselTemplateOneIcon },
 	// Center + Coverflow are Pro-only: locked in the picker (see PresetPicker).
-	{ label: "Center", value: "center", Icon: CarouselCenterStyleIcon, pro: true },
-	{ label: "Coverflow", value: "coverflow", Icon: CarouselTemplateThreeIcon, pro: true },
+	{ label: __("Center", "testimonial-free"), value: "center", Icon: CarouselCenterStyleIcon, pro: true },
+	{ label: __("Coverflow", "testimonial-free"), value: "coverflow", Icon: CarouselTemplateThreeIcon, pro: true },
 ];
 
 export const CarouselBlockPreviewImage = () => (

@@ -8,7 +8,8 @@
 // Update block category
 import { updateCategory } from "@wordpress/blocks";
 import { CategoryIcon, ProCategoryIcon } from "../icons";
-import { ToolbarLibrary } from "../ready-patterns/ToolbarButton";
+import { initPatternsLibrary } from "../ready-patterns/ToolbarButton";
+import { registerAIBuilder } from "../ai-builder";
 
 // Import editor styles
 import "./editor.scss";
@@ -28,13 +29,17 @@ updateCategory("sp-testimonial-pro-blocks", {
 	icon: <ProCategoryIcon />,
 });
 
-// Toolbar button for testimonial patterns library.
-ToolbarLibrary();
+// Patterns library deep-link auto-open.
+initPatternsLibrary();
+
+// Build with AI: modal host and "Refine with AI" toolbar button.
+registerAIBuilder();
 
 // import blocks.
 import "./carousel";
 import "./slider";
 import "./grid";
+import "./zigzag-list";
 import "./testimonial-group";
 import "./ajax-pagination";
 import "./testimonial-submission-form";

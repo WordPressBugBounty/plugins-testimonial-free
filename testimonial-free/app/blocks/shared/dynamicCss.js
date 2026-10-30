@@ -4,6 +4,7 @@ import {
 	spRealBgControl,
 	generateBorderStyles,
 	spRealBackgroundImgCss,
+	bgHoverFadeCss,
 	filterResponsiveDynamicCss,
 	generateTypographyCss,
 	generateTypoResponsive,
@@ -52,6 +53,11 @@ const responsiveCssFn = (attributes, device = "Desktop") => {
 		paginationDotsMargin,
 		realPadding,
 		realMargin,
+		// List-only.
+		rowGap,
+		rowDividerStyle,
+		rowDividerWidth,
+		rowDividerColor,
 	} = attributes;
 
 	const uniqueIdClass = uniqueId ? `#${uniqueId}` : "";
@@ -95,6 +101,32 @@ const responsiveCssFn = (attributes, device = "Desktop") => {
 				"row-gap": singleResponsiveCss(attributes?.rowGap, device),
 			},
 		},
+		// List layout: one row per testimonial. PHP mirror: SharedCss (zigzag-list).
+		...(blockName === "zigzag-list"
+			? [
+					{
+						selector: `${uniqueIdClass} .sp-real-grid-wrapper`,
+						styles: {
+							display: "flex",
+							"flex-direction": "column",
+							"row-gap": singleResponsiveCss(rowGap, device),
+						},
+					},
+					...(rowDividerStyle && rowDividerStyle !== "none"
+						? [
+								{
+									selector: `${uniqueIdClass} .sp-real-grid-wrapper > .sp-real-testimonial-card:not(:last-child)`,
+									styles: {
+										"padding-bottom": singleResponsiveCss(rowGap, device),
+										"border-bottom-style": rowDividerStyle,
+										"border-bottom-width": singleResponsiveCss(rowDividerWidth, device),
+										"border-bottom-color": rowDividerColor?.normal || "",
+									},
+								},
+							]
+						: []),
+				]
+			: []),
 		// Card padding.
 		{
 			selector: `${uniqueIdClass} .sp-real-card-inner`,
@@ -336,6 +368,16 @@ const dynamicCss = (attributes) => {
 	const uniqueIdClass = uniqueId ? `#${uniqueId}` : "";
 	const visibility = getVisibilityCss({ uniqueId, hideOnDesktop, hideOnTablet, hideOnMobile });
 
+	// A gradient or image hover background cannot transition, so it goes on a
+	// ::before overlay instead and the hover rule skips `background`.
+	const cardBgFadeCss = bgHoverFadeCss(`${uniqueIdClass} .sp-real-card-inner`, cardBackground);
+	const cardHoverBg = cardBgFadeCss.length
+		? {}
+		: {
+				background: spRealBgControl(cardBackground?.hover),
+				...spRealBackgroundImgCss(cardBackground?.hover),
+			};
+
 	// Desktop css.
 	let desktopCss = [
 		...visibility?.Desktop,
@@ -363,11 +405,11 @@ const dynamicCss = (attributes) => {
 			selector: `${uniqueIdClass} .sp-real-card-inner:hover`,
 			styles: {
 				"border-color": cardBorder?.hoverColor,
-				background: spRealBgControl(cardBackground?.hover),
-				...spRealBackgroundImgCss(cardBackground?.hover),
+				...cardHoverBg,
 				...boxShadowCss(cardBoxShadowHover),
 			},
 		},
+		...cardBgFadeCss,
 		// Title.
 		checkIsActiveCardItem(cardContents, "testimonial_title") && {
 			selector: `${uniqueIdClass} .sp-real-client-title`,

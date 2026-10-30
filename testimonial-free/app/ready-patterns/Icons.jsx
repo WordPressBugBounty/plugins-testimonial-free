@@ -1,3 +1,5 @@
+import { __ } from "@wordpress/i18n";
+
 export const CloseIcon = ({ fill = "currentColor" }) => (
 	<svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 13 13" fill="none" aria-hidden="true">
 		<path
@@ -7,16 +9,27 @@ export const CloseIcon = ({ fill = "currentColor" }) => (
 	</svg>
 );
 
-export const BackArrowIcon = () => (
-	<svg width={14} height={14} viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+export const ChevronLeftIcon = () => (
+	<svg width={14} height={14} viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
 		<path
-			d="M1 5h10a2 2 0 0 1 2 2v5"
-			stroke="#757575"
-			strokeWidth={1.4}
+			d="M8.75 3.5 5.25 7l3.5 3.5"
+			stroke="currentColor"
+			strokeWidth={1.5}
 			strokeLinecap="round"
 			strokeLinejoin="round"
 		/>
-		<path d="M4 8 1 5l3-3" stroke="#757575" strokeWidth={1.4} strokeLinecap="round" strokeLinejoin="round" />
+	</svg>
+);
+
+export const ChevronRightIcon = () => (
+	<svg width={14} height={14} viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+		<path
+			d="M5.25 3.5 8.75 7l-3.5 3.5"
+			stroke="currentColor"
+			strokeWidth={1.5}
+			strokeLinecap="round"
+			strokeLinejoin="round"
+		/>
 	</svg>
 );
 
@@ -62,7 +75,7 @@ export const GridTwoColIcon = () => (
 		height="24"
 		viewBox="0 0 24 24"
 		role="img"
-		aria-label="2x2 grid filled"
+		aria-label={__("2x2 grid filled", "testimonial-free")}
 	>
 		<rect x="3" y="3" width="8" height="8" rx="1" fill="currentColor" />
 		<rect x="13" y="3" width="8" height="8" rx="1" fill="currentColor" />
@@ -78,7 +91,7 @@ export const GridThreeColIcon = () => (
 		height="24"
 		viewBox="0 0 24 24"
 		role="img"
-		aria-label="3x3 grid filled"
+		aria-label={__("3x3 grid filled", "testimonial-free")}
 	>
 		<rect x="2" y="2" width="6" height="6" rx="1" fill="currentColor" />
 		<rect x="9" y="2" width="6" height="6" rx="1" fill="currentColor" />

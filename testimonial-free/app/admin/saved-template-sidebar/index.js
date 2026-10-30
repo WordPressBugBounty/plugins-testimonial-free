@@ -153,7 +153,11 @@ const SavedTemplateSidebar = () => {
 			>
 				<span className="sp-real-shortcode-panel__code">{shortcode}</span>
 				<span className="sp-real-shortcode-panel__copy">
-					{copied ? <span className="sp-real-shortcode-panel__copy-text">Copied!</span> : <CopyIcon />}
+					{copied ? (
+						<span className="sp-real-shortcode-panel__copy-text">{__("Copied!", "testimonial-free")}</span>
+					) : (
+						<CopyIcon />
+					)}
 				</span>
 			</button>
 		</div>,

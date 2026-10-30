@@ -69,6 +69,10 @@ const RenderModuleCard = ({ items = [], optionKey = "integrations", hideUpcoming
 	const SettingsComponent = activeItem?.SettingsComponent;
 	// default settings.
 	const moduleData = dashboardSettings?.[optionKey] || defaultDashboardSettings[optionKey];
+	// A key added after the option was first saved (e.g. `ai_block_builder`) is
+	// missing from `moduleData`; show its shipped default, which is what PHP
+	// already treats it as.
+	const isActive = (key) => moduleData?.[key]?.is_active ?? defaultDashboardSettings[optionKey]?.[key]?.is_active;
 
 	const handleSaveData = (queryData) => {
 		const modifiedData = { ...dashboardSettings, [optionKey]: queryData };
@@ -115,16 +119,18 @@ const RenderModuleCard = ({ items = [], optionKey = "integrations", hideUpcoming
 									{pro ? (
 										<span className="sp-real-integrations-card__pro-badge sp-d-flex sp-align-center sp-gap-4px">
 											<ProIconLight />
-											{__("PRO", "testimonial-free")}
+											<span className="sp-real-integrations-card__pro-badge-text">
+												{__("PRO", "testimonial-free")}
+											</span>
 										</span>
 									) : (
 										key && (
 											<Toggle
 												icons={false}
-												defaultChecked={upcoming ? false : moduleData?.[key]?.is_active}
+												defaultChecked={upcoming ? false : isActive(key)}
 												onChange={() => {
 													if (!upcoming) {
-														handleToggle(key, !moduleData?.[key]?.is_active);
+														handleToggle(key, !isActive(key));
 													}
 												}}
 											/>
@@ -145,7 +151,7 @@ const RenderModuleCard = ({ items = [], optionKey = "integrations", hideUpcoming
 												target="_blank"
 												rel="noreferrer"
 											>
-												<Demos /> Demo
+												<Demos /> {__("Demo", "testimonial-free")}
 											</a>
 										)}
 										{hasLink(videoLink) && (
@@ -155,7 +161,7 @@ const RenderModuleCard = ({ items = [], optionKey = "integrations", hideUpcoming
 												target="_blank"
 												rel="noreferrer"
 											>
-												<VideoPlayLiteIcon /> Video
+												<VideoPlayLiteIcon /> {__("Video", "testimonial-free")}
 											</a>
 										)}
 										{hasLink(docLink) && (
@@ -165,7 +171,7 @@ const RenderModuleCard = ({ items = [], optionKey = "integrations", hideUpcoming
 												target="_blank"
 												rel="noreferrer"
 											>
-												<Docs /> Docs
+												<Docs /> {__("Docs", "testimonial-free")}
 											</a>
 										)}
 									</div>

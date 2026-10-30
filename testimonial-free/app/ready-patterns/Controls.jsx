@@ -1,12 +1,5 @@
 import { createRoot } from "@wordpress/element";
-import { testimonialBlocksInfo } from "@testimonial/constants";
 import Library from "./Library";
-
-export const currentBlockTitle = (blockName) => {
-	const fullName = `sp-testimonial-pro/${blockName}`;
-	const block = testimonialBlocksInfo[fullName];
-	return block ? block?.title : "";
-};
 
 // Close modal.
 let modalRoot = null;
@@ -22,10 +15,12 @@ export const onRemoveSinglePatternPopup = () => {
 	}
 	document.body.classList.remove("sp-real-patterns-popup-open");
 };
-// Open modal.
-export const onOpenSinglePatternPopup = (e, blockName, removeBlock = false) => {
-	e.preventDefault();
-
+/**
+ * Mount the Ready Patterns library in a fresh modal node.
+ *
+ * @param {Object} libraryProps Props passed through to `<Library>`.
+ */
+const mountPatternLibrary = (libraryProps) => {
 	// If modal already exists, do nothing.
 	if (document.querySelector(".sp-real-patterns-builder-modal")) {
 		return;
@@ -36,14 +31,7 @@ export const onOpenSinglePatternPopup = (e, blockName, removeBlock = false) => {
 	document.body.appendChild(node);
 
 	modalRoot = createRoot(node);
-	modalRoot.render(
-		<Library
-			isShow={true}
-			onClose={onRemoveSinglePatternPopup}
-			currentBlockName={blockName}
-			removeBlock={removeBlock}
-		/>
-	);
+	modalRoot.render(<Library isShow={true} onClose={onRemoveSinglePatternPopup} {...libraryProps} />);
 	document.body.classList.add("sp-real-patterns-popup-open");
 
 	// Close when clicking outside.
@@ -54,4 +42,18 @@ export const onOpenSinglePatternPopup = (e, blockName, removeBlock = false) => {
 			}
 		});
 	}, 0);
+};
+
+/**
+ * Open the Ready Patterns modal — the filter sidebar is always visible and the
+ * Block Type facet is preselected to the invoking block ("All Patterns" for an
+ * unknown slug), so the user can narrow or widen back out.
+ *
+ * @param {Object}           e           Click event.
+ * @param {string}           blockName   Block slug to preselect in the facet.
+ * @param {Function|boolean} removeBlock Optional placeholder remover (first-insert picker).
+ */
+export const onOpenBlockPatternPopup = (e, blockName, removeBlock = false) => {
+	e.preventDefault();
+	mountPatternLibrary({ initialBlockType: blockName, removeBlock });
 };

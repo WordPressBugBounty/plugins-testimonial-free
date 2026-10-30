@@ -387,93 +387,12 @@ div:has(>.sp-testimonial-tabs-panel)~div:has(>.block-editor-block-inspector__adv
             transition: all 0.15s ease-in-out;
         }
 
-        &:hover {
+        &:not(.sp-real-pro-locked):hover {
             transform: translateY(-2px);
 
             rect:nth-child(2) {
                 stroke: var(--sp-real-primary-color) !important;
             }
-        }
-    }
-}
-
-// Pro-locked picker item (card designs 3-6, Pro carousel layouts, etc.).
-// Hovering dims the preview behind an overlay and reveals a centered "Pro" capsule.
-.sp-real-icon-set-pro {
-    position: relative;
-    border-radius: 4px;
-
-    >svg:first-child {
-        opacity: 0.5;
-    }
-
-    &::before {
-        content: "";
-        position: absolute;
-        inset: 0;
-        border-radius: inherit;
-        background: rgba(255, 255, 255, 0.45);
-        opacity: 0;
-        transition: opacity 0.15s ease-in-out;
-        pointer-events: none;
-        z-index: 1;
-    }
-
-    .sp-real-pro-capsule {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%) scale(0.9);
-        display: inline-flex;
-        align-items: center;
-        gap: 4px;
-        padding: 2px 6px;
-        border-radius: 3px;
-        background: #22a11a;
-        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
-        color: #fff;
-        font-size: 10px;
-        font-weight: 500;
-        line-height: 1.7;
-        letter-spacing: 0;
-        text-transform: uppercase;
-        white-space: nowrap;
-        opacity: 0;
-        pointer-events: none;
-        transition: opacity 0.15s ease-in-out, transform 0.15s ease-in-out;
-        z-index: 2;
-
-        svg {
-            width: 11px;
-            height: 11px;
-            flex-shrink: 0;
-        }
-    }
-
-    &:hover {
-        &::before {
-            opacity: 1;
-        }
-
-        .sp-real-pro-capsule {
-            opacity: 1;
-            transform: translate(-50%, -50%) scale(1);
-        }
-    }
-
-    .sp-real-pro-lock {
-        position: absolute;
-        top: 2px;
-        right: 2px;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        color: #f0a12e;
-        z-index: 2;
-
-        svg {
-            width: 12px;
-            height: 12px;
         }
     }
 }
@@ -512,7 +431,7 @@ div:has(>.sp-testimonial-tabs-panel)~div:has(>.block-editor-block-inspector__adv
             color: #949494;
         }
 
-        &:hover {
+        &:not(.sp-real-pro-locked):hover {
             border-color: var(--sp-real-primary-color);
         }
 
@@ -582,3 +501,14 @@ div:has(>.sp-testimonial-tabs-panel)~div:has(>.block-editor-block-inspector__adv
         background-color: transparent;
     }
 }
+// Block icons hardcode their blue fill; follow the text color of a selected
+// List View row or an autocomplete result instead.
+.block-editor-list-view-leaf.is-selected .block-editor-block-icon svg,
+.components-autocomplete__result.is-selected .block-editor-block-icon svg,
+.components-autocomplete__result.is-primary .block-editor-block-icon svg {
+	[fill="#1e67d8"],
+	[fill="#1B73E8"] {
+		fill: currentColor;
+	}
+}
+

@@ -44,10 +44,13 @@ export const fetchApiData =
  * The API returns the full updated state, which replaces the store data.
  *
  * @param {Object} modifiedData - The data to save (e.g. { settings: {...} } ).
+ * @return {boolean} Whether the save succeeded — callers that surface the
+ *                   failure to the user need more than a console log.
  */
 export const saveSettings =
 	(modifiedData) =>
 	async ({ dispatch }) => {
+		let isSaved = false;
 		dispatch(setSaving(true));
 		try {
 			const data = await apiFetch({
@@ -56,11 +59,13 @@ export const saveSettings =
 				data: modifiedData,
 			});
 			dispatch(setApiData(data));
+			isSaved = true;
 		} catch (error) {
 			// eslint-disable-next-line no-console
 			console.error("Error saving data:", error.message);
 		}
 		dispatch(setSaving(false));
+		return isSaved;
 	};
 
 export const setTemplatesLoading = (isLoading) => ({

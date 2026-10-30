@@ -1,6 +1,6 @@
 import { __ } from "@wordpress/i18n";
 import { TabControls } from "@testimonial/components";
-import { inArray } from "@testimonial/controls";
+import { checkIsActiveCardItem, inArray } from "@testimonial/controls";
 import { PanelBody } from "@wordpress/components";
 import {
 	LayoutsGeneralTab,
@@ -29,7 +29,7 @@ import { AdvancedGeneralTab, AdvancedTab, VisibilityTab } from "./AdvancedTab";
 import { ProPanelTitle } from "../../components/proControls";
 
 const SharedInspector = ({ attributes, setAttributes }) => {
-	const { blockName, enablePaginationDots, enableNavigationArrow } = attributes;
+	const { blockName, enablePaginationDots, enableNavigationArrow, cardContents } = attributes;
 	const { togglePanelBody, openedPanelBody, activeTab, toggleActiveTab, highlightedPanel } = useTogglePanelBody();
 	const checkOpenedPanelBody = (accordionName) => {
 		return openedPanelBody === accordionName ? true : false;
@@ -48,7 +48,7 @@ const SharedInspector = ({ attributes, setAttributes }) => {
 				onToggle={() => togglePanelBody("defaultOpen")}
 				initialOpen={true}
 			>
-				{inArray(["grid", "polaroid-grid", "bento-grid", "masonry"], blockName) ? (
+				{inArray(["grid", "polaroid-grid", "bento-grid", "masonry", "zigzag-list"], blockName) ? (
 					<LayoutsGeneralTab attributes={attributes} setAttributes={setAttributes} />
 				) : (
 					<TabControls
@@ -161,22 +161,24 @@ const SharedInspector = ({ attributes, setAttributes }) => {
 				/>
 			</PanelBody>
 
-			{/* Reviewer Image Panel */}
-			<PanelBody
-				title={__("Reviewer Image", "testimonial-free")}
-				opened={checkOpenedPanelBody("reviewer-image")}
-				className={highlightClass("reviewer-image")}
-				onToggle={() => togglePanelBody("reviewer-image")}
-			>
-				<TabControls
-					attributes={attributes}
-					setAttributes={setAttributes}
-					GeneralTab={ReviewerImageGeneralTab}
-					StyleTab={ReviewerImageStyleTab}
-					tabName={activeTab}
-					setTabName={toggleActiveTab}
-				/>
-			</PanelBody>
+			{/* Reviewer Image Panel — only while the avatar slot is on. */}
+			{checkIsActiveCardItem(cardContents, "reviewer_image") && (
+				<PanelBody
+					title={__("Reviewer Image", "testimonial-free")}
+					opened={checkOpenedPanelBody("reviewer-image")}
+					className={highlightClass("reviewer-image")}
+					onToggle={() => togglePanelBody("reviewer-image")}
+				>
+					<TabControls
+						attributes={attributes}
+						setAttributes={setAttributes}
+						GeneralTab={ReviewerImageGeneralTab}
+						StyleTab={ReviewerImageStyleTab}
+						tabName={activeTab}
+						setTabName={toggleActiveTab}
+					/>
+				</PanelBody>
+			)}
 
 			{/* Reviewer Details Panel */}
 			<PanelBody

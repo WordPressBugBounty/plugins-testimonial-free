@@ -75,6 +75,58 @@ export const spRealBackgroundImgCss = (attr) => {
 };
 
 /**
+ * Fade a normal → hover background swap through a `::before` overlay.
+ *
+ * `transition` cannot interpolate `background-image`, so a gradient or image on either
+ * state snaps on hover. When one is involved the hover background is painted on an
+ * overlay under the content and its opacity is transitioned instead; the caller then
+ * leaves `background` out of its own `:hover` rule. Mirrors PHP `CssHelpers::bg_hover_fade_css()`.
+ *
+ * @param {string} selector   - Element carrying the background.
+ * @param {Object} background - `Utils::bg()` attribute with `normal` and `hover` states.
+ * @return {Array} Rule objects; empty when a plain `transition` already handles the swap.
+ */
+export const bgHoverFadeCss = (selector, background) => {
+	const hover = background?.hover || {};
+	const hoverValue = spRealBgControl(hover);
+	const states = [background?.normal?.style, hover.style];
+
+	if (
+		!hoverValue ||
+		"transparent" === hover.style ||
+		!states.some((style) => inArray(["gradient", "image"], style))
+	) {
+		return [];
+	}
+
+	return [
+		{
+			selector,
+			styles: { position: "relative", isolation: "isolate" },
+		},
+		{
+			selector: `${selector}::before`,
+			styles: {
+				content: '""',
+				position: "absolute",
+				inset: "0",
+				"z-index": "-1",
+				"border-radius": "inherit",
+				background: hoverValue,
+				...spRealBackgroundImgCss(hover),
+				opacity: "0",
+				transition: "inherit",
+				"pointer-events": "none",
+			},
+		},
+		{
+			selector: `${selector}:hover::before`,
+			styles: { opacity: "1" },
+		},
+	];
+};
+
+/**
  * Truthy-check a single css value: rejects null/undefined/empty-string but keeps `0`.
  *
  * @param {*} value - Raw side / scalar value coming from a block attribute.
@@ -238,7 +290,7 @@ export const generateTypoResponsive = (attributes, device, key) => {
 	const lineHeight = attributes[`${key}LineHeight`].device[device];
 	let letterSpacing = attributes[`${key}LetterSpacing`]?.device?.[device];
 
-	if (letterSpacing === null || letterSpacing === undefined || letterSpacing === "") {
+	if (letterSpacing === undefined) {
 		letterSpacing = 0;
 	}
 
@@ -249,9 +301,10 @@ export const generateTypoResponsive = (attributes, device, key) => {
 		...(lineHeight && {
 			"line-height": lineHeight,
 		}),
-		...(letterSpacing !== undefined && {
-			"letter-spacing": letterSpacing + (attributes[`${key}LetterSpacing`]?.unit?.[device] || "px"),
-		}),
+		...(letterSpacing !== null &&
+			letterSpacing !== "" && {
+				"letter-spacing": letterSpacing + (attributes[`${key}LetterSpacing`]?.unit?.[device] || "px"),
+			}),
 	};
 };
 
@@ -304,11 +357,31 @@ export const getRealBlockProps = (blockProps, customIdName = "", customClassName
 		...blockProps,
 		className: `sp-real-testimonial-block ${blockProps?.className}`,
 	};
-	if ("" !== customIdName) {
+	if (customIdName) {
 		props = { ...props, id: `${customIdName}` };
 	}
-	if ("" !== customIdName) {
+	if (customClassName) {
 		props = { ...props, className: `${props?.className} ${customClassName}` };
+	}
+	return props;
+};
+
+/**
+ * Block props for a child block: its own root is the editor wrapper, so no
+ * `sp-real-testimonial-block` class, and the id is the block's `uniqueId`.
+ *
+ * @param {Object} blockProps Props from `useBlockProps()`.
+ * @param {string} uniqueId   Block uniqueId — the dynamic CSS scope.
+ * @param {string} className  Root classes, custom CSS class included.
+ * @return {Object} Merged block props.
+ */
+export const getChildBlockProps = (blockProps, uniqueId = "", className = "") => {
+	let props = {
+		...blockProps,
+		className: `${blockProps?.className} ${className}`,
+	};
+	if (uniqueId) {
+		props = { ...props, id: uniqueId };
 	}
 	return props;
 };

@@ -64,18 +64,26 @@ export const VisibilityTab = ({ attributes, setAttributes }) => {
 	);
 };
 
+export const ChildAdvancedTab = ({ attributes, setAttributes }) => {
+	const { customClassName } = attributes;
+
+	return (
+		<InputControl
+			label={__("Custom CSS Class", "testimonial-free")}
+			inputType="text"
+			attributes={customClassName}
+			attributesKey={"customClassName"}
+			setAttributes={setAttributes}
+		/>
+	);
+};
+
 export const AdvancedTab = ({ attributes, setAttributes }) => {
-	const { customClassName, customIdName } = attributes;
+	const { customIdName } = attributes;
 
 	return (
 		<>
-			<InputControl
-				label={__("Custom CSS Class", "testimonial-free")}
-				inputType="text"
-				attributes={customClassName}
-				attributesKey={"customClassName"}
-				setAttributes={setAttributes}
-			/>
+			<ChildAdvancedTab attributes={attributes} setAttributes={setAttributes} />
 			<InputControl
 				label={__("Custom CSS ID", "testimonial-free")}
 				inputType="text"

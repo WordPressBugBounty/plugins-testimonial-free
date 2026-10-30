@@ -14,6 +14,8 @@ use ShapedPlugin\TestimonialFree\Blocks\Includes\TestimonialQuery;
 use ShapedPlugin\TestimonialFree\Blocks\Templates\CardTemplate;
 use ShapedPlugin\TestimonialFree\Admin\Dashboard\DashboardHelper;
 use ShapedPlugin\TestimonialFree\Blocks\Includes\BlocksHelper;
+use ShapedPlugin\TestimonialFree\Blocks\Includes\AIBuilder\AIBuilder;
+use ShapedPlugin\TestimonialFree\Blocks\Includes\AIBuilder\Catalog;
 
 // Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) {
@@ -105,6 +107,79 @@ class ManageAPI {
 				'methods'             => 'GET',
 				'callback'            => array( $this, 'get_testimonial_api_data' ),
 				'permission_callback' => array( $this, 'check_permission' ),
+			)
+		);
+		register_rest_route(
+			self::REST_NAMESPACE,
+			'/ai-generate',
+			array(
+				'methods'             => 'POST',
+				'callback'            => array( $this, 'ai_generate_block' ),
+				'permission_callback' => array( $this, 'check_ai_builder_permission' ),
+				'args'                => array(
+					'prompt'             => array(
+						'type'              => 'string',
+						'required'          => true,
+						'sanitize_callback' => 'sanitize_textarea_field',
+					),
+					'blockName'          => array(
+						'type'              => 'string',
+						'default'           => 'carousel',
+						'enum'              => Catalog::BLOCKS,
+						'sanitize_callback' => 'sanitize_key',
+						'validate_callback' => 'rest_validate_request_arg',
+					),
+					'existingAttributes' => array(
+						'type'    => 'object',
+						'default' => array(),
+					),
+					'provider'           => array(
+						'type'              => 'string',
+						'default'           => '',
+						'sanitize_callback' => 'sanitize_key',
+					),
+					'model'              => array(
+						'type'              => 'string',
+						'default'           => '',
+						'sanitize_callback' => 'sanitize_text_field',
+					),
+				),
+			)
+		);
+	}
+
+	/**
+	 * Permission for the Build with AI route: the module must be on, then the
+	 * same capability every other editor route asks for.
+	 *
+	 * @return bool|\WP_Error
+	 */
+	public function check_ai_builder_permission() {
+		if ( ! AIBuilder::is_enabled() ) {
+			return new \WP_Error( 'sp_real_ai_module_disabled', __( 'Build with AI is switched off under Real Testimonials → Modules.', 'testimonial-free' ), array( 'status' => 403 ) );
+		}
+
+		return $this->check_permission();
+	}
+
+	/**
+	 * Build with AI: turn a prompt into validated block attributes.
+	 *
+	 * @param \WP_REST_Request $request Request.
+	 * @return \WP_REST_Response|\WP_Error
+	 */
+	public function ai_generate_block( $request ) {
+		$result = AIBuilder::generate( $request['prompt'], $request['blockName'], (array) $request['existingAttributes'], $request['provider'], $request['model'] );
+
+		if ( is_wp_error( $result ) ) {
+			return $result;
+		}
+
+		return rest_ensure_response(
+			array(
+				'success'    => true,
+				'blockName'  => $result['blockName'],
+				'attributes' => $result['attributes'],
 			)
 		);
 	}

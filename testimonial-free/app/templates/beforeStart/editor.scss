@@ -178,17 +178,10 @@
 .sp-real-design-picker-actions {
     margin-top: 32px;
 
-    .sp-real-block-preview-button {
+    .sp-real-block-preview-button,
+    .sp-real-ai-builder-launcher__button {
         font-size: 14px;
         height: 48px;
-    }
-
-    .sp-real-card-design-skip-button {
-        color: #757575;
-        font-weight: 500;
-        font-size: 14px;
-        line-height: 1;
-        padding: 16px;
     }
 }
 

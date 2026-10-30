@@ -77,6 +77,14 @@ const SPRangeControl = ({
 	const unit =
 		isResponsive && attributes?.unit ? attributes?.unit?.[deviceType] || attributes?.unit : attributes?.unit;
 
+	// `min` is a number, or a per-unit map (`{ px: 300 }`) where an unlisted unit starts at 0.
+	const getMinValue = () => {
+		if (min && "object" === typeof min) {
+			return min["string" === typeof unit ? unit : "px"] ?? 0;
+		}
+		return min;
+	};
+
 	const getMaxValue = () => {
 		if (showRangeStep) {
 			return 32;
@@ -101,7 +109,7 @@ const SPRangeControl = ({
 				<RangeControl
 					value={value}
 					onChange={(newValue) => setValue(newValue)}
-					min={min}
+					min={getMinValue()}
 					max={getMaxValue()}
 					withInputField={!showRangeStep}
 					marks={rangerStep && showRangeStep}

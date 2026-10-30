@@ -1,9 +1,12 @@
 @use './responsive-css.scss';
 @use '../blocks/tailwind-class.scss';
-@use './pages/quickStart/quick-start-style.scss';
+@use './components/skeleton.scss';
+@use './pages/gettingStarted/getting-started.scss';
+@use './pages/gettingStarted/placements.scss';
 @use './pages/blockVisibility/visibility-style.scss';
 @use './pages/saved-templates/saved-templates.scss';
 @use './pages/settings/setting-styles.scss';
+@use './pages/settings/ai-configuration/ai-configuration.scss';
 @use './pages/integrations/integrations-style.scss';
 @use './pages/about-us/about-us.scss';
 @use './pages/lite-vs-pro/lite-vs-pro.scss';
@@ -30,11 +33,12 @@ $primary-text-color: #1E1E1E;
     .sp-real-admin-dashboard-content {
         max-width: 1400px;
         margin: 0 auto;
-        padding: 0 40px;
+        padding: 0 32px;
     }
 
     .sp-real-admin-dashboard-header .sp-real-block-setting-header-wrapper {
-        padding: 0 40px;
+        height: 64px;
+        padding: 0 32px;
         max-width: 1400px;
         margin: 0 auto;
     }
@@ -181,7 +185,7 @@ $primary-text-color: #1E1E1E;
 .sp-real-admin-dashboard-header {
     background-color: #fff;
     border-bottom: 1px solid #ddd;
-    margin-bottom: 44px;
+    margin-bottom: 48px;
 
     .sp-real-admin-dashboard-header-left {
         display: flex;
@@ -240,7 +244,6 @@ $primary-text-color: #1E1E1E;
     }
 
     .sp-real-admin-dashboard-header-right {
-        width: 200px;
         display: flex;
         justify-content: flex-end;
         align-items: center;
@@ -255,7 +258,7 @@ $primary-text-color: #1E1E1E;
     font-size: 15px;
     font-weight: 600;
     position: relative;
-    padding: 20px 0;
+    padding: 10px 0;
 
     svg {
         color: #19949e;
@@ -268,7 +271,7 @@ $primary-text-color: #1E1E1E;
 
     .sp-real-help-drop-down {
         position: absolute;
-        top: 46px;
+        top: 35px;
         background: #fff;
         right: 0;
         padding: 10px;

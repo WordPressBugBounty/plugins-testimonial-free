@@ -66,22 +66,32 @@ const Library = (props) => {
 	// latest value without a stale closure.
 	const [previewPattern, setPreviewPattern] = useState(null);
 	const previewPatternRef = useRef(null);
+	// The grid's visible patterns when the preview opened — the drawer's Prev / Next sequence.
+	const [previewList, setPreviewList] = useState([]);
 	const modalRef = useRef(null);
 
-	const openPreview = useCallback((pattern) => {
+	const showPreview = useCallback((pattern) => {
+		if (!pattern) {
+			return;
+		}
 		previewPatternRef.current = pattern;
 		setPreviewPattern(pattern);
 	}, []);
+	const openPreview = useCallback(
+		(pattern, list = []) => {
+			setPreviewList(list);
+			showPreview(pattern);
+		},
+		[showPreview]
+	);
 	const closePreview = useCallback(() => {
 		previewPatternRef.current = null;
 		setPreviewPattern(null);
 	}, []);
-	const isBlockPattern = props.currentBlockName ? true : false;
-	const currentBlockName = props.currentBlockName || "all";
-	// `initialBlockType` only *preselects* the Block Type facet — unlike
-	// `currentBlockName` it keeps the sidebar visible and `designs` holding the
-	// full catalog, so the user can widen back out to "All Patterns".
-	const initialBlockType = !isBlockPattern && props.initialBlockType ? props.initialBlockType : "";
+	// `initialBlockType` only *preselects* the Block Type facet — the sidebar
+	// stays visible and `designs` holds the full catalog, so the user can widen
+	// back out to "All Patterns".
+	const initialBlockType = props.initialBlockType || "";
 	// The preselect is a one-shot: once consumed, a later refetch (the Refresh
 	// button) must keep whatever facet the user has since chosen.
 	const preselectAppliedRef = useRef(false);
@@ -93,9 +103,8 @@ const Library = (props) => {
 		reload: false,
 		error: false,
 		fetching: false,
-		designFilter: initialBlockType || currentBlockName || "all",
+		designFilter: initialBlockType || "all",
 		current: [],
-		sidebarOpen: true,
 		templatekitCol: "sp-real-pattern-col3",
 		blocks: [],
 		categoryTypes: [],
@@ -155,16 +164,9 @@ const Library = (props) => {
 				const freeCount = designData.filter((data) => !data.pro).length;
 				const proCount = designData.filter((data) => data.pro).length;
 
-				let categorisedData = [];
-				const dataForCategory = isBlockPattern && currentBlockName;
-
-				if (dataForCategory) {
-					categorisedData = patternsData[currentBlockName] || [];
-				}
-
-				// The preselect arrives from a URL arg, so only honour it when the
-				// catalog actually advertises that block — an unknown slug would
-				// otherwise leave the grid permanently empty.
+				// The preselect arrives from a URL arg or an opener's block slug, so
+				// only honour it when the catalog actually advertises that block —
+				// an unknown slug would otherwise leave the grid permanently empty.
 				const isKnownBlockType =
 					initialBlockType && blocks.some((block) => String(block.value) === String(initialBlockType));
 				const preselected = isKnownBlockType ? initialBlockType : "all";
@@ -175,11 +177,11 @@ const Library = (props) => {
 
 					return {
 						...prev,
-						// `designs` always holds the full catalog outside single-block mode,
-						// so switching the facet back to "All Patterns" still works.
-						current: dataForCategory ? categorisedData : filterByCategoryKey(designData, nextFilter),
-						designs: dataForCategory ? categorisedData : designData,
-						designFilter: dataForCategory ? prev.designFilter : nextFilter,
+						// `designs` always holds the full catalog, so switching the facet
+						// back to "All Patterns" still works.
+						current: filterByCategoryKey(designData, nextFilter),
+						designs: designData,
+						designFilter: nextFilter,
 						blocks,
 						categoryTypes,
 						freeCount,
@@ -447,8 +449,6 @@ const Library = (props) => {
 
 							<StarterSites
 								filterValue={designFilter}
-								currentBlockName={props.currentBlockName}
-								isSingleBlock={isBlockPattern}
 								state={state}
 								setState={setState}
 								_fetchFile={fetchAllData}
@@ -463,6 +463,8 @@ const Library = (props) => {
 							{previewPattern ? (
 								<PreviewDrawer
 									pattern={previewPattern}
+									patterns={previewList}
+									onNavigate={showPreview}
 									onClose={closePreview}
 									onInsert={() => handleBlockImport(previewPattern.ID, previewPattern.pro)}
 									isInserting={reload && reloadId === previewPattern.ID}

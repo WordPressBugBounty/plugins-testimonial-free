@@ -15,6 +15,9 @@ namespace ShapedPlugin\TestimonialFree\Blocks;
 use ShapedPlugin\TestimonialFree\Blocks\API\ManageAPI;
 use ShapedPlugin\TestimonialFree\Blocks\Styles\DynamicStyle;
 use ShapedPlugin\TestimonialFree\Blocks\Includes\BlocksHelper;
+use ShapedPlugin\TestimonialFree\Blocks\Includes\AI;
+use ShapedPlugin\TestimonialFree\Blocks\Includes\AIBuilder\AIBuilder;
+use ShapedPlugin\TestimonialFree\Blocks\Includes\ConnectorBridge;
 use ShapedPlugin\TestimonialFree\Blocks\Includes\ReadyPatterns;
 use ShapedPlugin\TestimonialFree\Blocks\BlockTypes\ShortcodeBlock;
 use ShapedPlugin\TestimonialFree\Blocks\BlockTypes\ShortcodeFormBlock;
@@ -71,6 +74,9 @@ class BlocksInit {
 		ManageAPI::instance();
 		DynamicStyle::instance();
 
+		// Keep the cached WordPress Connectors state honest for Build with AI.
+		ConnectorBridge::init();
+
 		// Classic shortcode/form blocks (server-rendered via legacy shortcodes).
 		ShortcodeBlock::instance();
 		ShortcodeFormBlock::instance();
@@ -105,7 +111,7 @@ class BlocksInit {
 				),
 				array(
 					'slug'  => 'sp-testimonial-pro-blocks',
-					'title' => __( 'Real Testimonials Pro Blocks', 'testimonial-free' ),
+					'title' => __( 'Pro Blocks', 'testimonial-free' ),
 				),
 			),
 			$categories
@@ -130,18 +136,44 @@ class BlocksInit {
 			}
 		}
 
-		// Register editor style for all blocks.
-		wp_register_style( 'sp-real-blocks-editor', SP_RT_PLUGIN_URL . 'dist/rtp-blocks.css', array(), SP_TFREE_VERSION, 'all' );
+		// Register editor style for all blocks. The bundles are versioned by
+		// file mtime, not SP_TFREE_VERSION: dist can be rebuilt between
+		// releases, and a mid-cycle rebuild would otherwise stay cached.
+		wp_register_style(
+			'sp-real-blocks-editor',
+			SP_RT_PLUGIN_URL . 'dist/rtp-blocks.css',
+			array(),
+			(string) filemtime( SP_RT_PLUGIN_PATH . 'dist/rtp-blocks.css' ),
+			'all'
+		);
 
 		// Register editor script for all blocks.
-		wp_register_script( 'sp-real-blocks-editor', SP_RT_PLUGIN_URL . 'dist/rtp-blocks.js', $dependencies, SP_TFREE_VERSION, true );
+		wp_register_script(
+			'sp-real-blocks-editor',
+			SP_RT_PLUGIN_URL . 'dist/rtp-blocks.js',
+			$dependencies,
+			(string) filemtime( SP_RT_PLUGIN_PATH . 'dist/rtp-blocks.js' ),
+			true
+		);
 
 		// Register style for frontend and editor.
-		wp_register_style( 'sp-real-blocks-style', SP_RT_PLUGIN_URL . 'dist/style-rtp-blocks.css', array(), SP_TFREE_VERSION, 'all' );
+		wp_register_style(
+			'sp-real-blocks-style',
+			SP_RT_PLUGIN_URL . 'dist/style-rtp-blocks.css',
+			array(),
+			(string) filemtime( SP_RT_PLUGIN_PATH . 'dist/style-rtp-blocks.css' ),
+			'all'
+		);
 
 		// Register frontend script for carousel blocks.
 		if ( ! is_admin() ) {
-			wp_register_script( 'sp-real-blocks-frontend', SP_RT_PLUGIN_URL . 'src/Blocks/assets/js/script.js', array( 'sp-real-swiper' ), SP_TFREE_VERSION, true );
+			wp_register_script(
+				'sp-real-blocks-frontend',
+				SP_RT_PLUGIN_URL . 'src/Blocks/assets/js/script.js',
+				array( 'sp-real-swiper' ),
+				(string) filemtime( SP_RT_PLUGIN_PATH . 'src/Blocks/assets/js/script.js' ),
+				true
+			);
 		}
 
 		// Register Swiper JS for frontend.
@@ -169,6 +201,17 @@ class BlocksInit {
 				'activeBlockList'   => BlocksHelper::sp_real_get_active_block_list(),
 				'savedTemplatesUrl' => admin_url( 'edit.php?post_type=sp_real_template&page=rtp_dashboard#saved_templates' ),
 				'dashboardSettings' => array( 'modules' => (array) $real_modules ),
+				// Build with AI. Provider rows carry { slug, label, source, model }
+				// — never a key; `model` is the saved default the modal's model
+				// picker preselects. `enqueue_block_assets` also fires on the
+				// frontend, where nothing reads these, so the connector lookups
+				// (transient reads) run in the editor only.
+				'aiProviders'       => is_admin() ? AI::connected_providers() : array(),
+				'aiBuilder'         => array(
+					'enabled'       => is_admin() && AIBuilder::is_enabled(),
+					'aiConfigUrl'   => admin_url( 'edit.php?post_type=spt_testimonial&page=rtp_dashboard#settings=ai-configuration' ),
+					'connectorsUrl' => ConnectorBridge::settings_url(),
+				),
 			)
 		);
 

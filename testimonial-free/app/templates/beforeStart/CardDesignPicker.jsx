@@ -2,14 +2,19 @@ import { __ } from "@wordpress/i18n";
 import { memo } from "@wordpress/element";
 import { useDispatch } from "@wordpress/data";
 import { Tooltip } from "@wordpress/components";
-import { onOpenSinglePatternPopup } from "../../ready-patterns/Controls";
-import { API_ENDPOINTS } from "../../ready-patterns/constants";
-import { ProBadgeIcon } from "../../ready-patterns/Icons";
-import { cardDesignIcons } from "../../blocks/shared/Icons";
+import { onOpenBlockPatternPopup } from "../../ready-patterns/Controls";
+import { ProCardBadge } from "../../components/proControls";
+import { testimonialBlocksInfo } from "@testimonial/constants";
+import { BLOCK_DESIGN_ICONS, cardDesignIcons } from "../../blocks/shared/Icons";
 import { applyCardDesign } from "../../blocks/shared/cardDesign";
+import CreateWithAIButton from "../../ai-builder/CreateWithAIButton";
+import { isAIBuilderEnabled } from "../../ai-builder/constants";
 import "./editor.scss";
 
 const CardDesignPicker = ({ blockName, clientId = "", attributes, setAttributes }) => {
+	const designIcons = BLOCK_DESIGN_ICONS[blockName] || cardDesignIcons;
+	// Main blocks carry a `patternSlug`; child and shortcode blocks do not.
+	const hasReadyPatterns = Boolean(testimonialBlocksInfo[`sp-testimonial-pro/${blockName}`]?.patternSlug);
 	const { removeBlocks } = useDispatch("core/block-editor");
 	const handleRemoveBlockByID = () => {
 		removeBlocks(clientId);
@@ -31,46 +36,46 @@ const CardDesignPicker = ({ blockName, clientId = "", attributes, setAttributes 
 				</div>
 				<div className="sp-real-card-design-picker-popup sp-w-full sp-d-flex sp-justify-center sp-align-center">
 					<div className="sp-real-card-design-picker-popup_wrapper sp-d-flex sp-flex-wrap sp-align-center sp-justify-center sp-gap-10px">
-						{cardDesignIcons?.map(({ Icon, value, label, pro }) => (
-							<Tooltip
-								key={value}
-								text={pro ? `${label} (${__("Pro", "testimonial-free")})` : label}
-								placement="top"
-							>
+						{designIcons?.map(({ Icon, value, label, pro }) =>
+							// A locked card carries its own "Upgrade to Pro" tooltip, so it
+							// skips the label tooltip the free cards get.
+							pro ? (
 								<span
-									className={`sp-real-icon-set sp-cursor-pointer sp-d-flex sp-align-center sp-justify-center${pro ? " sp-real-icon-set-pro" : ""}`}
-									onClick={() =>
-										pro
-											? window.open(API_ENDPOINTS.UPGRADE_URL, "_blank", "noopener,noreferrer")
-											: onChangeCardDesign(value)
-									}
+									key={value}
+									className="sp-real-icon-set sp-d-flex sp-align-center sp-justify-center sp-real-pro-locked"
+									aria-label={`${label} (${__("Pro", "testimonial-free")})`}
 								>
 									<Icon />
-									{pro && (
-										<span className="sp-real-pro-capsule">
-											<ProBadgeIcon color="#fff" fill="#fff" />
-											{__("Pro", "testimonial-free")}
-										</span>
-									)}
+									<ProCardBadge />
 								</span>
-							</Tooltip>
-						))}
+							) : (
+								<Tooltip key={value} text={label} placement="top">
+									<span
+										className="sp-real-icon-set sp-cursor-pointer sp-d-flex sp-align-center sp-justify-center"
+										onClick={() => onChangeCardDesign(value)}
+									>
+										<Icon />
+									</span>
+								</Tooltip>
+							)
+						)}
 					</div>
 				</div>
 				{/* bottom */}
 				<div className="sp-real-design-picker-actions sp-d-flex sp-align-center sp-justify-center sp-gap-10px">
-					<span
-						className="sp-real-block-preview-button sp-real-ready-patterns sp-d-flex sp-align-center sp-justify-center"
-						onClick={(event) => onOpenSinglePatternPopup(event, blockName, handleRemoveBlockByID)}
-					>
-						{__("Start with Ready Patterns", "testimonial-free")}
-					</span>
-					<span
-						className="sp-real-card-design-skip-button sp-cursor-pointer"
-						onClick={() => onChangeCardDesign("design-one")}
-					>
-						{__("Skip for Now", "testimonial-free")}
-					</span>
+					{hasReadyPatterns && (
+						<span
+							className="sp-real-block-preview-button sp-real-ready-patterns sp-d-flex sp-align-center sp-justify-center"
+							onClick={(event) => onOpenBlockPatternPopup(event, blockName, handleRemoveBlockByID)}
+						>
+							{__("Use a Pattern", "testimonial-free")}
+						</span>
+					)}
+					{isAIBuilderEnabled() && (
+						<span className="sp-real-ai-builder-launcher">
+							<CreateWithAIButton clientId={clientId} blockName={`sp-testimonial-pro/${blockName}`} />
+						</span>
+					)}
 				</div>
 			</div>
 		</div>

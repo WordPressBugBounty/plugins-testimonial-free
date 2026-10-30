@@ -1,6 +1,67 @@
 (function ($) {
 	"use strict";
 
+	/**
+	 * Paint a loop re-order before the slide that follows it. slideToLoop()
+	 * slides on the next frame with no reflow in between, so a re-order the
+	 * slide cancelled out started no transition, and Swiper waited for its end
+	 * forever — every later move was refused as still animating.
+	 *
+	 * @param {Object} swiper Swiper instance.
+	 */
+	function tfree_swiper_reflow(swiper) {
+		swiper._clientLeft = swiper.wrapperEl.clientLeft;
+	}
+
+	/**
+	 * The fewest slides Swiper 12's loop runs on at every breakpoint — its own
+	 * formula from loopFix(): the slides in view plus the slides it moves across
+	 * the seam, rounded up to whole groups.
+	 *
+	 * Keep in step with minimumSlidesForLoop() in src/Blocks/assets/js/script.js:
+	 * the two runtimes ship as separate scripts, so the formula lives in both.
+	 * Re-check both against Swiper's loopFix() on every vendor update.
+	 *
+	 * @param {Object} config Swiper options.
+	 * @return {number} Minimum slide count.
+	 */
+	function tfree_swiper_loop_minimum(config) {
+		var entries = [config];
+		$.each(config.breakpoints || {}, function (key, entry) {
+			entries.push($.extend({}, config, entry));
+		});
+		return Math.max.apply(null, entries.map(function (entry) {
+			var bothDirections = !!(entry.centeredSlides || entry.slidesOffsetBefore || entry.slidesOffsetAfter);
+			var perGroup = Math.max(1, Math.ceil(Number(entry.slidesPerGroup) || 1));
+			var perView = Math.max(1, Math.ceil(Number(entry.slidesPerView) || 1));
+			if (bothDirections && perView % 2 === 0) {
+				perView += 1;
+			}
+			var looped = bothDirections ? Math.max(perGroup, Math.ceil(perView / 2)) : perGroup;
+			if (looped % perGroup !== 0) {
+				looped += perGroup - (looped % perGroup);
+			}
+			return perView + looped + Math.max(0, parseInt(entry.loopAdditionalSlides, 10) || 0);
+		}));
+	}
+
+	/**
+	 * Fit Infinite Loop to Swiper 12, which loops by re-ordering the real
+	 * slides instead of cloning them and only warns and jams below its own
+	 * minimum. A carousel too short to loop rewinds instead.
+	 *
+	 * @param {Object} config     Swiper options.
+	 * @param {number} slideCount Slides in the wrapper.
+	 * @return {Object} The same options.
+	 */
+	function tfree_fit_swiper_loop(config, slideCount) {
+		if (config.loop && slideCount < tfree_swiper_loop_minimum(config)) {
+			config.loop = false;
+			config.rewind = true;
+		}
+		return config;
+	}
+
 	function SPTestimonialCarouselInit() {
 		$('.sp-testimonial-free-section').each(function (index) {
 			var _this = $(this),
@@ -19,14 +80,16 @@
 
 			var SliderId = $(this).attr('id');
 			var SliderData = $(this).data('swiper');
-			if (SliderData && !$('#' + SliderId + '.sp-testimonial-free-section').hasClass('swiper-initialized')) {
-				var TestimonialSwiper = new Swiper('#' + SliderId + '.sp-testimonial-free-section', {
+			// Our copy of Swiper is namespaced; the "dequeue Swiper JS" setting
+			// runs on the theme's global instead.
+			var TfreeSwiper = window.SpRealSwiper || window.Swiper;
+			if (TfreeSwiper && SliderData && !$('#' + SliderId + '.sp-testimonial-free-section').hasClass('swiper-initialized')) {
+				var TestimonialSwiper = new TfreeSwiper('#' + SliderId + '.sp-testimonial-free-section', tfree_fit_swiper_loop({
 					speed: SliderData.speed,
 					slidesPerView: SliderData.slidesPerView.lg_desktop,
 					slidesPerGroup: 1,
 					spaceBetween: SliderData.spaceBetween,
 					loop: SliderData.infinite,
-					loopFillGroupWithBlank: true,
 					autoHeight: SliderData.adaptiveHeight,
 					simulateTouch: SliderData.draggable,
 					freeMode: SliderData.freeMode,
@@ -41,16 +104,28 @@
 								clickable: true,
 							}
 							: false,
+					// A swipe, arrow or dot pauses AutoPlay only until it lands, and
+					// Swiper's pointer-type check keeps a tap on a phone from
+					// counting as a hover that never ends.
 					autoplay: {
-						delay: SliderData.autoplaySpeed
+						delay: SliderData.autoplaySpeed,
+						disableOnInteraction: false,
+						pauseOnMouseEnter: SliderData.pauseOnHover && SliderData.autoplay,
 					},
 					navigation:
 						SliderData.arrows == true
 							? {
 								nextEl: '#' + SliderId + ' .swiper-button-next.testimonial-nav-arrow',
 								prevEl: '#' + SliderId + ' .swiper-button-prev.testimonial-nav-arrow',
+								addIcons: false,
 							}
 							: false,
+					a11y: {
+						scrollOnFocus: false,
+					},
+					on: {
+						loopFix: tfree_swiper_reflow,
+					},
 					breakpoints: {
 						320: {
 							slidesPerView: SliderData.slidesPerView.mobile,
@@ -59,6 +134,7 @@
 									? {
 										nextEl: '#' + SliderId + ' .swiper-button-next.testimonial-nav-arrow',
 										prevEl: '#' + SliderId + ' .swiper-button-prev.testimonial-nav-arrow',
+										addIcons: false,
 									}
 									: false,
 							pagination:
@@ -85,20 +161,9 @@
 					keyboard: {
 						enabled: true
 					},
-				});
+				}, $('#' + SliderId + '.sp-testimonial-free-section > .swiper-wrapper > .swiper-slide').length));
 				if (SliderData.autoplay === false || (($(window).width() < 576) && SliderData.autoplay_mobile == false)) {
 					TestimonialSwiper.autoplay.stop()
-				}
-				if (SliderData.pauseOnHover && SliderData.autoplay) {
-
-					$('#' + SliderId).on({
-						mouseenter: function () {
-							TestimonialSwiper.autoplay.stop();
-						},
-						mouseleave: function () {
-							TestimonialSwiper.autoplay.start();
-						}
-					});
 				}
 			}
 		});

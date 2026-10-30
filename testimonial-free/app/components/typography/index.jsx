@@ -56,7 +56,7 @@ const TypographyNew = ({
 	// font family.
 	const { family, fontWeight, style } = typography;
 	const defaultFamilyOption = {
-		label: "Default",
+		label: __("Default", "testimonial-free"),
 		value: "Default",
 		font: {
 			family: "Default",
@@ -130,12 +130,12 @@ const TypographyNew = ({
 		<Popover label={label} toggleIcon={withTypographyIcon()}>
 			<div className="sp-real-typography">
 				<div className="sp-real-typography-header sp-real-component-mb sp-d-flex sp-align-center">
-					<span>Typography</span>
+					<span>{__("Typography", "testimonial-free")}</span>
 				</div>
 				<div className="sp-real-typography-select-fields sp-d-flex sp-justify-between sp-align-center">
 					<div className="sp-real-typography-family sp-real-select-field sp-real-component-mb">
 						<div className="sp-real-font-family-header sp-mb-8px">
-							<span className="sp-real-component-title">Font family</span>
+							<span className="sp-real-component-title">{__("Font family", "testimonial-free")}</span>
 						</div>
 						<Select
 							classNamePrefix={"sp-real-font-family-select"}

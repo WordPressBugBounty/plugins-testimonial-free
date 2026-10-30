@@ -143,3 +143,54 @@ export const ClassicSettingsTabIcon = () => (
 		<circle cx="4" cy="11" r="1.7" fill="#fff" stroke="currentColor" strokeWidth="1.3" />
 	</svg>
 );
+
+export const ClassicSettingsPageArrow = () => (
+	<svg width={12} height={12} viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+		<path
+			d="M2 9.99957L10 1.99957M10 1.99957L3.84617 1.99958M10 1.99957L10 8.15342"
+			stroke="var(--sp-real-primary-color, #1A74E4)"
+			strokeWidth="1.3"
+			strokeLinecap="round"
+			strokeLinejoin="round"
+		/>
+	</svg>
+);
+
+export const AiConfigurationTabIcon = () => (
+	<svg width={16} height={16} viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+		<path
+			d="M8 1.5l1.9 3.95 4.35.6-3.17 3.03.78 4.32L8 11.33 4.14 13.4l.78-4.32L1.75 6.05l4.35-.6L8 1.5z"
+			fill="currentColor"
+			stroke="currentColor"
+			strokeWidth="1"
+			strokeLinejoin="round"
+		/>
+	</svg>
+);
+
+export const InfoCircleIcon = () => (
+	<svg width={14} height={14} viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+		<circle cx="8" cy="8" r="6.5" stroke="currentColor" strokeWidth="1.3" />
+		<path d="M8 7.25v3.75" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" />
+		<circle cx="8" cy="5" r="0.85" fill="currentColor" />
+	</svg>
+);
+
+export const WordPressLogoIcon = () => (
+	<svg
+		width={18}
+		height={18}
+		viewBox="0 0 20 20"
+		fill="currentColor"
+		xmlns="http://www.w3.org/2000/svg"
+		aria-hidden="true"
+	>
+		<path d="M20 10c0-5.51-4.49-10-10-10C4.48 0 0 4.49 0 10c0 5.52 4.48 10 10 10 5.51 0 10-4.48 10-10zM7.78 15.37L4.37 6.22c.55-.02 1.17-.08 1.17-.08.5-.06.44-1.13-.06-1.11 0 0-1.45.11-2.37.11-.18 0-.37 0-.58-.01C4.12 2.69 6.87 1.11 10 1.11c2.33 0 4.45.87 6.05 2.34-.68-.11-1.65.39-1.65 1.58 0 .74.45 1.36.9 2.1.35.61.55 1.36.55 2.46 0 1.49-1.4 5-1.4 5l-3.03-8.37c.54-.02.82-.17.82-.17.5-.05.44-1.25-.06-1.22 0 0-1.44.12-2.38.12-.87 0-2.33-.12-2.33-.12-.5-.03-.56 1.2-.06 1.22l.92.08 1.26 3.41zM17.41 10c.24-.64.74-1.87.43-4.25.7 1.29 1.05 2.71 1.05 4.25 0 3.29-1.73 6.24-4.4 7.78.97-2.59 1.94-5.2 2.92-7.78zM6.1 18.09C3.12 16.65 1.11 13.53 1.11 10c0-1.3.23-2.48.72-3.59C3.25 10.3 4.67 14.2 6.1 18.09zm4.03-6.63l2.58 6.98c-.86.29-1.76.45-2.71.45-.79 0-1.57-.11-2.29-.33.81-2.38 1.62-4.74 2.42-7.1z" />
+	</svg>
+);
+
+export const NoticeDismissIcon = () => (
+	<svg width={12} height={12} viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+		<path d="M2.5 2.5l7 7m0-7l-7 7" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
+	</svg>
+);

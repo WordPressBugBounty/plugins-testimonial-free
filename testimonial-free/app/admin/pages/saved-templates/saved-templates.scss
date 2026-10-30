@@ -1,4 +1,12 @@
-// Wrapper for saved templates page
+/**
+ * Saved Templates page styles — layout matches Logo Carousel Pro / WP
+ * Carousel Pro; brand color uses the plugin primary token.
+ */
+
+/* Narrowest the table reads at: the sum of every column's floor plus the row
+   padding. Under it the table scrolls sideways instead of squashing. */
+$table-min-width: 768px;
+
 .sp-real-saved-templates-page-wrapper {
 	display: flex;
 	flex-direction: column;
@@ -6,195 +14,41 @@
 	width: 100%;
 }
 
-// ====================
-// Promo Section Styles
-// ====================
-.sp-real-saved-template-promo {
-	background: #ffffff;
-	border: 1px solid #ddd;
-	border-radius: 6px;
-	display: flex;
-	align-items: center;
-	gap: 48px;
-	padding: 30px 48px;
-
-	&__text {
-		flex: 1 0 0;
-		min-width: 0;
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		align-items: flex-start;
-		gap: 36px;
-		padding: 24px 0;
-		overflow: hidden;
-	}
-
-	&__title-wrap {
-		display: flex;
-		flex-direction: column;
-		align-items: flex-start;
-		gap: 16px;
-		width: 75%;
-		word-break: break-word;
-	}
-
-	&__title {
-		color: #2c2d2f;
-		font-size: 24px;
-		font-weight: 600;
-		line-height: 1.3;
-		margin: 0;
-		width: 100%;
-		white-space: pre-wrap;
-	}
-
-	&__title-accent {
-		background: linear-gradient(90deg, var(--sp-real-primary-color) 0%, var(--sp-real-primary-color-hover) 100%);
-		-webkit-background-clip: text;
-		background-clip: text;
-		-webkit-text-fill-color: transparent;
-		color: transparent;
-	}
-
-	&__desc {
-		color: #4e4f52;
-		font-size: 14px;
-		font-weight: 400;
-		line-height: 20px;
-		margin: 0;
-		width: 100%;
-
-		strong {
-			font-weight: 700;
-		}
-
-		a {
-			color: var(--sp-real-primary-color);
-			text-decoration: none;
-
-			&:hover {
-				text-decoration: underline;
-			}
-		}
-	}
-
-	&__cta {
-		background: var(--sp-real-primary-color);
-		border-radius: 4px;
-		color: #ffffff;
-		cursor: pointer;
-		display: inline-flex;
-		align-items: center;
-		justify-content: center;
-		font-size: 16px;
-		font-weight: 500;
-		line-height: 28px;
-		padding: 10px 24px;
-		text-decoration: none;
-		transition: background 0.2s ease-in-out;
-		white-space: nowrap;
-		gap: 5px;
-
-		&:hover,
-		&:focus {
-			background: var(--sp-real-primary-color-hover);
-			color: #ffffff;
-		}
-	}
-
-	&__video {
-		flex-shrink: 0;
-		position: relative;
-		width: 400px;
-		max-width: 100%;
-		aspect-ratio: 1920 / 1080;
-		border-radius: 4px;
-		overflow: hidden;
-	}
-
-	&__video-thumb {
-		all: unset;
-		position: relative;
-		display: block;
-		width: 100%;
-		height: 100%;
-		cursor: pointer;
-		background-position: center;
-		background-size: cover;
-		background-repeat: no-repeat;
-	}
-
-	&__video-overlay {
-		position: absolute;
-		inset: 0;
-		background: rgba(0, 0, 0, 0.3);
-	}
-
-	&__video-play {
-		position: absolute;
-		top: 50%;
-		left: 50%;
-		transform: translate(-50%, -50%);
-		width: 60px;
-		height: 60px;
-		border-radius: 50%;
-		background: #ffffff;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-
-		svg {
-			margin-left: 3px;
-		}
-	}
-
-	&__video-frame {
-		width: 100%;
-		height: 100%;
-		border: 0;
-	}
-}
-
-@media (max-width: 960px) {
-	.sp-real-saved-template-promo {
-		flex-direction: column;
-		gap: 32px;
-		padding: 32px;
-
-		&__video {
-			width: 100%;
-		}
-	}
-}
-
-// ====================
-// Table Container
-// ====================
 .sp-real-saved-templates-page-container {
-	background: #ffffff;
+	background: #fff;
 	border: 1px solid #ddd;
 	border-radius: 6px;
 	padding: 32px;
+	width: 100%;
+	gap: 24px;
 	display: flex;
 	flex-direction: column;
-	gap: 24px;
-	width: 100%;
+
+	/* Empty library: the hero above already carries the card chrome, so the
+	   table stands on its own instead of sitting in a second frame. */
+	&--bare {
+		background: transparent;
+		border: 0;
+		border-radius: 0;
+		gap: 0;
+		padding: 0;
+	}
 }
 
+/* ---- Header ---- */
 .sp-real-saved-template-header {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	flex-wrap: wrap;
 	gap: 16px;
+	flex-wrap: wrap;
+}
 
-	&-left {
-		display: flex;
-		gap: 12px;
-		flex-wrap: wrap;
-	}
+.sp-real-saved-template-header-left {
+	display: flex;
+	gap: 12px;
+	align-items: center;
+	flex-wrap: wrap;
 }
 
 .sp-real-saved-template-search-field {
@@ -204,10 +58,12 @@
 	height: 36px;
 	padding: 6px 6px 6px 16px;
 	width: 260px;
+	max-width: 100%;
 
 	&:focus {
 		outline: none;
 		border-color: var(--sp-real-primary-color);
+		box-shadow: none;
 	}
 }
 
@@ -216,6 +72,7 @@
 	border-radius: 4px !important;
 	height: 36px;
 	min-width: 136px;
+	background: #fff;
 
 	&:focus {
 		outline: none;
@@ -227,18 +84,23 @@
 .sp-real-saved-template-select-apply {
 	background: #fff;
 	border: 1px solid var(--sp-real-primary-color);
-	border-radius: 3px;
+	border-radius: 4px;
 	color: var(--sp-real-primary-color);
 	cursor: pointer;
 	font-size: 14px;
 	font-weight: 500;
 	line-height: 20px;
-	padding: 6px 16px;
-	transition: all 0.3s ease-in-out;
+	padding: 9px 16px;
+	transition: background 0.3s ease-in-out, color 0.3s ease-in-out;
 
-	&:hover {
+	&:hover:not(:disabled) {
 		background: var(--sp-real-primary-color);
 		color: #fff;
+	}
+
+	&:disabled {
+		opacity: 0.5;
+		cursor: not-allowed;
 	}
 }
 
@@ -246,7 +108,7 @@
 	padding: 10px 24px 10px 20px;
 	border-radius: 4px;
 	background: var(--sp-real-primary-color);
-	color: #ffffff;
+	color: #fff;
 	font-size: 16px;
 	font-weight: 500;
 	line-height: 28px;
@@ -254,24 +116,31 @@
 	transition: background-color 0.4s ease-in-out;
 	display: flex;
 	align-items: center;
-	gap: 8px;
+	gap: 4px;
+	white-space: nowrap;
 
-	&:hover {
-		background: var(--sp-real-primary-color-hover);
-		color: #ffffff;
+	svg {
+		width: 24px;
+		height: 24px;
+		flex-shrink: 0;
+		fill: currentColor;
 	}
 
+	&:hover,
 	&:focus {
-		color: #ffffff;
+		background: var(--sp-real-primary-color-hover);
+		color: #fff;
 	}
 }
 
+/* ---- Table (flex rows) ---- */
 .sp-real-saved-template-content-table {
 	display: flex;
 	flex-direction: column;
 	align-items: flex-start;
+	align-self: stretch;
 	border-radius: 4px;
-	border: 1px solid #e0e0e0;
+	border: 1px solid #e5e5e5;
 	background: #fff;
 	box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.08);
 	overflow: auto;
@@ -289,66 +158,92 @@
 .sp-real-saved-template-table-body {
 	display: flex;
 	flex-direction: column;
+	justify-content: space-between;
+	align-items: flex-start;
+	align-self: stretch;
 	width: 100%;
+	/* Below this the table scrolls sideways as one piece. Head and body
+	   carry the same floor, so the columns stay in step while it does. */
+	min-width: $table-min-width;
 
 	tr {
 		display: flex;
 		padding-left: 24px;
 		padding-right: 24px;
 		align-items: center;
+		align-self: stretch;
+		/* flex-start, not center: a centred row that overflows spills off
+		   the left edge too, where no amount of scrolling reaches it. */
+		justify-content: flex-start;
 		width: 100%;
-		min-width: 800px;
+		box-sizing: border-box;
 	}
+}
 
-	.sp-real-saved-template-table-checkBox {
-		input {
-			margin-right: 16px;
-			width: 16px;
-			height: 16px;
-			cursor: pointer;
-		}
+.sp-real-saved-template-table-checkBox {
+	flex: 0 0 auto;
+
+	input {
+		margin-right: 16px;
+		width: 16px;
+		height: 16px;
+		cursor: pointer;
 	}
 }
 
 .sp-real-saved-template-table-title {
-	flex: 1;
-	min-width: 200px;
+	flex: 1 1 auto;
+	min-width: 160px;
+	overflow-wrap: anywhere;
 
 	a {
-		span {
-			color: var(--sp-real-primary-color);
-			font-weight: 500;
-		}
+		color: var(--sp-real-primary-color);
+		font-weight: 500;
+		text-decoration: none;
+	}
 
-		&:hover {
-			span {
-				color: var(--sp-real-primary-color-hover);
-			}
-		}
+	a:hover {
+		color: var(--sp-real-primary-color-hover);
 	}
 }
 
-// ====================
-// Editor Type Column
-// ====================
-.sp-real-saved-template-table-editor_type {
-	width: 150px;
-	flex-shrink: 0;
+.sp-real-saved-template-badge {
+	margin-left: 8px;
+	padding: 1px 6px;
+	border-radius: 9px;
+	background: #f0b849;
+	color: #4e4f52;
+	font-size: 10px;
+	font-weight: 600;
+	text-transform: capitalize;
+	vertical-align: middle;
+}
 
-	.sp-real-editor-type-badge {
-		display: inline-block;
-		font-size: 13px;
+/* ---- Block Column ---- */
+.sp-real-saved-template-table-block {
+	flex: 0 1 150px;
+	min-width: 110px;
+}
+
+.sp-real-saved-template-table-body td {
+	.sp-real-saved-template-block-badge {
+		display: inline-flex;
+		align-items: center;
+		font-size: 14px;
 		font-weight: 500;
-		line-height: 1.4;
+		line-height: 16px;
 		text-transform: capitalize;
-		border-radius: 3px;
-		color: #666;
+	}
+
+	.sp-real-saved-template-block-empty {
+		color: #949494;
 	}
 }
 
 .sp-real-saved-template-table-shortcode {
-	width: 385px;
-	flex-shrink: 0;
+	flex: 0 1 320px;
+	min-width: 190px;
+	max-width: 36%;
 	display: flex;
 	align-items: center;
 
@@ -357,83 +252,68 @@
 		align-items: center;
 		gap: 3px;
 		padding: 5px 8px;
-		color: #317d46;
-		background-color: rgba(61, 158, 86, 0.1);
+		color: #1e67d8;
+		background-color: rgba(30, 103, 216, 0.1);
 		font-size: 14px;
 		line-height: 20px;
 		font-weight: 500;
 		border-radius: 4px;
 		margin-left: 5px;
-		transition: opacity 0.3s ease;
 
 		svg {
 			width: 15px;
 			height: 15px;
 		}
 	}
-
-	>svg {
-		width: 16px;
-		height: 16px;
-		cursor: pointer;
-		opacity: 0;
-		transform: translateX(-85px);
-		transition: opacity 0.3s ease, transform 0.3s ease;
-	}
-
-	&:hover>svg {
-		opacity: 1;
-	}
 }
 
 .sp-real-saved-template-shortcode-text {
 	border-radius: 3px;
-	border: 1px solid #e6e5e5;
-	background: #fafafa;
-	padding: 6px 8px;
+	border: 1px solid #e0e0e0;
+	background: #f0f0f0;
+	padding: 6px 14px;
 	display: inline-block;
 	cursor: pointer;
 	transition: all 0.3s ease;
-	font-size: 13px;
-	font-family: monospace;
-	color: #333;
+	font-size: 14px;
+	line-height: 20px;
+	color: #2f2f2f;
+	max-width: 100%;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
 
 	&:hover {
-		background: #f0efef;
+		background: #e8e8e8;
+		border-color: #d0d0d0;
 	}
 }
 
 .sp-real-saved-template-table-date {
-	width: 200px;
-	flex-shrink: 0;
+	flex: 0 1 240px;
+	min-width: 140px;
+	font-size: 14px;
 	text-transform: capitalize;
 }
 
-.sp-real-saved-template-status {
-	font-weight: 500;
-	color: var(--sp-real-primary-color);
+.sp-real-saved-template-table-action {
+	flex: 0 0 110px;
 }
 
-.sp-real-saved-template-table-action {
-	width: 120px;
-	flex-shrink: 0;
-
-	>div {
-		display: flex;
-		gap: 16px;
-	}
+.sp-real-saved-template-table-action-btn {
+	display: flex;
+	gap: 16px;
 }
 
 .sp-real-saved-template-table-head {
 	tr {
-		background-color: #f6f7f7;
+		background-color: #f5f5f5;
 		height: 48px;
-		border-bottom: 1px solid #e0e0e0;
 
 		th {
 			color: #2f2f2f;
-			font-size: 14px;
-			font-weight: 600;
+			font-size: 16px;
+			font-weight: 500;
 			line-height: 20px;
 			text-align: left;
 			text-transform: capitalize;
@@ -442,6 +322,11 @@
 }
 
 .sp-real-saved-template-table-body {
+	/* A mutation or refetch is running: the table stays readable but recedes. */
+	&.is-busy {
+		opacity: 0.5;
+	}
+
 	tr {
 		height: 64px;
 		border-bottom: 1px solid #f0f0f0;
@@ -453,10 +338,6 @@
 		&:nth-of-type(even) {
 			background: #fafafa;
 		}
-
-		// &:hover {
-		// 	background: #f5f5f5;
-		// }
 	}
 
 	td * {
@@ -467,18 +348,53 @@
 	}
 }
 
+.sp-real-saved-template-action {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 4px;
+	border-radius: 3px;
+	transition: all 0.2s ease;
+	color: inherit;
+	text-decoration: none;
+
+	&:hover {
+		background: #f5f5f5;
+
+		svg {
+			stroke: var(--sp-real-primary-color);
+		}
+
+		path {
+			stroke: var(--sp-real-primary-color);
+		}
+	}
+
+	&.sp-action-delete:hover {
+		svg,
+		path {
+			stroke: #d32f2f;
+		}
+	}
+}
+
+/* ---- Footer / pagination ---- */
 .sp-real-saved-template-footer {
 	align-items: center;
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
-	flex-wrap: wrap;
 	gap: 16px;
+	flex-wrap: wrap;
 }
 
 .sp-real-saved-template-count {
+	color: #2f2f2f;
 	font-size: 14px;
-	color: #666;
+
+	span {
+		color: #666;
+	}
 }
 
 .sp-real-saved-template-pagination {
@@ -500,6 +416,7 @@
 	justify-content: center;
 	width: 36px;
 	cursor: pointer;
+	padding: 0;
 	transition: all 0.2s ease;
 
 	&:hover:not(.btn-disabled) {
@@ -522,11 +439,362 @@
 		path {
 			fill: #ddd;
 		}
+	}
+}
 
-		&:hover {
-			background-color: var(--sp-real-primary-color);
-			border-color: var(--sp-real-primary-color);
-			color: #fff;
+.sp-real-saved-template-preloader-no-data,
+.sp-real-saved-template-no-data {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	min-height: 120px;
+	color: #666;
+	font-size: 14px;
+}
+
+.sp-real-saved-template-no-data {
+	flex-direction: column;
+	gap: 12px;
+
+	p {
+		margin: 0;
+	}
+}
+
+.sp-real-saved-template-loading {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+}
+
+/* A state row — spinner, error, empty — holds one full-width cell with a
+   120px floor, which the 64px data-row height cannot contain. Left at 64px
+   the cell spills past the table and `overflow: auto` paints a scrollbar
+   down an empty table, so a state row sizes to its cell instead. */
+tr.sp-real-saved-template-state-row {
+	height: auto;
+}
+
+/* ---- Empty state ---- */
+tr.sp-real-saved-template-empty-row {
+	padding-left: 0;
+	background: transparent;
+}
+
+/* Scoped through the cell it lives in: the shared `td *` rule above sets a
+   grey 14px on everything inside a cell and out-ranks a lone class, so the
+   empty state states its own type from a selector that wins outright —
+   no !important needed. */
+.sp-real-saved-template-table-body td .sp-real-saved-template-empty {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 12px;
+	width: 100%;
+	padding: 60px 24px;
+
+	&__message {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 4px;
+	}
+
+	&__text {
+		color: #2c2d2f;
+		font-size: 16px;
+		font-weight: 400;
+		line-height: 32px;
+		margin: 0;
+		text-align: center;
+	}
+
+	&__cta {
+		align-items: center;
+		color: var(--sp-real-primary-color);
+		display: inline-flex;
+		font-size: 16px;
+		font-weight: 500;
+		gap: 2px;
+		line-height: 20px;
+		text-decoration: none;
+
+		svg {
+			width: 24px;
+			height: 24px;
+			flex-shrink: 0;
+		}
+
+		/* The shared `td *` rule lands on the path too, so currentColor
+		   resolves to its own grey. Painting fill directly skips that. */
+		svg path {
+			fill: var(--sp-real-primary-color);
+		}
+
+		&:hover,
+		&:focus {
+			color: var(--sp-real-primary-color-hover);
+			text-decoration: none;
+
+			svg path {
+				fill: var(--sp-real-primary-color-hover);
+			}
+		}
+	}
+}
+
+/* ---- Hero (empty library) ---- */
+.sp-real-saved-template-hero {
+	/* White behind the words, the brand blue at its lightest behind the
+	   artwork. It only starts past the text column, so nothing is ever read
+	   on tint. */
+	background: linear-gradient(90deg, #fff 0%, #fff 34%, #e8f1ff 100%);
+	border: 1px solid #ddd;
+	border-radius: 12px;
+	display: flex;
+	align-items: center;
+	gap: 48px;
+	min-height: 275px;
+	padding: 40px;
+	overflow: hidden;
+}
+
+/* The words hold a floor and never shrink: the art beside them is
+   decoration, the heading and its call to action are the point. The floor
+   clears the no-wrap button with room to spare between the flex row and the
+   960px stack. */
+.sp-real-saved-template-hero__text {
+	flex: 1 0 340px;
+	min-width: 0;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: flex-start;
+	gap: 32px;
+	overflow: hidden;
+}
+
+.sp-real-saved-template-hero__title-wrap {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	gap: 20px;
+	max-width: 614px;
+	word-break: break-word;
+}
+
+.sp-real-saved-template-hero__title {
+	color: #1e1e1e;
+	font-size: 30px;
+	font-weight: 600;
+	line-height: 1.3;
+	margin: 0;
+	width: 100%;
+}
+
+.sp-real-saved-template-hero__desc {
+	color: #2f2f2f;
+	font-size: 15px;
+	font-weight: 400;
+	line-height: 26px;
+	margin: 0;
+	width: 100%;
+}
+
+.sp-real-saved-template-hero__cta {
+	background: var(--sp-real-primary-color);
+	border: 1px solid var(--sp-real-primary-color);
+	border-radius: 4px;
+	color: #fff;
+	cursor: pointer;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	gap: 4px;
+	font-size: 16px;
+	font-weight: 600;
+	line-height: 20px;
+	padding: 13px 26px 13px 20px;
+	text-decoration: none;
+	transition: background 0.2s ease-in-out;
+	white-space: nowrap;
+
+	svg {
+		width: 24px;
+		height: 24px;
+		flex-shrink: 0;
+		fill: currentColor;
+	}
+
+	&:hover,
+	&:focus {
+		background: var(--sp-real-primary-color-hover);
+		border-color: var(--sp-real-primary-color-hover);
+		color: #fff;
+	}
+}
+
+/* The promo PNG scales down inside its slot instead of pushing the words out
+   of the card; its intrinsic width stays its ceiling, so a wide card looks
+   exactly as before. */
+.sp-real-saved-template-hero__media {
+	flex: 0 1 auto;
+	min-width: 0;
+	max-width: 46%;
+	align-self: stretch;
+	display: flex;
+	align-items: center;
+}
+
+.sp-real-saved-template-hero__art {
+	display: block;
+	width: 100%;
+	height: auto;
+}
+
+@media (max-width: 960px) {
+	.sp-real-saved-template-hero {
+		/* Stacked, the artwork sits below the words instead of beside
+		   them, so the wash turns with it and stays off the text. */
+		background: linear-gradient(180deg, #fff 0%, #fff 34%, #e8f1ff 100%);
+		flex-direction: column;
+		align-items: flex-start;
+		gap: 32px;
+		padding: 32px;
+	}
+
+	.sp-real-saved-template-hero__title-wrap {
+		width: 100%;
+	}
+
+	.sp-real-saved-template-hero__media {
+		align-self: center;
+		max-width: 100%;
+	}
+
+	/* The column floors above already do the narrowing; the cap only gets
+	   in the way once the row is down to its minimum. */
+	.sp-real-saved-template-table-shortcode {
+		max-width: none;
+	}
+
+	.sp-real-saved-templates-page-container {
+		padding: 24px;
+	}
+}
+
+/* ---- Small screens: one card per template ----
+   A 768px-wide grid on a phone is a side-scroll hunt for the actions, so
+   each row folds into a card instead: the checkbox and title read as its
+   heading and every other cell states its own column name. The labels come
+   from the markup (data-label), so nothing is invented here.
+
+   782px is WordPress's own admin breakpoint — where it collapses the menu
+   and stacks its list tables — so this page changes shape with the rest of
+   wp-admin rather than at a width of its own. */
+@media (max-width: 782px) {
+	.sp-real-saved-template-content-table {
+		overflow: visible;
+	}
+
+	.sp-real-saved-template-table-head {
+		display: none;
+	}
+
+	.sp-real-saved-template-table-head,
+	.sp-real-saved-template-table-body {
+		min-width: 0;
+	}
+
+	.sp-real-saved-template-table-body tr {
+		flex-wrap: wrap;
+		align-items: flex-start;
+		height: auto;
+		gap: 10px;
+		padding: 16px;
+		border-bottom: 1px solid #ececec;
+
+		&:last-child {
+			border-bottom: 0;
+		}
+	}
+
+	.sp-real-saved-template-table-checkBox {
+		input {
+			margin-right: 0;
+		}
+	}
+
+	.sp-real-saved-template-table-title {
+		flex: 1 1 0;
+		min-width: 0;
+		font-weight: 500;
+	}
+
+	.sp-real-saved-template-table-block,
+	.sp-real-saved-template-table-shortcode,
+	.sp-real-saved-template-table-date,
+	.sp-real-saved-template-table-action {
+		flex: 0 0 100%;
+		min-width: 0;
+		max-width: none;
+		display: flex;
+		align-items: center;
+		gap: 12px;
+
+		/* A fixed label column keeps the values in one line down the card
+		   at every width — space-between would fling them apart on a wide
+		   card and crowd them on a narrow one. */
+		&::before {
+			content: attr(data-label);
+			flex: 0 0 104px;
+			color: #757575;
+		}
+	}
+
+	/* The shortcode is what the author came for, so it wraps to a second
+	   line here rather than ellipsising away its id. */
+	.sp-real-saved-template-shortcode-text {
+		min-width: 0;
+		white-space: normal;
+		overflow: visible;
+		text-overflow: clip;
+		overflow-wrap: anywhere;
+	}
+
+	.sp-real-saved-template-footer {
+		flex-direction: column;
+		align-items: flex-start;
+		gap: 12px;
+	}
+
+	.sp-real-saved-template-header-left {
+		width: 100%;
+	}
+
+	.sp-real-saved-template-search-field {
+		flex: 1 1 100%;
+		width: auto;
+	}
+
+	/* Matches the ancestry the base rules use (the shared `td *` rule
+	   out-ranks a lone class), or these would never apply. */
+	.sp-real-saved-template-table-body td {
+		.sp-real-saved-template-empty {
+			padding: 40px 16px;
+		}
+
+		/* wp-admin scales its type up below 782px, which pushed the label
+		   onto a second line and marooned the plus at the far right. A
+		   notch smaller keeps it on one line down to the narrowest phone;
+		   wrap + centre is the safety net for a longer translation. */
+		.sp-real-saved-template-empty__cta {
+			max-width: 100%;
+			flex-wrap: wrap;
+			justify-content: center;
+			font-size: 14px;
+			text-align: center;
 		}
 	}
 }

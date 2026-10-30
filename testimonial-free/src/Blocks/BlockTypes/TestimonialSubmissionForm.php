@@ -425,7 +425,7 @@ class TestimonialSubmissionForm extends BlockBase {
 		$icon_dim     = esc_attr( $size_value . $size_unit );
 
 		?>
-		<div class="<?php echo esc_attr( BlocksHelper::class_list( array( 'sp-real-tsf-submit-wrap', 'auto' === $button_width ? ( 'sp-d-flex sp-justify-' . $alignment ) : 'sp-tsf-full-btn' ) ) ); ?>">
+		<div class="<?php echo esc_attr( BlocksHelper::class_list( array( 'sp-real-tsf-submit-wrap sp-d-flex', 'auto' === $button_width ? 'sp-justify-' . $alignment : 'sp-tsf-full-btn' ) ) ); ?>">
 			<button type="submit" class="<?php echo esc_attr( BlocksHelper::class_list( array( 'sp-real-tsf-submit sp-d-flex sp-align-center sp-justify-center sp-gap-8px', ( $show_icon && 'left' === $icon_pos ) ? 'sp-row-reverse' : '' ) ) ); ?>">
 				<span class="sp-real-tsf-submit__label"><?php echo esc_html( $label ); ?></span>
 				<?php

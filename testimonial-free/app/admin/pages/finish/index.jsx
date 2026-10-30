@@ -43,7 +43,10 @@ const FinishPage = () => {
 
 	return (
 		<div className="sp-real-setup-finish-page sp-d-flex sp-flex-col sp-align-center sp-justify-center">
-			<img src={`${pluginUrl}src/Admin/assets/images/setup-wizard/congratulations.svg`} alt="Congratulations" />
+			<img
+				src={`${pluginUrl}src/Admin/assets/images/setup-wizard/congratulations.svg`}
+				alt={__("Congratulations", "testimonial-free")}
+			/>
 			<h3 className="sp-real-setup-page-title">
 				{__("You’re Ready to Start Adding Testimonials", "testimonial-free")}
 			</h3>

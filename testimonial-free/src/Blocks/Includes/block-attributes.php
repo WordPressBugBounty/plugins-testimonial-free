@@ -52,11 +52,12 @@ $sp_real_carousel_attributes = array_merge(
  * @var array
  */
 $sp_real_slider_attr = array(
-	'blockName'  => Utils::string( 'slider' ),
-	'padding'    => Utils::responsive_spacing( 10, 12, 10, 12, 'px' ),
-	'width'      => Utils::single_responsive(),
-	'columns'    => Utils::single_responsive( 1, 1, 1, '' ),
-	'cardBorder' => Utils::border( 'none', '#DDDDDD', '#DDDDDD' ),
+	'blockName'     => Utils::string( 'slider' ),
+	'padding'       => Utils::responsive_spacing( 10, 12, 10, 12, 'px' ),
+	'width'         => Utils::single_responsive(),
+	'columns'       => Utils::single_responsive( 1, 1, 1, '' ),
+	'titleFontSize' => Utils::single_responsive( 24, 24, 18, 'px' ),
+	'cardBorder'    => Utils::border( 'none', '#DDDDDD', '#DDDDDD' ),
 );
 
 // Merge all attributes for slider block.
@@ -100,6 +101,51 @@ $sp_real_grid_attributes = array_merge(
 	$sp_real_reviewer_details_attributes,
 	$sp_real_advanced_attributes,
 	$sp_real_grid_attr
+);
+
+/**
+ * List block specific attributes.
+ *
+ * One testimonial per row, the reviewer image beside the content. Shares the
+ * grid schema; the defaults below give the bare List Design 1 row. The Pro-only
+ * Zig Zag Orientation has no attribute here.
+ *
+ * @var array
+ */
+$sp_real_zigzag_list_attr = array(
+	'blockName'             => Utils::string( 'zigzag-list' ),
+	'padding'               => Utils::responsive_spacing( 10, 12, 10, 12, 'px' ),
+	'width'                 => Utils::single_responsive(),
+	'enableAjaxPagination'  => Utils::boolean( true ),
+	'enableNavigationArrow' => Utils::boolean(),
+	'enablePaginationDots'  => Utils::boolean(),
+	'limit'                 => Utils::string( '3' ),
+	'cardAlignment'         => Utils::string( 'left' ),
+	'rowGap'                => Utils::single_responsive( 24, 20, 16, 'px' ),
+	'rowDividerStyle'       => Utils::string( 'none' ),
+	'rowDividerWidth'       => Utils::single_responsive( 1, 1, 1, 'px' ),
+	'rowDividerColor'       => Utils::colors( '#E0E0E0' ),
+	'imageWidth'            => Utils::single_responsive( 280, 200, 180, 'px' ),
+	'aspectRatio'           => Utils::string( '1:1' ),
+	'imageBorderRadius'     => Utils::spacing( 8, 8, 8, 8, 'px' ),
+	'cardBorder'            => Utils::border( 'none', '#DDDDDD', '#DDDDDD' ),
+	'cardBorderWidth'       => Utils::spacing( 0, 0, 0, 0, 'px' ),
+	'cardBorderRadius'      => Utils::spacing( 0, 0, 0, 0 ),
+	'cardPadding'           => Utils::responsive_spacing( 0, 0, 0, 0 ),
+);
+
+// Merge all attributes for List block.
+$sp_real_zigzag_list_attributes = array_merge(
+	$sp_real_required_attributes,
+	$sp_real_layouts_attributes,
+	$sp_real_query_attributes,
+	$sp_real_card_design_attributes,
+	$sp_real_content_attributes,
+	$sp_real_rating_attributes,
+	$sp_real_reviewer_image_attributes,
+	$sp_real_reviewer_details_attributes,
+	$sp_real_advanced_attributes,
+	$sp_real_zigzag_list_attr
 );
 
 // AJAX PAGINATION BLOCK ATTRIBUTES.
@@ -341,6 +387,7 @@ return array(
 	'carousel'                    => $sp_real_carousel_attributes,
 	'slider'                      => $sp_real_slider_attributes,
 	'grid'                        => $sp_real_grid_attributes,
+	'zigzag-list'                 => $sp_real_zigzag_list_attributes,
 	'ajax-pagination'             => $sp_real_ajax_pagination_block_attributes,
 	'testimonial-submission-form' => $sp_real_submission_form_attributes,
 );

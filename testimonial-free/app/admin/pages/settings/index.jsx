@@ -4,12 +4,14 @@ import { useSelect, useDispatch } from "@wordpress/data";
 import { AdvancedControls, CustomCssAndJs, Integrations, Performance } from "./SettingsTabContent";
 import Tools from "./Tools";
 import ClassicSettings from "./ClassicSettings";
+import AiConfiguration from "./ai-configuration/AiConfiguration";
 import { checkIsEqual } from "@testimonial/controls";
 import { SaveAndReset } from "./TemplateParts";
 import { STORE_NAME } from "../../store";
 import {
 	AdditionalCodesIcon,
 	AdvancedIcon,
+	AiConfigurationTabIcon,
 	ChevronRightIcon,
 	ClassicSettingsTabIcon,
 	IntegrationsTabIcon,
@@ -22,6 +24,11 @@ const settingsTabNavigation = [
 		label: __("Integrations", "testimonial-free"),
 		Icon: IntegrationsTabIcon,
 		value: "integrations",
+	},
+	{
+		label: __("AI Configuration", "testimonial-free"),
+		Icon: AiConfigurationTabIcon,
+		value: "ai-configuration",
 	},
 	{
 		label: __("Performance", "testimonial-free"),
@@ -55,10 +62,13 @@ const pluginSettingDefaultValues = {
 		tpro_dequeue_google_fonts: false,
 	},
 	advanced: {
+		// rtp_allow_anonymous_data is left out on purpose: Reset restores settings,
+		// it must not withdraw the diagnostic-data consent the user gave.
 		testimonial_data_remove: false,
 	},
 	tools: {},
 	integrations: {},
+	"ai-configuration": {},
 	additional: {
 		custom_css: "",
 		custom_js: "",
@@ -72,7 +82,7 @@ const pluginSettingDefaultValues = {
 	},
 };
 
-const tabsWithoutSave = ["tools", "integrations"];
+const tabsWithoutSave = ["tools", "integrations", "ai-configuration"];
 
 const getTabSettings = (settings, tab) => {
 	const keys = Object.keys(pluginSettingDefaultValues[tab] || {});
@@ -165,6 +175,7 @@ const SettingsPage = () => {
 				<div className="sp-real-setting-tab-content-wrapper">
 					<div className="sp-real-setting-tab-content">
 						{activeTab === "integrations" && <Integrations pluginSettings={allSettingsData} />}
+						{activeTab === "ai-configuration" && <AiConfiguration />}
 						{activeTab === "performance" && (
 							<Performance pluginSettings={tabSettingsData} updateSettingsOption={updateSettingsOption} />
 						)}

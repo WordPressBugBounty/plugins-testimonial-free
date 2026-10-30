@@ -43,14 +43,14 @@ const WelcomePage = () => {
 	];
 
 	const hour = new Date().getHours();
-	let greeting = "Good Night";
+	let greeting = __("Good Night", "testimonial-free");
 
 	if (hour >= 5 && hour < 12) {
-		greeting = "Good Morning";
+		greeting = __("Good Morning", "testimonial-free");
 	} else if (hour >= 12 && hour < 17) {
-		greeting = "Good Afternoon";
+		greeting = __("Good Afternoon", "testimonial-free");
 	} else if (hour >= 17 && hour < 21) {
-		greeting = "Good Evening";
+		greeting = __("Good Evening", "testimonial-free");
 	}
 	const { userName, pluginUrl } = useSelect((select) => select(STORE_NAME).getDashboardInfo(), []);
 
@@ -61,15 +61,20 @@ const WelcomePage = () => {
 					{greeting}, {userName}
 				</div>
 				<h3 className="sp-real-setup-page-title sp-welcome-title">
-					Welcome to <span className="sp-real-plugin-name">Real Testimonials!</span>
+					{__("Welcome to", "testimonial-free")}{" "}
+					<span className="sp-real-plugin-name">Real Testimonials!</span>
 				</h3>
 				<p className="sp-real-setup-page-desc">
-					Thanks for installing Real Testimonials — This plugin gives you everything you need to create clean
-					and interactive testimonial sections, without <br /> touching a line of code.
+					{__(
+						"Thanks for installing Real Testimonials — This plugin gives you everything you need to create clean and interactive testimonial sections, without",
+						"testimonial-free"
+					)}{" "}
+					<br /> {__("touching a line of code.", "testimonial-free")}
 				</p>
 				<p className="sp-real-setup-page-desc">
-					Get set up in minutes and start showcasing testimonials using
-					<b> 15+ flexible blocks and 225+ ready-made patterns.</b> Packed with features, including:
+					{__("Get set up in minutes and start showcasing testimonials using", "testimonial-free")}
+					<b> {__("15+ flexible blocks and 225+ ready-made patterns.", "testimonial-free")}</b>{" "}
+					{__("Packed with features, including:", "testimonial-free")}
 				</p>
 				<div className="sp-real-setup-feature-lists sp-d-grid sp-grid-cols-2 sp-gap-10px">
 					{featureLists?.map((item, index) => (
@@ -79,9 +84,15 @@ const WelcomePage = () => {
 							</span>
 							<span className="sp-real-feature-list-title">
 								{item.title}
-								{item?.hot && <span className="sp-real-feature-list-badge hot">HOT</span>}
+								{item?.hot && (
+									<span className="sp-real-feature-list-badge hot">
+										{__("HOT", "testimonial-free")}
+									</span>
+								)}
 								{item?.upcoming && (
-									<span className="sp-real-feature-list-badge upcoming">Upcoming</span>
+									<span className="sp-real-feature-list-badge upcoming">
+										{__("Upcoming", "testimonial-free")}
+									</span>
 								)}
 							</span>
 						</div>
@@ -99,7 +110,7 @@ const WelcomePage = () => {
 						width="510"
 						height="410"
 						src="https://www.youtube.com/embed/OA7LgaZHwIY?list=PLoUb-7uG-5jM2sjscSqBVj07VXOqt0qHZ&autoplay=1"
-						title="YouTube video player"
+						title={__("YouTube video player", "testimonial-free")}
 						allow="autoplay; encrypted-media"
 					></iframe>
 				) : (

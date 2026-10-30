@@ -1,4 +1,5 @@
 import { memo } from "@wordpress/element";
+import { __, sprintf } from "@wordpress/i18n";
 import { DisplayIcon } from "@testimonial/templates";
 import { useDeviceType } from "@testimonial/controls";
 
@@ -96,7 +97,12 @@ const FormFields = ({ attributes }) => {
 					</label>
 					{length === "limited" && (
 						<span className="sp-real-tsf-field__length">
-							0 {limit?.unit} out of {limit?.value}
+							{sprintf(
+								/* translators: 1: length unit (words or characters), 2: maximum length. */
+								__("0 %1$s out of %2$s", "testimonial-free"),
+								limit?.unit,
+								limit?.value
+							)}
 						</span>
 					)}
 				</div>
@@ -258,7 +264,7 @@ const Render = ({ attributes }) => {
 				)}
 			</div>
 			<div
-				className={`sp-real-tsf-submit-wrap ${submitButtonWidth === "auto" ? `sp-d-flex sp-justify-${submitButtonAlignment}` : "sp-tsf-full-btn"}`}
+				className={`sp-real-tsf-submit-wrap sp-d-flex ${submitButtonWidth === "auto" ? `sp-justify-${submitButtonAlignment}` : "sp-tsf-full-btn"}`}
 			>
 				<button
 					type="submit"

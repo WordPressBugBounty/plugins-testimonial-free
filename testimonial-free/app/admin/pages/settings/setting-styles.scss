@@ -250,6 +250,34 @@
 		letter-spacing: 0;
 	}
 
+	.sp-real-settings-contribute {
+		.sp-real-settings-contribute-header {
+			gap: 64px;
+		}
+
+		.sp-real-component-title {
+			min-width: 0;
+		}
+
+		.sp-real-component-help {
+			max-width: 460px;
+		}
+	}
+
+	.sp-real-settings-info-link {
+		padding: 0;
+		border: none;
+		background: none;
+		color: #374151;
+		font: inherit;
+		font-weight: 600;
+		text-decoration: underline;
+
+		&:hover {
+			color: var(--sp-real-link-color, #2563eb);
+		}
+	}
+
 	.sp-real-flush-cache-btn {
 		color: #ffffff;
 		background-color: var(--sp-real-link-color, #2563eb);

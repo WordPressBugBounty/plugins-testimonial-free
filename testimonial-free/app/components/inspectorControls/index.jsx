@@ -1,7 +1,7 @@
 import { __ } from "@wordpress/i18n";
 import { InspectorControls } from "@wordpress/block-editor";
 import { testimonialBlocksInfo } from "@testimonial/constants";
-import { onOpenSinglePatternPopup } from "../../ready-patterns/Controls";
+import { onOpenBlockPatternPopup } from "../../ready-patterns/Controls";
 import "./editor.scss";
 
 const InspectorControl = ({ attributes, setAttributes, Inspector }) => {
@@ -12,31 +12,30 @@ const InspectorControl = ({ attributes, setAttributes, Inspector }) => {
 	return (
 		<InspectorControls>
 			<div className="sp-testimonial-tabs-panel">
-				<div className="sp-real-inspector-control-top-section">
-					{blockInfo?.docLink && (
-						<div className="sp-real-doc-link-button-wrapper">
+				{/* Ready Patterns + Documentation buttons */}
+				{(isShowReadyPatternButton || blockInfo?.docLink) && (
+					<div className="sp-real-tab-panel-header-actions">
+						{isShowReadyPatternButton && (
+							<button
+								type="button"
+								className="sp-real-header-action sp-real-header-action-patterns"
+								onClick={(event) => onOpenBlockPatternPopup(event, blockName)}
+							>
+								{__("Ready Patterns", "testimonial-free")}
+							</button>
+						)}
+						{blockInfo?.docLink && (
 							<a
-								className="sp-real-doc-link-button sp-d-flex sp-align-center sp-gap-2px"
-								href={blockInfo?.docLink}
+								className="sp-real-header-action sp-real-header-action-docs"
+								href={blockInfo.docLink}
 								target="_blank"
 								rel="noreferrer"
 							>
-								Documentation
+								{__("Documentation", "testimonial-free")}
 							</a>
-						</div>
-					)}
-					{isShowReadyPatternButton && (
-						<div className="sp-real-inspector-control-button-list sp-d-flex sp-align-center sp-justify-between">
-							<button
-								data-block={blockName}
-								className="sp-real-block-preview-button sp-real-ready-patterns sp-d-flex sp-align-center sp-justify-center sp-w-full"
-								onClick={(event) => onOpenSinglePatternPopup(event, blockName)}
-							>
-								{__("Start with Ready Patterns", "testimonial-free")}
-							</button>
-						</div>
-					)}
-				</div>
+						)}
+					</div>
+				)}
 				<Inspector attributes={attributes} setAttributes={setAttributes} />
 			</div>
 		</InspectorControls>

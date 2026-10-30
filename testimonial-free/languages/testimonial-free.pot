@@ -9,20 +9,20 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-09-02T12:56:43+00:00\n"
+"POT-Creation-Date: 2026-10-30T09:42:29+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: testimonial-free\n"
 
 #. Plugin Name of the plugin
-#: testimonial-free.php src/Admin/Admin.php:257
+#: testimonial-free.php src/Admin/Admin.php:340
 #: src/Admin/PageBuilders/Beaver/Beaver_Builder.php:35
 #: src/Admin/PageBuilders/Beaver/Beaver_Builder.php:135
 #: src/Admin/PageBuilders/Bricks/Bricks_Builder.php:71
 #: src/Admin/PageBuilders/Oxygen/Oxygen_Builder.php:33
 #: src/Admin/PageBuilders/WPBakery/WPBakery_Builder.php:38
 #: src/Admin/PageBuilders/WPBakery/WPBakery_Builder.php:41
-#: src/Admin/Views/TFREE_Widget.php:33 src/Blocks/BlocksInit.php:104
+#: src/Admin/Views/TFREE_Widget.php:33 src/Blocks/BlocksInit.php:110
 #: dist/rtp-blocks.js dist/rtp-dashboard.js
 msgid "Real Testimonials"
 msgstr ""
@@ -47,170 +47,173 @@ msgstr ""
 msgid "https://shapedplugin.com/"
 msgstr ""
 
-#: src/Admin/Admin.php:123
-#: src/Admin/Admin.php:124
-#: src/Admin/Admin.php:136
-#: src/Admin/Admin.php:138
+#: src/Admin/Admin.php:102
+msgid "Start With Testimonial Blocks"
+msgstr ""
+
+#: src/Admin/Admin.php:206
+#: src/Admin/Admin.php:207
+#: src/Admin/Admin.php:219
+#: src/Admin/Admin.php:221
 #: src/Includes/TestimonialFree.php:183
 msgid "Manage Views"
 msgstr ""
 
-#: src/Admin/Admin.php:137
+#: src/Admin/Admin.php:220
 msgid "Manage View"
 msgstr ""
 
-#: src/Admin/Admin.php:139
-#: src/Admin/Admin.php:171
-#: src/Admin/Admin.php:260
-#: src/Admin/Admin.php:261
+#: src/Admin/Admin.php:222
+#: src/Admin/Admin.php:254
+#: src/Admin/Admin.php:343
+#: src/Admin/Admin.php:344
 msgid "Add New"
 msgstr ""
 
-#: src/Admin/Admin.php:140
+#: src/Admin/Admin.php:223
 msgid "Add New View"
 msgstr ""
 
-#: src/Admin/Admin.php:141
-#: src/Admin/Admin.php:173
-#: src/Admin/Admin.php:262
-#: src/Admin/Dashboard/SavedTemplates.php:58
+#: src/Admin/Admin.php:224 src/Admin/Admin.php:256 src/Admin/Admin.php:345
+#: src/Admin/Dashboard/SavedTemplates.php:65 dist/rtp-dashboard.js
 msgid "Edit"
 msgstr ""
 
-#: src/Admin/Admin.php:142
+#: src/Admin/Admin.php:225
 msgid "Edit View"
 msgstr ""
 
-#: src/Admin/Admin.php:143
+#: src/Admin/Admin.php:226
 msgid "New View"
 msgstr ""
 
-#: src/Admin/Admin.php:144
+#: src/Admin/Admin.php:227
 msgid "Search View"
 msgstr ""
 
-#: src/Admin/Admin.php:145
+#: src/Admin/Admin.php:228
 msgid "No View Found"
 msgstr ""
 
-#: src/Admin/Admin.php:146
+#: src/Admin/Admin.php:229
 msgid "No View Found in Trash"
 msgstr ""
 
-#: src/Admin/Admin.php:147
+#: src/Admin/Admin.php:230
 msgid "Parent View"
 msgstr ""
 
-#: src/Admin/Admin.php:155
+#: src/Admin/Admin.php:238 src/Admin/Dashboard/BlockUsage.php:732
+#: dist/rtp-dashboard.js
 msgid "Form"
 msgstr ""
 
-#: src/Admin/Admin.php:156
+#: src/Admin/Admin.php:239
 msgid "Generate forms for Frontend."
 msgstr ""
 
-#: src/Admin/Admin.php:168 src/Admin/Admin.php:169 src/Admin/Admin.php:170
+#: src/Admin/Admin.php:251 src/Admin/Admin.php:252 src/Admin/Admin.php:253
 #: dist/rtp-dashboard.js
 msgid "Testimonial Form"
 msgstr ""
 
-#: src/Admin/Admin.php:172
+#: src/Admin/Admin.php:255
 msgid "Add New Form"
 msgstr ""
 
-#: src/Admin/Admin.php:174
+#: src/Admin/Admin.php:257
 msgid "Edit Form"
 msgstr ""
 
-#: src/Admin/Admin.php:175
+#: src/Admin/Admin.php:258
 msgid "New Form"
 msgstr ""
 
-#: src/Admin/Admin.php:176
+#: src/Admin/Admin.php:259
 msgid "Search Forms"
 msgstr ""
 
-#: src/Admin/Admin.php:177
+#: src/Admin/Admin.php:260
 msgid "No Form Found"
 msgstr ""
 
-#: src/Admin/Admin.php:178
+#: src/Admin/Admin.php:261
 msgid "No Form Found in Trash"
 msgstr ""
 
-#: src/Admin/Admin.php:179
+#: src/Admin/Admin.php:262
 msgid "Parent Form"
 msgstr ""
 
-#: src/Admin/Admin.php:210
+#: src/Admin/Admin.php:293
 msgid "You are only allowed to have one form in lite version."
 msgstr ""
 
 #. translators: %s is replaced with 'member plural name'
-#: src/Admin/Admin.php:255
-#: src/Admin/Admin.php:259
+#: src/Admin/Admin.php:338
+#: src/Admin/Admin.php:342
 #, php-format
 msgid "All %s"
 msgstr ""
 
 #. translators: %s is replaced with 'member plural name'
-#: src/Admin/Admin.php:264
+#: src/Admin/Admin.php:347
 #, php-format
 msgid "Edit %s"
 msgstr ""
 
 #. translators: %s is replaced with 'member plural name'
-#: src/Admin/Admin.php:266
+#: src/Admin/Admin.php:349
 #, php-format
 msgid "New %s"
 msgstr ""
 
 #. translators: %s is replaced with 'member plural name'
-#: src/Admin/Admin.php:268
+#: src/Admin/Admin.php:351
 #, php-format
 msgid "Search %s"
 msgstr ""
 
 #. translators: %s is replaced with 'member plural name'
-#: src/Admin/Admin.php:270
+#: src/Admin/Admin.php:353
 #, php-format
 msgid "No %s found"
 msgstr ""
 
 #. translators: %s is replaced with 'member plural name'
-#: src/Admin/Admin.php:272
+#: src/Admin/Admin.php:355
 #, php-format
 msgid "No %s found in Trash"
 msgstr ""
 
 #. translators: %s is replaced with 'member plural name'
-#: src/Admin/Admin.php:274
+#: src/Admin/Admin.php:357
 #, php-format
 msgid "Parent %s"
 msgstr ""
 
 #. translators: %s is replaced with 'member plural name'
-#: src/Admin/Admin.php:276
+#: src/Admin/Admin.php:359
 #, php-format
 msgid "%s Image"
 msgstr ""
 
 #. translators: %s is replaced with 'member plural name'
-#: src/Admin/Admin.php:278
+#: src/Admin/Admin.php:361
 #, php-format
 msgid "Set %s image"
 msgstr ""
 
-#: src/Admin/Admin.php:279
+#: src/Admin/Admin.php:362
 msgid "Remove image"
 msgstr ""
 
-#: src/Admin/Admin.php:280
+#: src/Admin/Admin.php:363
 msgid "Use as image"
 msgstr ""
 
 #. translators: %s is replaced with 'member plural name'
-#: src/Admin/Admin.php:289
+#: src/Admin/Admin.php:372
 #, php-format
 msgid "%s custom post type."
 msgstr ""
@@ -225,169 +228,241 @@ msgstr ""
 msgid "Try Block Editor"
 msgstr ""
 
-#: src/Admin/AdminNotices/AdminNotices.php:96
+#: src/Admin/AdminNotices/AdminNotices.php:96 dist/rtp-dashboard.js
 msgid "Dismiss this notice"
 msgstr ""
 
-#: src/Admin/Dashboard/Dashboard.php:83
-msgid "Real Testimonials Dashboard"
+#: src/Admin/Dashboard/BlockUsage.php:248
+msgid "Ticker"
+msgstr ""
+
+#: src/Admin/Dashboard/BlockUsage.php:253
+#: src/Admin/Views/Framework/configs/metaboxs.php:123 dist/rtp-blocks.js
+#: dist/rtp-dashboard.js
+msgid "Slider"
+msgstr ""
+
+#: src/Admin/Dashboard/BlockUsage.php:254
+#: src/Admin/Views/Framework/configs/metaboxs.php:138
+msgid "Thumbnails Slider"
+msgstr ""
+
+#: src/Admin/Dashboard/BlockUsage.php:255
+#: src/Admin/Views/Framework/configs/metaboxs.php:128 dist/rtp-blocks.js
+#: dist/rtp-dashboard.js
+msgid "Carousel"
+msgstr ""
+
+#: src/Admin/Dashboard/BlockUsage.php:256
+#: src/Admin/Views/Framework/configs/metaboxs.php:145
+msgid "Multi-row"
+msgstr ""
+
+#: src/Admin/Dashboard/BlockUsage.php:257
+#: src/Admin/Views/Framework/configs/metaboxs.php:133 dist/rtp-blocks.js
+#: dist/rtp-dashboard.js
+msgid "Grid"
+msgstr ""
+
+#: src/Admin/Dashboard/BlockUsage.php:258
+#: src/Admin/Views/Framework/configs/metaboxs.php:152 dist/rtp-blocks.js
+#: dist/rtp-dashboard.js
+msgid "Masonry"
+msgstr ""
+
+#: src/Admin/Dashboard/BlockUsage.php:259
+#: src/Admin/Views/Framework/configs/metaboxs.php:159 dist/rtp-blocks.js
+#: dist/rtp-dashboard.js
+msgid "List"
+msgstr ""
+
+#: src/Admin/Dashboard/BlockUsage.php:260
+#: src/Admin/Views/Framework/configs/metaboxs.php:166
+msgid "Isotope"
+msgstr ""
+
+#: src/Admin/Dashboard/BlockUsage.php:690
+msgid "Widgets"
+msgstr ""
+
+#: src/Admin/Dashboard/BlockUsage.php:691
+msgid "Widget"
+msgstr ""
+
+#: src/Admin/Dashboard/BlockUsage.php:778
+#: src/Admin/Dashboard/ManageAPI.php:413
+msgid "(no title)"
 msgstr ""
 
 #: src/Admin/Dashboard/Dashboard.php:84
+msgid "Real Testimonials Dashboard"
+msgstr ""
+
+#: src/Admin/Dashboard/Dashboard.php:85
 msgid "Getting Started"
 msgstr ""
 
-#: src/Admin/Dashboard/Dashboard.php:92
+#: src/Admin/Dashboard/Dashboard.php:93
 msgid "Real Testimonials Settings"
 msgstr ""
 
-#: src/Admin/Dashboard/Dashboard.php:93
+#: src/Admin/Dashboard/Dashboard.php:94
 #: src/Admin/PageBuilders/Elementor/Elementor_Widget.php:124
-#: dist/rtp-dashboard.js
+#: dist/rtp-dashboard.js dist/rtp-blocks.js
 msgid "Settings"
 msgstr ""
 
-#: src/Admin/Dashboard/Dashboard.php:182
+#: src/Admin/Dashboard/Dashboard.php:183
 msgid "Supercharge Your Website with Our Free Plugins — Trusted by 360,050+ Users"
 msgstr ""
 
-#: src/Admin/Dashboard/Dashboard.php:427
+#: src/Admin/Dashboard/Dashboard.php:442
 msgid "Help us make Real Testimonials even more awesome?"
 msgstr ""
 
-#: src/Admin/Dashboard/Dashboard.php:431
+#: src/Admin/Dashboard/Dashboard.php:446
 msgid "Allow us to collect non-sensitive diagnostic data to resolve problems faster and improve performance."
 msgstr ""
 
-#: src/Admin/Dashboard/Dashboard.php:436 dist/rtp-dashboard.js
+#: src/Admin/Dashboard/Dashboard.php:451 dist/rtp-dashboard.js
 msgid "Learn More"
 msgstr ""
 
-#: src/Admin/Dashboard/Dashboard.php:444
+#: src/Admin/Dashboard/Dashboard.php:459
 msgid "Accept & Close"
 msgstr ""
 
-#: src/Admin/Dashboard/Dashboard.php:588
+#: src/Admin/Dashboard/Dashboard.php:603
 msgid "Active"
 msgstr ""
 
-#: src/Admin/Dashboard/Dashboard.php:593
+#: src/Admin/Dashboard/Dashboard.php:608
 msgid "Activate"
 msgstr ""
 
-#: src/Admin/Dashboard/Dashboard.php:600
+#: src/Admin/Dashboard/Dashboard.php:615
 msgid "Install Now"
 msgstr ""
 
 #. translators: %s: plugin name
-#: src/Admin/Dashboard/Dashboard.php:606
+#: src/Admin/Dashboard/Dashboard.php:621
 #, php-format
 msgid "More information about %s"
 msgstr ""
 
-#: src/Admin/Dashboard/Dashboard.php:607
+#: src/Admin/Dashboard/Dashboard.php:622
 msgid "More Details"
 msgstr ""
 
-#: src/Admin/Dashboard/Dashboard.php:637
+#: src/Admin/Dashboard/Dashboard.php:652
 msgid "Version:"
 msgstr ""
 
-#: src/Admin/Dashboard/Dashboard.php:646
+#: src/Admin/Dashboard/Dashboard.php:661
 msgid "+ Active Installations"
 msgstr ""
 
-#: src/Admin/Dashboard/Dashboard.php:654
+#: src/Admin/Dashboard/Dashboard.php:669
 msgid "Last Updated:"
 msgstr ""
 
 #. translators: %s: time ago
-#: src/Admin/Dashboard/Dashboard.php:659
+#: src/Admin/Dashboard/Dashboard.php:674
 #, php-format
 msgid "%s ago"
 msgstr ""
 
-#: src/Admin/Dashboard/ManageAPI.php:159
+#: src/Admin/Dashboard/ManageAPI.php:214
 msgid "Invalid settings data."
 msgstr ""
 
-#: src/Admin/Dashboard/ManageAPI.php:351
-msgid "Unauthorized access."
+#. translators: 1: block name, 2: count of further blocks
+#: src/Admin/Dashboard/ManageAPI.php:470
+#, php-format
+msgid "%1$s +%2$d"
 msgstr ""
 
-#: src/Admin/Dashboard/ManageAPI.php:356
+#: src/Admin/Dashboard/ManageAPI.php:480
+msgid "You do not have permission to do that."
+msgstr ""
+
+#: src/Admin/Dashboard/ManageAPI.php:485
+#: src/Admin/Dashboard/ManageAPI.php:540
 msgid "Invalid nonce."
 msgstr ""
 
-#: src/Admin/Dashboard/SavedTemplates.php:52
-#: src/Admin/Dashboard/SavedTemplates.php:54
-#: src/Admin/Dashboard/SavedTemplates.php:55
+#: src/Admin/Dashboard/ManageAPI.php:535
+msgid "Unauthorized access."
+msgstr ""
+
+#: src/Admin/Dashboard/SavedTemplates.php:59
+#: src/Admin/Dashboard/SavedTemplates.php:61
+#: src/Admin/Dashboard/SavedTemplates.php:62
 #: src/Admin/PageBuilders/Beaver/Beaver_Builder.php:139 dist/rtp-dashboard.js
 msgid "Saved Templates"
 msgstr ""
 
-#: src/Admin/Dashboard/SavedTemplates.php:53
+#: src/Admin/Dashboard/SavedTemplates.php:60
 #: src/Admin/PageBuilders/Bricks/Bricks_Builder.php:124
 #: src/Admin/PageBuilders/Divi/Divi_Builder.php:106
 #: src/Admin/PageBuilders/Elementor/Elementor_Widget.php:132
 #: src/Admin/PageBuilders/Oxygen/Oxygen_Builder.php:214
 #: src/Admin/PageBuilders/WPBakery/WPBakery_Builder.php:50
+#: dist/rtp-dashboard.js
 msgid "Saved Template"
 msgstr ""
 
-#: src/Admin/Dashboard/SavedTemplates.php:56
-#: src/Admin/Dashboard/SavedTemplates.php:57
+#: src/Admin/Dashboard/SavedTemplates.php:63
+#: src/Admin/Dashboard/SavedTemplates.php:64
 #: src/Admin/PageBuilders/Elementor/Elementor_Widget.php:241
-#: dist/rtp-dashboard.js
 msgid "Add New Template"
 msgstr ""
 
-#: src/Admin/Dashboard/SavedTemplates.php:59
+#: src/Admin/Dashboard/SavedTemplates.php:66
 msgid "Edit Template"
 msgstr ""
 
-#: src/Admin/Dashboard/SavedTemplates.php:60
+#: src/Admin/Dashboard/SavedTemplates.php:67
 msgid "View Template"
 msgstr ""
 
-#: src/Admin/Dashboard/SavedTemplates.php:61
+#: src/Admin/Dashboard/SavedTemplates.php:68
 msgid "New Templates"
 msgstr ""
 
-#: src/Admin/Dashboard/SavedTemplates.php:62
+#: src/Admin/Dashboard/SavedTemplates.php:69
 msgid "Search Template"
 msgstr ""
 
-#: src/Admin/Dashboard/SavedTemplates.php:63
+#: src/Admin/Dashboard/SavedTemplates.php:70
 msgid "No Template found"
 msgstr ""
 
-#: src/Admin/Dashboard/SavedTemplates.php:64
+#: src/Admin/Dashboard/SavedTemplates.php:71
 msgid "No Template found in Trash"
 msgstr ""
 
-#: src/Admin/Dashboard/SavedTemplates.php:65
+#: src/Admin/Dashboard/SavedTemplates.php:72
 msgid "Template Published"
 msgstr ""
 
-#: src/Admin/Dashboard/SavedTemplates.php:66
+#: src/Admin/Dashboard/SavedTemplates.php:73
 msgid "Template published privately."
 msgstr ""
 
-#: src/Admin/Dashboard/SavedTemplates.php:67
+#: src/Admin/Dashboard/SavedTemplates.php:74
 msgid "Template reverted to draft."
 msgstr ""
 
-#: src/Admin/Dashboard/SavedTemplates.php:68
+#: src/Admin/Dashboard/SavedTemplates.php:75
 msgid "Template scheduled."
 msgstr ""
 
-#: src/Admin/Dashboard/SavedTemplates.php:69
+#: src/Admin/Dashboard/SavedTemplates.php:76
 msgid "Template updated."
 msgstr ""
 
-#: src/Admin/ElementAddons/Shortcode_Widget.php:47 dist/rtp-blocks.js
-#: dist/rtp-dashboard.js
+#: src/Admin/ElementAddons/Shortcode_Widget.php:47
 msgid "Real Testimonials Shortcode"
 msgstr ""
 
@@ -427,7 +502,8 @@ msgstr ""
 msgid "SP Plugins"
 msgstr ""
 
-#: src/Admin/PageBuilders/Beaver/Beaver_Builder.php:132
+#: src/Admin/PageBuilders/Beaver/Beaver_Builder.php:132 dist/rtp-blocks.js
+#: dist/rtp-dashboard.js
 msgid "General"
 msgstr ""
 
@@ -510,6 +586,7 @@ msgid "update post"
 msgstr ""
 
 #: src/Admin/Views/Framework/Classes/metabox.class.php:411
+#: dist/rtp-dashboard.js
 msgid "Cancel"
 msgstr ""
 
@@ -532,6 +609,7 @@ msgid "Default settings restored."
 msgstr ""
 
 #: src/Admin/Views/Framework/Classes/options.class.php:558
+#: dist/rtp-dashboard.js
 msgid "Settings saved."
 msgstr ""
 
@@ -1008,7 +1086,7 @@ msgstr ""
 
 #: src/Admin/Views/Framework/configs/form.php:646
 #: src/Admin/Views/Framework/configs/metaboxs.php:979
-#: src/Admin/Views/Framework/configs/metaboxs.php:1459
+#: src/Admin/Views/Framework/configs/metaboxs.php:1459 dist/rtp-blocks.js
 msgid "Popup"
 msgstr ""
 
@@ -1043,19 +1121,19 @@ msgstr ""
 msgid "Pending Review"
 msgstr ""
 
-#: src/Admin/Views/Framework/configs/form.php:695
+#: src/Admin/Views/Framework/configs/form.php:695 dist/rtp-blocks.js
 msgid "Private"
 msgstr ""
 
-#: src/Admin/Views/Framework/configs/form.php:696
+#: src/Admin/Views/Framework/configs/form.php:696 dist/rtp-blocks.js
 msgid "Draft"
 msgstr ""
 
-#: src/Admin/Views/Framework/configs/form.php:697
+#: src/Admin/Views/Framework/configs/form.php:697 dist/rtp-blocks.js
 msgid "Auto Publish (Pro)"
 msgstr ""
 
-#: src/Admin/Views/Framework/configs/form.php:698
+#: src/Admin/Views/Framework/configs/form.php:698 dist/rtp-blocks.js
 msgid "Auto Publish Based on Star Rating (Pro)"
 msgstr ""
 
@@ -1130,11 +1208,11 @@ msgstr ""
 msgid "Choose a testimonial form layout."
 msgstr ""
 
-#: src/Admin/Views/Framework/configs/form.php:873
+#: src/Admin/Views/Framework/configs/form.php:873 dist/rtp-blocks.js
 msgid "Style One"
 msgstr ""
 
-#: src/Admin/Views/Framework/configs/form.php:877
+#: src/Admin/Views/Framework/configs/form.php:877 dist/rtp-blocks.js
 msgid "Style Two"
 msgstr ""
 
@@ -1206,42 +1284,6 @@ msgstr ""
 
 #: src/Admin/Views/Framework/configs/metaboxs.php:118
 msgid "Layout Preset"
-msgstr ""
-
-#: src/Admin/Views/Framework/configs/metaboxs.php:123 dist/rtp-blocks.js
-#: dist/rtp-dashboard.js
-msgid "Slider"
-msgstr ""
-
-#: src/Admin/Views/Framework/configs/metaboxs.php:128 dist/rtp-blocks.js
-#: dist/rtp-dashboard.js
-msgid "Carousel"
-msgstr ""
-
-#: src/Admin/Views/Framework/configs/metaboxs.php:133 dist/rtp-blocks.js
-#: dist/rtp-dashboard.js
-msgid "Grid"
-msgstr ""
-
-#: src/Admin/Views/Framework/configs/metaboxs.php:138
-msgid "Thumbnails Slider"
-msgstr ""
-
-#: src/Admin/Views/Framework/configs/metaboxs.php:145
-msgid "Multi-row"
-msgstr ""
-
-#: src/Admin/Views/Framework/configs/metaboxs.php:152 dist/rtp-blocks.js
-#: dist/rtp-dashboard.js
-msgid "Masonry"
-msgstr ""
-
-#: src/Admin/Views/Framework/configs/metaboxs.php:159
-msgid "List"
-msgstr ""
-
-#: src/Admin/Views/Framework/configs/metaboxs.php:166
-msgid "Isotope"
 msgstr ""
 
 #. translators: 1: start link tag, 2: close tag.
@@ -1319,12 +1361,13 @@ msgstr ""
 #: src/Admin/Views/Framework/configs/metaboxs.php:297
 #: src/Admin/Views/Framework/configs/metaboxs.php:2648
 #: src/Includes/TestimonialFree.php:260 src/Includes/TestimonialFree.php:304
-#: dist/rtp-blocks.js dist/rtp-dashboard.js
+#: dist/rtp-dashboard.js dist/rtp-blocks.js
 msgid "Date"
 msgstr ""
 
 #: src/Admin/Views/Framework/configs/metaboxs.php:301
-#: src/Includes/TestimonialFree.php:299 dist/rtp-blocks.js
+#: src/Includes/TestimonialFree.php:299 dist/rtp-dashboard.js
+#: dist/rtp-blocks.js
 msgid "Title"
 msgstr ""
 
@@ -1783,7 +1826,7 @@ msgstr ""
 msgid "Choose content display type."
 msgstr ""
 
-#: src/Admin/Views/Framework/configs/metaboxs.php:898
+#: src/Admin/Views/Framework/configs/metaboxs.php:898 dist/rtp-blocks.js
 msgid "Full"
 msgstr ""
 
@@ -1885,6 +1928,7 @@ msgstr ""
 #: src/Admin/Views/Framework/fields/typography/typography.php:255
 #: src/Admin/Views/Framework/fields/typography/typography.php:274
 #: src/Admin/Views/Framework/fields/typography/typography.php:297
+#: dist/rtp-blocks.js dist/rtp-dashboard.js
 msgid "Default"
 msgstr ""
 
@@ -2017,6 +2061,7 @@ msgstr ""
 #: src/Admin/Views/Framework/fields/border/border.php:95
 #: src/Admin/Views/Framework/fields/typography/typography.php:268
 #: src/Admin/Views/Framework/fields/typography/typography.php:287
+#: dist/rtp-blocks.js dist/rtp-dashboard.js
 msgid "None"
 msgstr ""
 
@@ -2081,7 +2126,8 @@ msgid "Want to enhance the Reviewer's Image using advanced customizations? %1$sU
 msgstr ""
 
 #: src/Admin/Views/Framework/configs/metaboxs.php:1422
-#: src/Admin/Views/Framework/configs/metaboxs.php:1443
+#: src/Admin/Views/Framework/configs/metaboxs.php:1443 dist/rtp-blocks.js
+#: dist/rtp-dashboard.js
 msgid "Video Testimonial"
 msgstr ""
 
@@ -2103,7 +2149,7 @@ msgstr ""
 msgid "Select a mode video play."
 msgstr ""
 
-#: src/Admin/Views/Framework/configs/metaboxs.php:1458
+#: src/Admin/Views/Framework/configs/metaboxs.php:1458 dist/rtp-blocks.js
 msgid "Inline"
 msgstr ""
 
@@ -2266,11 +2312,11 @@ msgstr ""
 msgid "Select a transition effect or animation."
 msgstr ""
 
-#: src/Admin/Views/Framework/configs/metaboxs.php:1748
+#: src/Admin/Views/Framework/configs/metaboxs.php:1748 dist/rtp-blocks.js
 msgid "Slide"
 msgstr ""
 
-#: src/Admin/Views/Framework/configs/metaboxs.php:1749
+#: src/Admin/Views/Framework/configs/metaboxs.php:1749 dist/rtp-blocks.js
 msgid "Fade (Pro)"
 msgstr ""
 
@@ -2290,11 +2336,11 @@ msgstr ""
 msgid "Slider direction."
 msgstr ""
 
-#: src/Admin/Views/Framework/configs/metaboxs.php:1762
+#: src/Admin/Views/Framework/configs/metaboxs.php:1762 dist/rtp-blocks.js
 msgid "Right to Left"
 msgstr ""
 
-#: src/Admin/Views/Framework/configs/metaboxs.php:1763
+#: src/Admin/Views/Framework/configs/metaboxs.php:1763 dist/rtp-blocks.js
 msgid "Left to Right"
 msgstr ""
 
@@ -2336,7 +2382,7 @@ msgstr ""
 msgid "Vertical Outer"
 msgstr ""
 
-#: src/Admin/Views/Framework/configs/metaboxs.php:1826
+#: src/Admin/Views/Framework/configs/metaboxs.php:1826 dist/rtp-blocks.js
 msgid "Top Right"
 msgstr ""
 
@@ -2406,23 +2452,28 @@ msgstr ""
 msgid "Bullets"
 msgstr ""
 
-#: src/Admin/Views/Framework/configs/metaboxs.php:1937
+#: src/Admin/Views/Framework/configs/metaboxs.php:1937 dist/rtp-blocks.js
+#: dist/rtp-dashboard.js
 msgid "Dynamic"
 msgstr ""
 
-#: src/Admin/Views/Framework/configs/metaboxs.php:1941
+#: src/Admin/Views/Framework/configs/metaboxs.php:1941 dist/rtp-blocks.js
+#: dist/rtp-dashboard.js
 msgid "Strokes"
 msgstr ""
 
-#: src/Admin/Views/Framework/configs/metaboxs.php:1946
+#: src/Admin/Views/Framework/configs/metaboxs.php:1946 dist/rtp-blocks.js
+#: dist/rtp-dashboard.js
 msgid "Scrollbar"
 msgstr ""
 
-#: src/Admin/Views/Framework/configs/metaboxs.php:1951
+#: src/Admin/Views/Framework/configs/metaboxs.php:1951 dist/rtp-blocks.js
+#: dist/rtp-dashboard.js
 msgid "Fraction"
 msgstr ""
 
-#: src/Admin/Views/Framework/configs/metaboxs.php:1956
+#: src/Admin/Views/Framework/configs/metaboxs.php:1956 dist/rtp-blocks.js
+#: dist/rtp-dashboard.js
 msgid "Numbers"
 msgstr ""
 
@@ -2701,7 +2752,8 @@ msgstr ""
 msgid "To unlock the following extra reviewer information fields, %1$sUpgrade to Pro!%2$s"
 msgstr ""
 
-#: src/Admin/Views/Framework/configs/metaboxs.php:2561
+#: src/Admin/Views/Framework/configs/metaboxs.php:2561 dist/rtp-blocks.js
+#: dist/rtp-dashboard.js
 msgid "Company Name"
 msgstr ""
 
@@ -2722,11 +2774,13 @@ msgstr ""
 msgid "Select Country"
 msgstr ""
 
-#: src/Admin/Views/Framework/configs/metaboxs.php:2600
+#: src/Admin/Views/Framework/configs/metaboxs.php:2600 dist/rtp-blocks.js
+#: dist/rtp-dashboard.js
 msgid "Phone or Mobile"
 msgstr ""
 
-#: src/Admin/Views/Framework/configs/metaboxs.php:2608
+#: src/Admin/Views/Framework/configs/metaboxs.php:2608 dist/rtp-blocks.js
+#: dist/rtp-dashboard.js
 msgid "Website"
 msgstr ""
 
@@ -2971,7 +3025,8 @@ msgstr ""
 msgid "ridge"
 msgstr ""
 
-#: src/Admin/Views/Framework/fields/border/border.php:144
+#: src/Admin/Views/Framework/fields/border/border.php:144 dist/rtp-blocks.js
+#: dist/rtp-dashboard.js
 msgid "Style"
 msgstr ""
 
@@ -3334,27 +3389,33 @@ msgstr ""
 msgid "Submitted successfully."
 msgstr ""
 
-#: src/Blocks/API/ManageAPI.php:280
+#: src/Blocks/API/ManageAPI.php:159
+msgid "Build with AI is switched off under Real Testimonials → Modules."
+msgstr ""
+
+#: src/Blocks/API/ManageAPI.php:355
 msgid "Security check failed."
 msgstr ""
 
-#: src/Blocks/BlocksInit.php:108
-msgid "Real Testimonials Pro Blocks"
+#: src/Blocks/BlocksInit.php:114
+msgid "Pro Blocks"
 msgstr ""
 
-#: src/Blocks/BlockTypes/AjaxPagination.php:53
+#: src/Blocks/BlockTypes/AjaxPagination.php:52
 msgid "Load More"
 msgstr ""
 
-#: src/Blocks/BlockTypes/AjaxPagination.php:56
+#: src/Blocks/BlockTypes/AjaxPagination.php:55 dist/rtp-blocks.js
+#: dist/rtp-dashboard.js
 msgid "Prev"
 msgstr ""
 
-#: src/Blocks/BlockTypes/AjaxPagination.php:57
+#: src/Blocks/BlockTypes/AjaxPagination.php:56 dist/rtp-blocks.js
+#: dist/rtp-dashboard.js
 msgid "Next"
 msgstr ""
 
-#: src/Blocks/BlockTypes/AjaxPagination.php:60
+#: src/Blocks/BlockTypes/AjaxPagination.php:59
 msgid "No more testimonial"
 msgstr ""
 
@@ -3373,6 +3434,77 @@ msgid "%d star"
 msgid_plural "%d stars"
 msgstr[0] ""
 msgstr[1] ""
+
+#. translators: 1: AI provider label, 2: error message from the provider.
+#: src/Blocks/Includes/AI.php:161
+#, php-format
+msgid "%1$s: %2$s"
+msgstr ""
+
+#. translators: 1: AI provider label, 2: model slug, 3: error message from the provider.
+#: src/Blocks/Includes/AI.php:169
+#, php-format
+msgid "%1$s (%2$s): %3$s"
+msgstr ""
+
+#: src/Blocks/Includes/AI.php:298
+msgid "No model is selected for this AI provider."
+msgstr ""
+
+#: src/Blocks/Includes/AI.php:473
+#: src/Blocks/Includes/AI.php:578
+msgid "Unknown AI provider."
+msgstr ""
+
+#: src/Blocks/Includes/AI.php:531
+msgid "This AI provider is not connected."
+msgstr ""
+
+#: src/Blocks/Includes/AI.php:548
+msgid "The AI provider replied, but not with a readable JSON object."
+msgstr ""
+
+#: src/Blocks/Includes/AI.php:590
+msgid "Enter an API key to verify."
+msgstr ""
+
+#: src/Blocks/Includes/AI.php:618
+msgid "No AI provider is connected. Connect one under Settings → Connectors, or add an API key under Real Testimonials → Settings → AI Configuration."
+msgstr ""
+
+#: src/Blocks/Includes/AI.php:621
+msgid "No AI provider is connected. Add an API key under Real Testimonials → Settings → AI Configuration."
+msgstr ""
+
+#: src/Blocks/Includes/AI.php:668
+msgid "The WordPress AI Client is not available on this site."
+msgstr ""
+
+#. translators: %d: HTTP status code returned by the AI provider.
+#: src/Blocks/Includes/AI.php:737
+#, php-format
+msgid "The AI provider returned an unexpected response (HTTP %d)."
+msgstr ""
+
+#: src/Blocks/Includes/AI.php:803
+msgid "Gemini API request failed."
+msgstr ""
+
+#: src/Blocks/Includes/AI.php:844
+msgid "OpenAI API request failed."
+msgstr ""
+
+#: src/Blocks/Includes/AI.php:882
+msgid "Groq API request failed."
+msgstr ""
+
+#: src/Blocks/Includes/AI.php:995
+msgid "Anthropic API request failed."
+msgstr ""
+
+#: src/Blocks/Includes/AIBuilder/AIBuilder.php:77
+msgid "Describe the block you want to create."
+msgstr ""
 
 #: src/Blocks/Includes/ReadyPatterns.php:126
 msgid "Item has been removed from wishlist."
@@ -3398,7 +3530,7 @@ msgstr ""
 msgid "Data fetched successfully!"
 msgstr ""
 
-#: src/Blocks/Includes/RenderTestimonialBlock.php:61
+#: src/Blocks/Includes/RenderTestimonialBlock.php:61 dist/rtp-blocks.js
 msgid "No testimonials found."
 msgstr ""
 
@@ -3425,7 +3557,7 @@ msgid "Our site is protected!"
 msgstr ""
 
 #: src/Includes/Import_Export.php:106
-#: src/Includes/Import_Export.php:358
+#: src/Includes/Import_Export.php:359
 msgid "Nonce verification failed!"
 msgstr ""
 
@@ -3433,16 +3565,20 @@ msgstr ""
 msgid "You do not have permission to export."
 msgstr ""
 
-#: src/Includes/Import_Export.php:367
+#: src/Includes/Import_Export.php:368
 msgid "You do not have permission to import."
 msgstr ""
 
-#: src/Includes/Import_Export.php:374
+#: src/Includes/Import_Export.php:375
 msgid "Nothing to import."
 msgstr ""
 
-#: src/Includes/Import_Export.php:387
+#: src/Includes/Import_Export.php:388
 msgid "Invalid JSON data."
+msgstr ""
+
+#: src/Includes/Import_Export.php:397
+msgid "The file does not contain any importable testimonials."
 msgstr ""
 
 #: src/Includes/TestimonialFree.php:182
@@ -3453,7 +3589,7 @@ msgstr ""
 msgid "Go Pro!"
 msgstr ""
 
-#: src/Includes/TestimonialFree.php:206
+#: src/Includes/TestimonialFree.php:206 dist/rtp-dashboard.js
 msgid "Docs"
 msgstr ""
 
@@ -3461,7 +3597,7 @@ msgstr ""
 msgid "Slider Title"
 msgstr ""
 
-#: src/Includes/TestimonialFree.php:257
+#: src/Includes/TestimonialFree.php:257 dist/rtp-dashboard.js
 msgid "Shortcode"
 msgstr ""
 
@@ -3538,6 +3674,20 @@ msgid "Get Connected with"
 msgstr ""
 
 
+#. translators: %s: number of saved templates.
+#: dist/rtp-dashboard.js
+#, js-format
+msgid "%s Item"
+msgid_plural "%s Items"
+msgstr[0] ""
+msgstr[1] ""
+
+#. translators: 1: current page number, 2: total page count.
+#: dist/rtp-dashboard.js
+#, js-format
+msgid "Page %1$s of %2$s"
+msgstr ""
+
 #: dist/rtp-dashboard.js
 msgid "No changelog found."
 msgstr ""
@@ -3547,7 +3697,59 @@ msgid "Something went wrong."
 msgstr ""
 
 #: dist/rtp-dashboard.js
-msgid "The Most Powerful Testimonials Builder plugin for WordPress from "
+msgid "product icon"
+msgstr ""
+
+#: dist/rtp-dashboard.js
+msgid "The most powerful and user-friendly multi-purpose carousel, slider, & gallery plugin for WordPress."
+msgstr ""
+
+#: dist/rtp-dashboard.js
+msgid "The most powerful Accordion and FAQs builder plugin for WordPress with modern design."
+msgstr ""
+
+#: dist/rtp-dashboard.js
+msgid "Best WooCommerce Custom Product Tabs & WordPress Tabs Builder Plugin to create responsive tabs."
+msgstr ""
+
+#: dist/rtp-dashboard.js
+msgid "Filter and display posts (any post types), pages, taxonomy, custom taxonomy, and custom field, in beautiful layouts."
+msgstr ""
+
+#: dist/rtp-dashboard.js
+msgid "Simply collect, manage, and display team members on your website with beautiful layouts."
+msgstr ""
+
+#: dist/rtp-dashboard.js
+msgid "Showcase a group of logo images with Title, Description, Tooltips, Links, and Popup as a grid or in a carousel."
+msgstr ""
+
+#: dist/rtp-dashboard.js
+msgid "Display beautiful weather update widgets to your WordPress site in a minute without coding skills!"
+msgstr ""
+
+#: dist/rtp-dashboard.js
+msgid "Product gallery slider and additional variation images gallery for WooCommerce and boost your sales."
+msgstr ""
+
+#: dist/rtp-dashboard.js
+msgid "Boost sales by interactive product Slider, Grid, and Table in your WooCommerce website or store."
+msgstr ""
+
+#: dist/rtp-dashboard.js
+msgid "Display by filtering the list of categories aesthetically and boosting sales."
+msgstr ""
+
+#: dist/rtp-dashboard.js
+msgid "Smart Swatches is a Best Product Variation Swatches for WooCommerce to Boost Your Store Sales."
+msgstr ""
+
+#: dist/rtp-dashboard.js
+msgid "Smart Brands for WooCommerce Pro helps you display product brands in an attractive way on your online store."
+msgstr ""
+
+#: dist/rtp-dashboard.js
+msgid "The Most Powerful Testimonials plugin for WordPress from "
 msgstr ""
 
 #: dist/rtp-dashboard.js
@@ -3576,6 +3778,10 @@ msgstr ""
 
 #: dist/rtp-dashboard.js
 msgid "More About Us "
+msgstr ""
+
+#: dist/rtp-dashboard.js
+msgid "Team"
 msgstr ""
 
 #: dist/rtp-dashboard.js
@@ -3620,6 +3826,10 @@ msgstr ""
 
 #: dist/rtp-dashboard.js
 msgid "Something Went Wrong"
+msgstr ""
+
+#: dist/rtp-dashboard.js
+msgid "Congratulations"
 msgstr ""
 
 #: dist/rtp-dashboard.js
@@ -3671,6 +3881,210 @@ msgid "what we collect."
 msgstr ""
 
 #: dist/rtp-dashboard.js
+msgid "Use a Pattern"
+msgstr ""
+
+#: dist/rtp-dashboard.js dist/rtp-blocks.js
+msgid "Build with AI"
+msgstr ""
+
+#: dist/rtp-dashboard.js
+msgid "Start Blank"
+msgstr ""
+
+#: dist/rtp-dashboard.js
+msgid "Play the introduction video"
+msgstr ""
+
+#: dist/rtp-dashboard.js dist/rtp-blocks.js
+msgid "Close"
+msgstr ""
+
+#: dist/rtp-dashboard.js
+msgid "Real Testimonials video tutorial"
+msgstr ""
+
+#: dist/rtp-dashboard.js
+msgid "The placements could not be loaded."
+msgstr ""
+
+#: dist/rtp-dashboard.js
+msgid "Scanning your site…"
+msgstr ""
+
+#: dist/rtp-dashboard.js
+msgid "Sync placements"
+msgstr ""
+
+#: dist/rtp-dashboard.js
+msgid "Looking for blocks & shortcodes"
+msgstr ""
+
+#. translators: %s: when the placements were last scanned, e.g. "2 minutes ago" or "just now"
+#: dist/rtp-dashboard.js
+#, js-format
+msgid "Last synced %s"
+msgstr ""
+
+#: dist/rtp-dashboard.js
+msgid "just now"
+msgstr ""
+
+#: dist/rtp-dashboard.js
+msgid "Not used yet"
+msgstr ""
+
+#: dist/rtp-dashboard.js
+msgid "Add it to a page or post"
+msgstr ""
+
+#: dist/rtp-dashboard.js
+msgid "View"
+msgstr ""
+
+#. translators: %s: "Block", "Shortcode", "Form" or "Saved Template"
+#: dist/rtp-dashboard.js
+#, js-format
+msgid "%s:"
+msgstr ""
+
+#: dist/rtp-dashboard.js
+msgid "Show less"
+msgstr ""
+
+#. translators: %d: number of hidden layouts
+#: dist/rtp-dashboard.js
+#, js-format
+msgid "+%d"
+msgstr ""
+
+#: dist/rtp-dashboard.js
+msgid "Testimonial Placements"
+msgstr ""
+
+#: dist/rtp-dashboard.js
+msgid "Track every block, shortcode, form, and saved template across your site."
+msgstr ""
+
+#: dist/rtp-dashboard.js
+msgid "Filter by type"
+msgstr ""
+
+#: dist/rtp-dashboard.js
+msgid "Search"
+msgstr ""
+
+#: dist/rtp-dashboard.js
+msgid "Search placements"
+msgstr ""
+
+#: dist/rtp-dashboard.js
+msgid "Try again"
+msgstr ""
+
+#: dist/rtp-dashboard.js
+msgid "Used on"
+msgstr ""
+
+#: dist/rtp-dashboard.js
+msgid "Type & Layouts"
+msgstr ""
+
+#: dist/rtp-dashboard.js
+msgid "Last updated"
+msgstr ""
+
+#: dist/rtp-dashboard.js
+msgid "Nothing matches your filter."
+msgstr ""
+
+#: dist/rtp-dashboard.js
+msgid "Load more"
+msgstr ""
+
+#. translators: 1: rows shown, 2: rows matching
+#: dist/rtp-dashboard.js
+#, js-format
+msgid "Showing %1$d of %2$d"
+msgstr ""
+
+#: dist/rtp-dashboard.js
+msgid "Only the 500 most recently updated items were scanned."
+msgstr ""
+
+#: dist/rtp-dashboard.js
+msgid "No Testimonials Yet"
+msgstr ""
+
+#: dist/rtp-dashboard.js
+msgid "Add a block, shortcode, form, or saved template to any page or post, and it will show up here."
+msgstr ""
+
+#: dist/rtp-dashboard.js
+msgid "Add to a Page"
+msgstr ""
+
+#: dist/rtp-dashboard.js
+msgid "Block"
+msgstr ""
+
+#: dist/rtp-dashboard.js
+msgid "Blocks"
+msgstr ""
+
+#: dist/rtp-dashboard.js
+msgid "Shortcodes"
+msgstr ""
+
+#: dist/rtp-dashboard.js
+msgid "Forms"
+msgstr ""
+
+#: dist/rtp-dashboard.js dist/rtp-blocks.js
+msgid "All"
+msgstr ""
+
+#. translators: 1: "Good morning" / "Good afternoon" / "Good evening", 2: the user's display name
+#: dist/rtp-dashboard.js
+#, js-format
+msgid "%1$s, %2$s 👋"
+msgstr ""
+
+#. translators: %s: "Good morning" / "Good afternoon" / "Good evening"
+#: dist/rtp-dashboard.js
+#, js-format
+msgid "%s 👋"
+msgstr ""
+
+#: dist/rtp-dashboard.js
+msgid "Start from a ready pattern, let AI build it for you, or start blank."
+msgstr ""
+
+#: dist/rtp-dashboard.js
+msgid "Start from a ready pattern, or start blank."
+msgstr ""
+
+#: dist/rtp-dashboard.js
+msgid "Let AI build it for you, or start blank."
+msgstr ""
+
+#: dist/rtp-dashboard.js
+msgid "Start blank in the block editor."
+msgstr ""
+
+#: dist/rtp-dashboard.js
+msgid "Ready to create your next testimonial showcase?"
+msgstr ""
+
+#: dist/rtp-dashboard.js
+msgid "Welcome to Real Testimonials"
+msgstr ""
+
+#: dist/rtp-dashboard.js
+msgid "Turn customer praise into trust that wins more sales, in minutes. Choose how you'd like to start."
+msgstr ""
+
+#: dist/rtp-dashboard.js
 msgid "All Free Version Features"
 msgstr ""
 
@@ -3680,6 +4094,10 @@ msgstr ""
 
 #: dist/rtp-dashboard.js
 msgid "Customizable and Professionally Designed Testimonials Themes"
+msgstr ""
+
+#: dist/rtp-dashboard.js
+msgid "Build with AI (Generate Blocks from a Prompt)"
 msgstr ""
 
 #: dist/rtp-dashboard.js
@@ -3718,7 +4136,7 @@ msgstr ""
 msgid "Reviewer Social Profiles"
 msgstr ""
 
-#: dist/rtp-dashboard.js
+#: dist/rtp-dashboard.js dist/rtp-blocks.js
 msgid "Video Testimonials"
 msgstr ""
 
@@ -3763,10 +4181,10 @@ msgid "Page Builder Integrations (Elementor, Divi, WPBakery, Bricks, etc.)"
 msgstr ""
 
 #: dist/rtp-dashboard.js
-msgid "Global Style Controls"
+msgid "Custom CSS & JS"
 msgstr ""
 
-#: dist/rtp-dashboard.js
+#: dist/rtp-dashboard.js dist/rtp-blocks.js
 msgid "Entrance & Scroll Animations"
 msgstr ""
 
@@ -3787,11 +4205,23 @@ msgid "This plugin is exactly what I was looking for. It's easy to set up, the l
 msgstr ""
 
 #: dist/rtp-dashboard.js
+msgid "Website Owner"
+msgstr ""
+
+#: dist/rtp-dashboard.js
 msgid "Real Testimonials made it effortless to collect and showcase customer reviews on my site. The carousel and grid layouts are beautiful and the submission form works flawlessly. Worth every penny."
 msgstr ""
 
 #: dist/rtp-dashboard.js
+msgid "Freelance Developer"
+msgstr ""
+
+#: dist/rtp-dashboard.js
 msgid "Great plugin with a clean interface and helpful documentation. The free version is generous and the Pro upgrade added the video testimonials and filtering we needed. Support has been fantastic."
+msgstr ""
+
+#: dist/rtp-dashboard.js
+msgid "Marketing Manager"
 msgstr ""
 
 #: dist/rtp-dashboard.js
@@ -3847,6 +4277,22 @@ msgid "See All Features"
 msgstr ""
 
 #: dist/rtp-dashboard.js
+msgid "Reviews on WordPress"
+msgstr ""
+
+#: dist/rtp-dashboard.js
+msgid "220+ Reviews"
+msgstr ""
+
+#: dist/rtp-dashboard.js
+msgid "Reviews on Trustpilot"
+msgstr ""
+
+#: dist/rtp-dashboard.js
+msgid "140+ Reviews"
+msgstr ""
+
+#: dist/rtp-dashboard.js
 msgid "Don't Just Take Our Word for It — See What Users Say!"
 msgstr ""
 
@@ -3884,6 +4330,10 @@ msgstr ""
 
 #: dist/rtp-dashboard.js
 msgid "It enables structured data for your testimonials to improve search engine visibility and enhance how they appear in search results."
+msgstr ""
+
+#: dist/rtp-dashboard.js
+msgid "Describe a testimonial block in plain words and let AI build it, using an AI provider connected under Settings → Connectors or AI Configuration."
 msgstr ""
 
 #: dist/rtp-dashboard.js
@@ -4098,6 +4548,10 @@ msgstr ""
 msgid "Upgrade now to access advanced features that build trust and turn visitors into customers."
 msgstr ""
 
+#: dist/rtp-dashboard.js dist/rtp-blocks.js
+msgid "Upgrade to Pro"
+msgstr ""
+
 #: dist/rtp-dashboard.js
 msgid "Module"
 msgstr ""
@@ -4119,107 +4573,299 @@ msgid "Upcoming"
 msgstr ""
 
 #: dist/rtp-dashboard.js
-msgid "Documentation"
-msgstr ""
-
-#: dist/rtp-dashboard.js
-msgid "Explore clear, well-organized documentation to understand features, settings, and get the most out of the plugin."
-msgstr ""
-
-#: dist/rtp-dashboard.js
-msgid "Browse Now"
-msgstr ""
-
-#: dist/rtp-dashboard.js
-msgid "Technical Support"
-msgstr ""
-
-#: dist/rtp-dashboard.js
-msgid "Need assistance? Reach out to our expert support team for fast, reliable help with any issues or questions."
-msgstr ""
-
-#: dist/rtp-dashboard.js
-msgid "Ask Now"
-msgstr ""
-
-#: dist/rtp-dashboard.js
-msgid "Show Your Love"
-msgstr ""
-
-#: dist/rtp-dashboard.js
-msgid "Leave us a quick review—your feedback helps us improve and serve you better every day with confidence together."
-msgstr ""
-
-#: dist/rtp-dashboard.js
-msgid "Rate Us"
-msgstr ""
-
-#: dist/rtp-dashboard.js
-msgid "Welcome, "
-msgstr ""
-
-#: dist/rtp-dashboard.js
-msgid "Turn happy customers into your best sales asset. Pick a ready pattern or create from scratch."
+msgid "Demo"
 msgstr ""
 
 #: dist/rtp-dashboard.js dist/rtp-blocks.js
-msgid "Start with Ready Patterns"
+msgid "Video"
 msgstr ""
 
 #: dist/rtp-dashboard.js
-msgid "Create from Scratch"
+msgid "Actions"
 msgstr ""
 
 #: dist/rtp-dashboard.js
-msgid "Welcome video"
+msgid "(Copy)"
 msgstr ""
 
 #: dist/rtp-dashboard.js
-msgid "Video Tutorial"
+msgid "Template duplicated."
 msgstr ""
 
 #: dist/rtp-dashboard.js
-msgid "Play welcome video"
+msgid "Could not duplicate the template."
+msgstr ""
+
+#. translators: %d: number of templates.
+#: dist/rtp-dashboard.js
+#, js-format
+msgid "Delete %d templates? They will be moved to Trash."
 msgstr ""
 
 #: dist/rtp-dashboard.js
-msgid "Failed to copy shortcode"
+msgid "Delete this template? It will be moved to Trash."
 msgstr ""
 
 #: dist/rtp-dashboard.js
-msgid "Block Editor"
+msgid "Template deleted."
+msgstr ""
+
+#. translators: %d: number of templates.
+#: dist/rtp-dashboard.js
+#, js-format
+msgid "%d templates deleted."
 msgstr ""
 
 #: dist/rtp-dashboard.js
-msgid "Classic"
+msgid "Could not delete the templates."
 msgstr ""
 
 #: dist/rtp-dashboard.js
-msgid "Editor Type"
+msgid "Bulk action"
 msgstr ""
 
 #: dist/rtp-dashboard.js
-msgid "No saved template found!"
+msgid "Bulk Action"
 msgstr ""
 
 #: dist/rtp-dashboard.js
-msgid "Design visually."
+msgid "Delete"
 msgstr ""
 
 #: dist/rtp-dashboard.js
-msgid "Place it "
+msgid "Apply"
 msgstr ""
 
 #: dist/rtp-dashboard.js
-msgid "anywhere."
+msgid "Search…"
 msgstr ""
 
 #: dist/rtp-dashboard.js
-msgid "Real Testimonials overview video"
+msgid "Search templates"
 msgstr ""
 
 #: dist/rtp-dashboard.js
-msgid "Play overview video"
+msgid "Create a Saved Template"
+msgstr ""
+
+#: dist/rtp-dashboard.js
+msgid "Select all templates"
+msgstr ""
+
+#: dist/rtp-dashboard.js
+msgid "Loading templates…"
+msgstr ""
+
+#: dist/rtp-dashboard.js
+msgid "Retry"
+msgstr ""
+
+#: dist/rtp-dashboard.js
+msgid "No saved templates match your search."
+msgstr ""
+
+#: dist/rtp-dashboard.js
+msgid "No saved templates yet."
+msgstr ""
+
+#. translators: %s: template title.
+#: dist/rtp-dashboard.js
+#, js-format
+msgid "Select %s"
+msgstr ""
+
+#: dist/rtp-dashboard.js
+msgid "No testimonial block yet"
+msgstr ""
+
+#: dist/rtp-dashboard.js
+msgid "Click to copy"
+msgstr ""
+
+#: dist/rtp-dashboard.js
+msgid "Copied!"
+msgstr ""
+
+#: dist/rtp-dashboard.js
+msgid "Duplicate"
+msgstr ""
+
+#: dist/rtp-dashboard.js
+msgid "Create Reusable Templates"
+msgstr ""
+
+#: dist/rtp-dashboard.js
+msgid "Create a testimonial template once and reuse it anywhere with a shortcode — pages, posts, widgets, or page builders like Elementor and Divi."
+msgstr ""
+
+#: dist/rtp-dashboard.js
+msgid "AI Providers"
+msgstr ""
+
+#: dist/rtp-dashboard.js
+msgid "Configure your AI providers."
+msgstr ""
+
+#. translators: 1: number of connected AI providers, 2: number of AI providers
+#: dist/rtp-dashboard.js
+#, js-format
+msgid "%1$d of %2$d ready"
+msgstr ""
+
+#: dist/rtp-dashboard.js
+msgid "Connected"
+msgstr ""
+
+#: dist/rtp-dashboard.js
+msgid "Not set up"
+msgstr ""
+
+#: dist/rtp-dashboard.js
+msgid "Primary"
+msgstr ""
+
+#. translators: %s: AI provider name
+#: dist/rtp-dashboard.js
+#, js-format
+msgid "Add a backup provider so building keeps working if %s reaches its limit."
+msgstr ""
+
+#: dist/rtp-dashboard.js
+msgid "Anthropic (Claude)"
+msgstr ""
+
+#: dist/rtp-dashboard.js
+msgid "Workspace ID"
+msgstr ""
+
+#: dist/rtp-dashboard.js
+msgid "Optional — only for organization-level keys"
+msgstr ""
+
+#: dist/rtp-dashboard.js
+msgid "Leave empty when your API key belongs to a workspace. Required only if Anthropic replies that the key is not scoped to a workspace. "
+msgstr ""
+
+#: dist/rtp-dashboard.js
+msgid "Find your workspace ID."
+msgstr ""
+
+#: dist/rtp-dashboard.js
+msgid "Google Gemini"
+msgstr ""
+
+#: dist/rtp-dashboard.js
+msgid "OpenAI (ChatGPT)"
+msgstr ""
+
+#: dist/rtp-dashboard.js
+msgid "Groq"
+msgstr ""
+
+#: dist/rtp-dashboard.js
+msgid "The API key could not be verified."
+msgstr ""
+
+#: dist/rtp-dashboard.js
+msgid "The settings could not be saved. Please try again."
+msgstr ""
+
+#: dist/rtp-dashboard.js
+msgid "API key verified and saved."
+msgstr ""
+
+#: dist/rtp-dashboard.js
+msgid "Settings reset."
+msgstr ""
+
+#. translators: %s: AI provider name
+#: dist/rtp-dashboard.js
+#, js-format
+msgid "Remove the saved %s API key?"
+msgstr ""
+
+#: dist/rtp-dashboard.js
+msgid "API key removed."
+msgstr ""
+
+#. translators: %s: AI provider name
+#: dist/rtp-dashboard.js
+#, js-format
+msgid "%s is now the primary provider."
+msgstr ""
+
+#: dist/rtp-dashboard.js
+msgid "Already use this provider elsewhere on your site? Add its key once under WordPress <link>Settings → Connectors</link> instead of here."
+msgstr ""
+
+#: dist/rtp-dashboard.js
+msgid "This provider is switched off. Save to turn it back on."
+msgstr ""
+
+#: dist/rtp-dashboard.js
+msgid "API Key"
+msgstr ""
+
+#: dist/rtp-dashboard.js
+msgid "Connected via WordPress"
+msgstr ""
+
+#: dist/rtp-dashboard.js
+msgid "Real Testimonials uses that connection. The key saved here stays as a fallback for when the connection is unavailable."
+msgstr ""
+
+#: dist/rtp-dashboard.js
+msgid "This provider is already configured in WordPress Connectors, so there is no key to enter here."
+msgstr ""
+
+#: dist/rtp-dashboard.js
+msgid "Manage in WordPress Connectors"
+msgstr ""
+
+#: dist/rtp-dashboard.js
+msgid "Make primary"
+msgstr ""
+
+#: dist/rtp-dashboard.js
+msgid "Remove the key stored here"
+msgstr ""
+
+#: dist/rtp-dashboard.js
+msgid "A saved API key is hidden."
+msgstr ""
+
+#: dist/rtp-dashboard.js
+msgid "Enter your API key"
+msgstr ""
+
+#. translators: %s: AI provider name
+#: dist/rtp-dashboard.js
+#, js-format
+msgid "Get your %s API key"
+msgstr ""
+
+#: dist/rtp-dashboard.js
+msgid "Replace API key"
+msgstr ""
+
+#: dist/rtp-dashboard.js
+msgid "Replace key"
+msgstr ""
+
+#: dist/rtp-dashboard.js
+msgid "Remove key"
+msgstr ""
+
+#: dist/rtp-dashboard.js
+msgid "Verifying…"
+msgstr ""
+
+#: dist/rtp-dashboard.js
+msgid "Save Changes"
+msgstr ""
+
+#: dist/rtp-dashboard.js
+msgid "Reset to Default"
 msgstr ""
 
 #: dist/rtp-dashboard.js
@@ -4232,6 +4878,10 @@ msgstr ""
 
 #: dist/rtp-dashboard.js
 msgid "Integrations"
+msgstr ""
+
+#: dist/rtp-dashboard.js
+msgid "AI Configuration"
 msgstr ""
 
 #: dist/rtp-dashboard.js
@@ -4347,6 +4997,14 @@ msgid "Load Font Awesome CSS stylesheet."
 msgstr ""
 
 #: dist/rtp-dashboard.js
+msgid "Contribute to Real Testimonials"
+msgstr ""
+
+#: dist/rtp-dashboard.js
+msgid "Allow us to collect diagnostic data to resolve problems faster and improve performance."
+msgstr ""
+
+#: dist/rtp-dashboard.js
 msgid "Custom CSS"
 msgstr ""
 
@@ -4363,58 +5021,6 @@ msgid "Are you sure you want to reset?"
 msgstr ""
 
 #: dist/rtp-dashboard.js
-msgid "What We Collect?"
-msgstr ""
-
-#: dist/rtp-dashboard.js
-msgid "We collect only non-sensitive diagnostic data and basic plugin usage information. This may include:"
-msgstr ""
-
-#: dist/rtp-dashboard.js
-msgid "WordPress & PHP version"
-msgstr ""
-
-#: dist/rtp-dashboard.js
-msgid "Active theme and plugins"
-msgstr ""
-
-#: dist/rtp-dashboard.js
-msgid "General system details"
-msgstr ""
-
-#: dist/rtp-dashboard.js
-msgid "Email address only for sending helpful updates or optional offers."
-msgstr ""
-
-#: dist/rtp-dashboard.js
-msgid "This information helps us improve performance, fix issues faster, and ensure Location Weather stays compatible with the popular plugins and themes."
-msgstr ""
-
-#: dist/rtp-dashboard.js
-msgid "We"
-msgstr ""
-
-#: dist/rtp-dashboard.js
-msgid "do not collect sensitive personal data,"
-msgstr ""
-
-#: dist/rtp-dashboard.js
-msgid "and"
-msgstr ""
-
-#: dist/rtp-dashboard.js
-msgid "never send spam"
-msgstr ""
-
-#: dist/rtp-dashboard.js
-msgid "promise."
-msgstr ""
-
-#: dist/rtp-dashboard.js
-msgid "Your privacy comes first."
-msgstr ""
-
-#: dist/rtp-dashboard.js
 msgid "All Testimonials"
 msgstr ""
 
@@ -4423,15 +5029,7 @@ msgid "All Testimonial Views (Shortcodes)"
 msgstr ""
 
 #: dist/rtp-dashboard.js
-msgid "All Testimonial Forms (Shortcodes)"
-msgstr ""
-
-#: dist/rtp-dashboard.js
 msgid "Selected Testimonial Views (Shortcodes)"
-msgstr ""
-
-#: dist/rtp-dashboard.js
-msgid "Selected Testimonial Forms (Shortcodes)"
 msgstr ""
 
 #: dist/rtp-dashboard.js
@@ -4444,10 +5042,6 @@ msgstr ""
 
 #: dist/rtp-dashboard.js
 msgid "Choose at least one testimonial view."
-msgstr ""
-
-#: dist/rtp-dashboard.js
-msgid "Choose at least one testimonial form."
 msgstr ""
 
 #: dist/rtp-dashboard.js
@@ -4480,14 +5074,6 @@ msgstr ""
 
 #: dist/rtp-dashboard.js
 msgid "Choose testimonial view(s)"
-msgstr ""
-
-#: dist/rtp-dashboard.js
-msgid "No testimonial forms found."
-msgstr ""
-
-#: dist/rtp-dashboard.js
-msgid "Choose testimonial form(s)"
 msgstr ""
 
 #: dist/rtp-dashboard.js
@@ -4551,6 +5137,70 @@ msgid "Elementor, Divi, Beaver & More."
 msgstr ""
 
 #: dist/rtp-dashboard.js
+msgid "Good Night"
+msgstr ""
+
+#: dist/rtp-dashboard.js
+msgid "Good Morning"
+msgstr ""
+
+#: dist/rtp-dashboard.js
+msgid "Good Afternoon"
+msgstr ""
+
+#: dist/rtp-dashboard.js
+msgid "Good Evening"
+msgstr ""
+
+#: dist/rtp-dashboard.js
+msgid "Welcome to"
+msgstr ""
+
+#: dist/rtp-dashboard.js
+msgid "Thanks for installing Real Testimonials — This plugin gives you everything you need to create clean and interactive testimonial sections, without"
+msgstr ""
+
+#: dist/rtp-dashboard.js
+msgid "touching a line of code."
+msgstr ""
+
+#: dist/rtp-dashboard.js
+msgid "Get set up in minutes and start showcasing testimonials using"
+msgstr ""
+
+#: dist/rtp-dashboard.js
+msgid "15+ flexible blocks and 225+ ready-made patterns."
+msgstr ""
+
+#: dist/rtp-dashboard.js
+msgid "Packed with features, including:"
+msgstr ""
+
+#: dist/rtp-dashboard.js
+msgid "HOT"
+msgstr ""
+
+#: dist/rtp-dashboard.js dist/rtp-blocks.js
+msgid "YouTube video player"
+msgstr ""
+
+#: dist/rtp-dashboard.js
+msgid "Dashboard"
+msgstr ""
+
+#: dist/rtp-dashboard.js
+msgid "Modules"
+msgstr ""
+
+#: dist/rtp-dashboard.js
+msgid "Lite vs Pro"
+msgstr ""
+
+#: dist/rtp-dashboard.js
+msgid "Our Plugins"
+msgstr ""
+
+#: dist/rtp-dashboard.js
 msgid "You can use this shortcode anywhere and manage it from"
 msgstr ""
 
@@ -4571,7 +5221,39 @@ msgid "Previous"
 msgstr ""
 
 #: dist/rtp-dashboard.js
+msgid "Skip it"
+msgstr ""
+
+#: dist/rtp-dashboard.js
 msgid "Next Step"
+msgstr ""
+
+#: dist/rtp-dashboard.js
+msgid "setup wizard"
+msgstr ""
+
+#: dist/rtp-dashboard.js
+msgid "What We Collect?"
+msgstr ""
+
+#: dist/rtp-dashboard.js
+msgid "We collect only non-sensitive diagnostic data and basic plugin usage information. This may include:"
+msgstr ""
+
+#: dist/rtp-dashboard.js
+msgid "WordPress & PHP version"
+msgstr ""
+
+#: dist/rtp-dashboard.js
+msgid "Active theme and plugins"
+msgstr ""
+
+#: dist/rtp-dashboard.js
+msgid "General system details"
+msgstr ""
+
+#: dist/rtp-dashboard.js
+msgid "Email address only for sending helpful updates or optional offers."
 msgstr ""
 
 #: dist/rtp-dashboard.js
@@ -4579,11 +5261,19 @@ msgid "This information helps us improve performance, fix issues faster, and ens
 msgstr ""
 
 #: dist/rtp-dashboard.js
-msgid "No personal data is collected, and we never send spam—promise."
+msgid "We do not collect sensitive personal data, and we never send spam—promise."
 msgstr ""
 
 #: dist/rtp-dashboard.js
 msgid "Your Privacy is First "
+msgstr ""
+
+#: dist/rtp-dashboard.js dist/rtp-blocks.js
+msgid "Documentation"
+msgstr ""
+
+#: dist/rtp-dashboard.js
+msgid "Technical Support"
 msgstr ""
 
 #: dist/rtp-dashboard.js
@@ -4642,6 +5332,248 @@ msgstr ""
 msgid "View the changelog"
 msgstr ""
 
+#: dist/rtp-dashboard.js dist/rtp-blocks.js
+msgid "Pro"
+msgstr ""
+
+#: dist/rtp-dashboard.js
+msgid "Good morning"
+msgstr ""
+
+#: dist/rtp-dashboard.js
+msgid "Good afternoon"
+msgstr ""
+
+#: dist/rtp-dashboard.js
+msgid "Good evening"
+msgstr ""
+
+#. translators: %d: number of seconds.
+#: dist/rtp-dashboard.js
+#, js-format
+msgid "%d second ago"
+msgid_plural "%d seconds ago"
+msgstr[0] ""
+msgstr[1] ""
+
+#. translators: %d: number of minutes.
+#: dist/rtp-dashboard.js
+#, js-format
+msgid "%d minute ago"
+msgid_plural "%d minutes ago"
+msgstr[0] ""
+msgstr[1] ""
+
+#. translators: %d: number of hours.
+#: dist/rtp-dashboard.js
+#, js-format
+msgid "%d hour ago"
+msgid_plural "%d hours ago"
+msgstr[0] ""
+msgstr[1] ""
+
+#. translators: %d: number of days.
+#: dist/rtp-dashboard.js
+#, js-format
+msgid "%d day ago"
+msgid_plural "%d days ago"
+msgstr[0] ""
+msgstr[1] ""
+
+#: dist/rtp-blocks.js dist/rtp-dashboard.js
+msgid "Reading your prompt"
+msgstr ""
+
+#: dist/rtp-blocks.js dist/rtp-dashboard.js
+msgid "Choosing a layout"
+msgstr ""
+
+#: dist/rtp-blocks.js dist/rtp-dashboard.js
+msgid "Designing the cards"
+msgstr ""
+
+#: dist/rtp-blocks.js dist/rtp-dashboard.js
+msgid "Applying styles"
+msgstr ""
+
+#. translators: 1: AI provider that failed, 2: AI provider to continue with.
+#: dist/rtp-blocks.js dist/rtp-dashboard.js
+#, js-format
+msgid "<strong>%1$s</strong> reached its limit before finishing. Continue with <strong>%2$s</strong> to get your result."
+msgstr ""
+
+#. translators: 1: AI provider that failed, 2: AI provider to continue with.
+#: dist/rtp-blocks.js dist/rtp-dashboard.js
+#, js-format
+msgid "<strong>%1$s</strong> returned an incomplete answer. Continue with <strong>%2$s</strong> to get your result."
+msgstr ""
+
+#. translators: 1: AI provider that failed, 2: AI provider to continue with.
+#: dist/rtp-blocks.js dist/rtp-dashboard.js
+#, js-format
+msgid "<strong>%1$s</strong> took too long to respond. Continue with <strong>%2$s</strong> to get your result."
+msgstr ""
+
+#. translators: 1: AI provider that failed, 2: AI provider to continue with.
+#: dist/rtp-blocks.js dist/rtp-dashboard.js
+#, js-format
+msgid "<strong>%1$s</strong> rejected the saved API key. Continue with <strong>%2$s</strong> to get your result."
+msgstr ""
+
+#. translators: 1: AI provider that failed, 2: AI provider to continue with.
+#: dist/rtp-blocks.js dist/rtp-dashboard.js
+#, js-format
+msgid "<strong>%1$s</strong> couldn't finish this request. Continue with <strong>%2$s</strong> to get your result."
+msgstr ""
+
+#: dist/rtp-blocks.js dist/rtp-dashboard.js
+msgid "Limit reached"
+msgstr ""
+
+#: dist/rtp-blocks.js dist/rtp-dashboard.js
+msgid "Incomplete answer"
+msgstr ""
+
+#: dist/rtp-blocks.js dist/rtp-dashboard.js
+msgid "Timed out"
+msgstr ""
+
+#: dist/rtp-blocks.js dist/rtp-dashboard.js
+msgid "Key rejected"
+msgstr ""
+
+#: dist/rtp-blocks.js dist/rtp-dashboard.js
+msgid "Failed"
+msgstr ""
+
+#: dist/rtp-blocks.js dist/rtp-dashboard.js
+msgid "Describe the testimonial block you want to create."
+msgstr ""
+
+#: dist/rtp-blocks.js dist/rtp-dashboard.js
+msgid "Block updated with AI."
+msgstr ""
+
+#: dist/rtp-blocks.js dist/rtp-dashboard.js
+msgid "Block created with AI."
+msgstr ""
+
+#: dist/rtp-blocks.js dist/rtp-dashboard.js
+msgid "Build Testimonial Showcase"
+msgstr ""
+
+#: dist/rtp-blocks.js dist/rtp-dashboard.js
+msgid "Applying…"
+msgstr ""
+
+#: dist/rtp-blocks.js dist/rtp-dashboard.js
+msgid "Update Showcase"
+msgstr ""
+
+#. translators: %s: block title
+#: dist/rtp-blocks.js dist/rtp-dashboard.js
+#, js-format
+msgid "Refine %s with AI"
+msgstr ""
+
+#: dist/rtp-blocks.js dist/rtp-dashboard.js
+msgid "Build Your Testimonial Showcase with AI"
+msgstr ""
+
+#: dist/rtp-blocks.js dist/rtp-dashboard.js
+msgid "Connect an AI provider to start building. Set it up in <strong>Real Testimonials > Settings ></strong> <link>AI Configuration</link> or use <connectors>WordPress Connectors</connectors>."
+msgstr ""
+
+#: dist/rtp-blocks.js dist/rtp-dashboard.js
+msgid "Connect an AI provider to start building. Set it up in <strong>Real Testimonials > Settings ></strong> <link>AI Configuration</link>."
+msgstr ""
+
+#: dist/rtp-blocks.js dist/rtp-dashboard.js
+msgid "Continue"
+msgstr ""
+
+#: dist/rtp-blocks.js dist/rtp-dashboard.js
+msgid "What should change?"
+msgstr ""
+
+#: dist/rtp-blocks.js dist/rtp-dashboard.js
+msgid "What do you want to create?"
+msgstr ""
+
+#: dist/rtp-blocks.js dist/rtp-dashboard.js
+msgid "Make the cards dark with light text and show 4 per row"
+msgstr ""
+
+#: dist/rtp-blocks.js dist/rtp-dashboard.js
+msgid "A testimonial carousel with 3 columns, white rounded cards, amber stars and autoplay every 5 seconds."
+msgstr ""
+
+#: dist/rtp-blocks.js dist/rtp-dashboard.js
+msgid "Mention layout, content, motion and styling."
+msgstr ""
+
+#: dist/rtp-blocks.js dist/rtp-dashboard.js
+msgid "AI provider"
+msgstr ""
+
+#. translators: 1: AI provider label, 2: why its last request failed.
+#: dist/rtp-blocks.js dist/rtp-dashboard.js
+#, js-format
+msgid "%1$s (%2$s)"
+msgstr ""
+
+#: dist/rtp-blocks.js dist/rtp-dashboard.js
+msgid "AI model"
+msgstr ""
+
+#: dist/rtp-blocks.js dist/rtp-dashboard.js
+msgid "Stop generating"
+msgstr ""
+
+#: dist/rtp-blocks.js dist/rtp-dashboard.js
+msgid "Refine with AI"
+msgstr ""
+
+#: dist/rtp-blocks.js dist/rtp-dashboard.js
+msgid "Autoplay Carousel"
+msgstr ""
+
+#: dist/rtp-blocks.js dist/rtp-dashboard.js
+msgid "Autoplay Slider"
+msgstr ""
+
+#: dist/rtp-blocks.js dist/rtp-dashboard.js
+msgid "Four-Column Grid"
+msgstr ""
+
+#: dist/rtp-blocks.js dist/rtp-dashboard.js
+msgid "Divided List"
+msgstr ""
+
+#: dist/rtp-blocks.js dist/rtp-dashboard.js
+msgid "Required Fields Form"
+msgstr ""
+
+#: dist/rtp-blocks.js dist/rtp-dashboard.js
+msgid "Try a starter"
+msgstr ""
+
+#: dist/rtp-blocks.js dist/rtp-dashboard.js
+msgid "Previous starters"
+msgstr ""
+
+#: dist/rtp-blocks.js dist/rtp-dashboard.js
+msgid "More starters"
+msgstr ""
+
+#: dist/rtp-blocks.js dist/rtp-dashboard.js
+msgid "The AI could not build a block from this prompt."
+msgstr ""
+
+#: dist/rtp-blocks.js dist/rtp-dashboard.js
+msgid "Something went wrong while talking to the AI provider."
+msgstr ""
+
 #: dist/rtp-blocks.js
 msgid "Items to Show Per Click"
 msgstr ""
@@ -4698,6 +5630,14 @@ msgstr ""
 msgid "Advanced Settings"
 msgstr ""
 
+#: dist/rtp-blocks.js
+msgid "Standard"
+msgstr ""
+
+#: dist/rtp-blocks.js
+msgid "Coverflow"
+msgstr ""
+
 #: dist/rtp-blocks.js dist/rtp-dashboard.js
 msgid "Bento Grid"
 msgstr ""
@@ -4724,6 +5664,136 @@ msgstr ""
 
 #: dist/rtp-blocks.js
 msgid "Display testimonials in a stylish Polaroid-style photo grid layout."
+msgstr ""
+
+#: dist/rtp-blocks.js dist/rtp-dashboard.js
+msgid "Stacked Cards"
+msgstr ""
+
+#: dist/rtp-blocks.js
+msgid "Display testimonials as a layered slider or a fanned card deck."
+msgstr ""
+
+#: dist/rtp-blocks.js dist/rtp-dashboard.js
+msgid "Spotlight"
+msgstr ""
+
+#: dist/rtp-blocks.js
+msgid "Put one review in the spotlight — as a tab set, an accordion carousel or a grid of reviewer photos."
+msgstr ""
+
+#: dist/rtp-blocks.js
+msgid "Showcase the video testimonials you collected, in a carousel or a grid."
+msgstr ""
+
+#: dist/rtp-blocks.js dist/rtp-dashboard.js
+msgid "Review Badge"
+msgstr ""
+
+#: dist/rtp-blocks.js
+msgid "Show overall rating, review counts, and summary."
+msgstr ""
+
+#: dist/rtp-blocks.js dist/rtp-dashboard.js
+msgid "Record Video"
+msgstr ""
+
+#: dist/rtp-blocks.js
+msgid "Allow users to record and submit video testimonials directly from the frontend."
+msgstr ""
+
+#: dist/rtp-blocks.js
+msgid "Unlock this premium"
+msgstr ""
+
+#: dist/rtp-blocks.js
+msgid "layout block with Pro"
+msgstr ""
+
+#: dist/rtp-blocks.js
+msgid "View Demo"
+msgstr ""
+
+#: dist/rtp-blocks.js
+msgid "All Pro Blocks"
+msgstr ""
+
+#: dist/rtp-blocks.js
+msgid "11 Layout Blocks & 6 Card Designs"
+msgstr ""
+
+#: dist/rtp-blocks.js
+msgid "Video Testimonials & Video Recorder"
+msgstr ""
+
+#: dist/rtp-blocks.js
+msgid "Review Badge & AI Review Summary"
+msgstr ""
+
+#: dist/rtp-blocks.js
+msgid "Popup Submission Form & reCAPTCHA"
+msgstr ""
+
+#: dist/rtp-blocks.js
+msgid "Auto-Publish by Rating & Email Notifications"
+msgstr ""
+
+#: dist/rtp-blocks.js
+msgid "Fade, Spring, Ken Burns & Coverflow Effects"
+msgstr ""
+
+#: dist/rtp-blocks.js
+msgid "Live Filter, AJAX Search, Group & Rating Filters"
+msgstr ""
+
+#: dist/rtp-blocks.js
+msgid "Reviewer Social Profiles & Verified Badges"
+msgstr ""
+
+#: dist/rtp-blocks.js
+msgid "Read More, Quote Symbols & Content Length"
+msgstr ""
+
+#: dist/rtp-blocks.js
+msgid "Pro Updates & Support"
+msgstr ""
+
+#: dist/rtp-blocks.js
+msgid "Real Testimonials Pro"
+msgstr ""
+
+#: dist/rtp-blocks.js
+msgid "Pro Block"
+msgstr ""
+
+#. translators: %s: Pro block title, e.g. "Marquee".
+#: dist/rtp-blocks.js
+#, js-format
+msgid "Unlock %s with Real Testimonials Pro"
+msgstr ""
+
+#: dist/rtp-blocks.js
+msgid "Do more with Real Testimonials Pro"
+msgstr ""
+
+#. translators: %s: Pro block description, ending in a full stop.
+#: dist/rtp-blocks.js
+#, js-format
+msgid "%s Upgrade to use it, along with every Pro block and feature below."
+msgstr ""
+
+#: dist/rtp-blocks.js
+msgid "More layouts, effects and features for every testimonial showcase."
+msgstr ""
+
+#. translators: %s: Pro block title, e.g. "Marquee".
+#: dist/rtp-blocks.js
+#, js-format
+msgid "View %s Demo"
+msgstr ""
+
+#: dist/rtp-blocks.js
+msgid "14-day money-back guarantee"
 msgstr ""
 
 #: dist/rtp-blocks.js
@@ -4759,47 +5829,79 @@ msgid "to display real customer feedback and build trust."
 msgstr ""
 
 #: dist/rtp-blocks.js
-msgid "AI generated review summary 🔥"
+msgid "Loading testimonials..."
 msgstr ""
 
 #: dist/rtp-blocks.js
-msgid "Instant result with Ajax search"
+msgid "Flip"
 msgstr ""
 
 #: dist/rtp-blocks.js
-msgid "Filter by groups, specific items"
+msgid "Cube"
 msgstr ""
 
 #: dist/rtp-blocks.js
-msgid "Filter based on star rating"
+msgid "Spring (Pro)"
 msgstr ""
 
 #: dist/rtp-blocks.js
-msgid "Shuffle testimonials with random order"
+msgid "Ken Burns (Pro)"
 msgstr ""
 
 #: dist/rtp-blocks.js
-msgid "Drag & drop to arrange testimonials your way"
+msgid "Make Your Reviews Stand Out"
 msgstr ""
 
 #: dist/rtp-blocks.js
-msgid "3 dynamic carousel styles"
+msgid "Grab attention with stunning layouts that build instant trust."
 msgstr ""
 
 #: dist/rtp-blocks.js
-msgid "10+ premium card designs"
+msgid "Let AI summarize reviews for faster decisions 🔥"
 msgstr ""
 
 #: dist/rtp-blocks.js
-msgid "3+ smooth sliding effects"
+msgid "Help visitors find reviews with instant search"
 msgstr ""
 
 #: dist/rtp-blocks.js
-msgid "Vertical layout for flexible display"
+msgid "Let visitors filter reviews by what matters to them"
 msgstr ""
 
 #: dist/rtp-blocks.js
-msgid "Partial slide view for a modern look"
+msgid "Match your brand with 10+ premium card designs"
+msgstr ""
+
+#: dist/rtp-blocks.js
+msgid "Choose from 3 eye-catching carousel styles"
+msgstr ""
+
+#: dist/rtp-blocks.js
+msgid "Hold attention with smooth sliding effects"
+msgstr ""
+
+#: dist/rtp-blocks.js
+msgid "Fit any space with vertical sliding layouts"
+msgstr ""
+
+#: dist/rtp-blocks.js
+msgid "Invite more swipes with partial slide view"
+msgstr ""
+
+#: dist/rtp-blocks.js
+msgid "Match your brand with 2 premium list designs"
+msgstr ""
+
+#: dist/rtp-blocks.js
+msgid "Keep long lists lively with zig zag rows"
+msgstr ""
+
+#: dist/rtp-blocks.js
+msgid "Turn Reviews Into More Sales"
+msgstr ""
+
+#: dist/rtp-blocks.js
+msgid "Help visitors find the right reviews and trust you faster."
 msgstr ""
 
 #: dist/rtp-blocks.js
@@ -4811,11 +5913,43 @@ msgid "Select Card Style"
 msgstr ""
 
 #: dist/rtp-blocks.js
+msgid "Zig Zag Orientation"
+msgstr ""
+
+#: dist/rtp-blocks.js
+msgid "Vertical Gap"
+msgstr ""
+
+#: dist/rtp-blocks.js
+msgid "Row Divider"
+msgstr ""
+
+#: dist/rtp-blocks.js
+msgid "Divider Style"
+msgstr ""
+
+#: dist/rtp-blocks.js
+msgid "Divider Width"
+msgstr ""
+
+#: dist/rtp-blocks.js
+msgid "Divider Color"
+msgstr ""
+
+#: dist/rtp-blocks.js
 msgid "Sliding Effects"
 msgstr ""
 
 #: dist/rtp-blocks.js
 msgid "Display Direction"
+msgstr ""
+
+#: dist/rtp-blocks.js
+msgid "Horizontal"
+msgstr ""
+
+#: dist/rtp-blocks.js
+msgid "Vertical"
 msgstr ""
 
 #: dist/rtp-blocks.js
@@ -4855,7 +5989,7 @@ msgid "Live Frontend Filter"
 msgstr ""
 
 #: dist/rtp-blocks.js
-msgid "Create stunning testimonial layouts that build trust and engagement"
+msgid "Unlock Pro Features"
 msgstr ""
 
 #: dist/rtp-blocks.js
@@ -4864,6 +5998,14 @@ msgstr ""
 
 #: dist/rtp-blocks.js
 msgid "Sliding Direction"
+msgstr ""
+
+#: dist/rtp-blocks.js
+msgid "Bottom to Top"
+msgstr ""
+
+#: dist/rtp-blocks.js
+msgid "Top to Bottom"
 msgstr ""
 
 #: dist/rtp-blocks.js
@@ -4914,12 +6056,28 @@ msgstr ""
 msgid "Order Direction"
 msgstr ""
 
-#: dist/rtp-blocks.js dist/rtp-dashboard.js
-msgid "Pro Features"
+#: dist/rtp-blocks.js
+msgid "Showcase Your Best Reviews"
 msgstr ""
 
 #: dist/rtp-blocks.js
-msgid "Show the right testimonials with smart filtering and sorting"
+msgid "Put trust-building reviews first and turn more visitors into customers."
+msgstr ""
+
+#: dist/rtp-blocks.js
+msgid "Show relevant reviews by group or hand-pick them"
+msgstr ""
+
+#: dist/rtp-blocks.js
+msgid "Display only top-rated reviews to boost credibility"
+msgstr ""
+
+#: dist/rtp-blocks.js
+msgid "Keep pages fresh with random review order"
+msgstr ""
+
+#: dist/rtp-blocks.js
+msgid "Drag & drop your strongest reviews to the top"
 msgstr ""
 
 #: dist/rtp-blocks.js
@@ -4927,27 +6085,63 @@ msgid "Hover Effect"
 msgstr ""
 
 #: dist/rtp-blocks.js
+msgid "Scale Up"
+msgstr ""
+
+#: dist/rtp-blocks.js
+msgid "Slide Up"
+msgstr ""
+
+#: dist/rtp-blocks.js
+msgid "Slide Down"
+msgstr ""
+
+#: dist/rtp-blocks.js
+msgid "Slide Left"
+msgstr ""
+
+#: dist/rtp-blocks.js
+msgid "Slide Right"
+msgstr ""
+
+#: dist/rtp-blocks.js
+msgid "Scale Down"
+msgstr ""
+
+#: dist/rtp-blocks.js
 msgid "Transition Duration"
 msgstr ""
 
 #: dist/rtp-blocks.js
-msgid "Add company info, location, and date"
+msgid "Prove Your Reviews Are Real"
 msgstr ""
 
 #: dist/rtp-blocks.js
-msgid "Social profiles for better credibility"
+msgid "Show the real people behind your reviews and earn instant trust."
 msgstr ""
 
 #: dist/rtp-blocks.js
-msgid "Custom fields for extra information"
+msgid "Show company, location and date for authenticity"
 msgstr ""
 
 #: dist/rtp-blocks.js
-msgid "Apply 6+ hover effects for interactive cards"
+msgid "Link social profiles so visitors can verify reviewers"
+msgstr ""
+
+#: dist/rtp-blocks.js
+msgid "Add custom fields to share the details that matter"
+msgstr ""
+
+#: dist/rtp-blocks.js
+msgid "Engage visitors with 6+ interactive hover effects"
 msgstr ""
 
 #: dist/rtp-blocks.js
 msgid "Title Length"
+msgstr ""
+
+#: dist/rtp-blocks.js
+msgid "Limited"
 msgstr ""
 
 #: dist/rtp-blocks.js
@@ -4968,6 +6162,10 @@ msgstr ""
 
 #: dist/rtp-blocks.js
 msgid "Select Rating Icon Style"
+msgstr ""
+
+#: dist/rtp-blocks.js
+msgid "Available in Pro"
 msgstr ""
 
 #: dist/rtp-blocks.js
@@ -5051,27 +6249,35 @@ msgid "Link Designation to Custom URL"
 msgstr ""
 
 #: dist/rtp-blocks.js
-msgid "Unlock Pro-level motion effects for your testimonial section or page"
+msgid "Bring Your Reviews to Life"
 msgstr ""
 
 #: dist/rtp-blocks.js
-msgid "Modern Scrolling Effect"
+msgid "Catch the eye with smooth motion that keeps visitors scrolling."
 msgstr ""
 
 #: dist/rtp-blocks.js
-msgid "Directional scrolling effect control"
+msgid "Add modern scroll effects that grab attention"
 msgstr ""
 
 #: dist/rtp-blocks.js
-msgid "25+ Entrance Animations"
+msgid "Control scroll direction for a natural flow"
 msgstr ""
 
 #: dist/rtp-blocks.js
-msgid "Animation speed and delay control"
+msgid "Choose from 25+ eye-catching entrance animations"
 msgstr ""
 
 #: dist/rtp-blocks.js
-msgid "Exclude effects on responsive devices"
+msgid "Fine-tune speed and delay for a polished feel"
+msgstr ""
+
+#: dist/rtp-blocks.js
+msgid "Turn off effects on mobile for faster loading"
+msgstr ""
+
+#: dist/rtp-blocks.js
+msgid "Arrow Style"
 msgstr ""
 
 #: dist/rtp-blocks.js dist/rtp-dashboard.js
@@ -5084,6 +6290,30 @@ msgstr ""
 
 #: dist/rtp-blocks.js
 msgid "Arrow Position"
+msgstr ""
+
+#: dist/rtp-blocks.js
+msgid "Vertical Center"
+msgstr ""
+
+#: dist/rtp-blocks.js
+msgid "Top Left"
+msgstr ""
+
+#: dist/rtp-blocks.js
+msgid "Top Center"
+msgstr ""
+
+#: dist/rtp-blocks.js
+msgid "Bottom Left"
+msgstr ""
+
+#: dist/rtp-blocks.js
+msgid "Bottom center"
+msgstr ""
+
+#: dist/rtp-blocks.js
+msgid "Bottom Right"
 msgstr ""
 
 #: dist/rtp-blocks.js
@@ -5100,6 +6330,30 @@ msgstr ""
 
 #: dist/rtp-blocks.js
 msgid "Space Between Dots"
+msgstr ""
+
+#: dist/rtp-blocks.js
+msgid "Card Design 1"
+msgstr ""
+
+#: dist/rtp-blocks.js
+msgid "Card Design 2"
+msgstr ""
+
+#: dist/rtp-blocks.js
+msgid "Card Design 3"
+msgstr ""
+
+#: dist/rtp-blocks.js
+msgid "Card Design 4"
+msgstr ""
+
+#: dist/rtp-blocks.js
+msgid "Card Design 5"
+msgstr ""
+
+#: dist/rtp-blocks.js
+msgid "Card Design 6"
 msgstr ""
 
 #: dist/rtp-blocks.js
@@ -5134,8 +6388,8 @@ msgstr ""
 msgid "Reviewer Name"
 msgstr ""
 
-#: dist/rtp-blocks.js
-msgid "Testimonials Form"
+#: dist/rtp-blocks.js dist/rtp-dashboard.js
+msgid "Classic Form Shortcode"
 msgstr ""
 
 #: dist/rtp-blocks.js
@@ -5150,8 +6404,8 @@ msgstr ""
 msgid "Create a form now!"
 msgstr ""
 
-#: dist/rtp-blocks.js
-msgid "Real Testimonials Pro"
+#: dist/rtp-blocks.js dist/rtp-dashboard.js
+msgid "Classic View Shortcode"
 msgstr ""
 
 #: dist/rtp-blocks.js
@@ -5182,8 +6436,14 @@ msgstr ""
 msgid "Email Notification Control"
 msgstr ""
 
-#: dist/rtp-blocks.js
+#: dist/rtp-blocks.js dist/rtp-dashboard.js
 msgid "Advanced"
+msgstr ""
+
+#. translators: 1: length unit (words or characters), 2: maximum length.
+#: dist/rtp-blocks.js
+#, js-format
+msgid "0 %1$s out of %2$s"
 msgstr ""
 
 #: dist/rtp-blocks.js
@@ -5200,6 +6460,10 @@ msgstr ""
 
 #: dist/rtp-blocks.js
 msgid "Note"
+msgstr ""
+
+#: dist/rtp-blocks.js
+msgid "Unlimited"
 msgstr ""
 
 #: dist/rtp-blocks.js
@@ -5259,7 +6523,11 @@ msgid "Max Width"
 msgstr ""
 
 #: dist/rtp-blocks.js
-msgid "Collect and manage testimonials from your customers effortlessly"
+msgid "Collect More Genuine Reviews"
+msgstr ""
+
+#: dist/rtp-blocks.js
+msgid "A friendlier form that keeps spam out."
 msgstr ""
 
 #: dist/rtp-blocks.js
@@ -5295,6 +6563,10 @@ msgid "Required Color"
 msgstr ""
 
 #: dist/rtp-blocks.js
+msgid "Focus"
+msgstr ""
+
+#: dist/rtp-blocks.js
 msgid "Show Icon"
 msgstr ""
 
@@ -5307,7 +6579,19 @@ msgid "Button Width"
 msgstr ""
 
 #: dist/rtp-blocks.js
+msgid "Full Width"
+msgstr ""
+
+#: dist/rtp-blocks.js dist/rtp-dashboard.js
+msgid "Auto"
+msgstr ""
+
+#: dist/rtp-blocks.js
 msgid "Button Alignment"
+msgstr ""
+
+#: dist/rtp-blocks.js
+msgid "Pending"
 msgstr ""
 
 #: dist/rtp-blocks.js
@@ -5319,6 +6603,18 @@ msgid "Redirect After Submit"
 msgstr ""
 
 #: dist/rtp-blocks.js
+msgid "Same Page"
+msgstr ""
+
+#: dist/rtp-blocks.js
+msgid "To a Page (Pro)"
+msgstr ""
+
+#: dist/rtp-blocks.js
+msgid "To a Custom URL (Pro)"
+msgstr ""
+
+#: dist/rtp-blocks.js
 msgid "Message Position"
 msgstr ""
 
@@ -5327,7 +6623,11 @@ msgid "Hide Form After Submit"
 msgstr ""
 
 #: dist/rtp-blocks.js
-msgid "Automate submissions and control post submission actions"
+msgid "Publish Without Lifting a Finger"
+msgstr ""
+
+#: dist/rtp-blocks.js
+msgid "Approve and route new submissions automatically."
 msgstr ""
 
 #: dist/rtp-blocks.js
@@ -5347,7 +6647,11 @@ msgid "Hide form after successful submission"
 msgstr ""
 
 #: dist/rtp-blocks.js
-msgid "Automate email notifications to stay updated and respond faster"
+msgid "Never Miss a New Review"
+msgstr ""
+
+#: dist/rtp-blocks.js
+msgid "Get notified the moment a testimonial arrives."
 msgstr ""
 
 #: dist/rtp-blocks.js
@@ -5374,12 +6678,20 @@ msgstr ""
 msgid "Error Message Color"
 msgstr ""
 
-#: dist/rtp-blocks.js dist/rtp-dashboard.js
-msgid "Gradient"
+#: dist/rtp-blocks.js
+msgid "List Design 1"
+msgstr ""
+
+#: dist/rtp-blocks.js
+msgid "List Design 2"
+msgstr ""
+
+#: dist/rtp-blocks.js
+msgid "List Design 3"
 msgstr ""
 
 #: dist/rtp-blocks.js dist/rtp-dashboard.js
-msgid "Video"
+msgid "Gradient"
 msgstr ""
 
 #: dist/rtp-blocks.js dist/rtp-dashboard.js
@@ -5404,10 +6716,6 @@ msgstr ""
 
 #: dist/rtp-blocks.js dist/rtp-dashboard.js
 msgid "Repeat Y"
-msgstr ""
-
-#: dist/rtp-blocks.js dist/rtp-dashboard.js
-msgid "Auto"
 msgstr ""
 
 #: dist/rtp-blocks.js dist/rtp-dashboard.js
@@ -5491,10 +6799,6 @@ msgid "Shadow Color"
 msgstr ""
 
 #: dist/rtp-blocks.js dist/rtp-dashboard.js
-msgid "Pro"
-msgstr ""
-
-#: dist/rtp-blocks.js dist/rtp-dashboard.js
 msgid "Add this color to custom colors"
 msgstr ""
 
@@ -5512,6 +6816,26 @@ msgstr ""
 
 #: dist/rtp-blocks.js dist/rtp-dashboard.js
 msgid "Icon Source"
+msgstr ""
+
+#: dist/rtp-blocks.js dist/rtp-dashboard.js
+msgid "Icon Library"
+msgstr ""
+
+#: dist/rtp-blocks.js dist/rtp-dashboard.js
+msgid "Categories"
+msgstr ""
+
+#: dist/rtp-blocks.js dist/rtp-dashboard.js
+msgid "Search icons..."
+msgstr ""
+
+#: dist/rtp-blocks.js dist/rtp-dashboard.js
+msgid "Insert Icon"
+msgstr ""
+
+#: dist/rtp-blocks.js dist/rtp-dashboard.js
+msgid "Ready Patterns"
 msgstr ""
 
 #: dist/rtp-blocks.js dist/rtp-dashboard.js
@@ -5539,7 +6863,19 @@ msgid "Change Image"
 msgstr ""
 
 #: dist/rtp-blocks.js dist/rtp-dashboard.js
+msgid "Collapsed"
+msgstr ""
+
+#: dist/rtp-blocks.js dist/rtp-dashboard.js
+msgid "Expanded"
+msgstr ""
+
+#: dist/rtp-blocks.js dist/rtp-dashboard.js
 msgid "Image Scale"
+msgstr ""
+
+#: dist/rtp-blocks.js dist/rtp-dashboard.js
+msgid "Fill"
 msgstr ""
 
 #: dist/rtp-blocks.js dist/rtp-dashboard.js
@@ -5551,19 +6887,41 @@ msgid "Select Preset"
 msgstr ""
 
 #: dist/rtp-blocks.js dist/rtp-dashboard.js
-msgid "Upgrade to Pro"
+msgid "Pro Features"
 msgstr ""
 
 #: dist/rtp-blocks.js dist/rtp-dashboard.js
-msgid "Control testimonial <b>content length</b>, add <b>quote symbols</b> and formatting with ease. <a>Upgrade to Pro!</a>"
+msgid "Keep cards neat and easy to read with trimmed text and eye-catching quote symbols. <a>Unlock with Pro!</a>"
 msgstr ""
 
 #: dist/rtp-blocks.js dist/rtp-dashboard.js
-msgid "Add verified badges and link reviewer designation to build trust and credibility. <a>Upgrade to Pro!</a>"
+msgid "Show visitors your reviewers are real with verified badges and clickable designations. <a>Unlock with Pro!</a>"
+msgstr ""
+
+#: dist/rtp-blocks.js dist/rtp-dashboard.js
+msgid "Visibility"
+msgstr ""
+
+#: dist/rtp-blocks.js dist/rtp-dashboard.js
+msgid "Reviews"
+msgstr ""
+
+#: dist/rtp-blocks.js dist/rtp-dashboard.js
+msgid "Filter"
+msgstr ""
+
+#: dist/rtp-blocks.js dist/rtp-dashboard.js
+msgid "Font family"
 msgstr ""
 
 #: dist/rtp-blocks.js dist/rtp-dashboard.js
 msgid "Text Format"
+msgstr ""
+
+#. translators: %s: AI model name
+#: dist/rtp-blocks.js dist/rtp-dashboard.js
+#, js-format
+msgid "%s (Recommended)"
 msgstr ""
 
 #: dist/rtp-blocks.js dist/rtp-dashboard.js
@@ -5572,6 +6930,62 @@ msgstr ""
 
 #: dist/rtp-blocks.js dist/rtp-dashboard.js
 msgid "Custom Fields"
+msgstr ""
+
+#: dist/rtp-blocks.js dist/rtp-dashboard.js
+msgid "Dots"
+msgstr ""
+
+#: dist/rtp-blocks.js dist/rtp-dashboard.js
+msgid "Stepper"
+msgstr ""
+
+#: dist/rtp-blocks.js dist/rtp-dashboard.js
+msgid "Chevron Solid"
+msgstr ""
+
+#: dist/rtp-blocks.js dist/rtp-dashboard.js
+msgid "Chevron Outline"
+msgstr ""
+
+#: dist/rtp-blocks.js dist/rtp-dashboard.js
+msgid "Chevron Bold"
+msgstr ""
+
+#: dist/rtp-blocks.js dist/rtp-dashboard.js
+msgid "Double Chevron"
+msgstr ""
+
+#: dist/rtp-blocks.js dist/rtp-dashboard.js
+msgid "Arrow Solid"
+msgstr ""
+
+#: dist/rtp-blocks.js dist/rtp-dashboard.js
+msgid "Arrow Outline"
+msgstr ""
+
+#: dist/rtp-blocks.js dist/rtp-dashboard.js
+msgid "Arrow Minimal"
+msgstr ""
+
+#: dist/rtp-blocks.js dist/rtp-dashboard.js
+msgid "Chevron Border Line"
+msgstr ""
+
+#: dist/rtp-blocks.js dist/rtp-dashboard.js
+msgid "Double Chevron Outline"
+msgstr ""
+
+#: dist/rtp-blocks.js dist/rtp-dashboard.js
+msgid "Triangle Outline"
+msgstr ""
+
+#: dist/rtp-blocks.js dist/rtp-dashboard.js
+msgid "Arrow Line"
+msgstr ""
+
+#: dist/rtp-blocks.js dist/rtp-dashboard.js
+msgid "Arrow Send"
 msgstr ""
 
 #: dist/rtp-blocks.js dist/rtp-dashboard.js
@@ -5587,7 +7001,27 @@ msgid "Testimonial Submission Form"
 msgstr ""
 
 #: dist/rtp-blocks.js dist/rtp-dashboard.js
-msgid "Testimonials Form Shortcode"
+msgid "Social Profile"
+msgstr ""
+
+#: dist/rtp-blocks.js dist/rtp-dashboard.js
+msgid "Testimonial Media"
+msgstr ""
+
+#: dist/rtp-blocks.js dist/rtp-dashboard.js
+msgid "Custom Field"
+msgstr ""
+
+#: dist/rtp-blocks.js dist/rtp-dashboard.js
+msgid "Failed to fetch testimonials"
+msgstr ""
+
+#: dist/rtp-blocks.js dist/rtp-dashboard.js
+msgid "Sort By"
+msgstr ""
+
+#: dist/rtp-blocks.js dist/rtp-dashboard.js
+msgid "Popular"
 msgstr ""
 
 #: dist/rtp-blocks.js dist/rtp-dashboard.js
@@ -5604,6 +7038,14 @@ msgstr ""
 
 #: dist/rtp-blocks.js dist/rtp-dashboard.js
 msgid "Try Again"
+msgstr ""
+
+#: dist/rtp-blocks.js dist/rtp-dashboard.js
+msgid "2x2 grid filled"
+msgstr ""
+
+#: dist/rtp-blocks.js dist/rtp-dashboard.js
+msgid "3x3 grid filled"
 msgstr ""
 
 #: dist/rtp-blocks.js dist/rtp-dashboard.js
@@ -5651,10 +7093,6 @@ msgid "Failed to update wishlist"
 msgstr ""
 
 #: dist/rtp-blocks.js dist/rtp-dashboard.js
-msgid "Close"
-msgstr ""
-
-#: dist/rtp-blocks.js dist/rtp-dashboard.js
 msgid "Preview"
 msgstr ""
 
@@ -5676,10 +7114,6 @@ msgstr ""
 
 #: dist/rtp-blocks.js dist/rtp-dashboard.js
 msgid "Insert"
-msgstr ""
-
-#: dist/rtp-blocks.js dist/rtp-dashboard.js
-msgid "Back"
 msgstr ""
 
 #: dist/rtp-blocks.js dist/rtp-dashboard.js
@@ -5708,8 +7142,10 @@ msgstr ""
 msgid "Loading preview…"
 msgstr ""
 
+#. translators: 1: current pattern position, 2: total patterns
 #: dist/rtp-blocks.js dist/rtp-dashboard.js
-msgid "All"
+#, js-format
+msgid "Patterns %1$d of %2$d"
 msgstr ""
 
 #: dist/rtp-blocks.js dist/rtp-dashboard.js
@@ -5753,14 +7189,6 @@ msgid "No patterns available right now. Please check back later."
 msgstr ""
 
 #: dist/rtp-blocks.js dist/rtp-dashboard.js
-msgid "Sort By"
-msgstr ""
-
-#: dist/rtp-blocks.js dist/rtp-dashboard.js
-msgid "Popular"
-msgstr ""
-
-#: dist/rtp-blocks.js dist/rtp-dashboard.js
 msgid "Sort patterns"
 msgstr ""
 
@@ -5785,11 +7213,19 @@ msgid "Refresh"
 msgstr ""
 
 #: dist/rtp-blocks.js dist/rtp-dashboard.js
+msgid "Patterns Library"
+msgstr ""
+
+#: dist/rtp-blocks.js dist/rtp-dashboard.js
 msgid "Choose Your Card Design"
 msgstr ""
 
 #: dist/rtp-blocks.js dist/rtp-dashboard.js
 msgid "Select a design to display your testimonials. You can change it anytime."
+msgstr ""
+
+#: dist/rtp-blocks.js dist/rtp-dashboard.js
+msgid "Start with Ready Patterns"
 msgstr ""
 
 #: dist/rtp-blocks.js dist/rtp-dashboard.js
@@ -5828,7 +7264,7 @@ msgstr ""
 
 #: dist/rtp-blocks.js
 msgctxt "block title"
-msgid "Testimonials Form Shortcode"
+msgid "Classic Form Shortcode"
 msgstr ""
 
 #: dist/rtp-blocks.js
@@ -5838,7 +7274,7 @@ msgstr ""
 
 #: dist/rtp-blocks.js
 msgctxt "block title"
-msgid "Real Testimonials Shortcode"
+msgid "Classic View Shortcode"
 msgstr ""
 
 #: dist/rtp-blocks.js
@@ -5874,5 +7310,15 @@ msgstr ""
 #: dist/rtp-blocks.js
 msgctxt "block description"
 msgid "Build a customizable frontend form and collect customer testimonials easily."
+msgstr ""
+
+#: dist/rtp-blocks.js
+msgctxt "block title"
+msgid "List"
+msgstr ""
+
+#: dist/rtp-blocks.js
+msgctxt "block description"
+msgid "Display testimonials vertically in a clean stacked list."
 msgstr ""
 

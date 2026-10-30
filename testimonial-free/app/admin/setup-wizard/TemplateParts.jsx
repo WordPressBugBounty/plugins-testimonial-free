@@ -31,7 +31,12 @@ export const UserDataInfoModal = ({ closeModal }) => {
 				)}
 			</p>
 			<p className="modal-description sp-d-flex sp-align-center sp-gap-4px">
-				<b>{__("No personal data is collected, and we never send spam—promise.", "testimonial-free")}</b>
+				<b>
+					{__(
+						"We do not collect sensitive personal data, and we never send spam—promise.",
+						"testimonial-free"
+					)}
+				</b>
 			</p>
 			<p className="modal-description">
 				{__("Your Privacy is First ", "testimonial-free")}

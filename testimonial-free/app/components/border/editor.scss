@@ -34,6 +34,27 @@
         }
       }
 
+      // divider style selector lines.
+      .sp-real-button-group-content span.sp-real-divider-line {
+        width: 65%;
+        padding: 0;
+        border-style: solid none none;
+        border-width: 2px 0 0;
+
+        &.sp-real-divider-dashed {
+          border-top-style: dashed;
+        }
+
+        &.sp-real-divider-dotted {
+          border-top-style: dotted;
+        }
+
+        &.sp-real-divider-double {
+          border-top-style: double;
+          border-top-width: 4px;
+        }
+      }
+
       &.active {
         .sp-real-button-group-content span {
           border-color: var(--sp-real-primary-color);

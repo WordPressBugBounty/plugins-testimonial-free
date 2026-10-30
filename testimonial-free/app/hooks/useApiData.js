@@ -1,3 +1,4 @@
+import { __ } from "@wordpress/i18n";
 import { useEffect, useState, useMemo } from "@wordpress/element";
 import apiFetch from "@wordpress/api-fetch";
 import demoTestimonials from "../controls/demo-testimonial.json";
@@ -78,7 +79,7 @@ const useApiData = (attributes) => {
 						posts: [],
 						postCount: 0,
 						postsStatus: false,
-						message: error.message || "Failed to fetch testimonials",
+						message: error.message || __("Failed to fetch testimonials", "testimonial-free"),
 						isDemoTestimonials: false,
 					});
 				}

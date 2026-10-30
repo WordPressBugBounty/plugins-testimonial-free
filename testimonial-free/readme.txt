@@ -4,7 +4,7 @@ Tags: testimonials, testimonial slider, video testimonials, social proof, review
 Requires at least: 6.3
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 4.0.0
+Stable tag: 4.1.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -145,6 +145,19 @@ While the free version includes all essential options for managing customer revi
 
 Designed and Developed by [__ShapedPlugin, LLC__](https://shapedplugin.com/)
 
+== External services ==
+
+This plugin connects to the third-party services below. None of them is contacted on page load or by site visitors; each request is triggered by an administrator action described under its service.
+
+= AI providers (Build with AI) =
+
+The optional **Build with AI** feature turns a written request into block settings. It sends a request only when an administrator clicks Generate in the Build with AI dialog of the block editor, or verifies an API key on Settings → AI Configuration. Each request goes to the single provider the administrator selected (or, if that provider fails, to the next one the administrator chooses to try), and contains the text of the request, the block type, the list of settings the block supports, and the block's current non-default settings. The provider's API key is sent with it. No testimonial content, reviewer data or visitor data is sent. Nothing is sent until an API key is saved for a provider (or one is configured in WordPress Settings → Connectors), and the feature can be turned off entirely from the plugin's Modules settings.
+
+* **Google Gemini API** (`generativelanguage.googleapis.com`), provided by Google LLC. [Terms of Service](https://ai.google.dev/gemini-api/terms), [Privacy Policy](https://policies.google.com/privacy)
+* **OpenAI API** (`api.openai.com`), provided by OpenAI, L.L.C. [Terms of Use](https://openai.com/policies/terms-of-use/), [Privacy Policy](https://openai.com/policies/privacy-policy/)
+* **Anthropic API** (`api.anthropic.com`), provided by Anthropic, PBC. [Commercial Terms](https://www.anthropic.com/legal/commercial-terms), [Privacy Policy](https://www.anthropic.com/legal/privacy)
+* **Groq API** (`api.groq.com`), provided by Groq, Inc. [Terms of Use](https://groq.com/terms-of-use/), [Privacy Policy](https://groq.com/privacy-policy/)
+
 
 == Installation ==
 
@@ -250,6 +263,26 @@ If you encounter an issue or find any bugs, post it in the [support](https://sha
 
 
 == Changelog ==
+
+= 4.1.0 – Oct 30, 2026 =
+* New: Build with AI module turns a prompt into a ready Testimonial Carousel, Slider, Grid, List or Submission Form.
+* New: Refine with AI option to refine testimonial blocks smartly.
+* New: Testimonial List block.
+* New: AI Configuration settings tab for Gemini, OpenAI, Anthropic and Groq, with key verification and a primary provider.
+* New: Testimonial Placements table on the Overview page showing where each block, view, form and saved template is used.
+* New: Contribute to Real Testimonials toggle under Settings → Advanced Controls.
+* New: All twelve navigation arrow styles are now available in the Testimonial Carousel block.
+* Improved: The Saved Templates page has been redesigned with search, pagination, block type and shortcode columns.
+* Improved: AI provider keys are masked on the settings page.
+* Improved: The Ready Patterns library now always shows its filter sidebar.
+* Fixed: Selecting specific testimonials ignored the block's per-page and pagination settings.
+* Fixed: Submitted testimonials without a title showed the reviewer's name as the title.
+* Fixed: Submit button alignment on the Testimonial Submission Form block.
+* Fixed: Block carousels broke layout on RTL sites and autoplay stopped after a swipe.
+* Fixed: Non-looping RTL autoplay carousels now start from the correct slide.
+* Fixed: Incorrect data in the Lite vs Pro comparison table.
+* Updated: Swiper library to version 12.2.0.
+* Tested: WordPress 7.1 compatibility.
 
 = 4.0.0 – Sep 04, 2026 =
 * New: Testimonial Slider block

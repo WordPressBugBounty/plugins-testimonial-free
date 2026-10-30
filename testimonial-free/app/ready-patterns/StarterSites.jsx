@@ -55,6 +55,8 @@ const PatternGrid = memo(
 			});
 		}, [items, searchQuery, freePro, categoryType, showWishList, wishListArr]);
 
+		const handlePreview = useCallback((pattern) => onPreview(pattern, filtered), [onPreview, filtered]);
+
 		if (filtered.length === 0) {
 			return <EmptyState />;
 		}
@@ -66,7 +68,7 @@ const PatternGrid = memo(
 						key={data.ID}
 						pattern={data}
 						onInsert={onImport}
-						onPreview={onPreview}
+						onPreview={handlePreview}
 						insertingId={reloadId}
 						isFavorite={wishListArr?.includes(String(data.ID))}
 						onToggleFavorite={() =>
@@ -94,7 +96,6 @@ const StarterSites = (props) => {
 		setWListAction,
 		wishListArr,
 		_fetchFile,
-		isSingleBlock,
 		onPreview,
 	} = props;
 
@@ -173,21 +174,19 @@ const StarterSites = (props) => {
 
 	return (
 		<div className="sp-real-ready-patterns-body">
-			{!isSingleBlock ? (
-				<Sidebar
-					tier={freePro}
-					onTierChange={setFreePro}
-					tierCounts={{ all: totalCount, free: freeCount || 0, pro: proCount || 0 }}
-					search={searchQuery}
-					onSearchChange={setSearchQuery}
-					blockType={filterValue}
-					onBlockTypeChange={handleFilterChange}
-					blockOptions={blockOptions}
-					categoryType={categoryType}
-					onCategoryTypeChange={setCategoryType}
-					categoryOptions={categoryOptions}
-				/>
-			) : null}
+			<Sidebar
+				tier={freePro}
+				onTierChange={setFreePro}
+				tierCounts={{ all: totalCount, free: freeCount || 0, pro: proCount || 0 }}
+				search={searchQuery}
+				onSearchChange={setSearchQuery}
+				blockType={filterValue}
+				onBlockTypeChange={handleFilterChange}
+				blockOptions={blockOptions}
+				categoryType={categoryType}
+				onCategoryTypeChange={setCategoryType}
+				categoryOptions={categoryOptions}
+			/>
 
 			<div className="sp-real-ready-patterns-main">
 				<Toolbar

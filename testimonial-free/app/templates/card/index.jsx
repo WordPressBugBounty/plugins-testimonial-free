@@ -82,10 +82,23 @@ const TestimonialCard = ({ testimonial, attributes, isSwiperSlide = false }) => 
 		blockName === "marquee" && "sp-real-marquee-item"
 	);
 
+	// The List block's designs put the reviewer image in its own column and wrap
+	// every other slot beside it. PHP mirror: CardTemplate::render_body().
+	const isListDesign = Boolean(cardDesign?.startsWith("list-design-"));
+
 	return (
 		<div className={outerClass} onClick={onCardSectionClick}>
 			<div className={`sp-real-card-inner sp-align-${cardAlignment} sp-text-${cardAlignment}`}>
-				{cardContents.map(renderItem)}
+				{isListDesign ? (
+					<>
+						{cardContents.filter((item) => item.name === "reviewer_image").map(renderItem)}
+						<div className={`sp-real-card-content-wrapper sp-d-flex sp-flex-col sp-align-${cardAlignment}`}>
+							{cardContents.filter((item) => item.name !== "reviewer_image").map(renderItem)}
+						</div>
+					</>
+				) : (
+					cardContents.map(renderItem)
+				)}
 			</div>
 		</div>
 	);

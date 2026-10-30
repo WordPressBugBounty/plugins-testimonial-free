@@ -24,6 +24,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 class SavedTemplates {
 
 	/**
+	 * Saved template post type.
+	 *
+	 * @var string
+	 */
+	const POST_TYPE = 'sp_real_template';
+
+	/**
 	 * Constructor.
 	 *
 	 * Initialize hooks for saved templates functionality including CPT registration,

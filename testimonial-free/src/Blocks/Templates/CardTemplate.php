@@ -109,8 +109,39 @@ class CardTemplate {
 		?>
 		<div class="<?php echo esc_attr( $wrapper_class ); ?>">
 			<div class="sp-real-card-inner <?php echo esc_attr( ( ( 'sp-align-' . $this->card_alignment ) . ( ' sp-text-' . $this->card_alignment ) ) ); ?>">
-				<?php $this->render_slots( $this->card_contents ); ?>
+				<?php $this->render_body(); ?>
 			</div>
+		</div>
+		<?php
+	}
+
+	/**
+	 * Render the card inner body based on the design family.
+	 *
+	 * The List block's designs (`list-design-*`) put the reviewer image in its own
+	 * column and wrap every other slot beside it; the rest stack their slots.
+	 * Mirrors the `isListDesign` branch of `app/templates/card/index.jsx`.
+	 */
+	private function render_body() {
+		if ( 0 !== strpos( $this->card_design, 'list-design-' ) ) {
+			$this->render_slots( $this->card_contents );
+			return;
+		}
+
+		$image_items = array();
+		$other_items = array();
+		foreach ( (array) $this->card_contents as $item ) {
+			if ( 'reviewer_image' === ( $item['name'] ?? '' ) ) {
+				$image_items[] = $item;
+			} else {
+				$other_items[] = $item;
+			}
+		}
+
+		$this->render_slots( $image_items );
+		?>
+		<div class="sp-real-card-content-wrapper sp-d-flex sp-flex-col sp-align-<?php echo esc_attr( $this->card_alignment ); ?>">
+			<?php $this->render_slots( $other_items ); ?>
 		</div>
 		<?php
 	}

@@ -1,12 +1,18 @@
 import { __ } from "@wordpress/i18n";
 import { CarouselBlockIcon } from "../blocks/carousel/icon";
 import { GridBlockIcon } from "../blocks/grid/icon";
+import { ZigzagListBlockIcon } from "../blocks/zigzag-list/icon";
 import { SubmissionFormBlockIcon } from "../blocks/testimonial-submission-form/icon";
 import {
 	MasonryBlockIcon,
 	MarqueeBlockIcon,
 	BentoGridBlockIcon,
 	PolaroidGridBlockIcon,
+	StackedCardsBlockIcon,
+	SpotlightBlockIcon,
+	VideoTestimonialBlockIcon,
+	ReviewBadgeBlockIcon,
+	RecordVideoBlockIcon,
 } from "../blocks/proBlocks/icons";
 import { SliderBlockIcon } from "../blocks/slider/icon";
 import { TestimonialShortcodeBlockIcon } from "../blocks/shortcode/icon";
@@ -26,20 +32,17 @@ export const generateDocLink = (link) => {
 	return `${docsBaseUrl}${link}`;
 };
 
+export const demoBaseUrl = "https://realtestimonials.io/patterns/";
+
 /**
- * Deep-link into a fresh page with the Ready Patterns library auto-opened and its
- * Block Type facet preset to `blockSlug`. Replaces the old demo.realtestimonials
- * links, which pointed at a host that never resolved.
+ * Link to a block's patterns on the live demo site. Consumed by the dashboard
+ * Blocks cards "Demo" link and the Pro-block teasers' "View Demo" button.
  *
- * The query-arg shape lives here only — the editor side reads the same arg names
- * from `AUTO_OPEN` in `app/ready-patterns/constants.js`.
- *
- * @param {string} adminUrl  Trailing-slashed wp-admin URL (dashboardInfo.adminUrl).
- * @param {string} blockSlug Pattern block slug, e.g. "carousel".
- * @returns {string} The post-new.php URL.
+ * @param {string} blockSlug Bare block slug, e.g. "carousel".
+ * @returns {string} The demo URL with the block's filter as the hash.
  */
-export const generatePatternLibraryLink = (adminUrl, blockSlug) => {
-	return `${adminUrl}post-new.php?post_type=page&realpatterns=true&rtp_pattern_block=${blockSlug}`;
+export const generateDemoLink = (blockSlug) => {
+	return `${demoBaseUrl}#${blockSlug}`;
 };
 
 export const testimonialBlocksInfo = {
@@ -98,6 +101,12 @@ export const testimonialBlocksInfo = {
 		docLink: generateDocLink("blocks/grid"),
 		patternSlug: "grid",
 	},
+	"sp-testimonial-pro/zigzag-list": {
+		Icon: ZigzagListBlockIcon,
+		title: __("List", "testimonial-free"),
+		docLink: generateDocLink("blocks/zigzag-list"),
+		patternSlug: "zigzag-list",
+	},
 	"sp-testimonial-pro/bento-grid": {
 		Icon: BentoGridBlockIcon,
 		title: __("Bento Grid", "testimonial-free"),
@@ -116,6 +125,36 @@ export const testimonialBlocksInfo = {
 		docLink: generateDocLink("blocks/masonry"),
 		patternSlug: "masonry",
 	},
+	"sp-testimonial-pro/stacked-cards": {
+		Icon: StackedCardsBlockIcon,
+		title: __("Stacked Cards", "testimonial-free"),
+		docLink: generateDocLink("blocks/stacked-cards"),
+		patternSlug: "stacked-cards",
+	},
+	"sp-testimonial-pro/spotlight": {
+		Icon: SpotlightBlockIcon,
+		title: __("Spotlight", "testimonial-free"),
+		docLink: generateDocLink("blocks/spotlight"),
+		patternSlug: "spotlight",
+	},
+	"sp-testimonial-pro/video-testimonials": {
+		Icon: VideoTestimonialBlockIcon,
+		title: __("Video Testimonials", "testimonial-free"),
+		docLink: generateDocLink("blocks/video-testimonials"),
+		patternSlug: "video-testimonials",
+	},
+	"sp-testimonial-pro/review-badge": {
+		Icon: ReviewBadgeBlockIcon,
+		title: __("Review Badge", "testimonial-free"),
+		docLink: generateDocLink("blocks/review-badge"),
+		patternSlug: "review-badge",
+	},
+	"sp-testimonial-pro/record-video": {
+		Icon: RecordVideoBlockIcon,
+		title: __("Record Video", "testimonial-free"),
+		docLink: generateDocLink("blocks/record-video"),
+		patternSlug: "record-video",
+	},
 	"sp-testimonial-pro/testimonial-submission-form": {
 		Icon: SubmissionFormBlockIcon,
 		title: __("Testimonial Submission Form", "testimonial-free"),
@@ -125,12 +164,12 @@ export const testimonialBlocksInfo = {
 	// shortcode blocks.
 	"sp-testimonial-pro/shortcode": {
 		Icon: TestimonialShortcodeBlockIcon,
-		title: __("Real Testimonials Shortcode", "testimonial-free"),
+		title: __("Classic View Shortcode", "testimonial-free"),
 		docLink: generateDocLink("blocks/real-testimonials-shortcode"),
 	},
 	"sp-testimonial-pro/form": {
 		Icon: TestimonialFormShortcodeBlockIcon,
-		title: __("Testimonials Form Shortcode", "testimonial-free"),
+		title: __("Classic Form Shortcode", "testimonial-free"),
 		docLink: generateDocLink("blocks/testimonials-form-shortcode"),
 	},
 };

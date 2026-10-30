@@ -29,7 +29,7 @@ const Modules = () => {
 				<div className="sp-real-modules-pro-btn">
 					<a href={pricingPageUrl} target="_blank" rel="noreferrer" className="sp-real-upgrade-to-pro-btn">
 						<ProIconFly />
-						Upgrade to Pro
+						{__("Upgrade to Pro", "testimonial-free")}
 					</a>
 				</div>
 			</div>

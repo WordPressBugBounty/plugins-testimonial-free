@@ -145,6 +145,7 @@ class SwiperConfig {
 			'grabCursor'          => true,
 			'followFinger'        => true,
 			'watchOverflow'       => true,
+			'roundLengths'        => true,
 			'a11y'                => array( 'scrollOnFocus' => false ),
 			'centeredSlides'      => false,
 			'watchSlidesProgress' => 'slide' !== $effect,

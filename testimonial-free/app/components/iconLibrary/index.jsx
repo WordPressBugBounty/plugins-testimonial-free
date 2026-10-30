@@ -195,9 +195,9 @@ const IconsLibrary = ({ attributes, attributesKey, setAttributes, onChange = fal
 							</Button>
 							<div className="sp-icon-picker-body sp-d-flex">
 								<div className="sp-icon-picker-sidebar">
-									<h2 className="sp-icon-picker-title">Icon Library</h2>
+									<h2 className="sp-icon-picker-title">{__("Icon Library", "testimonial-free")}</h2>
 									<Divider />
-									<h4 className="sp-category-indicator-label">Style</h4>
+									<h4 className="sp-category-indicator-label">{__("Style", "testimonial-free")}</h4>
 									<ul className="sp-icon-picker-cat-list sp-icon-picker-style">
 										{STYLE_FILTERS.map((type) => {
 											const id = type.toLowerCase();
@@ -218,7 +218,9 @@ const IconsLibrary = ({ attributes, attributesKey, setAttributes, onChange = fal
 										})}
 									</ul>
 									<Divider />
-									<h4 className="sp-category-indicator-label">Categories</h4>
+									<h4 className="sp-category-indicator-label">
+										{__("Categories", "testimonial-free")}
+									</h4>
 									<ul className="sp-icon-picker-cat-list">
 										{CATEGORIES.map((cat) => {
 											const slug = toSlug(cat);
@@ -248,7 +250,7 @@ const IconsLibrary = ({ attributes, attributesKey, setAttributes, onChange = fal
 											value={searchValue}
 											onChange={(e) => setSearchValue(e.target.value)}
 											className="sp-icon-picker-search-input"
-											placeholder="Search icons..."
+											placeholder={__("Search icons...", "testimonial-free")}
 										/>
 									</div>
 									<div className="sp-icon-picker-icons sp-d-flex">
@@ -269,7 +271,7 @@ const IconsLibrary = ({ attributes, attributesKey, setAttributes, onChange = fal
 										</ul>
 									</div>
 									<Button className="sp-icon-picker-insert-btn sp-d-block" onClick={handleInsert}>
-										Insert Icon
+										{__("Insert Icon", "testimonial-free")}
 									</Button>
 								</div>
 							</div>

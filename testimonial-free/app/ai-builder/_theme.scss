@@ -1,0 +1,23 @@
+/* ===================== Build with AI ===================== */
+// Palette and launcher skin shared by the editor toolbar button and the
+// dashboard Quick Start button, so the two can never drift apart.
+$sp-real-ai-accent: #005adf;
+$sp-real-ai-accent-dark: #0044aa;
+$sp-real-ai-accent-soft: #e6efff;
+$sp-real-ai-text: #1e2939;
+$sp-real-ai-muted: #6a7282;
+$sp-real-ai-icon: #364153;
+$sp-real-ai-line: #e5e7eb;
+$sp-real-ai-chip: #f3f4f6;
+$sp-real-ai-placeholder: #bec4ce;
+
+@mixin sp-real-ai-launcher-skin {
+	border: 1px solid $sp-real-ai-accent;
+	background: $sp-real-ai-accent-soft;
+	color: $sp-real-ai-accent-dark;
+
+	&:hover {
+		background: #e0e7ff;
+		color: $sp-real-ai-accent-dark;
+	}
+}

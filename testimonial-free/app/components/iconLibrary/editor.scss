@@ -223,15 +223,20 @@
 
     }
 
-    .components-button.is-secondary,
-    .components-button.is-secondary:hover {
-        box-shadow: none;
-        background-color: transparent;
+    .components-button.is-secondary {
+        &,
+        &:hover:not(:disabled),
+        &:focus:not(:active) {
+            height: auto;
+            border-color: transparent;
+            background: transparent;
+            box-shadow: none;
+            outline: none;
+        }
     }
 
     button:focus {
         box-shadow: none !important;
-        border: none !important;
         outline: none !important;
     }
 

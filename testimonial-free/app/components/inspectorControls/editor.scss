@@ -1,25 +1,74 @@
 $sp-primary-color: var(--sp-real-link-color);
 
-.sp-real-inspector-control-top-section {
-    padding: 0 18px 18px;
-
-    .sp-real-doc-link-button-wrapper {
-        width: 100%;
+// Ready Patterns + Documentation pills, tucked under the block card description.
+.sp-testimonial-tabs-panel {
+    .sp-real-tab-panel-header-actions {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        margin-top: -4px;
         margin-bottom: 16px;
-        margin-top: -10px;
-    }
 
-    .sp-real-doc-link-button {
-        color: $sp-primary-color;
-        font-size: 12px;
-        font-weight: 500;
-        line-height: 1.2;
-        text-decoration: none;
-
-        &:focus {
-            outline: none;
+        .sp-real-header-action {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            height: 32px;
+            padding: 0 11px;
+            margin: 0;
+            font-family: inherit;
+            font-size: 13px;
+            font-weight: 500;
+            line-height: 1;
+            text-decoration: none;
+            white-space: nowrap;
+            cursor: pointer;
+            border: 1px solid;
+            border-radius: 4px;
             box-shadow: none;
+            transition: background-color 0.2s ease, border-color 0.2s ease;
+
+            &:focus {
+                outline: none;
+                box-shadow: none;
+            }
+
+            &:focus-visible {
+                outline: 2px solid currentColor;
+                outline-offset: 1px;
+            }
         }
+
+        // Real Testimonials brand blue — matches the Ready Patterns library.
+        .sp-real-header-action-patterns {
+            color: #144a9e;
+            background: #e8f0fd;
+            border-color: var(--sp-real-primary-color, #1e67d8);
+
+            &:hover {
+                color: #0f3d86;
+                background: #d8e7fc;
+                border-color: var(--sp-real-primary-color, #1e67d8);
+            }
+        }
+
+        .sp-real-header-action-docs {
+            color: #1e5fbf;
+            background: #edf4fe;
+            border-color: #bcd4f6;
+
+            &:hover {
+                color: #1e5fbf;
+                background: #dfeafc;
+                border-color: #9dbff0;
+            }
+        }
+    }
+}
+
+.wp-admin[class*="version-7-"] {
+    .sp-real-tab-panel-header-actions {
+        padding: 0 16px;
     }
 }
 

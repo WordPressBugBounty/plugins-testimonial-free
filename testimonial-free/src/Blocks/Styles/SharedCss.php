@@ -121,6 +121,35 @@ class SharedCss {
 			);
 		}
 
+		// List layout: one row per testimonial.
+		if ( 'zigzag-list' === $block_name ) {
+			$vertical_gap_attr = $attr['rowGap'] ?? array();
+			$divider_style     = $attr['rowDividerStyle'] ?? 'none';
+			$responsive_css[]  = array(
+				'selector' => "$unique_id .sp-real-grid-wrapper",
+				'styles'   => array(
+					'display'        => 'flex',
+					'flex-direction' => 'column',
+					'row-gap'        => CssHelpers::single_responsive_css( $vertical_gap_attr, $device_type ),
+				),
+			);
+
+			if ( 'none' !== $divider_style ) {
+				$divider_width = $attr['rowDividerWidth'] ?? array();
+				$divider_color = $attr['rowDividerColor']['normal'] ?? '';
+
+				$responsive_css[] = array(
+					'selector' => "$unique_id .sp-real-grid-wrapper > .sp-real-testimonial-card:not(:last-child)",
+					'styles'   => array(
+						'padding-bottom'      => CssHelpers::single_responsive_css( $vertical_gap_attr, $device_type ),
+						'border-bottom-style' => $divider_style,
+						'border-bottom-width' => CssHelpers::single_responsive_css( $divider_width, $device_type ),
+						'border-bottom-color' => $divider_color,
+					),
+				);
+			}
+		}
+
 		$responsive_css = array_merge(
 			$responsive_css,
 			array(
@@ -398,6 +427,17 @@ class SharedCss {
 		// Card contents for conditional CSS.
 		$card_contents = $attr['cardContents'] ?? array();
 
+		// A gradient or image hover background cannot transition, so it goes on
+		// a ::before overlay instead and the hover rule skips `background`.
+		$card_bg_fade_css = CssHelpers::bg_hover_fade_css( "$unique_id .sp-real-card-inner", $card_background );
+		$card_hover_bg    = array();
+		if ( empty( $card_bg_fade_css ) ) {
+			$card_hover_bg = array_merge(
+				array( 'background' => CssHelpers::background_control( $card_background['hover'] ?? array() ) ),
+				CssHelpers::bg_image_css_settings( $card_background['hover'] ?? array() )
+			);
+		}
+
 		// Base card CSS (always present).
 		$desktop_css = array(
 			array(
@@ -423,14 +463,14 @@ class SharedCss {
 			array(
 				'selector' => "$unique_id .sp-real-card-inner:hover",
 				'styles'   => array_merge(
-					array(
-						'border-color' => $card_border['hoverColor'] ?? '',
-						'background'   => CssHelpers::background_control( $card_background['hover'] ),
-					),
+					array( 'border-color' => $card_border['hoverColor'] ?? '' ),
+					$card_hover_bg,
 					CssHelpers::box_shadow_css( $card_hover_shadow ),
 				),
 			),
 		);
+
+		$desktop_css = array_merge( $desktop_css, $card_bg_fade_css );
 
 		// Title.
 		if ( $this->is_active_card_content( $card_contents, 'testimonial_title' ) ) {

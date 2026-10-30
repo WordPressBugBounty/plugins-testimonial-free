@@ -1,3 +1,5 @@
+import { __ } from "@wordpress/i18n";
+
 // Plugin Icons for About Us Page
 // Clean SVG icons with colored backgrounds
 export const SmartPostIcon = () => (
@@ -137,24 +139,43 @@ export const LogoShowcaseIcon = () => (
 
 export const RenoProductSliderIcon = () => {
 	return (
-		<img src="https://shapedplugin.com/wp-content/uploads/edd/2022/08/woo-product-slider.png" alt="product icon" />
+		<img
+			src="https://shapedplugin.com/wp-content/uploads/edd/2022/08/woo-product-slider.png"
+			alt={__("product icon", "testimonial-free")}
+		/>
 	);
 };
 export const RenoProductCategoryIcon = () => {
 	return (
-		<img src="https://shapedplugin.com/wp-content/uploads/edd/2022/08/woo-category-slider.png" alt="product icon" />
+		<img
+			src="https://shapedplugin.com/wp-content/uploads/edd/2022/08/woo-category-slider.png"
+			alt={__("product icon", "testimonial-free")}
+		/>
 	);
 };
 export const SmartSwatch = () => {
 	return (
-		<img src="https://shapedplugin.com/wp-content/uploads/edd/2024/07/Smart-Swatch-Icon.png" alt="product icon" />
+		<img
+			src="https://shapedplugin.com/wp-content/uploads/edd/2024/07/Smart-Swatch-Icon.png"
+			alt={__("product icon", "testimonial-free")}
+		/>
 	);
 };
 export const SmartTeam = () => {
-	return <img src="https://shapedplugin.com/wp-content/uploads/edd/2022/08/wp-team.png" alt="product icon" />;
+	return (
+		<img
+			src="https://shapedplugin.com/wp-content/uploads/edd/2022/08/wp-team.png"
+			alt={__("product icon", "testimonial-free")}
+		/>
+	);
 };
 export const SmartBrand = () => {
-	return <img src="https://shapedplugin.com/wp-content/uploads/edd/2023/05/smart-brands.png" alt="product icon" />;
+	return (
+		<img
+			src="https://shapedplugin.com/wp-content/uploads/edd/2023/05/smart-brands.png"
+			alt={__("product icon", "testimonial-free")}
+		/>
+	);
 };
 
 export const LocationWeatherIcon = () => {

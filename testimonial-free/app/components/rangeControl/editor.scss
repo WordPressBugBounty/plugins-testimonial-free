@@ -1,6 +1,10 @@
 $field-height: 32px;
 
 .sp-testimonial-tabs-panel {
+  .components-range-control__number input {
+    touch-action: none;
+  }
+
   .components-range-control__thumb-wrapper {
     background: transparent;
 

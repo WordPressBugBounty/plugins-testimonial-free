@@ -13,6 +13,7 @@ import GridRender from "./GridRender";
 import { CarouselBlockPreviewImage } from "../carousel/icon";
 import { SliderBlockPreviewImage } from "../slider/icon";
 import { GridBlockPreviewImage } from "../grid/icon";
+import { ZigzagListBlockPreviewImage } from "../zigzag-list/icon";
 
 const EditorContent = ({ clientId, attributes, setAttributes }) => {
 	const {
@@ -97,12 +98,16 @@ const EditorContent = ({ clientId, attributes, setAttributes }) => {
 								</div>
 							)}
 							{postsStatus ? (
-								<div className="sp-real-loading">Loading testimonials...</div>
+								<div className="sp-real-loading">
+									{__("Loading testimonials...", "testimonial-free")}
+								</div>
 							) : (
 								<>
 									{message && <div className="sp-real-error">{message}</div>}
 									{posts.length === 0 && (
-										<div className="sp-real-no-testimonials">No testimonials found.</div>
+										<div className="sp-real-no-testimonials">
+											{__("No testimonials found.", "testimonial-free")}
+										</div>
 									)}
 								</>
 							)}
@@ -129,6 +134,7 @@ const PREVIEW_IMAGES = {
 	carousel: CarouselBlockPreviewImage,
 	slider: SliderBlockPreviewImage,
 	grid: GridBlockPreviewImage,
+	"zigzag-list": ZigzagListBlockPreviewImage,
 };
 // Guard: keep the inserter preview free of hooks. On `isPreview` render the
 // mapped static image; otherwise mount the live editor. The hook-bearing body

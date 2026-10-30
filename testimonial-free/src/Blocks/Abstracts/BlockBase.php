@@ -221,8 +221,11 @@ abstract class BlockBase {
 		// Build conflict-resolved swiper settings (mirrors editor-side helper).
 		$swiper_settings = SwiperConfig::make( $attributes );
 
+		// dir="ltr" as in the editor's CarouselRender: Swiper reads its mode from
+		// the computed direction, so an RTL site would otherwise flip the card
+		// order and invert Carousel Direction. RTL sliding is reverseDirection.
 		?>
-		<div class="sp-testimonial-swiper swiper sp-real-carousel-style-<?php echo esc_attr( $carousel_style ); ?>" data-swiper-settings="<?php echo esc_attr( wp_json_encode( $swiper_settings ) ); ?>">
+		<div class="sp-testimonial-swiper swiper sp-real-carousel-style-<?php echo esc_attr( $carousel_style ); ?>" data-swiper-settings="<?php echo esc_attr( wp_json_encode( $swiper_settings ) ); ?>" dir="ltr">
 			<div class="sp-real-swiper-wrapper swiper-wrapper sp-real-cards-wrapper">
 				<?php
 				foreach ( (array) $items as $item ) {
@@ -243,5 +246,4 @@ abstract class BlockBase {
 		?>
 		<?php
 	}
-
 }

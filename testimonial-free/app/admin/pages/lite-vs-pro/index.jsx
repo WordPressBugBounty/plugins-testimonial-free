@@ -59,14 +59,20 @@ const features = [
 			"Amazing Testimonial Layouts (Slider, Carousel, Grid, Masonry, List, Isotope, etc.)",
 			"testimonial-free"
 		),
-		free: 7,
-		pro: 16,
+		free: 4,
+		pro: 14,
 		hot: true,
 	},
 	{
 		title: __("Customizable and Professionally Designed Testimonials Themes", "testimonial-free"),
-		free: 7,
-		pro: 33,
+		free: 5,
+		pro: 23,
+	},
+	{
+		title: __("Build with AI (Generate Blocks from a Prompt)", "testimonial-free"),
+		free: "yes",
+		pro: "yes",
+		new: true,
 	},
 	{
 		title: __("Ready-to-use Testimonial Patterns", "testimonial-free"),
@@ -129,7 +135,7 @@ const features = [
 	{
 		title: __("Carousel Sliding Effects (Slide, Cube, Flip, Fade, etc.)", "testimonial-free"),
 		free: 3,
-		pro: 6,
+		pro: 7,
 	},
 	{
 		title: __("Ken Burns & Creative Motion Effects", "testimonial-free"),
@@ -155,12 +161,12 @@ const features = [
 	},
 	{
 		title: __("Marquee / Ticker Layout", "testimonial-free"),
-		free: "yes",
+		free: "no",
 		pro: "yes",
 	},
 	{
 		title: __("Bento & Polaroid Grid", "testimonial-free"),
-		free: "yes",
+		free: "no",
 		pro: "yes",
 		new: true,
 	},
@@ -175,7 +181,7 @@ const features = [
 		pro: "yes",
 	},
 	{
-		title: __("Global Style Controls", "testimonial-free"),
+		title: __("Custom CSS & JS", "testimonial-free"),
 		free: "yes",
 		pro: "yes",
 	},
@@ -209,7 +215,7 @@ const testimonials = [
 		),
 		user: "wordpress",
 		name: "Sirpa",
-		role: "Website Owner",
+		role: __("Website Owner", "testimonial-free"),
 		img: "src/Admin/assets/images/sirpa.png",
 	},
 	{
@@ -219,7 +225,7 @@ const testimonials = [
 		),
 		user: "wordpress",
 		name: "Ali Senejani",
-		role: "Freelance Developer",
+		role: __("Freelance Developer", "testimonial-free"),
 		img: "src/Admin/assets/images/ali_senejani.png",
 	},
 	{
@@ -229,7 +235,7 @@ const testimonials = [
 		),
 		user: "trustpilot",
 		name: "Jordan Miles",
-		role: "Marketing Manager",
+		role: __("Marketing Manager", "testimonial-free"),
 	},
 ];
 
@@ -327,7 +333,7 @@ const LiteVsPro = () => {
 							target="_blank"
 							rel="noreferrer"
 							className="sp-real-testimonial-rating-item"
-							title="Reviews on WordPress"
+							title={__("Reviews on WordPress", "testimonial-free")}
 						>
 							<div className="sp-real-testimonial-rating-wordpress">
 								<div className="sp-real-wp-mark">
@@ -342,14 +348,16 @@ const LiteVsPro = () => {
 								</div>
 							</div>
 							<span className="sp-real-testimonial-rating-score">4.7/5</span>
-							<span className="sp-real-testimonial-review-count">220+ Reviews</span>
+							<span className="sp-real-testimonial-review-count">
+								{__("220+ Reviews", "testimonial-free")}
+							</span>
 						</a>
 						<a
 							href="https://www.trustpilot.com/review/shapedplugin.com"
 							target="_blank"
 							rel="noreferrer"
 							className="sp-real-testimonial-rating-item"
-							title="Reviews on Trustpilot"
+							title={__("Reviews on Trustpilot", "testimonial-free")}
 						>
 							<div className="sp-real-testimonial-rating-trustpilot">
 								<div className="sp-real-trustpilot-mark">
@@ -364,7 +372,9 @@ const LiteVsPro = () => {
 								<StarIcon color="#fff" />
 							</div>
 							<span className="sp-real-testimonial-rating-score">4.8/5</span>
-							<span className="sp-real-testimonial-review-count">140+ Reviews</span>
+							<span className="sp-real-testimonial-review-count">
+								{__("140+ Reviews", "testimonial-free")}
+							</span>
 						</a>
 					</div>
 					<h2 className="sp-real-testimonial-title">

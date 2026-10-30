@@ -1,3 +1,4 @@
+import { __ } from "@wordpress/i18n";
 import { TabPanel } from "@wordpress/components";
 import { FilterTabIcon, GeneralIcon, ReviewsTabIcon, SliderStyleIcon, StyleIcon } from "./Icons";
 import "./editor.scss";
@@ -22,7 +23,11 @@ const TabControls = ({
 	if (GeneralTab) {
 		Tabs.push({
 			name: "general",
-			title: <span className="sp-real-tab-panel-title">{displayIcon && GeneralIcon()} Settings</span>,
+			title: (
+				<span className="sp-real-tab-panel-title">
+					{displayIcon && GeneralIcon()} {__("Settings", "testimonial-free")}
+				</span>
+			),
 			className: "sp-real-general-tab",
 		});
 	}
@@ -30,7 +35,7 @@ const TabControls = ({
 	if (AdvancedGeneralTab) {
 		Tabs.push({
 			name: "advanced-general",
-			title: <span className="sp-real-tab-panel-title">General</span>,
+			title: <span className="sp-real-tab-panel-title">{__("General", "testimonial-free")}</span>,
 			className: "sp-real-advanced-general-tab",
 		});
 	}
@@ -38,7 +43,11 @@ const TabControls = ({
 	if (StyleTab) {
 		Tabs.push({
 			name: "style",
-			title: <span className="sp-real-tab-panel-title">{displayIcon && StyleIcon()} Style</span>,
+			title: (
+				<span className="sp-real-tab-panel-title">
+					{displayIcon && StyleIcon()} {__("Style", "testimonial-free")}
+				</span>
+			),
 			className: "sp-real-style-tab",
 		});
 	}
@@ -48,7 +57,7 @@ const TabControls = ({
 			name: "slider",
 			title: (
 				<span className="sp-real-tab-panel-title">
-					{displayIcon && SliderStyleIcon()} {attributes?.blockName || "Slider"}
+					{displayIcon && SliderStyleIcon()} {attributes?.blockName || __("Slider", "testimonial-free")}
 				</span>
 			),
 			className: "sp-real-style-tab",
@@ -58,7 +67,7 @@ const TabControls = ({
 	if (VisibilityTab) {
 		Tabs.push({
 			name: "visibility",
-			title: <span className="sp-real-tab-panel-title">Visibility</span>,
+			title: <span className="sp-real-tab-panel-title">{__("Visibility", "testimonial-free")}</span>,
 			className: "sp-real-visibility-tab",
 		});
 	}
@@ -66,7 +75,7 @@ const TabControls = ({
 	if (AdvancedTab) {
 		Tabs.push({
 			name: "advanced",
-			title: <span className="sp-real-tab-panel-title">Advanced</span>,
+			title: <span className="sp-real-tab-panel-title">{__("Advanced", "testimonial-free")}</span>,
 			className: "sp-real-advanced-tab",
 		});
 	}
@@ -74,7 +83,11 @@ const TabControls = ({
 	if (ReviewsTab) {
 		Tabs.push({
 			name: "reviews",
-			title: <span className="sp-real-tab-panel-title">{displayIcon && ReviewsTabIcon()} Reviews</span>,
+			title: (
+				<span className="sp-real-tab-panel-title">
+					{displayIcon && ReviewsTabIcon()} {__("Reviews", "testimonial-free")}
+				</span>
+			),
 			className: "sp-real-reviews-tab",
 		});
 	}
@@ -82,7 +95,11 @@ const TabControls = ({
 	if (FilterTab) {
 		Tabs.push({
 			name: "filter",
-			title: <span className="sp-real-tab-panel-title">{displayIcon && FilterTabIcon()} Filter</span>,
+			title: (
+				<span className="sp-real-tab-panel-title">
+					{displayIcon && FilterTabIcon()} {__("Filter", "testimonial-free")}
+				</span>
+			),
 			className: "sp-real-filter-tab",
 		});
 	}

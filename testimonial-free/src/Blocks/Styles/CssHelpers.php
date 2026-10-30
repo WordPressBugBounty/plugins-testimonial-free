@@ -172,6 +172,67 @@ class CssHelpers {
 	}
 
 	/**
+	 * Fade a normal → hover background swap through a `::before` overlay.
+	 *
+	 * `transition` cannot interpolate `background-image`, so a gradient or image on either
+	 * state snaps on hover. When one is involved the hover background is painted on an
+	 * overlay under the content and its opacity is transitioned instead; the caller then
+	 * leaves `background` out of its own `:hover` rule. Mirrors JS `bgHoverFadeCss()`.
+	 *
+	 * @param string $selector   Element carrying the background.
+	 * @param array  $background `Utils::bg()` attribute with `normal` and `hover` states.
+	 *
+	 * @return array CSS rule list; empty when a plain `transition` already handles the swap.
+	 */
+	public static function bg_hover_fade_css( $selector, $background ) {
+		$hover       = $background['hover'] ?? array();
+		$hover_style = $hover['style'] ?? 'solid';
+		$hover_value = self::background_control( $hover );
+		$states      = array( $background['normal']['style'] ?? 'solid', $hover_style );
+
+		if ( 'image' === $hover_style && empty( $hover['image']['url'] ) ) {
+			$hover_value = '';
+		}
+
+		if ( empty( $hover_value ) || 'transparent' === $hover_style || ! array_intersect( $states, array( 'gradient', 'image' ) ) ) {
+			return array();
+		}
+
+		return array(
+			array(
+				'selector' => $selector,
+				'styles'   => array(
+					'position'  => 'relative',
+					'isolation' => 'isolate',
+				),
+			),
+			array(
+				'selector' => "$selector::before",
+				'styles'   => array_merge(
+					array(
+						'content'       => '""',
+						'position'      => 'absolute',
+						'inset'         => '0',
+						'z-index'       => '-1',
+						'border-radius' => 'inherit',
+						'background'    => $hover_value,
+					),
+					self::bg_image_css_settings( $hover ),
+					array(
+						'opacity'        => '0',
+						'transition'     => 'inherit',
+						'pointer-events' => 'none',
+					)
+				),
+			),
+			array(
+				'selector' => "$selector:hover::before",
+				'styles'   => array( 'opacity' => '1' ),
+			),
+		);
+	}
+
+	/**
 	 * Format a `range_control` attribute (non-responsive scalar + unit) into a CSS value.
 	 *
 	 * Attribute shape (from `Utils::range_control`):
@@ -456,9 +517,11 @@ class CssHelpers {
 		$line_height_attr = isset( $attributes[ $key . 'LineHeight' ] ) ? $attributes[ $key . 'LineHeight' ] : array();
 		$spacing_attr     = isset( $attributes[ $key . 'LetterSpacing' ] ) ? $attributes[ $key . 'LetterSpacing' ] : array();
 
-		$font_size      = isset( $font_size_attr['device'][ $device ] ) ? $font_size_attr['device'][ $device ] : '';
-		$line_height    = isset( $line_height_attr['device'][ $device ] ) ? $line_height_attr['device'][ $device ] : '';
-		$letter_spacing = isset( $spacing_attr['device'][ $device ] ) ? $spacing_attr['device'][ $device ] : 0;
+		$font_size   = isset( $font_size_attr['device'][ $device ] ) ? $font_size_attr['device'][ $device ] : '';
+		$line_height = isset( $line_height_attr['device'][ $device ] ) ? $line_height_attr['device'][ $device ] : '';
+		// A missing device falls back to 0; a null or empty one emits nothing and inherits the
+		// desktop value — the same rule as generateTypoResponsive() in app/controls/Controls.jsx.
+		$letter_spacing = isset( $spacing_attr['device'] ) && is_array( $spacing_attr['device'] ) && array_key_exists( $device, $spacing_attr['device'] ) ? $spacing_attr['device'][ $device ] : 0;
 
 		$unit_font_size = isset( $font_size_attr['unit'][ $device ] ) ? $font_size_attr['unit'][ $device ] : 'px';
 		$unit_spacing   = isset( $spacing_attr['unit'][ $device ] ) ? $spacing_attr['unit'][ $device ] : 'px';

@@ -27,6 +27,9 @@
         line-height: 1.6;
     }
 
+    // Pro upsell badge — same pattern as the Blocks page's pro-blocks badge:
+    // the crown icon alone, with the PRO text clipped away until the card is
+    // hovered (width animates, overflow stays hidden).
     .sp-real-integrations-card__pro-badge {
         color: #4AB866;
         background-color: #EFFFF5;
@@ -36,8 +39,21 @@
         font-size: 11px;
         line-height: 1;
         text-transform: uppercase;
-        padding: 4px 6px;
+        padding: 4px 5px;
         white-space: nowrap;
+        overflow: hidden;
+        // Icon 12 + padding 10 + border ~1.6, border-box: any less and the
+        // crown hugs the left edge instead of sitting centered.
+        width: 24px;
+        transition: width .3s ease;
+
+        * {
+            flex-shrink: 0;
+        }
+    }
+
+    .sp-real-integrations-card:hover .sp-real-integrations-card__pro-badge {
+        width: 56px;
     }
 
     .sp-real-integrations-card__links {
@@ -208,6 +224,35 @@
             a {
                 text-decoration: none;
             }
+        }
+    }
+
+    // AI provider key rejected by /ai-verify.
+    .sp-real-integrations__modal-error {
+        margin-top: 8px;
+        color: #d63638;
+        font-size: 13px;
+        line-height: 1.4;
+    }
+
+    // WordPress Connectors state for an AI provider.
+    .sp-real-integrations__connector-notice {
+        padding: 12px 14px;
+        border-left: 4px solid #dcdcde;
+        border-radius: 4px;
+        background: #fff;
+        color: #50575e;
+        font-size: 13px;
+        line-height: 1.5;
+
+        &.is-connected {
+            border-left-color: #00a32a;
+            background: #edfaef;
+            color: #1d2327;
+        }
+
+        a {
+            text-decoration: none;
         }
     }
 }

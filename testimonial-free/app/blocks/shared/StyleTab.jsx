@@ -31,8 +31,8 @@ export const CardDesignStyleTab = ({ attributes, setAttributes }) => {
 			<ButtonGroup
 				attributes={colorState}
 				items={[
-					{ label: "Normal", value: "normal" },
-					{ label: "Hover", value: "hover" },
+					{ label: __("Normal", "testimonial-free"), value: "normal" },
+					{ label: __("Hover", "testimonial-free"), value: "hover" },
 				]}
 				onClick={(e) => setColorState(e)}
 			/>
@@ -402,8 +402,8 @@ export const NavigationArrowStyleTab = ({ attributes, setAttributes }) => {
 			<ButtonGroup
 				attributes={colorState}
 				items={[
-					{ label: "Normal", value: "normal" },
-					{ label: "Hover", value: "hover" },
+					{ label: __("Normal", "testimonial-free"), value: "normal" },
+					{ label: __("Hover", "testimonial-free"), value: "hover" },
 				]}
 				onClick={(e) => setColorState(e)}
 			/>
@@ -497,8 +497,8 @@ export const PaginationDotsStyleTab = ({ attributes, setAttributes }) => {
 			<ButtonGroup
 				attributes={colorState}
 				items={[
-					{ label: "Normal", value: "normal" },
-					{ label: "Hover & Active", value: "active" },
+					{ label: __("Normal", "testimonial-free"), value: "normal" },
+					{ label: __("Hover & Active", "testimonial-free"), value: "active" },
 				]}
 				onClick={(e) => setColorState(e)}
 			/>

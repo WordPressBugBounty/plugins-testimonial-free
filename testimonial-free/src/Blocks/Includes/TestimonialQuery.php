@@ -79,10 +79,10 @@ class TestimonialQuery {
 			'offset'         => $args['offset'],
 		);
 
-		// Include specific posts.
+		// Include specific posts. Only post__in: pinning posts_per_page to the
+		// include count overrode the block's own pagination settings.
 		if ( ! empty( $args['include'] ) && is_array( $args['include'] ) ) {
-			$query_args['post__in']       = $args['include'];
-			$query_args['posts_per_page'] = count( $args['include'] );
+			$query_args['post__in'] = $args['include'];
 		}
 
 		// Exclude specific posts.

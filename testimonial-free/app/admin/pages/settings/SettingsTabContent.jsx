@@ -2,7 +2,7 @@ import { __ } from "@wordpress/i18n";
 import { Fragment, useState } from "@wordpress/element";
 import Toggle from "react-toggle";
 import { CodeEditor } from "@testimonial/components";
-import { UserDataInfoModal } from "./TemplateParts";
+import { UserDataInfoModal } from "../../setup-wizard/TemplateParts";
 import { jsToPhpBool, phpToJsBool } from "../../functions";
 import Integrations from "./Integrations";
 
@@ -182,6 +182,48 @@ export const ControlAssets = ({ pluginSettings, updateSettingsOption }) => {
 	);
 };
 
+/**
+ * Diagnostic-data consent row: title with a right-aligned toggle, the help text and
+ * the "what we collect" modal trigger stacked under it.
+ *
+ * @param {Object}   props                      Component props.
+ * @param {Object}   props.pluginSettings       Current tab settings slice.
+ * @param {Function} props.updateSettingsOption Setting updater.
+ * @param {Function} props.onWhatWeCollect      Opens the data info modal.
+ */
+const ContributeOption = ({ pluginSettings, updateSettingsOption, onWhatWeCollect }) => {
+	const isAllowed = phpToJsBool(pluginSettings?.rtp_allow_anonymous_data);
+
+	return (
+		<div className="sp-real-settings-contribute sp-d-flex sp-flex-col sp-gap-8px">
+			<div className="sp-real-settings-contribute-header sp-d-flex sp-align-center sp-justify-between">
+				<label htmlFor="sp-real-contribute-toggle" className="sp-real-component-title sp-cursor-pointer">
+					{__("Contribute to Real Testimonials", "testimonial-free")}
+				</label>
+				<Toggle
+					id="sp-real-contribute-toggle"
+					icons={false}
+					checked={isAllowed}
+					onChange={() => updateSettingsOption("rtp_allow_anonymous_data", jsToPhpBool(!isAllowed))}
+				/>
+			</div>
+			<span className="sp-real-component-help">
+				{__(
+					"Allow us to collect diagnostic data to resolve problems faster and improve performance.",
+					"testimonial-free"
+				)}{" "}
+				<button
+					type="button"
+					className="sp-real-settings-info-link sp-cursor-pointer"
+					onClick={onWhatWeCollect}
+				>
+					{__("what we collect.", "testimonial-free")}
+				</button>
+			</span>
+		</div>
+	);
+};
+
 export const Performance = ({ pluginSettings, updateSettingsOption }) => {
 	return (
 		<div className="sp-real-dashboard-advanced-settings sp-d-flex sp-flex-col sp-gap-24px">
@@ -202,6 +244,12 @@ export const AdvancedControls = ({ pluginSettings, updateSettingsOption }) => {
 			{advancedOptions?.map((option, index) =>
 				renderOptionRow({ option, pluginSettings, updateSettingsOption, index })
 			)}
+			<div className="sp-real-settings-separator"></div>
+			<ContributeOption
+				pluginSettings={pluginSettings}
+				updateSettingsOption={updateSettingsOption}
+				onWhatWeCollect={() => setOpenModal(true)}
+			/>
 			{isOpenModal && <UserDataInfoModal closeModal={closeModal} />}
 		</div>
 	);

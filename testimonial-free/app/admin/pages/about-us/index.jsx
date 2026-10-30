@@ -34,79 +34,109 @@ const ArrowRight = () => (
 const morePlugins = [
 	{
 		name: "WP Carousel",
-		description:
+		description: __(
 			"The most powerful and user-friendly multi-purpose carousel, slider, & gallery plugin for WordPress.",
+			"testimonial-free"
+		),
 		url: "https://wpcarousel.io/",
 		icon: <WPCarouselIcon />,
 	},
 	{
 		name: "Easy Accordion",
-		description: "The most powerful Accordion and FAQs builder plugin for WordPress with modern design.",
+		description: __(
+			"The most powerful Accordion and FAQs builder plugin for WordPress with modern design.",
+			"testimonial-free"
+		),
 		url: "https://easyaccordion.io/",
 		icon: <EasyAccordionIcon />,
 	},
 	{
 		name: "Smart Tabs",
-		description: "Best WooCommerce Custom Product Tabs & WordPress Tabs Builder Plugin to create responsive tabs.",
+		description: __(
+			"Best WooCommerce Custom Product Tabs & WordPress Tabs Builder Plugin to create responsive tabs.",
+			"testimonial-free"
+		),
 		url: "https://wptabs.com/",
 		icon: <SmartTabsIcon />,
 	},
 	{
 		name: "Smart Post",
-		description:
+		description: __(
 			"Filter and display posts (any post types), pages, taxonomy, custom taxonomy, and custom field, in beautiful layouts.",
+			"testimonial-free"
+		),
 		url: "https://wpsmartpost.com/",
 		icon: <SmartPostIcon />,
 	},
 	{
 		name: "Smart Team",
-		description: "Simply collect, manage, and display team members on your website with beautiful layouts.",
+		description: __(
+			"Simply collect, manage, and display team members on your website with beautiful layouts.",
+			"testimonial-free"
+		),
 		url: "https://getwpteam.com/",
 		icon: <SmartTeam />,
 	},
 	{
 		name: "Logo Carousel",
-		description:
+		description: __(
 			"Showcase a group of logo images with Title, Description, Tooltips, Links, and Popup as a grid or in a carousel.",
+			"testimonial-free"
+		),
 		url: "https://logocarousel.com/",
 		icon: <LogoShowcaseIcon />,
 	},
 	{
 		name: "Location Weather",
-		description:
+		description: __(
 			"Display beautiful weather update widgets to your WordPress site in a minute without coding skills!",
+			"testimonial-free"
+		),
 		url: "https://locationweather.io/",
 		icon: <LocationWeatherIcon />,
 	},
 	{
 		name: "Reno Product Gallery",
-		description:
+		description: __(
 			"Product gallery slider and additional variation images gallery for WooCommerce and boost your sales.",
+			"testimonial-free"
+		),
 		url: "https://renoproductgallery.com/",
 		icon: <RenoProductGalleryIcon />,
 	},
 	{
 		name: "Reno Product Slider",
-		description: "Boost sales by interactive product Slider, Grid, and Table in your WooCommerce website or store.",
+		description: __(
+			"Boost sales by interactive product Slider, Grid, and Table in your WooCommerce website or store.",
+			"testimonial-free"
+		),
 		url: "https://wooproductslider.io/",
 		icon: <RenoProductSliderIcon />,
 	},
 	{
 		name: "Reno Product Category",
-		description: "Display by filtering the list of categories aesthetically and boosting sales.",
+		description: __(
+			"Display by filtering the list of categories aesthetically and boosting sales.",
+			"testimonial-free"
+		),
 		url: "https://shapedplugin.com/reno-product-category/",
 		icon: <RenoProductCategoryIcon />,
 	},
 	{
 		name: "Smart Swatches",
-		description: "Smart Swatches is a Best Product Variation Swatches for WooCommerce to Boost Your Store Sales.",
+		description: __(
+			"Smart Swatches is a Best Product Variation Swatches for WooCommerce to Boost Your Store Sales.",
+			"testimonial-free"
+		),
 		url: "https://shapedplugin.com/smart-swatches-for-woocommerce",
 		icon: <SmartSwatch />,
 	},
 	{
 		name: "Smart Brands",
-		description:
+		description: __(
 			"Smart Brands for WooCommerce Pro helps you display product brands in an attractive way on your online store.",
+			"testimonial-free"
+		),
 		url: "https://shapedplugin.com/smart-brands/",
 		icon: <SmartBrand />,
 	},
@@ -120,7 +150,7 @@ const AboutUs = () => {
 			<div className="sp-real-about-box">
 				<div className="sp-real-about-info">
 					<h3>
-						{__("The Most Powerful Testimonials Builder plugin for WordPress from ", "testimonial-free")}
+						{__("The Most Powerful Testimonials plugin for WordPress from ", "testimonial-free")}
 						<span className="sp-real-highlight-text">
 							{__("Real Testimonials Team", "testimonial-free")}
 						</span>
@@ -164,7 +194,7 @@ const AboutUs = () => {
 				<div className="sp-real-about-img">
 					<img
 						src={`${pluginUrl}src/Admin/assets/images/shapedplugin-team.jpg`}
-						alt="Team"
+						alt={__("Team", "testimonial-free")}
 						height="402"
 						width="610"
 					/>

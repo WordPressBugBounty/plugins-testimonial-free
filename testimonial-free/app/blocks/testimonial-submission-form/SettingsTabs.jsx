@@ -202,8 +202,15 @@ const FormFieldBuilder = memo(({ attributes, setAttributes }) => {
 														}
 														attributes={length}
 														items={[
-															{ label: "Unlimited", value: "unlimited" },
-															{ label: "Limited", value: "limited", isPro: true },
+															{
+																label: __("Unlimited", "testimonial-free"),
+																value: "unlimited",
+															},
+															{
+																label: __("Limited", "testimonial-free"),
+																value: "limited",
+																isPro: true,
+															},
 														]}
 														onClick={(value) => onChangeValue(id, "length", value)}
 													/>
@@ -294,8 +301,8 @@ export const FormBuilderGeneralTab = ({ attributes, setAttributes }) => {
 			<ButtonGroup
 				label={__("Form Display Type", "testimonial-free")}
 				items={[
-					{ label: "Inline", value: "inline" },
-					{ label: "Popup", value: "popup", isPro: true },
+					{ label: __("Inline", "testimonial-free"), value: "inline" },
+					{ label: __("Popup", "testimonial-free"), value: "popup", isPro: true },
 				]}
 				attributes={"inline"}
 			/>
@@ -356,8 +363,8 @@ export const FormBuilderGeneralTab = ({ attributes, setAttributes }) => {
 				defaultValue={{ unit: "px", value: 520 }}
 			/>
 			<ProFeaturesBox
-				title={__("Pro Features", "testimonial-free")}
-				description={__("Collect and manage testimonials from your customers effortlessly", "testimonial-free")}
+				title={__("Collect More Genuine Reviews", "testimonial-free")}
+				description={__("A friendlier form that keeps spam out.", "testimonial-free")}
 				features={[
 					__("Show form in popup", "testimonial-free"),
 					__("Spam protection with reCAPTCHA", "testimonial-free"),
@@ -617,8 +624,8 @@ export const InputFieldsStyleTab = ({ attributes, setAttributes }) => {
 			<ButtonGroup
 				attributes={colorState}
 				items={[
-					{ label: "Normal", value: "normal" },
-					{ label: "Focus", value: "hover" },
+					{ label: __("Normal", "testimonial-free"), value: "normal" },
+					{ label: __("Focus", "testimonial-free"), value: "hover" },
 				]}
 				onClick={(e) => setColorState(e)}
 			/>
@@ -723,8 +730,8 @@ export const SubmitButtonGeneralTab = ({ attributes, setAttributes }) => {
 					<SelectControl
 						label={__("Icon Position", "testimonial-free")}
 						items={[
-							{ label: "Left", value: "left" },
-							{ label: "Right", value: "right" },
+							{ label: __("Left", "testimonial-free"), value: "left" },
+							{ label: __("Right", "testimonial-free"), value: "right" },
 						]}
 						attributes={submitButtonIconPosition}
 						attributesKey={"submitButtonIconPosition"}
@@ -751,8 +758,8 @@ export const SubmitButtonGeneralTab = ({ attributes, setAttributes }) => {
 			<ButtonGroup
 				label={__("Button Width", "testimonial-free")}
 				items={[
-					{ label: "Full Width", value: "fullWidth" },
-					{ label: "Auto", value: "auto" },
+					{ label: __("Full Width", "testimonial-free"), value: "fullWidth" },
+					{ label: __("Auto", "testimonial-free"), value: "auto" },
 				]}
 				attributes={submitButtonWidth}
 				attributesKey={"submitButtonWidth"}
@@ -792,12 +799,12 @@ export const MessageSettingsGeneralTab = ({ attributes, setAttributes }) => {
 				<SelectControl
 					label={__("Testimonial Status", "testimonial-free")}
 					items={[
-						{ label: "Pending", value: "pending" },
-						{ label: "Private", value: "private" },
-						{ label: "Draft", value: "draft" },
-						{ label: "Auto Publish (Pro)", value: "auto_publish", disabled: true },
+						{ label: __("Pending", "testimonial-free"), value: "pending" },
+						{ label: __("Private", "testimonial-free"), value: "private" },
+						{ label: __("Draft", "testimonial-free"), value: "draft" },
+						{ label: __("Auto Publish (Pro)", "testimonial-free"), value: "auto_publish", disabled: true },
 						{
-							label: "Auto Publish Based on Star Rating (Pro)",
+							label: __("Auto Publish Based on Star Rating (Pro)", "testimonial-free"),
 							value: "auto_publish_rating",
 							disabled: true,
 						},
@@ -835,9 +842,9 @@ export const MessageSettingsGeneralTab = ({ attributes, setAttributes }) => {
 			<SelectControl
 				label={__("Redirect After Submit", "testimonial-free")}
 				items={[
-					{ label: "Same Page", value: "same-page" },
-					{ label: "To a Page (Pro)", value: "to-selected-page", disabled: true },
-					{ label: "To a Custom URL (Pro)", value: "to-custom-url", disabled: true },
+					{ label: __("Same Page", "testimonial-free"), value: "same-page" },
+					{ label: __("To a Page (Pro)", "testimonial-free"), value: "to-selected-page", disabled: true },
+					{ label: __("To a Custom URL (Pro)", "testimonial-free"), value: "to-custom-url", disabled: true },
 				]}
 				attributes={"same-page"}
 			/>
@@ -856,8 +863,8 @@ export const MessageSettingsGeneralTab = ({ attributes, setAttributes }) => {
 			<ButtonGroup
 				label={__("Message Position", "testimonial-free")}
 				items={[
-					{ label: "Top", value: "top" },
-					{ label: "Bottom", value: "bottom" },
+					{ label: __("Top", "testimonial-free"), value: "top" },
+					{ label: __("Bottom", "testimonial-free"), value: "bottom" },
 				]}
 				attributes={submissionMessagePosition}
 				attributesKey={"submissionMessagePosition"}
@@ -865,8 +872,8 @@ export const MessageSettingsGeneralTab = ({ attributes, setAttributes }) => {
 			/>
 			<ToggleControl label={__("Hide Form After Submit", "testimonial-free")} isPro={true} />
 			<ProFeaturesBox
-				title={__("Pro Features", "testimonial-free")}
-				description={__("Automate submissions and control post submission actions", "testimonial-free")}
+				title={__("Publish Without Lifting a Finger", "testimonial-free")}
+				description={__("Approve and route new submissions automatically.", "testimonial-free")}
 				features={[
 					__("Auto publish testimonials instantly", "testimonial-free"),
 					__("Auto publish based on star rating", "testimonial-free"),
@@ -880,8 +887,8 @@ export const MessageSettingsGeneralTab = ({ attributes, setAttributes }) => {
 
 export const EmailNotificationGeneralTab = () => (
 	<ProFeaturesBox
-		title={__("Pro Features", "testimonial-free")}
-		description={__("Automate email notifications to stay updated and respond faster", "testimonial-free")}
+		title={__("Never Miss a New Review", "testimonial-free")}
+		description={__("Get notified the moment a testimonial arrives.", "testimonial-free")}
 		features={[
 			__("Notify admins on new submissions", "testimonial-free"),
 			__("Send alerts for pending and approval", "testimonial-free"),
@@ -929,8 +936,8 @@ export const SubmitButtonStyleTab = ({ attributes, setAttributes }) => {
 			<ButtonGroup
 				attributes={colorState}
 				items={[
-					{ label: "Normal", value: "normal" },
-					{ label: "Hover", value: "hover" },
+					{ label: __("Normal", "testimonial-free"), value: "normal" },
+					{ label: __("Hover", "testimonial-free"), value: "hover" },
 				]}
 				onClick={(e) => setColorState(e)}
 			/>

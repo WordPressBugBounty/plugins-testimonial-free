@@ -1,6 +1,7 @@
 import { __ } from "@wordpress/i18n";
 import {
 	ButtonGroup,
+	ColorPicker,
 	InputControl,
 	SelectControl,
 	SPRangeControl,
@@ -9,9 +10,11 @@ import {
 	Divider,
 	SelectDropdown,
 	PresetPicker,
+	Popover,
 } from "@testimonial/components";
 import {
 	ARROW_ICON_OPTIONS,
+	dividerStyles,
 	cardContentLabels,
 	SWIPER_PAGINATION_DOTS_OPTIONS,
 	RATING_ICON_STYLES,
@@ -23,7 +26,7 @@ import { DndContext, PointerSensor, useSensor, useSensors } from "@dnd-kit/core"
 import { arrayMove, SortableContext, verticalListSortingStrategy } from "@dnd-kit/sortable";
 import { componentSectionHeader, getModulesSettings, inArray, useDeviceType } from "@testimonial/controls";
 import { carouselTemplateIcons } from "../carousel/icon";
-import { cardDesignIcons } from "./Icons";
+import { BLOCK_DESIGN_ICONS, cardDesignIcons } from "./Icons";
 import { applyCardDesign } from "./cardDesign";
 import { ProFeaturesBox, TestimonialContentProNote, ReviewerDetailsProNote } from "../../components/proControls";
 
@@ -49,61 +52,79 @@ export const LayoutsGeneralTab = ({ attributes, setAttributes }) => {
 		marqueeRows,
 		fadeSliderEdges,
 		enableAjaxPagination,
+		// List-only.
+		rowDividerStyle,
+		rowDividerWidth,
+		rowDividerColor,
 	} = attributes;
 
 	const isMarquee = blockName === "marquee";
 	const isSlider = blockName === "slider";
+	// One row per testimonial: no Columns, no Column Gap. `rowGap` is the whole
+	// spacing story here and the panel labels it Vertical Gap.
+	const isZigzagList = blockName === "zigzag-list";
+	// Blocks whose card design set differs from the six shared vertical cards.
+	const cardStyleIcons = BLOCK_DESIGN_ICONS[blockName] || cardDesignIcons;
 
 	// Slider exposes every sliding effect directly (no carousel-style preset).
 	const sliderSlidingEffects = [
-		{ label: "Slide", value: "slide" },
-		{ label: "Flip", value: "flip" },
-		{ label: "Cube", value: "cube" },
-		{ label: "Spring (Pro)", value: "creative", disabled: true },
-		{ label: "Fade (Pro)", value: "fade", disabled: true },
-		{ label: "Ken Burns (Pro)", value: "ken-burns", disabled: true },
+		{ label: __("Slide", "testimonial-free"), value: "slide" },
+		{ label: __("Flip", "testimonial-free"), value: "flip" },
+		{ label: __("Cube", "testimonial-free"), value: "cube" },
+		{ label: __("Spring (Pro)", "testimonial-free"), value: "creative", disabled: true },
+		{ label: __("Fade (Pro)", "testimonial-free"), value: "fade", disabled: true },
+		{ label: __("Ken Burns (Pro)", "testimonial-free"), value: "ken-burns", disabled: true },
 	];
 
-	const carouselSlidingEffects = [{ label: "Slide", value: "slide" }];
+	const carouselSlidingEffects = [{ label: __("Slide", "testimonial-free"), value: "slide" }];
 
 	if ("default" === carouselStyle) {
 		carouselSlidingEffects.push(
-			{ label: "Cube", value: "cube" },
-			{ label: "Flip", value: "flip" },
-			{ label: "Spring (Pro)", value: "creative", disabled: true },
-			{ label: "Fade (Pro)", value: "fade", disabled: true }
+			{ label: __("Cube", "testimonial-free"), value: "cube" },
+			{ label: __("Flip", "testimonial-free"), value: "flip" },
+			{ label: __("Spring (Pro)", "testimonial-free"), value: "creative", disabled: true },
+			{ label: __("Fade (Pro)", "testimonial-free"), value: "fade", disabled: true }
 		);
 	}
 
 	const onChangeCardDesign = (newDesign) => applyCardDesign(newDesign, attributes, setAttributes);
 
+	// Shared tail; each layout leads with the Pro options of its own picker.
+	let proFeatureTitle = __("Make Your Reviews Stand Out", "testimonial-free");
+	let proFeatureDescription = __(
+		"Grab attention with stunning layouts that build instant trust.",
+		"testimonial-free"
+	);
 	let proFeatureList = [
-		__("AI generated review summary 🔥", "testimonial-free"),
-		__("Instant result with Ajax search", "testimonial-free"),
-		__("Filter by groups, specific items", "testimonial-free"),
-		__("Filter based on star rating", "testimonial-free"),
-		__("Shuffle testimonials with random order", "testimonial-free"),
-		__("Drag & drop to arrange testimonials your way", "testimonial-free"),
+		__("Let AI summarize reviews for faster decisions 🔥", "testimonial-free"),
+		__("Let visitors find any review fast with instant search and filters", "testimonial-free"),
 	];
 
 	if ("carousel" === blockName) {
 		proFeatureList = [
-			__("3 dynamic carousel styles", "testimonial-free"),
-			__("10+ premium card designs", "testimonial-free"),
-			__("3+ smooth sliding effects", "testimonial-free"),
-			__("Vertical layout for flexible display", "testimonial-free"),
-			__("Partial slide view for a modern look", "testimonial-free"),
+			__("Match your brand with 10+ card designs and 3 carousel styles", "testimonial-free"),
+			__("Hold attention with smooth sliding effects", "testimonial-free"),
+			__("Fit any space with vertical and partial slide views", "testimonial-free"),
 			...proFeatureList,
 		];
 	} else if ("slider" === blockName) {
 		proFeatureList = [
-			__("10+ premium card designs", "testimonial-free"),
-			__("3+ smooth sliding effects", "testimonial-free"),
-			__("Vertical layout for flexible display", "testimonial-free"),
+			__("Match your brand with 10+ premium card designs", "testimonial-free"),
+			__("Hold attention with smooth sliding effects", "testimonial-free"),
+			__("Fit any space with vertical sliding layouts", "testimonial-free"),
+			...proFeatureList,
+		];
+	} else if (isZigzagList) {
+		proFeatureList = [
+			__("Match your brand with 2 premium list designs", "testimonial-free"),
+			__("Keep long lists lively with zig zag rows", "testimonial-free"),
 			...proFeatureList,
 		];
 	} else {
-		proFeatureList = [__("10+ premium card designs", "testimonial-free"), ...proFeatureList];
+		// Grid-type layouts (Grid, Ajax Pagination).
+		proFeatureTitle = __("Turn Reviews Into More Sales", "testimonial-free");
+		proFeatureDescription = __("Help visitors find the right reviews and trust you faster.", "testimonial-free");
+		proFeatureList = [__("Match your brand with 10+ premium card designs", "testimonial-free"), ...proFeatureList];
 	}
 
 	return (
@@ -125,10 +146,54 @@ export const LayoutsGeneralTab = ({ attributes, setAttributes }) => {
 			)}
 			<PresetPicker
 				label={__("Select Card Style", "testimonial-free")}
-				items={cardDesignIcons}
+				items={cardStyleIcons}
 				attributes={cardDesign}
 				onClick={onChangeCardDesign}
+				cols={isZigzagList ? 2 : 3}
 			/>
+			{isZigzagList && (
+				<>
+					<ToggleControl label={__("Zig Zag Orientation", "testimonial-free")} isPro />
+					<SPRangeControl
+						label={__("Vertical Gap", "testimonial-free")}
+						attributes={rowGap}
+						attributesKey={"rowGap"}
+						setAttributes={setAttributes}
+						max={200}
+						defaultValue={{ unit: "px", value: 24 }}
+					/>
+					<Popover label={__("Row Divider", "testimonial-free")}>
+						<div className="sp-real-border-component">
+							<ButtonGroup
+								label={__("Divider Style", "testimonial-free")}
+								items={dividerStyles}
+								attributes={rowDividerStyle}
+								attributesKey={"rowDividerStyle"}
+								setAttributes={setAttributes}
+							/>
+						</div>
+						{rowDividerStyle !== "none" && (
+							<>
+								<SPRangeControl
+									label={__("Divider Width", "testimonial-free")}
+									attributes={rowDividerWidth}
+									attributesKey={"rowDividerWidth"}
+									setAttributes={setAttributes}
+									max={20}
+									defaultValue={{ unit: "px", value: 1 }}
+								/>
+								<ColorPicker
+									label={__("Divider Color", "testimonial-free")}
+									value={rowDividerColor}
+									attributesKey={"rowDividerColor"}
+									setAttributes={setAttributes}
+									activeState={"normal"}
+								/>
+							</>
+						)}
+					</Popover>
+				</>
+			)}
 			{"carousel" === blockName && (
 				<>
 					{carouselStyle === "default" && (
@@ -143,8 +208,8 @@ export const LayoutsGeneralTab = ({ attributes, setAttributes }) => {
 					<ButtonGroup
 						label={__("Display Direction", "testimonial-free")}
 						items={[
-							{ label: "Horizontal", value: "horizontal" },
-							{ label: "Vertical", value: "vertical", isPro: true },
+							{ label: __("Horizontal", "testimonial-free"), value: "horizontal" },
+							{ label: __("Vertical", "testimonial-free"), value: "vertical", isPro: true },
 						]}
 						attributes={"horizontal"}
 						attributesKey={"carouselDisplayStyle"}
@@ -166,15 +231,15 @@ export const LayoutsGeneralTab = ({ attributes, setAttributes }) => {
 				<ButtonGroup
 					label={__("Display Direction", "testimonial-free")}
 					items={[
-						{ label: "Horizontal", value: "horizontal" },
-						{ label: "Vertical", value: "vertical" },
+						{ label: __("Horizontal", "testimonial-free"), value: "horizontal" },
+						{ label: __("Vertical", "testimonial-free"), value: "vertical" },
 					]}
 					attributes={marqueeDisplayStyle}
 					attributesKey={"marqueeDisplayStyle"}
 					setAttributes={setAttributes}
 				/>
 			)}
-			{!isSlider && (
+			{!isSlider && !isZigzagList && (
 				<>
 					<SPRangeControl
 						label={__("Columns", "testimonial-free")}
@@ -191,6 +256,7 @@ export const LayoutsGeneralTab = ({ attributes, setAttributes }) => {
 						attributes={columnGap}
 						attributesKey={"columnGap"}
 						setAttributes={setAttributes}
+						units={["px"]}
 						max={100}
 						defaultValue={{ unit: "px", value: 24 }}
 					/>
@@ -241,7 +307,7 @@ export const LayoutsGeneralTab = ({ attributes, setAttributes }) => {
 					/>
 				</>
 			)}
-			{inArray(["grid", "bento-grid", "polaroid-grid", "masonry"], blockName) && (
+			{inArray(["grid", "bento-grid", "polaroid-grid", "masonry", "zigzag-list"], blockName) && (
 				<ToggleControl
 					label={__("Ajax Pagination", "testimonial-free")}
 					attributes={enableAjaxPagination}
@@ -265,13 +331,7 @@ export const LayoutsGeneralTab = ({ attributes, setAttributes }) => {
 					setAttributes={setAttributes}
 				/>
 			)}
-			<ProFeaturesBox
-				description={__(
-					"Create stunning testimonial layouts that build trust and engagement",
-					"testimonial-free"
-				)}
-				features={proFeatureList}
-			/>
+			<ProFeaturesBox title={proFeatureTitle} description={proFeatureDescription} features={proFeatureList} />
 		</>
 	);
 };
@@ -310,8 +370,20 @@ export const SliderSettingsGeneralTab = ({ attributes, setAttributes }) => {
 				<ButtonGroup
 					label={__("Sliding Direction", "testimonial-free")}
 					items={[
-						{ label: marqueeDisplayStyle === "vertical" ? "Bottom to Top" : "Right to Left", value: "rtl" },
-						{ label: marqueeDisplayStyle === "vertical" ? "Top to Bottom" : "Left to Right", value: "ltr" },
+						{
+							label:
+								marqueeDisplayStyle === "vertical"
+									? __("Bottom to Top", "testimonial-free")
+									: __("Right to Left", "testimonial-free"),
+							value: "rtl",
+						},
+						{
+							label:
+								marqueeDisplayStyle === "vertical"
+									? __("Top to Bottom", "testimonial-free")
+									: __("Left to Right", "testimonial-free"),
+							value: "ltr",
+						},
 					]}
 					attributes={carouselDirection}
 					attributesKey={"carouselDirection"}
@@ -385,8 +457,8 @@ export const SliderSettingsGeneralTab = ({ attributes, setAttributes }) => {
 					<ButtonGroup
 						label={__("Carousel Direction", "testimonial-free")}
 						items={[
-							{ label: "Right to Left", value: "rtl" },
-							{ label: "Left to Right", value: "ltr" },
+							{ label: __("Right to Left", "testimonial-free"), value: "rtl" },
+							{ label: __("Left to Right", "testimonial-free"), value: "ltr" },
 						]}
 						attributes={carouselDirection}
 						attributesKey={"carouselDirection"}
@@ -487,13 +559,16 @@ export const QueryBuilderGeneralTab = ({ attributes, setAttributes }) => {
 				setAttributes={setAttributes}
 			/>
 			<ProFeaturesBox
-				title={__("Pro Features", "testimonial-free")}
-				description={__("Show the right testimonials with smart filtering and sorting", "testimonial-free")}
+				title={__("Showcase Your Best Reviews", "testimonial-free")}
+				description={__(
+					"Put trust-building reviews first and turn more visitors into customers.",
+					"testimonial-free"
+				)}
 				features={[
-					__("Filter by groups, specific items", "testimonial-free"),
-					__("Filter based on star rating", "testimonial-free"),
-					__("Shuffle testimonials with random order", "testimonial-free"),
-					__("Drag & drop to arrange testimonials your way", "testimonial-free"),
+					__("Show relevant reviews by group or hand-pick them", "testimonial-free"),
+					__("Display only top-rated reviews to boost credibility", "testimonial-free"),
+					__("Keep pages fresh with random review order", "testimonial-free"),
+					__("Drag & drop your strongest reviews to the top", "testimonial-free"),
 				]}
 			/>
 		</>
@@ -566,13 +641,13 @@ export const CardDesignGeneralTab = ({ attributes, setAttributes }) => {
 			<SelectControl
 				label={__("Hover Effect", "testimonial-free")}
 				items={[
-					{ label: "None", value: "none" },
-					{ label: "Scale Up", value: "scale-up" },
-					{ label: "Slide Up", value: "slide-up" },
-					{ label: "Slide Down", value: "slide-down" },
-					{ label: "Slide Left", value: "slide-left" },
-					{ label: "Slide Right", value: "slide-right" },
-					{ label: "Scale Down", value: "scale-down" },
+					{ label: __("None", "testimonial-free"), value: "none" },
+					{ label: __("Scale Up", "testimonial-free"), value: "scale-up" },
+					{ label: __("Slide Up", "testimonial-free"), value: "slide-up" },
+					{ label: __("Slide Down", "testimonial-free"), value: "slide-down" },
+					{ label: __("Slide Left", "testimonial-free"), value: "slide-left" },
+					{ label: __("Slide Right", "testimonial-free"), value: "slide-right" },
+					{ label: __("Scale Down", "testimonial-free"), value: "scale-down" },
 				]}
 				attributes={cardHoverEffect}
 				attributesKey={"cardHoverEffect"}
@@ -584,19 +659,20 @@ export const CardDesignGeneralTab = ({ attributes, setAttributes }) => {
 					attributes={cardHoverTransition}
 					attributesKey={"cardHoverTransition"}
 					setAttributes={setAttributes}
+					units={["ms"]}
 					max={2000}
 					step={50}
 					defaultValue={{ unit: "ms", value: 300 }}
 				/>
 			)}
 			<ProFeaturesBox
-				title={__("Pro Features", "testimonial-free")}
-				description={__("Show the right testimonials with smart filtering and sorting", "testimonial-free")}
+				title={__("Prove Your Reviews Are Real", "testimonial-free")}
+				description={__("Show the real people behind your reviews and earn instant trust.", "testimonial-free")}
 				features={[
-					__("Add company info, location, and date", "testimonial-free"),
-					__("Social profiles for better credibility", "testimonial-free"),
-					__("Custom fields for extra information", "testimonial-free"),
-					__("Apply 6+ hover effects for interactive cards", "testimonial-free"),
+					__("Show company, location and date for authenticity", "testimonial-free"),
+					__("Link social profiles so visitors can verify reviewers", "testimonial-free"),
+					__("Add custom fields to share the details that matter", "testimonial-free"),
+					__("Engage visitors with 6+ interactive hover effects", "testimonial-free"),
 				]}
 			/>
 		</>
@@ -628,8 +704,8 @@ export const TestimonialContentGeneralTab = ({ attributes, setAttributes }) => {
 			<ButtonGroup
 				label={__("Title Length", "testimonial-free")}
 				items={[
-					{ label: "Full", value: "full" },
-					{ label: "Limited", value: "limited", isPro: true },
+					{ label: __("Full", "testimonial-free"), value: "full" },
+					{ label: __("Limited", "testimonial-free"), value: "limited", isPro: true },
 				]}
 				attributes={titleLength}
 				attributesKey={"titleLength"}
@@ -641,8 +717,8 @@ export const TestimonialContentGeneralTab = ({ attributes, setAttributes }) => {
 			<ButtonGroup
 				label={__("Text Length", "testimonial-free")}
 				items={[
-					{ label: "Full", value: "full" },
-					{ label: "Limited", value: "limited", isPro: true },
+					{ label: __("Full", "testimonial-free"), value: "full" },
+					{ label: __("Limited", "testimonial-free"), value: "limited", isPro: true },
 				]}
 				attributes={excerptLength}
 				attributesKey={"excerptLength"}
@@ -677,8 +753,11 @@ export const StarRatingGeneralTab = ({ attributes, setAttributes }) => {
 						<button
 							key={style.id}
 							type="button"
-							className={`sp-real-rating-style sp-d-flex sp-align-center sp-justify-center sp-gap-4px sp-cursor-pointer${isSelected ? " is-selected" : ""}${isPro ? " sp-d-disabled" : ""}`}
+							className={`sp-real-rating-style sp-d-flex sp-align-center sp-justify-center sp-gap-4px sp-cursor-pointer${isSelected ? " is-selected" : ""}${isPro ? " sp-real-pro-locked" : ""}`}
 							aria-pressed={isSelected}
+							// Locked styles are only dimmed — no corner crown on these small
+							// tiles; the hover title names them as Pro.
+							title={isPro ? __("Available in Pro", "testimonial-free") : undefined}
 							onClick={() => {
 								if (!isPro) {
 									setAttributes({
@@ -850,17 +929,13 @@ export const MotionEffectsGeneralTab = () => {
 	return (
 		<>
 			<ProFeaturesBox
-				title={__("Pro Features", "testimonial-free")}
-				description={__(
-					"Unlock Pro-level motion effects for your testimonial section or page",
-					"testimonial-free"
-				)}
+				title={__("Bring Your Reviews to Life", "testimonial-free")}
+				description={__("Catch the eye with smooth motion that keeps visitors scrolling.", "testimonial-free")}
 				features={[
-					__("Modern Scrolling Effect", "testimonial-free"),
-					__("Directional scrolling effect control", "testimonial-free"),
-					__("25+ Entrance Animations", "testimonial-free"),
-					__("Animation speed and delay control", "testimonial-free"),
-					__("Exclude effects on responsive devices", "testimonial-free"),
+					__("Grab attention with modern scroll effects in any direction", "testimonial-free"),
+					__("Choose from 25+ eye-catching entrance animations", "testimonial-free"),
+					__("Fine-tune speed and delay for a polished feel", "testimonial-free"),
+					__("Turn off effects on mobile for faster loading", "testimonial-free"),
 				]}
 			/>
 		</>
@@ -871,9 +946,10 @@ export const NavigationArrowGeneralTab = ({ attributes, setAttributes }) => {
 	const { navIconVisibleOnHover, navIconSize, navIconGap, navIconPosition, navIconName, navOffsetX, navOffsetY } =
 		attributes;
 	const deviceType = useDeviceType();
+	const isVerticalCenter = "vertical_center" === navIconPosition;
 	const onChangeNavPosition = (newVal) => {
 		const x = "vertical_center" === newVal ? { value: -22, unit: "px" } : { value: 0, unit: "px" };
-		const y = "vertical_center" === newVal ? { value: 50, unit: "%" } : { value: -12, unit: "%" };
+		const y = "vertical_center" === newVal ? { value: 50, unit: "%" } : { value: 0, unit: "px" };
 		const updatedAttr = {
 			navIconPosition: newVal,
 			navOffsetX: {
@@ -905,17 +981,14 @@ export const NavigationArrowGeneralTab = ({ attributes, setAttributes }) => {
 	return (
 		<>
 			<div className="sp-real-component-mb">
-				<span className="sp-real-component-title sp-mb-8px">Arrow Style</span>
+				<span className="sp-real-component-title sp-mb-8px">{__("Arrow Style", "testimonial-free")}</span>
 				<div className="sp-real-nav-icon-picker sp-w-full sp-d-grid sp-grid-cols-6 sp-gap-8px sp-align-center">
-					{ARROW_ICON_OPTIONS?.map(({ icon, value, isPro }, index) => (
+					{ARROW_ICON_OPTIONS?.map(({ icon, label, value }, index) => (
 						<span
 							key={index}
-							className={`sp-real-nav-icon-picker__icon sp-d-flex sp-align-center sp-justify-center${navIconName === value ? " active" : ""}${isPro ? " sp-d-disabled" : ""}`}
-							onClick={() => {
-								if (!isPro) {
-									setAttributes({ navIconName: value });
-								}
-							}}
+							title={label}
+							className={`sp-real-nav-icon-picker__icon sp-d-flex sp-align-center sp-justify-center${navIconName === value ? " active" : ""}`}
+							onClick={() => setAttributes({ navIconName: value })}
 						>
 							{icon}
 						</span>
@@ -931,7 +1004,7 @@ export const NavigationArrowGeneralTab = ({ attributes, setAttributes }) => {
 				defaultValue={{ unit: "px", value: 16 }}
 				max={100}
 			/>
-			{navIconPosition !== "vertical_center" && (
+			{!isVerticalCenter && (
 				<SPRangeControl
 					label={__("Gap", "testimonial-free")}
 					attributes={navIconGap}
@@ -952,13 +1025,13 @@ export const NavigationArrowGeneralTab = ({ attributes, setAttributes }) => {
 			<SelectControl
 				label={__("Arrow Position", "testimonial-free")}
 				items={[
-					{ label: "Vertical Center", value: "vertical_center" },
-					{ label: "Top Left", value: "top_left" },
-					{ label: "Top Center", value: "top_center" },
-					{ label: "Top Right", value: "top_right" },
-					{ label: "Bottom Left", value: "bottom_left" },
-					{ label: "Bottom center", value: "bottom_center" },
-					{ label: "Bottom Right", value: "bottom_right" },
+					{ label: __("Vertical Center", "testimonial-free"), value: "vertical_center" },
+					{ label: __("Top Left", "testimonial-free"), value: "top_left" },
+					{ label: __("Top Center", "testimonial-free"), value: "top_center" },
+					{ label: __("Top Right", "testimonial-free"), value: "top_right" },
+					{ label: __("Bottom Left", "testimonial-free"), value: "bottom_left" },
+					{ label: __("Bottom center", "testimonial-free"), value: "bottom_center" },
+					{ label: __("Bottom Right", "testimonial-free"), value: "bottom_right" },
 				]}
 				attributes={navIconPosition}
 				onChange={onChangeNavPosition}
@@ -969,7 +1042,7 @@ export const NavigationArrowGeneralTab = ({ attributes, setAttributes }) => {
 				attributesKey={"navOffsetX"}
 				setAttributes={setAttributes}
 				units={["px", "%"]}
-				defaultValue={{ unit: "px", value: -22 }}
+				defaultValue={isVerticalCenter ? { unit: "px", value: -22 } : { unit: "px", value: 0 }}
 				min={-200}
 				max={200}
 			/>
@@ -978,8 +1051,8 @@ export const NavigationArrowGeneralTab = ({ attributes, setAttributes }) => {
 				attributes={navOffsetY}
 				attributesKey={"navOffsetY"}
 				setAttributes={setAttributes}
-				units={["px", "%"]}
-				defaultValue={{ unit: "%", value: 50 }}
+				units={isVerticalCenter ? ["px", "%"] : ["px"]}
+				defaultValue={isVerticalCenter ? { unit: "%", value: 50 } : { unit: "px", value: 0 }}
 				min={-200}
 				max={200}
 			/>

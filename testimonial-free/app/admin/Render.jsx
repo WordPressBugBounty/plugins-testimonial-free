@@ -1,8 +1,9 @@
+import { __ } from "@wordpress/i18n";
 import { useEffect, useMemo, useState } from "@wordpress/element";
 import { useSelect, useDispatch } from "@wordpress/data";
 import { Toaster } from "react-hot-toast";
 import Header from "./templates/Header";
-import QuickStart from "./pages/quickStart/quickStart";
+import GettingStarted from "./pages/gettingStarted";
 import BlockVisibility from "./pages/blockVisibility";
 import SavedTemplates from "./pages/saved-templates";
 import SettingsPage from "./pages/settings";
@@ -117,13 +118,18 @@ const Render = () => {
 			return [];
 		}
 		let items = [
-			{ label: "Dashboard", value: "getting-start", hash: "#" },
-			{ label: "Blocks", value: "blocks", hash: "#blocks", badge: "new" },
-			{ label: "Modules", value: "modules", hash: "#modules" },
-			{ label: "Saved Templates", value: "saved_templates", hash: "#saved_templates" },
-			{ label: "Settings", value: "settings", hash: "#settings" },
-			{ label: "Lite vs Pro", value: "lite_vs_pro", hash: "#lite_vs_pro" },
-			{ label: "Our Plugins", value: "our_plugins", hash: "#our_plugins", icon: <OurPluginsIcon /> },
+			{ label: __("Dashboard", "testimonial-free"), value: "getting-start", hash: "#" },
+			{ label: __("Blocks", "testimonial-free"), value: "blocks", hash: "#blocks", badge: "new" },
+			{ label: __("Saved Templates", "testimonial-free"), value: "saved_templates", hash: "#saved_templates" },
+			{ label: __("Modules", "testimonial-free"), value: "modules", hash: "#modules" },
+			{ label: __("Settings", "testimonial-free"), value: "settings", hash: "#settings" },
+			{ label: __("Lite vs Pro", "testimonial-free"), value: "lite_vs_pro", hash: "#lite_vs_pro" },
+			{
+				label: __("Our Plugins", "testimonial-free"),
+				value: "our_plugins",
+				hash: "#our_plugins",
+				icon: <OurPluginsIcon />,
+			},
 		];
 		const isActiveTemplates = pluginSettings?.modules?.saved_templates
 			? pluginSettings?.modules?.saved_templates?.is_active
@@ -150,7 +156,7 @@ const Render = () => {
 				<Header menuItems={menuItems} currentPage={page} setPageAndHash={setPageAndHash} />
 				{/* Render pages based on tab click */}
 				<div className="sp-real-admin-dashboard-content">
-					{page === "getting-start" && <QuickStart setPageAndHash={setPageAndHash} />}
+					{page === "getting-start" && <GettingStarted />}
 					{page === "blocks" && <BlockVisibility />}
 					{page === "modules" && <Modules />}
 					{page === "saved_templates" && <SavedTemplates />}

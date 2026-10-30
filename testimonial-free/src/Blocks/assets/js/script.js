@@ -142,6 +142,126 @@
 		Object.values(settings.breakpoints || {}).forEach(collapse);
 	};
 
+	/**
+	 * Undo groupEffectSlides(), so the cards can be grouped again around the
+	 * ones an ajax child added.
+	 *
+	 * @param {Element} sliderEl - The .swiper container element.
+	 */
+	const ungroupEffectSlides = (sliderEl) => {
+		const wrapper = sliderEl.querySelector('.swiper-wrapper');
+		if (!wrapper?.dataset.spRealEffectGrouped) {
+			return;
+		}
+		wrapper.querySelectorAll('.sp-real-swiper-effect-group').forEach((group) => {
+			Array.from(group.children).forEach((card) => {
+				card.classList.remove('sp-real-swiper-effect-group-item');
+				card.classList.add('swiper-slide', 'sp-real-swiper-slide');
+				group.before(card);
+			});
+			group.remove();
+		});
+		delete wrapper.dataset.spRealEffectGrouped;
+	};
+
+	/**
+	 * The fewest slides Swiper 12's loop can run on — its own formula from
+	 * loopFix(): the slides in view plus the slides it moves across the seam,
+	 * rounded up to whole groups.
+	 *
+	 * Keep in step with tfree_swiper_loop_minimum() in
+	 * src/Frontend/assets/js/sp-scripts.js: the two runtimes ship as separate
+	 * scripts, so the formula lives in both. Re-check both against Swiper's
+	 * loopFix() on every vendor update.
+	 *
+	 * @param {Object} entry Swiper settings for one breakpoint.
+	 * @return {number} Minimum slide count.
+	 */
+	const minimumSlidesForLoop = (entry) => {
+		const bothDirections = !!(entry.centeredSlides || entry.slidesOffsetBefore || entry.slidesOffsetAfter);
+		const perGroup = Math.max(1, Math.ceil(Number(entry.slidesPerGroup) || 1));
+		let perView = Math.max(1, Math.ceil(Number(entry.slidesPerView) || 1));
+		if (bothDirections && perView % 2 === 0) {
+			perView += 1;
+		}
+		let looped = bothDirections ? Math.max(perGroup, Math.ceil(perView / 2)) : perGroup;
+		if (looped % perGroup !== 0) {
+			looped += perGroup - (looped % perGroup);
+		}
+		return perView + looped + Math.max(0, toInt(entry.loopAdditionalSlides));
+	};
+
+	/**
+	 * Fit Infinite Loop to Swiper 12, which loops by re-ordering the real
+	 * slides instead of cloning them.
+	 *
+	 * Below its own minimum Swiper only warns and the loop jams, so a carousel
+	 * too short to loop at any breakpoint rewinds instead — the arrows and
+	 * AutoPlay still cycle, as the clones used to. Blank slides fill the last
+	 * group; they are `visibility: hidden`, so a drag started on one hits the
+	 * container, not the wrapper — touch listens on the container.
+	 * `slidesPerView: 'auto'` layouts are left to their own runtime.
+	 *
+	 * @param {Element} sliderEl - The .swiper container element.
+	 * @param {Object}  settings - Resolved swiper settings for this instance.
+	 * @return {boolean} Whether the loop needs rebuilding per breakpoint.
+	 */
+	const prepareLoop = (sliderEl, settings) => {
+		const entries = [
+			settings,
+			...Object.values(settings.breakpoints || {}).map((entry) => ({
+				...settings,
+				...entry,
+			})),
+		];
+		if (!settings.loop || entries.some((entry) => entry.slidesPerView === 'auto')) {
+			return false;
+		}
+
+		const slideCount = sliderEl.querySelectorAll('.swiper-wrapper > .swiper-slide').length;
+		const enough = entries.every((entry) => {
+			const perGroup = Math.max(1, toInt(entry.slidesPerGroup, 1));
+			const filled = Math.ceil(slideCount / perGroup) * perGroup;
+			return filled >= minimumSlidesForLoop(entry);
+		});
+		if (!enough) {
+			settings.loop = false;
+			settings.rewind = true;
+			return false;
+		}
+
+		const grouped = entries.some((entry) => toInt(entry.slidesPerGroup, 1) > 1);
+		if (grouped) {
+			settings.touchEventsTarget = 'container';
+		}
+
+		return grouped;
+	};
+
+	/**
+	 * Rebuild a grouped loop for the breakpoint just entered.
+	 *
+	 * Swiper only re-loops when `slidesPerView` changes, and it clears its
+	 * blank slides only when the new group is above one, so a breakpoint that
+	 * changed Slide to Scroll kept the blanks and loop bullets of the last.
+	 *
+	 * @param {Object} swiper - The Swiper instance.
+	 */
+	const rebuildGroupedLoop = (swiper) => {
+		if (!swiper.initialized || !swiper.params.loop) {
+			return;
+		}
+		const { realIndex } = swiper;
+		swiper.loopDestroy();
+		swiper.slidesEl.querySelectorAll(`.${swiper.params.slideBlankClass}`).forEach((blank) => blank.remove());
+		swiper.recalcSlides();
+		swiper.loopCreate(realIndex);
+		swiper.updateSlides();
+		swiper.slideToLoop(realIndex, 0, false);
+		swiper.pagination?.render();
+		swiper.pagination?.update();
+	};
+
 	const buildPaginationConfig = (paginationEl, paginationStyle) => {
 		if (!paginationEl) {
 			return false;
@@ -165,7 +285,11 @@
 		const sliderEl = block.querySelector(
 			'.sp-testimonial-swiper[data-swiper-settings]'
 		);
-		if (!sliderEl) {
+		// Our copy of Swiper is namespaced; a site that dequeues it runs on
+		// the theme's global instead. An existing instance means a page
+		// builder re-ran the boot — two would re-order the same slides.
+		const SwiperCtor = window.SpRealSwiper || window.Swiper;
+		if (!sliderEl || sliderEl.swiper || !SwiperCtor) {
 			return;
 		}
 
@@ -188,12 +312,30 @@
 		const hasNav = settings.navigation && nextEl && prevEl;
 
 		groupEffectSlides(sliderEl, settings);
+		const groupedLoop = prepareLoop(sliderEl, settings);
 
+		// RTL Carousel Direction autoplays backwards. Without a loop that goes
+		// nowhere from the first slide, or rewinds across every card on the
+		// first tick, so a carousel that does not loop starts from its last.
+		if (settings.autoplay?.reverseDirection && !settings.loop) {
+			const slideCount = sliderEl.querySelectorAll('.swiper-wrapper > .swiper-slide').length;
+			settings.initialSlide = Math.max(0, slideCount - 1);
+		}
+
+		// The swiper is pinned to dir="ltr" (BlockBase), so the arrows keep
+		// their roles in either Carousel Direction.
 		const swiperConfig = {
 			...settings,
 			navigation: hasNav ? { nextEl, prevEl } : false,
 			pagination: buildPaginationConfig(paginationEl, paginationStyle),
 			on: {
+				breakpoint: groupedLoop ? (swiper) => rebuildGroupedLoop(swiper) : undefined,
+				// slideToLoop() slides on the next frame with no reflow in
+				// between, so a loop re-order the slide cancelled out started no
+				// transition and left Swiper "animating" for good.
+				loopFix(swiper) {
+					swiper._clientLeft = swiper.wrapperEl.clientLeft;
+				},
 				resize(swiper) {
 					swiper.update();
 				},
@@ -204,13 +346,53 @@
 		if (effectConfig) {
 			swiperConfig[`${settings.effect}Effect`] = effectConfig;
 		}
-		// eslint-disable-next-line no-undef
-		new Swiper(sliderEl, swiperConfig);
+		new SwiperCtor(sliderEl, swiperConfig);
 	};
 
 	// ------------------------------------------------------------------
 	// Ajax query — shared fetch for search / filter / pagination
 	// ------------------------------------------------------------------
+
+	/**
+	 * Take a carousel down before an ajax child swaps its cards.
+	 *
+	 * Swiper 12 loops by moving its own slide list around the wrapper, so a
+	 * list left pointing at detached cards put them straight back on the next
+	 * wrap. Destroying first also restores the loop's slide order, which an
+	 * appended page continues. Blank slides and the cube/flip shadows are
+	 * Swiper's own nodes, which destroy() leaves behind — ungrouping would
+	 * otherwise turn them into cards.
+	 *
+	 * @param {Element} mainBlock The .sp-real-block-frontend element.
+	 * @param {string}  mode      'replace' starts the new set from the top;
+	 *                            'append' keeps the visitor's place.
+	 * @return {Function} Builds the carousel again once the cards are in.
+	 */
+	const detachSlider = (mainBlock, mode) => {
+		const sliderEl = mainBlock.querySelector('.sp-testimonial-swiper[data-swiper-settings]');
+		if (!sliderEl?.swiper) {
+			return () => {};
+		}
+		const { realIndex } = sliderEl.swiper;
+		sliderEl.swiper.destroy(true, true);
+		sliderEl
+			.querySelectorAll('.swiper-slide-blank, [class*="swiper-slide-shadow"], .swiper-cube-shadow')
+			.forEach((node) => node.remove());
+		ungroupEffectSlides(sliderEl);
+		return () => {
+			initSlider(mainBlock);
+			const swiper = sliderEl.swiper;
+			// An RTL autoplay carousel restarts on its last slide, not slide 0.
+			if (mode !== 'append' || !swiper || swiper.realIndex === realIndex) {
+				return;
+			}
+			if (swiper.params.loop) {
+				swiper.slideToLoop(realIndex, 0, false);
+			} else {
+				swiper.slideTo(realIndex, 0, false);
+			}
+		};
+	};
 
 	/**
 	 * Query testimonials via admin-ajax and render into the cards wrapper.
@@ -238,6 +420,7 @@
 				return res;
 			}
 			const html = res.data?.html ?? '';
+			const reattachSlider = detachSlider(mainBlock, mode);
 			if (mode === 'append') {
 				if (html) {
 					cardsWrapper.insertAdjacentHTML('beforeend', html);
@@ -245,6 +428,7 @@
 			} else {
 				cardsWrapper.innerHTML = html;
 			}
+			reattachSlider();
 			onSuccess?.(res.data || {});
 			return res;
 		} catch {

@@ -4,3 +4,4 @@ export const getSaveTemplates = (state) => state.templateData || {};
 export const isLoading = (state) => state.isLoading;
 export const isSaving = (state) => state.isSaving;
 export const isTemplatesLoading = (state) => state.templatesLoading;
+export const getTemplatesError = (state) => state.templatesError;

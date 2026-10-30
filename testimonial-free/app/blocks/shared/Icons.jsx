@@ -1,3 +1,6 @@
+import { __ } from "@wordpress/i18n";
+import { zigzagListCardDesignIcons } from "../zigzag-list/icon";
+
 const CardDesignOneIcon = ({ isActive }) => (
 	<svg width={77} height={84} viewBox="0 0 77 84" fill="none" xmlns="http://www.w3.org/2000/svg">
 		<rect x={0.75} y={0.75} width={75.5} height={82.5} rx={2.25} fill="#fff" />
@@ -230,10 +233,17 @@ const CardDesignSixIcon = ({ isActive }) => (
 // `pro: true` designs are shown in the picker but locked in the free plugin —
 // selecting one is blocked and a Pro badge/upgrade link is rendered instead.
 export const cardDesignIcons = [
-	{ label: "Card Design 1", value: "design-one", Icon: CardDesignOneIcon },
-	{ label: "Card Design 2", value: "design-two", Icon: CardDesignTwoIcon },
-	{ label: "Card Design 3", value: "design-three", Icon: CardDesignThreeIcon, pro: true },
-	{ label: "Card Design 4", value: "design-four", Icon: CardDesignFourIcon, pro: true },
-	{ label: "Card Design 5", value: "design-five", Icon: CardDesignFiveIcon, pro: true },
-	{ label: "Card Design 6", value: "design-six", Icon: CardDesignSixIcon, pro: true },
+	{ label: __("Card Design 1", "testimonial-free"), value: "design-one", Icon: CardDesignOneIcon },
+	{ label: __("Card Design 2", "testimonial-free"), value: "design-two", Icon: CardDesignTwoIcon },
+	{ label: __("Card Design 3", "testimonial-free"), value: "design-three", Icon: CardDesignThreeIcon, pro: true },
+	{ label: __("Card Design 4", "testimonial-free"), value: "design-four", Icon: CardDesignFourIcon, pro: true },
+	{ label: __("Card Design 5", "testimonial-free"), value: "design-five", Icon: CardDesignFiveIcon, pro: true },
+	{ label: __("Card Design 6", "testimonial-free"), value: "design-six", Icon: CardDesignSixIcon, pro: true },
 ];
+
+// Blocks that offer a different card design set than the six shared vertical
+// cards. Read by both the inspector's Card Style picker and the first-insert
+// picker, so it can never offer a design the sidebar does not.
+export const BLOCK_DESIGN_ICONS = {
+	"zigzag-list": zigzagListCardDesignIcons,
+};

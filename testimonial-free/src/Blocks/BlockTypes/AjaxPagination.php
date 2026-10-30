@@ -46,7 +46,6 @@ class AjaxPagination extends BlockBase {
 		}
 
 		$unique_id              = $attributes['uniqueId'] ?? '';
-		$custom_id_name         = $attributes['customIdName'] ?? '';
 		$custom_class_name      = $attributes['customClassName'] ?? '';
 		$pagination_type        = $attributes['paginationType'] ?? 'normal';
 		$pagination_button_type = $attributes['paginationButtonType'] ?? 'load-more';
@@ -71,7 +70,7 @@ class AjaxPagination extends BlockBase {
 
 		ob_start();
 		?>
-		<div id="<?php echo esc_attr( $unique_id ); ?>" class="<?php echo esc_attr( trim( 'sp-real-ajax-pagination ' . ( $custom_class_name ? ' ' . $custom_class_name : '' ) ) ); ?>">
+		<div id="<?php echo esc_attr( $unique_id ); ?>" class="sp-real-ajax-pagination<?php echo esc_attr( $custom_class_name ? " $custom_class_name" : '' ); ?>">
 			<div class="sp-real-pagination-wrapper sp-d-flex sp-justify-<?php echo esc_attr( $pagination_alignment ); ?>" data-pagination="<?php echo esc_attr( wp_json_encode( $pagination_settings_data ) ); ?>">
 				<?php if ( 'load-more' === $pagination_button_type ) { ?>
 					<div class="sp-real-load-more-button">

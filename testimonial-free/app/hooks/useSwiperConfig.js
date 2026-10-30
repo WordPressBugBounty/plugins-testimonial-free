@@ -128,6 +128,17 @@ const useSwiperConfig = (attributes, testimonials = []) => {
 			};
 		}
 
+		// The swiper is pinned to dir="ltr" here and on the frontend, so the
+		// arrows keep their roles in either Carousel Direction — RTL only
+		// reverses autoplay.
+		let navigation = false;
+		if (enableNavigationArrow) {
+			navigation = {
+				nextEl: navNextEl?.current,
+				prevEl: navPrevEl?.current,
+			};
+		}
+
 		const swiperParams = {
 			effect,
 			direction: "horizontal",
@@ -136,6 +147,7 @@ const useSwiperConfig = (attributes, testimonials = []) => {
 			grabCursor: true,
 			followFinger: true,
 			watchOverflow: true,
+			roundLengths: true,
 			a11y: { scrollOnFocus: false },
 			centeredSlides: false,
 			watchSlidesProgress: effect !== "slide",
@@ -164,7 +176,7 @@ const useSwiperConfig = (attributes, testimonials = []) => {
 			// is editor-only, so re-init per selected device instead.
 			...layoutFor(currentDevice, layoutOptions, groupedEffect),
 			modules,
-			navigation: enableNavigationArrow ? { nextEl: navNextEl?.current, prevEl: navPrevEl?.current } : false,
+			navigation,
 			pagination,
 			on: {
 				resize(swiper) {
@@ -177,6 +189,13 @@ const useSwiperConfig = (attributes, testimonials = []) => {
 
 		if (EFFECT_CONFIGS[effect]) {
 			swiperParams[`${effect}Effect`] = EFFECT_CONFIGS[effect];
+		}
+
+		// RTL Carousel Direction autoplays backwards, which goes nowhere from the
+		// first slide without a loop — start from the last, as the frontend does.
+		if (sliderAutoPlay && carouselDirection === "rtl" && !infiniteLoop) {
+			const slideCount = shouldGroupSlides ? Math.ceil(testimonialsCount / groupSize) : testimonialsCount;
+			swiperParams.initialSlide = Math.max(0, slideCount - 1);
 		}
 
 		swiperInstanceRef.current = new Swiper(swiperRef.current, swiperParams);

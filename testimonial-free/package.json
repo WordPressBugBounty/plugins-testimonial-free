@@ -1,6 +1,6 @@
 {
 	"name": "testimonial-free",
-	"version": "3.1.17",
+	"version": "4.1.0",
 	"description": "The blocks library for the Real Testimonials plugin.",
 	"author": "ShapedPlugin LLC",
 	"license": "GPL-2.0-or-later",
@@ -56,6 +56,6 @@
 		"react-hot-toast": "^2.6.0",
 		"react-select": "^5.8.3",
 		"react-toggle": "^4.1.3",
-		"swiper": "^12.0.3"
+		"swiper": "^12.2.0"
 	}
 }

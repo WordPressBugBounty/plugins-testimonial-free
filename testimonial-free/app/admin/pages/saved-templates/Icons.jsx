@@ -88,3 +88,32 @@ export const CheckIcon = () => (
 		/>
 	</svg>
 );
+
+export const EmptyStateIcon = () => (
+	<svg width={72} height={72} viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+		<path
+			d="M10.406 21.094H35.72l3.656-6.469c.703-1.266 1.969-1.969 3.375-1.969h18.844c2.39 0 4.218 1.828 4.218 4.219V22.5H10.407z"
+			fill="#c2c9d2"
+		/>
+		<path
+			d="M8.438 21.094h55.125c2.39 0 4.218 1.828 4.218 4.218v34.032c0 2.39-1.828 4.218-4.219 4.218H8.438c-2.391 0-4.22-1.828-4.22-4.218V25.313c0-2.391 1.829-4.22 4.22-4.22"
+			fill="#e0e4ea"
+		/>
+		<path
+			d="M28.125 47.531h-9.281a1.97 1.97 0 0 0-1.969 1.969v2.531c0 1.088.881 1.969 1.969 1.969h9.281a1.97 1.97 0 0 0 1.969-1.969V49.5a1.97 1.97 0 0 0-1.969-1.969"
+			fill="#c2c9d2"
+		/>
+		<path
+			d="M55.969 49.781a8.719 8.719 0 1 0 0-17.437 8.719 8.719 0 0 0 0 17.437Z"
+			stroke="#b3bcc7"
+			strokeWidth={3.375}
+		/>
+		<path d="m62.297 47.39 8.016 8.016" stroke="#b3bcc7" strokeWidth={3.375} strokeLinecap="round" />
+	</svg>
+);
+
+export const PlusIcon = () => (
+	<svg width={24} height={24} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+		<path d="M12.958 11.042V6h-1.916v5.042H6v1.916h5.042V18h1.916v-5.042H18v-1.916z" fill="currentColor" />
+	</svg>
+);

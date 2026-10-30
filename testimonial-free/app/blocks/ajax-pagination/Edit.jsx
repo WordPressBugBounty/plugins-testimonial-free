@@ -3,7 +3,7 @@ import { useEffect, useMemo } from "@wordpress/element";
 import { InspectorControl } from "@testimonial/components";
 import { TogglePanelBodyProvider } from "@testimonial/context";
 import { useUniqueId } from "@testimonial/hooks";
-import { fontFamilyToUrlGenerator, getRealBlockProps } from "@testimonial/controls";
+import { fontFamilyToUrlGenerator, getChildBlockProps } from "@testimonial/controls";
 import Pagination from "./Pagination";
 import dynamicCss from "./dynamicCss";
 import Inspector from "./Inspector";
@@ -15,10 +15,10 @@ const AjaxPaginationEdit = ({ clientId, attributes, setAttributes }) => {
 
 	const cssString = useMemo(() => dynamicCss(attributes), [attributes]);
 
-	const blockProps = getRealBlockProps(
+	const blockProps = getChildBlockProps(
 		useBlockProps(),
 		uniqueId,
-		`sp-real-ajax-pagination ${customClassName ? ` ${customClassName}` : ""}`
+		`sp-real-ajax-pagination${customClassName ? ` ${customClassName}` : ""}`
 	);
 
 	// Fonts: rebuild only when a typography attr actually changes.

@@ -7,10 +7,12 @@ const MultipleSelect = ({
 	attributesKey,
 	label,
 	items,
+	placeholder,
 	onChange = false,
 	flex = false,
 	reset = false,
 	onInputChange = false,
+	formatOptionLabel = false,
 }) => {
 	const updateValue = (data) => {
 		setAttributes({ [attributesKey]: data });
@@ -25,10 +27,13 @@ const MultipleSelect = ({
 				defaultValue={attributes}
 				isMulti
 				options={items}
+				placeholder={placeholder}
 				isClearable={reset}
 				onChange={(data) => (onChange ? onChange(data) : updateValue(data))}
 				onInputChange={(e) => (onInputChange ? onInputChange(e) : "")}
+				formatOptionLabel={formatOptionLabel ? formatOptionLabel : undefined}
 				className="sp-real-basic-multi-select"
+				classNamePrefix="sp-real-select"
 			/>
 		</div>
 	);

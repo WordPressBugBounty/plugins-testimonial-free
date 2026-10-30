@@ -1,0 +1,28 @@
+/**
+ * Shimmer skeleton bone. Scoped under the dashboard root.
+ */
+
+.sp-real-admin-dashboard-wrapper {
+	.sp-real-skeleton {
+		display: inline-block;
+		background: linear-gradient(90deg, #eceff3 25%, #f6f8fa 37%, #eceff3 63%);
+		background-size: 400% 100%;
+		animation: sp-real-skeleton-shimmer 1.4s ease infinite;
+	}
+
+	@keyframes sp-real-skeleton-shimmer {
+		0% {
+			background-position: 100% 50%;
+		}
+		100% {
+			background-position: 0 50%;
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.sp-real-skeleton {
+			animation: none;
+			background: #eceff3;
+		}
+	}
+}

@@ -14,7 +14,7 @@ import {
 	SelectControl,
 } from "@testimonial/components";
 import { useTogglePanelBody } from "@testimonial/hooks";
-import { AdvancedTab, VisibilityTab } from "../shared/AdvancedTab";
+import { ChildAdvancedTab, VisibilityTab } from "../shared/AdvancedTab";
 import { textAlignmentOptions } from "@testimonial/constants";
 
 const AjaxPaginationGeneralTab = ({ attributes, setAttributes }) => {
@@ -254,7 +254,7 @@ const Inspector = ({ attributes, setAttributes }) => {
 					attributes={attributes}
 					setAttributes={setAttributes}
 					VisibilityTab={VisibilityTab}
-					AdvancedTab={AdvancedTab}
+					AdvancedTab={ChildAdvancedTab}
 					tabName={activeTab}
 					setTabName={toggleActiveTab}
 				/>

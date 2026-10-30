@@ -10,7 +10,8 @@ export const CategoryIcon = () => (
 export const ProCategoryIcon = () => (
 	<svg width={18} height={18} viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
 		<path d="M0 9a9 9 0 1 1 18 0A9 9 0 0 1 0 9" fill="#4ab866" fillOpacity={0.1} />
-		<path d="M9 .5a8.5 8.5 0 1 1 0 17 8.5 8.5 0 0 1 0-17Z" stroke="#4ab866" strokeOpacity={0.6} />
+		{/* Explicit fill: an inherited one paints the ring solid inside a panel toggle. */}
+		<path d="M9 .5a8.5 8.5 0 1 1 0 17 8.5 8.5 0 0 1 0-17Z" fill="none" stroke="#4ab866" strokeOpacity={0.6} />
 		<g clipPath="url(#ProCategoryIcona)" fill="#4ab866">
 			<path
 				d="M10.386 7.761a.84.84 0 0 0 .557.428.78.78 0 0 0 .69-.196l1.46-1.34-.473 3.768H5.39l-.475-3.767 1.462 1.34c.19.174.443.246.69.195a.84.84 0 0 0 .557-.428l1.38-2.533z"

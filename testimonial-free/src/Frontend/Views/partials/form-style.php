@@ -50,7 +50,7 @@ if ( empty( $text_before_title_field ) ) {
 }
 $form_style .= ' {
     position: absolute;
-    right: 0;
+    inset-inline-end: 0;
     top: -26px;
 }
 #testimonial_form_' . esc_attr( $form_id ) . '.sp-tpro-fronted-form .tpro-social-profile-wrapper,

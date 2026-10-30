@@ -53,6 +53,7 @@ class DynamicCssGenerator {
 			case 'carousel':
 			case 'slider':
 			case 'grid':
+			case 'zigzag-list':
 				$css_object = $shared_css->block_shared_css();
 				break;
 			case 'ajax-pagination':

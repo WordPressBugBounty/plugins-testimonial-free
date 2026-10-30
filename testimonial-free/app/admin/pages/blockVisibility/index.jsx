@@ -13,7 +13,7 @@ const BLOCK_GROUPS = [
 
 const BlockVisibility = ({ showHeading = true }) => {
 	const settings = useSelect((select) => select(STORE_NAME).getSettings());
-	const { allBlockList, adminUrl } = useSelect((select) => select(STORE_NAME).getDashboardInfo(), []);
+	const { allBlockList } = useSelect((select) => select(STORE_NAME).getDashboardInfo(), []);
 	const blockVisibility = settings?.active_blocks || [];
 	const { saveSettings } = useDispatch(STORE_NAME);
 
@@ -88,7 +88,6 @@ const BlockVisibility = ({ showHeading = true }) => {
 									key={card.name}
 									attributes={card}
 									blockShowHideHandler={blockShowHideHandler}
-									adminUrl={adminUrl}
 									isPro={allBlockList?.proBlocks.includes(card.name)}
 								/>
 							))}

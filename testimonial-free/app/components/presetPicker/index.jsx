@@ -1,7 +1,6 @@
 import { __ } from "@wordpress/i18n";
 import { Tooltip } from "@wordpress/components";
-import { API_ENDPOINTS } from "../../ready-patterns/constants";
-import { ProBadgeIcon } from "../../ready-patterns/Icons";
+import { ProCornerBadge } from "../proControls";
 
 const PresetPicker = ({
 	label = __("Select Preset", "testimonial-free"),
@@ -24,17 +23,16 @@ const PresetPicker = ({
 			</span>
 			<div className={`sp-real-toggle-icon-sets sp-d-grid sp-grid-cols-${cols} sp-gap-8px`}>
 				{items?.map(({ Icon, label: title, value, pro }) => {
-					// Pro items are locked in the free plugin: clicking opens the
-					// upgrade page instead of selecting the value.
+					// Pro items are locked in the free plugin: inert, with a crown
+					// in the corner and "(Pro)" in the tooltip.
 					const tooltip = pro ? `${title} (${__("Pro", "testimonial-free")})` : title;
 					const isActive = value === attributes;
 					return (
 						<Tooltip key={value} text={tooltip} placement="top">
 							<div
-								className={`sp-real-icon-set sp-cursor-pointer sp-d-flex sp-align-center sp-justify-center${isActive ? " active" : ""}${pro ? " sp-real-icon-set-pro" : ""}`}
+								className={`sp-real-icon-set sp-cursor-pointer sp-d-flex sp-align-center sp-justify-center${isActive ? " active" : ""}${pro ? " sp-real-pro-locked" : ""}`}
 								onClick={() => {
 									if (pro) {
-										window.open(API_ENDPOINTS.UPGRADE_URL, "_blank", "noopener,noreferrer");
 										return;
 									}
 									if (onClick) {
@@ -46,12 +44,7 @@ const PresetPicker = ({
 								title={tooltip}
 							>
 								<Icon isActive={isActive} />
-								{pro && (
-									<span className="sp-real-pro-capsule">
-										<ProBadgeIcon color="#fff" fill="#fff" />
-										{__("Pro", "testimonial-free")}
-									</span>
-								)}
+								{pro && <ProCornerBadge />}
 							</div>
 						</Tooltip>
 					);

@@ -214,6 +214,16 @@ div.sp-testimonial-free-section.slick-initialized {
 	display: none;
 }
 
+/* Swiper 12 draws its own arrow inside the buttons; ours is the icon font. */
+.sp-testimonial-free-section .testimonial-nav-arrow .swiper-navigation-icon {
+	display: none;
+}
+
+/* Swiper 8's pagination offset. */
+.sp-testimonial-free-section {
+	--swiper-pagination-bottom: 10px;
+}
+
 .tfree-style-theme-one-v2 .sp-testimonial-item .sp-testimonial-free{
 	display: flex;
 	flex-direction: column-reverse;

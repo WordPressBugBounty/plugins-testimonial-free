@@ -28,7 +28,7 @@ import {
 
 export const borderStyles = [
 	{
-		label: <span className="sp-real-border-none">None</span>,
+		label: <span className="sp-real-border-none">{__("None", "testimonial-free")}</span>,
 		value: "none",
 	},
 	{
@@ -49,6 +49,29 @@ export const borderStyles = [
 	},
 ];
 
+export const dividerStyles = [
+	{
+		label: <span className="sp-real-border-none">{__("None", "testimonial-free")}</span>,
+		value: "none",
+	},
+	{
+		label: <span className="sp-real-divider-line sp-real-divider-solid"></span>,
+		value: "solid",
+	},
+	{
+		label: <span className="sp-real-divider-line sp-real-divider-dashed"></span>,
+		value: "dashed",
+	},
+	{
+		label: <span className="sp-real-divider-line sp-real-divider-dotted"></span>,
+		value: "dotted",
+	},
+	{
+		label: <span className="sp-real-divider-line sp-real-divider-double"></span>,
+		value: "double",
+	},
+];
+
 export const cardContentLabels = {
 	reviewer_image: __("Reviewer Image", "testimonial-free"),
 	testimonial_title: __("Testimonial Title", "testimonial-free"),
@@ -64,38 +87,38 @@ export const cardContentLabels = {
 };
 
 export const SWIPER_PAGINATION_DOTS_OPTIONS = [
-	{ label: "Dots", value: "dots", icon: <Dots /> },
+	{ label: __("Dots", "testimonial-free"), value: "dots", icon: <Dots /> },
 	{
-		label: "Stepper",
+		label: __("Stepper", "testimonial-free"),
 		value: "stepper",
 		icon: <Stepper />,
 	},
 	{
-		label: "Dynamic",
+		label: __("Dynamic", "testimonial-free"),
 		value: "dynamic",
 		icon: <DynamicDots />,
 		isPro: true,
 	},
 	{
-		label: "Strokes",
+		label: __("Strokes", "testimonial-free"),
 		value: "strokes",
 		icon: <Strokes />,
 		isPro: true,
 	},
 	{
-		label: "Scrollbar",
+		label: __("Scrollbar", "testimonial-free"),
 		value: "scrollbar",
 		icon: <Scrollbar />,
 		isPro: true,
 	},
 	{
-		label: "Fraction",
+		label: __("Fraction", "testimonial-free"),
 		value: "fraction",
 		icon: <Fraction />,
 		isPro: true,
 	},
 	{
-		label: "Numbers",
+		label: __("Numbers", "testimonial-free"),
 		value: "number",
 		icon: <Numbers />,
 		isPro: true,
@@ -103,9 +126,9 @@ export const SWIPER_PAGINATION_DOTS_OPTIONS = [
 ];
 
 export const textAlignmentOptions = [
-	{ label: <AlignLeft />, value: "left", tooltip: "Left" },
-	{ label: <AlignCenter />, value: "center", tooltip: "Center" },
-	{ label: <AlignRight />, value: "right", tooltip: "Right" },
+	{ label: <AlignLeft />, value: "left", tooltip: __("Left", "testimonial-free") },
+	{ label: <AlignCenter />, value: "center", tooltip: __("Center", "testimonial-free") },
+	{ label: <AlignRight />, value: "right", tooltip: __("Right", "testimonial-free") },
 ];
 
 /**
@@ -113,18 +136,22 @@ export const textAlignmentOptions = [
  * Each option: { label, value, icon: Component }
  */
 export const ARROW_ICON_OPTIONS = [
-	{ label: "Chevron Solid", value: "chevron-solid", icon: <ChevronSolid /> },
-	{ label: "Chevron Outline", value: "chevron-outline", icon: <ChevronOutline /> },
-	{ label: "Chevron Bold", value: "chevron-bold", icon: <ChevronBold /> },
-	{ label: "Arrow Solid", value: "arrow-solid", icon: <ArrowSolid /> },
-	{ label: "Arrow Minimal", value: "arrow-minimal", icon: <ArrowMinimal /> },
-	{ label: "Double Chevron", value: "double-chevron", icon: <DoubleChevron />, isPro: true },
-	{ label: "Arrow Outline", value: "arrow-outline", icon: <ArrowOutline />, isPro: true },
-	{ label: "Chevron Border Line", value: "chevron-border-line", icon: <ChevronBorderLine />, isPro: true },
-	{ label: "Double Chevron Outline", value: "double-chevron-outline", icon: <DoubleChevronOutline />, isPro: true },
-	{ label: "Triangle Outline", value: "triangle-outline", icon: <TriangleOutline />, isPro: true },
-	{ label: "Arrow Line", value: "arrow-line", icon: <ArrowLine />, isPro: true },
-	{ label: "Arrow Send", value: "arrow-send", icon: <ArrowSend />, isPro: true },
+	{ label: __("Chevron Solid", "testimonial-free"), value: "chevron-solid", icon: <ChevronSolid /> },
+	{ label: __("Chevron Outline", "testimonial-free"), value: "chevron-outline", icon: <ChevronOutline /> },
+	{ label: __("Chevron Bold", "testimonial-free"), value: "chevron-bold", icon: <ChevronBold /> },
+	{ label: __("Double Chevron", "testimonial-free"), value: "double-chevron", icon: <DoubleChevron /> },
+	{ label: __("Arrow Solid", "testimonial-free"), value: "arrow-solid", icon: <ArrowSolid /> },
+	{ label: __("Arrow Outline", "testimonial-free"), value: "arrow-outline", icon: <ArrowOutline /> },
+	{ label: __("Arrow Minimal", "testimonial-free"), value: "arrow-minimal", icon: <ArrowMinimal /> },
+	{ label: __("Chevron Border Line", "testimonial-free"), value: "chevron-border-line", icon: <ChevronBorderLine /> },
+	{
+		label: __("Double Chevron Outline", "testimonial-free"),
+		value: "double-chevron-outline",
+		icon: <DoubleChevronOutline />,
+	},
+	{ label: __("Triangle Outline", "testimonial-free"), value: "triangle-outline", icon: <TriangleOutline /> },
+	{ label: __("Arrow Line", "testimonial-free"), value: "arrow-line", icon: <ArrowLine /> },
+	{ label: __("Arrow Send", "testimonial-free"), value: "arrow-send", icon: <ArrowSend /> },
 ];
 
 export const cardItemsPositions = {
@@ -134,4 +161,5 @@ export const cardItemsPositions = {
 	"design-four": [1, 5, 4, 6, 2, 3, 7, 8, 9, 10, 11],
 	"design-five": [4, 2, 3, 1, 5, 6, 7, 8, 9, 10, 11],
 	"design-six": [4, 2, 3, 1, 5, 6, 7, 8, 9, 10, 11],
+	"list-design-one": [1, 4, 2, 3, 5, 6, 7, 8, 9, 10, 11],
 };

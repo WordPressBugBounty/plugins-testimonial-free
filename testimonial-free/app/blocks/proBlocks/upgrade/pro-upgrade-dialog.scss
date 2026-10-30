@@ -1,0 +1,360 @@
+// "Do more with Real Testimonials Pro" dialog (editor only), ported from WP
+// Carousel Free. The CTA takes the plugin's primary blue; the greens follow the Pro chip.
+$sp-real-pro-upgrade-primary: var(--sp-real-primary-color, #1e67d8);
+$sp-real-pro-upgrade-primary-hover: #1a5ac0;
+$sp-real-pro-upgrade-surface: #eaf8f0;
+$sp-real-pro-upgrade-border: #dcefe4;
+$sp-real-pro-upgrade-marker: #7cc9a0;
+$sp-real-pro-upgrade-ink: #1e1e1e;
+$sp-real-pro-upgrade-muted: #50575e;
+
+@keyframes sp-real-pro-upgrade-lane {
+	from {
+		transform: translateX(0);
+	}
+
+	to {
+		transform: translateX(-50%);
+	}
+}
+
+@keyframes sp-real-pro-upgrade-in {
+	from {
+		opacity: 0;
+		transform: translateY(12px) scale(0.97);
+	}
+
+	to {
+		opacity: 1;
+		transform: none;
+	}
+}
+
+.sp-real-pro-upgrade-overlay {
+	background: rgba(18, 26, 44, 0.4);
+	-webkit-backdrop-filter: blur(3px);
+	backdrop-filter: blur(3px);
+}
+
+.components-modal__frame.sp-real-pro-upgrade {
+	width: 768px;
+	max-width: calc(100vw - 48px);
+	max-height: calc(100vh - 48px);
+	overflow-x: hidden;
+	overflow-y: auto;
+	border-radius: 14px;
+	background: #fff;
+	box-shadow:
+		0 24px 64px rgba(0, 0, 0, 0.18),
+		0 2px 8px rgba(0, 0, 0, 0.06);
+	color: $sp-real-pro-upgrade-ink;
+	font-family:
+		-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue",
+		sans-serif;
+	animation: sp-real-pro-upgrade-in 0.36s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+
+	.components-modal__content {
+		margin: 0;
+		padding: 0;
+		overflow: visible;
+	}
+
+	@media (max-width: 600px) {
+		width: auto;
+		max-width: none;
+		border-radius: 0;
+	}
+}
+
+.sp-real-pro-upgrade-visual {
+	position: relative;
+	height: 220px;
+	overflow: hidden;
+	border-bottom: 1px solid $sp-real-pro-upgrade-border;
+	background: linear-gradient(225deg, $sp-real-pro-upgrade-surface 0%, #f7fcf9 60%, #fff 100%);
+}
+
+.sp-real-pro-upgrade-lanes {
+	position: absolute;
+	inset: 0;
+	display: flex;
+	align-items: center;
+	-webkit-mask-image: linear-gradient(90deg, transparent, #000 14%, #000 86%, transparent);
+	mask-image: linear-gradient(90deg, transparent, #000 14%, #000 86%, transparent);
+}
+
+.sp-real-pro-upgrade-lane {
+	display: flex;
+	gap: 16px;
+	width: max-content;
+	padding-left: 16px;
+	animation: sp-real-pro-upgrade-lane 36s linear infinite;
+}
+
+// Typed selector so the editor's figure margins stay out.
+figure.sp-real-pro-upgrade-card {
+	display: flex;
+	flex: 0 0 auto;
+	flex-direction: column;
+	align-items: center;
+	gap: 8px;
+	width: 196px;
+	margin: 0;
+
+	// The preview artwork is inline SVG (proBlocks/icons.jsx), drawn on a card.
+	.sp-real-pro-upgrade-card-image {
+		display: block;
+		width: 100%;
+		padding: 8px;
+		border-radius: 6px;
+		background: #fff;
+		box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+		box-sizing: border-box;
+		line-height: 0;
+
+		svg {
+			display: block;
+			width: 100%;
+			height: auto;
+		}
+	}
+
+	figcaption {
+		margin: 0;
+		color: $sp-real-pro-upgrade-ink;
+		font-size: 13px;
+		font-weight: 600;
+		line-height: 1;
+	}
+}
+
+.sp-real-pro-upgrade-close {
+	position: absolute;
+	top: 12px;
+	right: 12px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 30px;
+	height: 30px;
+	padding: 0;
+	border: 0;
+	border-radius: 50%;
+	background: #fff;
+	color: $sp-real-pro-upgrade-muted;
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+	cursor: pointer;
+	transition:
+		color 0.2s ease,
+		transform 0.2s ease;
+
+	&:hover,
+	&:focus-visible {
+		color: $sp-real-pro-upgrade-ink;
+		transform: rotate(90deg);
+	}
+
+	&:focus-visible {
+		outline: 2px solid $sp-real-pro-upgrade-primary;
+		outline-offset: 2px;
+	}
+}
+
+.sp-real-pro-upgrade-body {
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+	padding: 26px 28px 24px;
+}
+
+.sp-real-pro-upgrade-intro {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+
+// Names what kind of thing the heading's block is; the greens follow the Pro chip.
+.sp-real-pro-upgrade-eyebrow {
+	align-self: flex-start;
+	margin-bottom: -2px;
+	padding: 3px 10px;
+	border-radius: 999px;
+	background: $sp-real-pro-upgrade-surface;
+	color: #1f7a4d;
+	font-size: 11px;
+	font-weight: 600;
+	letter-spacing: 0.06em;
+	line-height: 1.5;
+	text-transform: uppercase;
+}
+
+// Typed selectors so the editor's heading and paragraph rules cannot reclaim the spacing.
+h2.sp-real-pro-upgrade-title {
+	margin: 0;
+	color: $sp-real-pro-upgrade-ink;
+	font-size: 22px;
+	font-weight: 600;
+	line-height: 1.25;
+	letter-spacing: -0.01em;
+}
+
+p.sp-real-pro-upgrade-subtitle {
+	margin: 0;
+	color: $sp-real-pro-upgrade-muted;
+	font-size: 15px;
+	line-height: 1.5;
+	text-wrap: pretty;
+
+	strong {
+		color: $sp-real-pro-upgrade-ink;
+		font-weight: 600;
+	}
+}
+
+ul.sp-real-pro-upgrade-features {
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	gap: 12px 20px;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+
+	li {
+		display: flex;
+		align-items: center;
+		gap: 10px;
+		margin: 0;
+		color: $sp-real-pro-upgrade-ink;
+		font-size: 15px;
+		line-height: 1.4;
+
+		&::before {
+			content: "";
+			flex: 0 0 auto;
+			width: 6px;
+			height: 6px;
+			border-radius: 50%;
+			background: $sp-real-pro-upgrade-marker;
+		}
+	}
+
+	@media (max-width: 420px) {
+		grid-template-columns: minmax(0, 1fr);
+	}
+}
+
+.sp-real-pro-upgrade-actions {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 16px;
+	padding-top: 4px;
+}
+
+.sp-real-pro-upgrade-cta {
+	display: inline-flex;
+	align-items: center;
+	gap: 8px;
+	height: 48px;
+	padding: 0 24px;
+	border-radius: 6px;
+	background: $sp-real-pro-upgrade-primary;
+	color: #fff;
+	font-size: 14px;
+	font-weight: 600;
+	text-decoration: none;
+	box-shadow: 0 1px 2px rgba(30, 103, 216, 0.25);
+	box-sizing: border-box;
+	transition:
+		background-color 0.25s ease,
+		box-shadow 0.25s ease,
+		transform 0.25s ease;
+
+	&:hover,
+	&:focus,
+	&:active,
+	&:visited {
+		color: #fff;
+		text-decoration: none;
+	}
+
+	&:hover,
+	&:focus-visible {
+		background: $sp-real-pro-upgrade-primary-hover;
+		box-shadow: 0 6px 16px rgba(30, 103, 216, 0.28);
+		transform: translateY(-1px);
+	}
+
+	&:focus {
+		outline: none;
+	}
+
+	&:focus-visible {
+		outline: 2px solid $sp-real-pro-upgrade-primary;
+		outline-offset: 2px;
+	}
+}
+
+// Secondary to the CTA: same height, outlined, so Upgrade stays the one filled button.
+.sp-real-pro-upgrade-demo {
+	display: inline-flex;
+	align-items: center;
+	gap: 8px;
+	height: 48px;
+	padding: 0 20px;
+	border: 1px solid $sp-real-pro-upgrade-primary;
+	border-radius: 6px;
+	background: #fff;
+	color: $sp-real-pro-upgrade-primary;
+	font-size: 14px;
+	font-weight: 600;
+	text-decoration: none;
+	box-sizing: border-box;
+	transition: transform 0.25s ease;
+
+	// The outlined primary colour is the resting state; hover only lifts it.
+	&:hover,
+	&:focus,
+	&:active,
+	&:visited {
+		color: $sp-real-pro-upgrade-primary;
+		text-decoration: none;
+	}
+
+	&:hover,
+	&:focus-visible {
+		transform: translateY(-1px);
+	}
+
+	&:focus {
+		outline: none;
+		box-shadow: none;
+	}
+
+	&:focus-visible {
+		outline: 2px solid $sp-real-pro-upgrade-primary;
+		outline-offset: 2px;
+	}
+}
+
+// Sits right after the CTA, separated only by the row's gap.
+.sp-real-pro-upgrade-guarantee {
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+	color: #646970;
+	font-size: 12.5px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.components-modal__frame.sp-real-pro-upgrade,
+	.sp-real-pro-upgrade-lane {
+		animation: none;
+	}
+
+	.sp-real-pro-upgrade-close,
+	.sp-real-pro-upgrade-cta,
+	.sp-real-pro-upgrade-demo {
+		transition: none;
+	}
+}

@@ -11,11 +11,15 @@ const SpPopover = ({ children, label = "popover", toggleIcon = false, className 
 
 	useEffect(() => {
 		const clickOutSite = (e) => {
+			if (!e.target.isConnected) {
+				return;
+			}
 			const componentView = e.target.closest(".sp-real-popover__content-visible");
 			const colorPicker = e.target.closest(".sp-real-color-picker-renderer");
 			const buttonTarget = e.target.closest(`.sp-real-popover-toggle-button.${uniqueId}`);
 			const select = e.target.closest(".css-1nmdiq5-menu");
-			if (open && !componentView && !buttonTarget && !select && !colorPicker) {
+			const nestedPopover = e.target.closest(".components-popover");
+			if (open && !componentView && !buttonTarget && !select && !colorPicker && !nestedPopover) {
 				setOpen(false);
 			}
 		};

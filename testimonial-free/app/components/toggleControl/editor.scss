@@ -54,9 +54,9 @@
 		}
 
 		// Pro-locked toggle: greyed label + green "(Pro)" tag; toggle can't be
-		// switched on, and interacting with the row opens the upgrade URL.
+		// switched on, and the row is inert.
 		&.sp-real-pro-toggle {
-			cursor: pointer;
+			cursor: default;
 
 			.sp-real-component-title {
 				color: #757575;

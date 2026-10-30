@@ -1,7 +1,16 @@
 import { __, sprintf } from "@wordpress/i18n";
 import { useEffect, useRef, useState } from "@wordpress/element";
 import { decodeEntities } from "@wordpress/html-entities";
-import { BackArrowIcon, CloseIcon, DesktopIcon, DownloadIcon, MobileIcon, ProBadgeIcon, TabletIcon } from "./Icons";
+import {
+	ChevronLeftIcon,
+	ChevronRightIcon,
+	CloseIcon,
+	DesktopIcon,
+	DownloadIcon,
+	MobileIcon,
+	ProBadgeIcon,
+	TabletIcon,
+} from "./Icons";
 import { API_ENDPOINTS } from "./constants";
 
 /**
@@ -35,10 +44,10 @@ function deviceLabel(key) {
 }
 
 /**
- * In-modal preview drawer: a single header row — Back + title, the centered
- * device switcher, Insert + close (Back and close both return to the pattern
- * grid) — over a full-width stage holding the live
- * iframe.
+ * In-modal preview drawer: a header row — title, the centered device switcher,
+ * Insert + close (close returns to the pattern grid) — over a full-width stage
+ * holding the live iframe, and a footer that steps through the grid's visible
+ * patterns ("Patterns N of M" + Prev / Next).
  *
  * A pattern flagged `pro` in the library payload builds on Pro-only blocks, so
  * the header offers an Upgrade link instead of Insert — the same swap
@@ -52,22 +61,24 @@ function deviceLabel(key) {
  *
  * @param {Object}   props
  * @param {Object}   props.pattern     Manifest item being previewed.
+ * @param {Array}    props.patterns    The grid's visible patterns, in grid order — the Prev / Next sequence.
+ * @param {Function} props.onNavigate  Show another pattern — receives the pattern.
  * @param {Function} props.onClose     Close the preview — back to the pattern grid.
  * @param {Function} props.onInsert    Insert handler — receives the pattern.
  * @param {boolean}  props.isInserting Whether this pattern's import is in flight.
  */
-const PreviewDrawer = ({ pattern, onClose, onInsert, isInserting }) => {
+const PreviewDrawer = ({ pattern, patterns = [], onNavigate, onClose, onInsert, isInserting }) => {
 	const [device, setDevice] = useState(PREVIEW_DEVICES[0].key);
 	const [isFrameLoading, setIsFrameLoading] = useState(true);
 	// Measured content box of the stage — the frame is scaled to fit it, so the
 	// preview stays fitted at any drawer width and through window resizes.
 	const [stage, setStage] = useState({ width: 0, height: 0 });
-	const backRef = useRef(null);
+	const closeRef = useRef(null);
 	const stageRef = useRef(null);
 	const drawerRef = useRef(null);
 
 	useEffect(() => {
-		backRef.current?.focus();
+		closeRef.current?.focus();
 	}, []);
 
 	useEffect(() => {
@@ -111,6 +122,9 @@ const PreviewDrawer = ({ pattern, onClose, onInsert, isInserting }) => {
 	const patternName = decodeEntities(pattern?.name || "");
 	const thumb = pattern?.image || "";
 	const isPro = !!pattern?.pro;
+	const patternIndex = patterns.findIndex((entry) => entry.ID === pattern?.ID);
+	const prevPattern = patternIndex > 0 ? patterns[patternIndex - 1] : null;
+	const nextPattern = patternIndex > -1 && patternIndex < patterns.length - 1 ? patterns[patternIndex + 1] : null;
 
 	// A new pattern swaps the iframe src — show the preloader again until it lands.
 	// Device switching only resizes the frame, so it must not reset this.
@@ -128,16 +142,7 @@ const PreviewDrawer = ({ pattern, onClose, onInsert, isInserting }) => {
 				aria-labelledby="sp-real-ready-patterns-drawer-title"
 			>
 				<header className="sp-real-ready-patterns-drawer-header">
-					<div className="sp-real-ready-patterns-drawer-header-left sp-d-flex sp-align-center">
-						<button
-							type="button"
-							className="sp-real-ready-patterns-drawer-back"
-							onClick={onClose}
-							ref={backRef}
-						>
-							<BackArrowIcon />
-							{__("Back", "testimonial-free")}
-						</button>
+					<div className="sp-real-ready-patterns-drawer-header-left">
 						<h2 className="sp-real-ready-patterns-drawer-title" id="sp-real-ready-patterns-drawer-title">
 							{patternName}
 						</h2>
@@ -199,6 +204,7 @@ const PreviewDrawer = ({ pattern, onClose, onInsert, isInserting }) => {
 							className="sp-real-ready-patterns-drawer-close"
 							aria-label={__("Close preview", "testimonial-free")}
 							onClick={onClose}
+							ref={closeRef}
 						>
 							<CloseIcon />
 						</button>
@@ -250,6 +256,37 @@ const PreviewDrawer = ({ pattern, onClose, onInsert, isInserting }) => {
 						) : null}
 					</div>
 				</div>
+
+				<footer className="sp-real-ready-patterns-drawer-footer sp-d-flex sp-align-center sp-justify-between">
+					<p className="sp-real-ready-patterns-drawer-count" aria-live="polite">
+						{sprintf(
+							/* translators: 1: current pattern position, 2: total patterns */
+							__("Patterns %1$d of %2$d", "testimonial-free"),
+							patternIndex > -1 ? patternIndex + 1 : 1,
+							Math.max(patterns.length, 1)
+						)}
+					</p>
+					<div className="sp-d-flex sp-align-center sp-gap-12px">
+						<button
+							type="button"
+							className="sp-real-ready-patterns-drawer-nav sp-d-flex sp-align-center sp-gap-4px"
+							onClick={() => onNavigate(prevPattern)}
+							disabled={!prevPattern}
+						>
+							<ChevronLeftIcon />
+							{__("Prev", "testimonial-free")}
+						</button>
+						<button
+							type="button"
+							className="sp-real-ready-patterns-drawer-nav sp-d-flex sp-align-center sp-gap-4px"
+							onClick={() => onNavigate(nextPattern)}
+							disabled={!nextPattern}
+						>
+							{__("Next", "testimonial-free")}
+							<ChevronRightIcon />
+						</button>
+					</div>
+				</footer>
 			</section>
 		</div>
 	);

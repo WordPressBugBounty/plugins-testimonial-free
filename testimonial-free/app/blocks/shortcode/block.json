@@ -2,7 +2,7 @@
     "$schema": "https://schemas.wp.org/trunk/block.json",
     "apiVersion": 3,
     "name": "sp-testimonial-pro/shortcode",
-    "title": "Real Testimonials Shortcode",
+    "title": "Classic View Shortcode",
     "category": "sp-testimonial-pro",
     "description": "Insert a saved testimonial view (shortcode) into your page.",
     "textdomain": "testimonial-free",
