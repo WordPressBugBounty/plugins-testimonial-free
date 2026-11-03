@@ -215,6 +215,8 @@ class Admin {
 				'query_var'          => false,
 				'supports'           => array( 'title' ),
 				'capability_type'    => 'post',
+				'capabilities'       => self::post_type_capabilities( $capability ),
+				'map_meta_cap'       => true,
 				'labels'             => array(
 					'name'               => __( 'Manage Views', 'testimonial-free' ),
 					'singular_name'      => __( 'Manage View', 'testimonial-free' ),
@@ -247,6 +249,8 @@ class Admin {
 				'query_var'           => false,
 				'supports'            => array( 'title' ),
 				'capability_type'     => 'post',
+				'capabilities'        => self::post_type_capabilities( $capability ),
+				'map_meta_cap'        => true,
 				'labels'              => array(
 					'name'               => __( 'Testimonial Form', 'testimonial-free' ),
 					'singular_name'      => __( 'Testimonial Form', 'testimonial-free' ),
@@ -388,11 +392,43 @@ class Admin {
 					'thumbnail',
 				),
 				'capability_type'    => 'post',
+				'capabilities'       => self::post_type_capabilities( $capability ),
+				'map_meta_cap'       => true,
 				'labels'             => $labels,
 			)
 		);
 
 		register_post_type( 'spt_testimonial', $args );
+	}
+
+	/**
+	 * Primitive capabilities of the plugin's post types.
+	 *
+	 * Pass `'map_meta_cap' => true` next to this map: core only enables meta-cap
+	 * mapping by default when no `capabilities` are given, and without it no
+	 * one — admins included — passes `edit_post`.
+	 *
+	 * Every write capability resolves to the plugin's UI permission, so a role
+	 * that can write posts (contributor, author) cannot create or publish
+	 * testimonials, views or forms through the REST API either.
+	 *
+	 * @param string $capability The `sp_tfree_ui_permission` capability.
+	 * @return array
+	 */
+	public static function post_type_capabilities( $capability ) {
+		return array(
+			'edit_posts'             => $capability,
+			'edit_others_posts'      => $capability,
+			'edit_published_posts'   => $capability,
+			'edit_private_posts'     => $capability,
+			'publish_posts'          => $capability,
+			'delete_posts'           => $capability,
+			'delete_others_posts'    => $capability,
+			'delete_published_posts' => $capability,
+			'delete_private_posts'   => $capability,
+			'read_private_posts'     => $capability,
+			'create_posts'           => $capability,
+		);
 	}
 
 	/**

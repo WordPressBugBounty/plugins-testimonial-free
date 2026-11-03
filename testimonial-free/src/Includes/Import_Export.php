@@ -193,20 +193,37 @@ class Import_Export {
 	 */
 	public function insert_attachment_from_url( $url, $parent_post_id = null ) {
 
-		if ( ! class_exists( 'WP_Http' ) ) {
-			include_once ABSPATH . WPINC . '/class-http.php';
-		}
 		$attachment_title = sanitize_file_name( pathinfo( $url, PATHINFO_FILENAME ) );
 		$attachment_id    = post_exists( $attachment_title, '', '', 'attachment' );
 		if ( ! empty( $attachment_id ) ) {
 			return $attachment_id;
 		}
-		$http     = new \WP_Http();
-		$response = $http->request( $url );
-		if ( is_wp_error( $response ) ) {
+		require_once ABSPATH . 'wp-admin/includes/file.php';
+
+		$file_name = sanitize_file_name( wp_basename( (string) wp_parse_url( $url, PHP_URL_PATH ) ) );
+		if ( '' === $file_name ) {
 			return false;
 		}
-		$upload = wp_upload_bits( basename( $url ), null, $response['body'] );
+
+		// download_url() goes through wp_safe_remote_get(), which refuses internal hosts.
+		$tmp_file = download_url( $url, 30 );
+		if ( is_wp_error( $tmp_file ) ) {
+			return false;
+		}
+
+		$check = wp_check_filetype_and_ext( $tmp_file, $file_name );
+		if ( empty( $check['type'] ) || 0 !== strpos( $check['type'], 'image/' ) ) {
+			wp_delete_file( $tmp_file );
+			return false;
+		}
+		if ( ! empty( $check['proper_filename'] ) ) {
+			$file_name = $check['proper_filename'];
+		}
+
+		$body = file_get_contents( $tmp_file ); // phpcs:ignore WordPress.WP.AlternativeFunctions.file_get_contents_file_get_contents -- local temp file.
+		wp_delete_file( $tmp_file );
+
+		$upload = wp_upload_bits( $file_name, null, $body );
 		if ( ! empty( $upload['error'] ) ) {
 			return false;
 		}
@@ -270,6 +287,10 @@ class Import_Export {
 			$new_shortcode_id = 0;
 
 			$spt_post_type = isset( $shortcode['spt_post'] ) ? $shortcode['spt_post'] : '';
+			if ( ! in_array( $spt_post_type, array( 'spt_testimonial', 'spt_shortcodes', 'spt_testimonial_form' ), true ) ) {
+				array_push( $errors[ $index ], esc_html__( 'Unsupported post type in the import file.', 'testimonial-free' ) );
+				continue;
+			}
 			try {
 				$content = isset( $shortcode['content'] ) ? $shortcode['content'] : '';
 				if ( 'csv' === $file_type ) {
@@ -313,6 +334,10 @@ class Import_Export {
 
 				if ( isset( $shortcode['meta'] ) && is_array( $shortcode['meta'] ) ) {
 					foreach ( $shortcode['meta'] as $key => $value ) {
+						$key = (string) $key;
+						if ( '_thumbnail_id' !== $key && is_protected_meta( $key, 'post' ) ) {
+							continue;
+						}
 						if ( is_string( $value ) ) {
 							$value = $this->maybe_unserialize( str_replace( '{#ID#}', $new_shortcode_id, $value ) );
 						}

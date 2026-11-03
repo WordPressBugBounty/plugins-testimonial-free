@@ -185,7 +185,7 @@ function rtp_wpbakery_render_element( $atts, $content = null ) {
 
 	// Check if template exists and is published.
 	$template_post = get_post( $template_id );
-	if ( ! $template_post || 'publish' !== $template_post->post_status ) {
+	if ( ! $template_post || 'sp_real_template' !== $template_post->post_type || 'publish' !== $template_post->post_status || '' !== $template_post->post_password ) {
 		return '<div style="
 			text-align: center;
 			padding: 20px;
@@ -246,4 +246,3 @@ function rtp_wpbakery_is_builder_editor() {
 
 	return false;
 }
-

@@ -66,6 +66,11 @@ class Template_Css {
 			return '';
 		}
 
+		$template = get_post( $template_id );
+		if ( ! $template || 'sp_real_template' !== $template->post_type || 'publish' !== $template->post_status || '' !== $template->post_password ) {
+			return '';
+		}
+
 		self::$printed[ $template_id ] = true;
 
 		// Already linked in the head by DynamicStyle::collect_blocks_and_generate_css().
@@ -95,7 +100,7 @@ class Template_Css {
 				$font_lists = $dynamic_assets[1] ?? array();
 
 				if ( ! empty( $css ) ) {
-					$output .= '<style id="rtp-css-' . esc_attr( $template_id ) . '">' . str_replace( '</style', '<\/style', $css ) . '</style>';
+					$output .= '<style id="rtp-css-' . esc_attr( $template_id ) . '">' . preg_replace( '#</style#i', '<\/style', $css ) . '</style>';
 
 					$unique_id = wp_rand( 1000, 9999 );
 					update_post_meta( $template_id, '_sp_real_unique_version', $unique_id );

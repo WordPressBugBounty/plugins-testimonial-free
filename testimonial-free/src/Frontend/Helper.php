@@ -9,6 +9,9 @@
 
 namespace ShapedPlugin\TestimonialFree\Frontend;
 
+use ShapedPlugin\TestimonialFree\Includes\Sanitizer;
+use ShapedPlugin\TestimonialFree\Blocks\API\APIHelper;
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
@@ -288,24 +291,23 @@ class Helper {
 							$rating_value = '5';
 					}
 					$tpro_total_rating += (int) $rating_value;
-					$name               = get_the_title() ? esc_attr( wp_strip_all_tags( get_the_title() ) ) : '';
-					$review_body        = get_the_content() ? esc_attr( wp_strip_all_tags( get_the_content() ) ) : '';
-					$date               = get_the_date( 'Y-m-d' );
-					$schema_html       .= '{
-						"@type": "Review",
-						"datePublished": "' . $date . '",
-						"reviewBody": "' . $review_body . '",
-						"reviewRating": {
-							"@type": "Rating",
-							"bestRating": "5",
-							"ratingValue": "' . $rating_value . '",
-							"worstRating": "1"
-						},
-						"author": {
-							"@type": "Person",
-							"name": "' . $tfree_name . '"
-						}
-					}';
+					$schema_html       .= Sanitizer::json_ld(
+						array(
+							'@type'         => 'Review',
+							'datePublished' => get_the_date( 'Y-m-d' ),
+							'reviewBody'    => wp_strip_all_tags( get_the_content() ),
+							'reviewRating'  => array(
+								'@type'       => 'Rating',
+								'bestRating'  => '5',
+								'ratingValue' => $rating_value,
+								'worstRating' => '1',
+							),
+							'author'        => array(
+								'@type' => 'Person',
+								'name'  => wp_strip_all_tags( (string) $tfree_name ),
+							),
+						)
+					);
 					++$testimonial_count;
 					if ( $testimonial_count < $total_posts ) {
 						$schema_html .= ',';
@@ -373,13 +375,13 @@ class Helper {
 		{
 			"@context": "http://schema.org",
 			"@type": "Product",
-			"name": "' . $global_item_name . '",
+			"name": ' . Sanitizer::json_ld( wp_strip_all_tags( (string) $global_item_name ) ) . ',
 			"aggregateRating": {
 				"@type": "AggregateRating",
 				"bestRating": "5",
-				"ratingValue": "' . $aggregate_rating . '",
+				"ratingValue": ' . Sanitizer::json_ld( (string) $aggregate_rating ) . ',
 				"worstRating": "1",
-				"reviewCount": "' . $total_posts . '"
+				"reviewCount": ' . Sanitizer::json_ld( (string) $total_posts ) . '
 			},
 			"review": [';
 			$outline .= $schema_html;
@@ -387,7 +389,7 @@ class Helper {
 		}
 		</script>';
 		}
-		echo $outline; // phpcs:ignore
+		echo $outline; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- every value is built by Sanitizer::json_ld().
 	}
 
 	/**
@@ -454,6 +456,28 @@ class Helper {
 	}
 
 	/**
+	 * Store the reviewer photo of a classic form submission.
+	 *
+	 * Only the canonical `tpro_client_image` input is read, only when the form
+	 * shows the Image field, and only through the block form's upload guard
+	 * (real MIME check, size ceiling, IPTC caption dropped).
+	 *
+	 * @param int  $post_id     The new testimonial.
+	 * @param bool $allow_image Whether the form shows the image field.
+	 * @return void
+	 */
+	public static function store_classic_form_uploads( $post_id, $allow_image ) {
+		if ( ! $post_id || is_wp_error( $post_id ) || ! $allow_image ) {
+			return;
+		}
+
+		$attach_id = APIHelper::handle_tsf_upload( 'tpro_client_image', $post_id, Sanitizer::IMAGE_MIMES, 5 * MB_IN_BYTES );
+		if ( $attach_id ) {
+			set_post_thumbnail( $post_id, $attach_id );
+		}
+	}
+
+	/**
 	 * Frontend form html.
 	 *
 	 * @param  int   $form_id form id.
@@ -462,7 +486,7 @@ class Helper {
 	 * @return void
 	 */
 	public static function frontend_form_html( $form_id, $form_elements, $form_data ) {
-		$form_element         = isset( $form_elements['form_elements'] ) ? $form_elements['form_elements'] : array();
+		$form_element         = isset( $form_elements['form_elements'] ) && is_array( $form_elements['form_elements'] ) ? $form_elements['form_elements'] : array();
 		$ajax_form_submission = isset( $form_data['ajax_form_submission'] ) ? $form_data['ajax_form_submission'] : '';
 
 		wp_enqueue_script( 'sp-testimonial-form-config' );
@@ -484,7 +508,7 @@ class Helper {
 
 		$required_notice       = isset( $form_data['required_notice'] ) ? $form_data['required_notice'] : '';
 		$required_notice_label = isset( $form_data['notice_label'] ) ? $form_data['notice_label'] : '';
-		$submit_btn = $form_fields['submit_btn'];
+		$submit_btn            = $form_fields['submit_btn'];
 		// Testimonial submit form.
 		include SP_TFREE_PATH . 'Frontend/Views/partials/submit-form.php';
 		// END THE IF STATEMENT THAT STARTED THE WHOLE FORM.

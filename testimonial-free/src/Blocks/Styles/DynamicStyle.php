@@ -184,7 +184,7 @@ class DynamicStyle {
 		}
 		// Output inline CSS.
 		if ( ! empty( $inline_style ) ) {
-			wp_add_inline_style( 'sp-real-blocks-style', $inline_style );
+			wp_add_inline_style( 'sp-real-blocks-style', wp_strip_all_tags( $inline_style ) );
 		}
 		if ( ! empty( $google_fonts_list ) ) {
 			$google_fonts_list = array_unique( $google_fonts_list );
@@ -447,7 +447,7 @@ class DynamicStyle {
 				$blocks = parse_blocks( $ea_post_content );
 				foreach ( $blocks as $key => $value ) {
 					if ( isset( $value['attrs']['ref'] ) && ! empty( $value['attrs']['ref'] ) ) {
-						$reusable_id[] = $value['attrs']['ref'];
+						$reusable_id[] = absint( $value['attrs']['ref'] );
 					}
 					// Recursively check inner blocks.
 					if ( ! empty( $value['innerBlocks'] ) ) {
@@ -512,7 +512,7 @@ class DynamicStyle {
 		if ( ! empty( $blocks ) ) {
 			foreach ( $blocks as $key => $value ) {
 				if ( isset( $value['attrs']['ref'] ) && ! empty( $value['attrs']['ref'] ) ) {
-					$reusable_id[] = $value['attrs']['ref'];
+					$reusable_id[] = absint( $value['attrs']['ref'] );
 				}
 				// Recursively check inner blocks.
 				if ( ! empty( $value['innerBlocks'] ) ) {
@@ -535,7 +535,7 @@ class DynamicStyle {
 		$reusable_ids = array();
 		foreach ( $blocks as $block ) {
 			if ( isset( $block['attrs']['ref'] ) && ! empty( $block['attrs']['ref'] ) && 'core/block' === $block['blockName'] ) {
-				$reusable_ids[] = $block['attrs']['ref'];
+				$reusable_ids[] = absint( $block['attrs']['ref'] );
 			}
 			if ( ! empty( $block['innerBlocks'] ) ) {
 				$inner_ids    = $this->get_reusable_ids_from_blocks( $block['innerBlocks'] );
@@ -946,6 +946,7 @@ class DynamicStyle {
 	 * @return string
 	 */
 	private function get_css_file_name( $id ) {
+		$id = preg_replace( '/[^A-Za-z0-9_-]/', '', (string) $id );
 		return "sp-real-style-$id.css";
 	}
 

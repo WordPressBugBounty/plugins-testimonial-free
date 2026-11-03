@@ -61,72 +61,6 @@ if ( ! function_exists( 'spftestimonial_get_icons' ) ) {
 }
 
 
-if ( ! function_exists( 'spftestimonial_export' ) ) {
-	/**
-	 * Export
-	 *
-	 * @return void
-	 */
-	function spftestimonial_export() {
-
-		$nonce  = ( ! empty( $_GET['nonce'] ) ) ? sanitize_text_field( wp_unslash( $_GET['nonce'] ) ) : '';
-		$unique = ( ! empty( $_GET['unique'] ) ) ? sanitize_text_field( wp_unslash( $_GET['unique'] ) ) : '';
-
-		if ( ! wp_verify_nonce( $nonce, 'spftestimonial_backup_nonce' ) ) {
-			die( esc_html__( 'Error: Invalid nonce verification.', 'testimonial-free' ) );
-		}
-
-		if ( empty( $unique ) ) {
-			die( esc_html__( 'Error: Invalid key.', 'testimonial-free' ) );
-		}
-
-		// Export.
-		header( 'Content-Type: application/json' );
-		header( 'Content-disposition: attachment; filename=backup-' . gmdate( 'd-m-Y' ) . '.json' );
-		header( 'Content-Transfer-Encoding: binary' );
-		header( 'Pragma: no-cache' );
-		header( 'Expires: 0' );
-
-		echo json_encode( get_option( $unique ) );
-
-		die();
-	}
-	add_action( 'wp_ajax_spftestimonial-export', 'spftestimonial_export' );
-}
-
-if ( ! function_exists( 'spftestimonial_import_ajax' ) ) {
-	/**
-	 * Ajax Import
-	 *
-	 * @return void
-	 */
-	function spftestimonial_import_ajax() {
-
-		$nonce  = ( ! empty( $_POST['nonce'] ) ) ? sanitize_text_field( wp_unslash( $_POST['nonce'] ) ) : '';
-		$unique = ( ! empty( $_POST['unique'] ) ) ? sanitize_text_field( wp_unslash( $_POST['unique'] ) ) : '';
-		// @codingStandardsIgnoreLine
-		$data   = ( ! empty( $_POST['data'] ) ) ? wp_kses_post_deep( json_decode( wp_unslash( trim( $_POST['data'] ) ), true ) ) : array();
-
-		if ( ! wp_verify_nonce( $nonce, 'spftestimonial_backup_nonce' ) ) {
-			wp_send_json_error( array( 'error' => esc_html__( 'Error: Invalid nonce verification.', 'testimonial-free' ) ) );
-		}
-
-		if ( empty( $unique ) ) {
-			wp_send_json_error( array( 'error' => esc_html__( 'Error: Invalid key.', 'testimonial-free' ) ) );
-		}
-
-		if ( empty( $data ) || ! is_array( $data ) ) {
-			wp_send_json_error( array( 'error' => esc_html__( 'Error: The response is not a valid JSON response.', 'testimonial-free' ) ) );
-		}
-
-		// Success.
-		update_option( $unique, $data );
-
-		wp_send_json_success();
-	}
-	add_action( 'wp_ajax_spftestimonial-import', 'spftestimonial_import_ajax' );
-}
-
 if ( ! function_exists( 'spftestimonial_reset_ajax' ) ) {
 	/**
 	 * Ajax reset.
@@ -135,11 +69,19 @@ if ( ! function_exists( 'spftestimonial_reset_ajax' ) ) {
 	 */
 	function spftestimonial_reset_ajax() {
 
+		if ( ! current_user_can( apply_filters( 'sp_tfree_ui_permission', 'manage_options' ) ) ) {
+			wp_send_json_error( array( 'error' => esc_html__( 'Error: Insufficient permissions.', 'testimonial-free' ) ) );
+		}
+
 		$nonce  = ( ! empty( $_POST['nonce'] ) ) ? sanitize_text_field( wp_unslash( $_POST['nonce'] ) ) : '';
 		$unique = ( ! empty( $_POST['unique'] ) ) ? sanitize_text_field( wp_unslash( $_POST['unique'] ) ) : '';
 
 		if ( ! wp_verify_nonce( $nonce, 'spftestimonial_backup_nonce' ) ) {
 			wp_send_json_error( array( 'error' => esc_html__( 'Error: Invalid nonce verification.', 'testimonial-free' ) ) );
+		}
+
+		if ( '' === $unique || ! isset( SPFTESTIMONIAL::$args['admin_options'][ $unique ] ) ) {
+			wp_send_json_error( array( 'error' => esc_html__( 'Error: Unknown options.', 'testimonial-free' ) ) );
 		}
 
 		// Success.

@@ -255,6 +255,21 @@ class BlocksHelper {
 	}
 
 	/**
+	 * Resolve an attribute-chosen heading tag against the tags the editor offers.
+	 *
+	 * `tag_escape()` only strips characters, so `script` or `style` would pass it.
+	 *
+	 * @param mixed  $tag     Stored tag name.
+	 * @param string $default Fallback tag.
+	 * @return string
+	 */
+	public static function safe_heading_tag( $tag, $default = 'span' ) {
+		$tag = is_scalar( $tag ) ? strtolower( (string) $tag ) : '';
+
+		return in_array( $tag, array( 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'span', 'p', 'div' ), true ) ? $tag : $default;
+	}
+
+	/**
 	 * Method find_block_attributes_by_id.
 	 *
 	 * @param int    $post_id is post id.
@@ -263,10 +278,14 @@ class BlocksHelper {
 	 * @return object
 	 */
 	public static function find_block_attributes_by_id( $post_id, $unique_id ) {
-		// search in post.
-		$post_content = get_post_field( 'post_content', $post_id );
-		$blocks       = parse_blocks( $post_content );
-		$find_block   = self::search_blocks_recursive( $blocks, $unique_id );
+		// search in post — only one the visitor could see, or the current user may edit.
+		$post_id    = absint( $post_id );
+		$find_block = null;
+		$is_public  = $post_id && 'publish' === get_post_status( $post_id ) && ! post_password_required( $post_id );
+		if ( $post_id && ( $is_public || current_user_can( 'edit_post', $post_id ) ) ) {
+			$blocks     = parse_blocks( (string) get_post_field( 'post_content', $post_id ) );
+			$find_block = self::search_blocks_recursive( $blocks, $unique_id );
+		}
 
 		// If not found in post/page, check Site Editor templates.
 		if ( ! $find_block ) {
@@ -369,7 +388,7 @@ class BlocksHelper {
 		$is_editor_page = is_admin();
 
 		// Elementor editor - render blocks in editor mode.
-		if ( class_exists( '\Elementor\Plugin' ) && \Elementor\Plugin::$instance->editor->is_edit_mode() ) {
+		if ( class_exists( '\Elementor\Plugin' ) && isset( \Elementor\Plugin::$instance->editor ) && \Elementor\Plugin::$instance->editor->is_edit_mode() ) {
 			$is_editor_page = false;
 		}
 

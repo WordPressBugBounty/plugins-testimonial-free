@@ -87,7 +87,7 @@ function get_testimonial_html( $request ) {
 
 	// Check if template exists and is published.
 	$template_post = get_post( $template_id );
-	if ( ! $template_post || 'publish' !== $template_post->post_status ) {
+	if ( ! $template_post || 'sp_real_template' !== $template_post->post_type || 'publish' !== $template_post->post_status || '' !== $template_post->post_password ) {
 		return new \WP_REST_Response(
 			array(
 				'success' => false,

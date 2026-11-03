@@ -87,7 +87,9 @@ class SavedTemplates {
 			'show_in_menu'        => false,
 			'show_in_nav_menu'    => true,
 			'exclude_from_search' => true,
-			'capability_type'     => 'page',
+			'capability_type'     => 'post',
+			'capabilities'        => \ShapedPlugin\TestimonialFree\Admin\Admin::post_type_capabilities( 'manage_options' ),
+			'map_meta_cap'        => true,
 		);
 		register_post_type( 'sp_real_template', $args );
 	}
@@ -183,9 +185,9 @@ class SavedTemplates {
 			return '';
 		}
 
-		// Return if post id or post type is not published.
+		// Only a published, unprotected saved template renders — never another post's content.
 		$post = get_post( $id );
-		if ( ! $post || 'publish' !== $post->post_status ) {
+		if ( ! $post || 'sp_real_template' !== $post->post_type || 'publish' !== $post->post_status || '' !== $post->post_password ) {
 			return '';
 		}
 

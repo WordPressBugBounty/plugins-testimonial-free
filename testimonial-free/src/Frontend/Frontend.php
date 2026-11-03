@@ -75,7 +75,7 @@ class Frontend {
 			'sp_testimonial'
 		);
 
-		$post_id = esc_attr( intval( $attributes['id'] ) );
+		$post_id = isset( $attributes['id'] ) ? esc_attr( intval( $attributes['id'] ) ) : 0;
 		// Check the shortcode status.
 		if ( empty( $post_id ) || 'spt_shortcodes' !== get_post_type( $post_id ) || 'trash' === get_post_status( $post_id ) ) {
 			return;
@@ -318,7 +318,7 @@ class Frontend {
 		if ( ! BlocksHelper::is_active_module( 'testimonial_form' ) ) {
 			return;
 		}
-		$form_id = esc_attr( (int) $attributes['id'] );
+		$form_id = isset( $attributes['id'] ) ? esc_attr( (int) $attributes['id'] ) : 0;
 		if ( empty( $form_id ) || 'spt_testimonial_form' !== get_post_type( $form_id ) || 'trash' === get_post_status( $form_id ) ) {
 			return;
 		}

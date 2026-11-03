@@ -12,6 +12,8 @@
 
 namespace ShapedPlugin\TestimonialFree\Blocks\Includes;
 
+use ShapedPlugin\TestimonialFree\Includes\Sanitizer;
+
 // Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) {
 	die;
@@ -237,7 +239,7 @@ class TestimonialQuery {
 			// Standard WordPress post fields.
 			'id'              => $post_id,
 			'title'           => get_the_title( $post ),
-			'content'         => apply_filters( 'the_content', $post->post_content ),
+			'content'         => Sanitizer::kses_content( apply_filters( 'the_content', $post->post_content ) ),
 			'excerpt'         => get_the_excerpt( $post ),
 			'slug'            => $post->post_name,
 			'status'          => $post->post_status,

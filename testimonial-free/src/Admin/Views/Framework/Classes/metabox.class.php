@@ -443,6 +443,10 @@ if ( ! class_exists( 'SPFTESTIMONIAL_Metabox' ) ) {
 				return $post_id;
 			}
 
+			if ( ! in_array( get_post_type( $post_id ), $this->post_type, true ) || ! current_user_can( 'edit_post', $post_id ) ) {
+				return $post_id;
+			}
+
 			// XSS ok.
 			// No worries, This "POST" requests is sanitizing in the below foreach.
 			// @codingStandardsIgnoreLine

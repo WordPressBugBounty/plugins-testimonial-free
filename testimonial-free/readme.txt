@@ -4,7 +4,7 @@ Tags: testimonials, testimonial slider, video testimonials, social proof, review
 Requires at least: 6.3
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 4.1.0
+Stable tag: 4.1.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -263,6 +263,10 @@ If you encounter an issue or find any bugs, post it in the [support](https://sha
 
 
 == Changelog ==
+
+= 4.1.1 – Nov 03, 2026 =
+* Fixed: Security hardening for front-end testimonial submissions, reviewer photo uploads and testimonial output.
+* Improved: Stricter permission checks for testimonial, view, form and saved template content.
 
 = 4.1.0 – Oct 30, 2026 =
 * New: Build with AI module turns a prompt into a ready Testimonial Carousel, Slider, Grid, List or Submission Form.

@@ -19,8 +19,8 @@ $review_text = str_replace( ']]>', ']]&gt;', $review_text );
 	<?php do_action( 'sptpro_before_testimonial_content' ); ?>
 	<div class="sp-testimonial-content">
 	<?php
-	    // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Output is already sanitized or allowed for video/audio HTML content.
-		echo $review_text;
+		// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- wp_kses post allow-list minus data-*, plus <source> and oEmbed iframes for video/audio.
+		echo \ShapedPlugin\TestimonialFree\Includes\Sanitizer::kses_content( $review_text, true );
 	?>
 	</div>
 	<?php do_action( 'sptpro_after_testimonial_content' ); ?>

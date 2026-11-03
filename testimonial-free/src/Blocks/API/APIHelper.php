@@ -14,6 +14,7 @@
 namespace ShapedPlugin\TestimonialFree\Blocks\API;
 
 use ShapedPlugin\TestimonialFree\Blocks\Includes\BlocksHelper;
+use ShapedPlugin\TestimonialFree\Includes\Sanitizer;
 
 // Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) {
@@ -32,9 +33,20 @@ class APIHelper {
 	 * @return array{success:bool,message:string}
 	 */
 	public static function process_tsf_submission( $form_data ) {
-		$form_id          = isset( $form_data['form_id'] ) ? sanitize_text_field( wp_unslash( $form_data['form_id'] ) ) : '';
-		$post_id          = isset( $form_data['post_id'] ) ? absint( $form_data['post_id'] ) : 0;
-		$block_attributes = BlocksHelper::find_block_attributes_by_id( $post_id, $form_id ) ?? array();
+		$form_id = sanitize_text_field( self::form_value( $form_data, 'form_id' ) );
+		$post_id = isset( $form_data['post_id'] ) && is_scalar( $form_data['post_id'] ) ? absint( $form_data['post_id'] ) : 0;
+
+		// A form on an unpublished post only takes submissions from someone who
+		// could publish it.
+		if ( $post_id && 'publish' !== get_post_status( $post_id ) && ! current_user_can( 'publish_post', $post_id ) ) {
+			return array(
+				'success' => false,
+				'message' => __( 'This form could not be verified. Please reload the page and try again.', 'testimonial-free' ),
+			);
+		}
+
+		$block_attributes = BlocksHelper::find_block_attributes_by_id( $post_id, $form_id );
+		$block_attributes = is_array( $block_attributes ) ? $block_attributes : array();
 
 		$post_data = self::collect_tsf_post_data( $form_data, $block_attributes, $form_id );
 
@@ -46,15 +58,18 @@ class APIHelper {
 			);
 		}
 
-		// Featured image upload → post thumbnail.
-		$image_id = self::handle_tsf_upload(
-			'tpro_client_image',
-			$post_id_new,
-			array( 'image/jpeg', 'image/png', 'image/gif', 'image/webp' ),
-			5 * MB_IN_BYTES
-		);
-		if ( $image_id ) {
-			set_post_thumbnail( $post_id_new, $image_id );
+		// Featured image upload → post thumbnail. Only taken when the form shows
+		// a Reviewer Photo field; a photo posted to a form without one is ignored.
+		if ( self::form_shows_field( $block_attributes, 'tpro_client_image' ) ) {
+			$image_id = self::handle_tsf_upload(
+				'tpro_client_image',
+				$post_id_new,
+				Sanitizer::IMAGE_MIMES,
+				5 * MB_IN_BYTES
+			);
+			if ( $image_id ) {
+				set_post_thumbnail( $post_id_new, $image_id );
+			}
 		}
 
 		return array(
@@ -72,12 +87,12 @@ class APIHelper {
 	 * @return array
 	 */
 	public static function collect_tsf_post_data( $form_data, $block_attributes, $form_id ) {
-		$name    = isset( $form_data['tpro_client_name'] ) ? sanitize_text_field( wp_unslash( $form_data['tpro_client_name'] ) ) : '';
-		$email   = isset( $form_data['tpro_client_email'] ) ? sanitize_email( wp_unslash( $form_data['tpro_client_email'] ) ) : '';
-		$role    = isset( $form_data['tpro_client_designation'] ) ? sanitize_text_field( wp_unslash( $form_data['tpro_client_designation'] ) ) : '';
-		$title   = isset( $form_data['tpro_testimonial_title'] ) ? sanitize_text_field( wp_unslash( $form_data['tpro_testimonial_title'] ) ) : '';
-		$content = isset( $form_data['tpro_client_testimonial'] ) ? sanitize_textarea_field( wp_unslash( $form_data['tpro_client_testimonial'] ) ) : '';
-		$rating  = isset( $form_data['tpro_client_rating'] ) ? sanitize_key( $form_data['tpro_client_rating'] ) : '';
+		$name    = Sanitizer::public_text( self::form_value( $form_data, 'tpro_client_name' ) );
+		$email   = sanitize_email( self::form_value( $form_data, 'tpro_client_email' ) );
+		$role    = Sanitizer::public_text( self::form_value( $form_data, 'tpro_client_designation' ) );
+		$title   = Sanitizer::public_text( self::form_value( $form_data, 'tpro_testimonial_title' ) );
+		$content = Sanitizer::public_textarea( self::form_value( $form_data, 'tpro_client_testimonial' ) );
+		$rating  = sanitize_key( self::form_value( $form_data, 'tpro_client_rating' ) );
 
 		$status = self::resolve_tsf_status( $block_attributes );
 
@@ -103,6 +118,44 @@ class APIHelper {
 				'tpro_rating'          => $rating,
 			),
 		);
+	}
+
+	/**
+	 * Read one scalar POST field, unslashed.
+	 *
+	 * @param array  $form_data Raw POST data.
+	 * @param string $key       Field name.
+	 * @param mixed  $default   Value when the field is absent or not scalar.
+	 * @return mixed
+	 */
+	public static function form_value( $form_data, $key, $default = '' ) {
+		if ( ! isset( $form_data[ $key ] ) || ! is_scalar( $form_data[ $key ] ) ) {
+			return $default;
+		}
+
+		return wp_unslash( $form_data[ $key ] );
+	}
+
+	/**
+	 * Whether the submitting form renders a field.
+	 *
+	 * Mirrors TestimonialSubmissionForm's field loop: a field is on the form
+	 * only when it is in `formFields` with `showField` on.
+	 *
+	 * @param array  $block_attributes Resolved block attributes.
+	 * @param string $field_name       Field name, e.g. `tpro_client_image`.
+	 * @return bool
+	 */
+	public static function form_shows_field( $block_attributes, $field_name ) {
+		$fields = ( isset( $block_attributes['formFields'] ) && is_array( $block_attributes['formFields'] ) ) ? $block_attributes['formFields'] : array();
+
+		foreach ( $fields as $field ) {
+			if ( is_array( $field ) && ( $field['fieldName'] ?? '' ) === $field_name && ! empty( $field['showField'] ) ) {
+				return true;
+			}
+		}
+
+		return false;
 	}
 
 	/**
@@ -148,7 +201,7 @@ class APIHelper {
 		require_once ABSPATH . 'wp-admin/includes/media.php';
 		require_once ABSPATH . 'wp-admin/includes/image.php';
 
-		$attachment_id = media_handle_upload( $file_key, $post_id, array(), array( 'test_form' => false ) );
+		$attachment_id = media_handle_upload( $file_key, $post_id, Sanitizer::upload_post_data( $file_name ), array( 'test_form' => false ) );
 		if ( is_wp_error( $attachment_id ) ) {
 			return 0;
 		}

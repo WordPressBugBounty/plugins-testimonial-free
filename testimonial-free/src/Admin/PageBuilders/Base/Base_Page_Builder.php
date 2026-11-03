@@ -50,7 +50,7 @@ trait Base_Page_Builder {
 		}
 
 		$template_post = get_post( $template_id );
-		if ( ! $template_post || 'publish' !== $template_post->post_status ) {
+		if ( ! $template_post || 'sp_real_template' !== $template_post->post_type || 'publish' !== $template_post->post_status || '' !== $template_post->post_password ) {
 			return $this->error_message( esc_html__( 'Template not found or not published', 'testimonial-free' ) );
 		}
 

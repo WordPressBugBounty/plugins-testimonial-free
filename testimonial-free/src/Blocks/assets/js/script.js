@@ -277,14 +277,37 @@
 	};
 
 	/**
+	 * Whether an element sits inside a rendered testimonial body.
+	 *
+	 * Testimonial text is visitor-submitted content; markup inside it must never
+	 * be booted as a block or slider.
+	 *
+	 * @param {Element} el Element to test.
+	 * @return {boolean} True when nested in testimonial content.
+	 */
+	const isInTestimonialContent = (el) =>
+		!!el.parentElement?.closest(
+			'.sp-real-testimonial-content, .sp-testimonial-content'
+		);
+
+	/**
+	 * The block's own carousel element, ignoring any inside testimonial text.
+	 *
+	 * @param {Element} block DOM context to search within.
+	 * @return {Element|undefined} The slider element.
+	 */
+	const findSliderEl = (block) =>
+		Array.from(
+			block.querySelectorAll('.sp-testimonial-swiper[data-swiper-settings]')
+		).find((el) => !isInTestimonialContent(el));
+
+	/**
 	 * Initialize a testimonial carousel Swiper.
 	 *
 	 * @param {Element} block - DOM context to search within
 	 */
 	const initSlider = (block) => {
-		const sliderEl = block.querySelector(
-			'.sp-testimonial-swiper[data-swiper-settings]'
-		);
+		const sliderEl = findSliderEl(block);
 		// Our copy of Swiper is namespaced; a site that dequeues it runs on
 		// the theme's global instead. An existing instance means a page
 		// builder re-ran the boot — two would re-order the same slides.
@@ -301,6 +324,10 @@
 			console.error('Invalid swiper settings:', e);
 			return;
 		}
+		if (!settings || typeof settings !== 'object') {
+			return;
+		}
+		delete settings.virtual;
 
 		const parent = sliderEl.parentElement;
 		const paginationEl =
@@ -369,7 +396,7 @@
 	 * @return {Function} Builds the carousel again once the cards are in.
 	 */
 	const detachSlider = (mainBlock, mode) => {
-		const sliderEl = mainBlock.querySelector('.sp-testimonial-swiper[data-swiper-settings]');
+		const sliderEl = findSliderEl(mainBlock);
 		if (!sliderEl?.swiper) {
 			return () => {};
 		}
@@ -750,6 +777,9 @@
 		document
 			.querySelectorAll('.sp-real-testimonial-block')
 			.forEach((block) => {
+				if (isInTestimonialContent(block)) {
+					return;
+				}
 				initSlider(block);
 			});
 

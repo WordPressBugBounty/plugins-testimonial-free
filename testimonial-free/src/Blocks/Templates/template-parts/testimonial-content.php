@@ -12,6 +12,8 @@
  * @subpackage Testimonial_free/Blocks/Templates
  */
 
+use ShapedPlugin\TestimonialFree\Includes\Sanitizer;
+
 // Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) {
 	die;
@@ -31,7 +33,7 @@ $sp_real_strip_html_tags = $attributes['stripAllHTMLTags'] ?? true;
 			if ( $sp_real_strip_html_tags ) {
 				echo esc_html( wp_strip_all_tags( $sp_real_raw_content ) );
 			} else {
-				echo wp_kses_post( $sp_real_raw_content );
+				echo Sanitizer::kses_content( $sp_real_raw_content ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- wp_kses, no data-* attributes.
 			}
 			?>
 		</div>

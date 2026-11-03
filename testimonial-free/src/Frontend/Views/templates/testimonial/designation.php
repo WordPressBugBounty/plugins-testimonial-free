@@ -15,7 +15,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 <div class="sp-testimonial-client-designation">
 <?php
 	do_action( 'sptpro_before_testimonial_client_designation_company' );
-	echo wp_kses_post( $tfree_designation );
+	echo \ShapedPlugin\TestimonialFree\Includes\Sanitizer::kses_inline( $tfree_designation ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- wp_kses inline allow-list.
 	do_action( 'sptpro_after_testimonial_client_designation_company' );
 ?>
 </div>

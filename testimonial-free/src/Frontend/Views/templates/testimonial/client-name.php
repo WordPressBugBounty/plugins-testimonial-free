@@ -15,7 +15,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 <<?php echo esc_attr( $reviewer_name_tag ); ?> class="sp-testimonial-client-name">
 <?php
 do_action( 'sptpro_before_testimonial_client_name' );
-	echo wp_kses_post( $tfree_name );
+	echo \ShapedPlugin\TestimonialFree\Includes\Sanitizer::kses_inline( $tfree_name ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- wp_kses inline allow-list.
 do_action( 'sptpro_after_testimonial_client_name' );
 ?>
 </<?php echo esc_attr( $reviewer_name_tag ); ?>>

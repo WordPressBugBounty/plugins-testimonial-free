@@ -10,6 +10,8 @@
  * @subpackage Testimonial_free/Blocks/Templates
  */
 
+use ShapedPlugin\TestimonialFree\Blocks\Includes\BlocksHelper;
+
 // Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) {
 	die;
@@ -20,7 +22,7 @@ if ( empty( $sp_real_title ) ) {
 	return;
 }
 
-$sp_real_title_tag = $attributes['titleTag'] ?? 'span';
+$sp_real_title_tag = BlocksHelper::safe_heading_tag( $attributes['titleTag'] ?? 'span', 'span' );
 ?>
 <div class="sp-real-testimonial-client-title">
 	<<?php echo tag_escape( $sp_real_title_tag ); ?> class="sp-real-client-title"><?php echo esc_html( $sp_real_title ); ?></<?php echo tag_escape( $sp_real_title_tag ); ?>>

@@ -61,7 +61,10 @@ class DashboardHelper {
 	 * @return void
 	 */
 	public static function update_plugin_settings( $field_key, $field_value ) {
-		$dashboard_settings               = self::get_plugin_settings();
+		$dashboard_settings = self::get_plugin_settings();
+		if ( ! is_array( $dashboard_settings ) ) {
+			$dashboard_settings = array();
+		}
 		$dashboard_settings[ $field_key ] = $field_value;
 		update_option( self::$sp_real_plugin_settings_key, $dashboard_settings );
 	}
@@ -211,7 +214,10 @@ class DashboardHelper {
 
 		// Active plugins list.
 		$active_plugins = array();
-		$plugins        = get_plugins();
+		if ( ! function_exists( 'get_plugins' ) ) {
+			require_once ABSPATH . 'wp-admin/includes/plugin.php';
+		}
+		$plugins = get_plugins();
 
 		foreach ( (array) get_option( 'active_plugins', array() ) as $plugin_path ) {
 			if ( isset( $plugins[ $plugin_path ] ) ) {
