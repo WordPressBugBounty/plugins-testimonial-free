@@ -4,11 +4,11 @@ Tags: testimonials, testimonial slider, video testimonials, social proof, review
 Requires at least: 6.3
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 4.1.1
+Stable tag: 4.1.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-A Customizable Testimonial plugin to Automate Collecting, Filtering, and Publishing Customer Reviews. Testimonial Slider, Grid & More to Grow Sales
+Collect, manage, and display customer reviews with testimonial sliders, carousels, grids, lists, and review forms. Build with AI or ready patterns.
 
 == Description ==
 
@@ -27,12 +27,12 @@ Testimonials significantly help your business and organization grow in several w
 ✅ Influence Customer Decisions — Many customers read reviews before making a purchase.
 ✅ Improve Sales & Conversion — Positive feedback from customers can help increase sales.
 ✅ Gain Valuable Insights — Users' reviews provide feedback about your products or services.
-✅ Enhance Brand Reputation — Over time, reviews help build a strong brand reputation. 
+✅ Enhance Brand Reputation — Over time, reviews help build a strong brand reputation.
 
  [__Live Demo__](https://realtestimonials.io/patterns/#free) | [__Documentation__](https://docs.realtestimonials.io/guide/introduction) | [__Support__](https://shapedplugin.com/create-support-ticket/)
 
 
-## WATCH HOW TO USE##
+= Watch How to Use =
 
 [youtube https://www.youtube.com/watch?v=-eSIbpv8Hik&list=PLoUb-7uG-5jM2sjscSqBVj07VXOqt0qHZ]
 
@@ -41,14 +41,14 @@ Testimonials significantly help your business and organization grow in several w
 
 * Build Multiple Testimonial Forms
 * Collect, Filter, and Publish Testimonials
-* Create and Manage Testimonial Showcases.
-* Fully Responsive and Mobile-friendly.
-* Easy To Use – No Coding Required.
+* Create and Manage Testimonial Showcases
+* Build with AI – Describe a layout and get a ready testimonial block
+* Fully Responsive and Mobile-friendly
+* Easy to Use – No Coding Required
 * Shortcode Generator with live preview.
 * Add unlimited testimonials and display them anywhere you want.
-* Import/Export testimonials.
 * Enable/Disable autoplay & control speed.
-* Stop on the hover slider.
+* Pause the slider on hover.
 * Infinite loop for the slider.
 * Control Columns, Rows, and Spacing
 * Show/hide navigation arrows & pagination dots.
@@ -75,9 +75,8 @@ Testimonials significantly help your business and organization grow in several w
 * Widget & RTL ready.
 * Compatible with any theme.
 * Schema.org compliant JSON-LD markup & optimized for speed.
-* Enable Schema Markup for Testimonials
-* Easily Import and Export Testimonials
-* Support all modern browsers: Firefox, Chrome, IE, Safari, etc.
+* Easily Import and Export Testimonials (CSV).
+* Supports all modern browsers: Chrome, Firefox, Safari, Edge, etc.
 * And many more options.
 
 = Dedicated Gutenberg Blocks =
@@ -87,16 +86,23 @@ The plugin ships a complete block system for the block editor. Each block is ful
 * **Testimonial Slider** — A classic slider showcase with autoplay, navigation arrows, pagination dots, and adaptive height.
 * **Testimonial Carousel** — A multi-column carousel with per-device columns, slide-to-scroll, column gap, and infinite loop.
 * **Testimonial Grid** — A responsive grid layout with device-wise column control, ordering, and pagination.
+* **Testimonial List** — A clean list layout with the reviewer image beside each testimonial.
 * **Testimonial Group** — A parent block that holds child blocks and renders them as one combined showcase.
 * **AJAX Pagination** — A child block that adds AJAX-powered pagination to a parent showcase without page reloads.
 * **Testimonial Submission Form** — A native front-end review form with configurable fields, photo upload, AJAX submit, and moderation (pending, hold as private, or draft).
 * **Testimonial Shortcode** — Place any existing testimonial view (shortcode) directly as a block.
 * **Testimonial Form Shortcode** — Place an existing collection form shortcode as a block.
 
-= Powerful Admin Dashboard = 
+= Build with AI =
 
-* **Getting Started** — An interactive dashboard to set the plugin up quickly.
-* **Settings** — All plugin settings in one place, including Custom CSS/JS with a built-in code editor.
+Describe the showcase you want in plain words and Build with AI creates a ready Testimonial Carousel, Slider, Grid, List or Submission Form. Use "Refine with AI" to adjust an existing block. Works with Google Gemini, OpenAI, Anthropic and Groq using your own API key (see External services below).
+
+= Powerful Admin Dashboard =
+
+Version 4.0 brings a completely redesigned, React-powered dashboard: a fast, modern admin app with a personalized welcome screen and every tool one click away.
+
+* **Overview** — A personalized welcome screen plus a Placements table showing where every block, view, form and saved template is used.
+* **Settings** — All plugin settings in one place, including AI Configuration and Custom CSS/JS with a built-in code editor.
 * **Block Visibility** — Enable or disable individual blocks site-wide with one click.
 * **Saved Templates** — Save any showcase you build as a reusable template and insert it anywhere.
 * **Ready Patterns** — A library of pre-built testimonial patterns; preview and insert with one click.
@@ -171,7 +177,7 @@ The optional **Build with AI** feature turns a written request into block settin
 
 = AUTOMATIC INSTALLATION (EASIEST WAY) =
 
-To do an automatic install of Real Testimonials, log in to your WordPress dashboard, navigate to the Plugins menu, and click Add New.
+To do an automatic install of Real Testimonials, log in to your WordPress dashboard, navigate to the Plugins menu, and click Add New Plugin.
 In the search field, type “Real Testimonials by ShapedPlugin”. Once you have found it, you can install it by simply clicking "Install Now" and then "Activate".
 
 = MANUAL INSTALLATION =
@@ -202,13 +208,15 @@ The WordPress codex contains <a href="https://wordpress.org/documentation/articl
 = How can I Showcase Testimonials? =
 After activating the plugin, you will see “Real Testimonials” in the WordPress Admin Dashboard.
 
-Firstly, go to “Add New” and add your testimonials as many as you want.
+Firstly, go to “Add New” and add as many testimonials as you want.
 
 Secondly, go to Manage Views > Add New.
 
 You can customize the setting fields as you like and publish, and you will see a generated shortcode in the top area.
 
-Finally, you need to insert it into any page or post through the TinyMCE button easily.
+Finally, paste the shortcode into any page or post, or use the Testimonial Shortcode block.
+
+Prefer the block editor? Insert the Testimonial Carousel, Slider, Grid or List block directly and configure it from the sidebar — no shortcode needed.
 
 = Is the Real Testimonials fully responsive? =
 Yes, the Real Testimonials is fully responsive & column-structured. You can control the number of testimonial columns on different devices (Desktop, Tablet, Mobile, etc.).
@@ -226,7 +234,7 @@ Real Testimonials works nicely with any theme if themes are developed according 
 Yes, Real Testimonials is fully translation-ready, supporting .pot language files! You can translate into your language with the following popular plugins, such as WPML, Polylang, qTranslate-x, GTranslate, Google Language Translator, WPGlobus, etc.
 
 = For Support and Bug Reporting =
-If you encounter an issue or find any bugs, post it in the [support](https://shapedplugin.com/create-new-ticket/). You can also get support via [WordPress.org](https://wordpress.org/support/plugin/testimonial-free/).
+If you encounter an issue or find any bugs, post it in the [support](https://shapedplugin.com/create-support-ticket/). You can also get support via [WordPress.org](https://wordpress.org/support/plugin/testimonial-free/).
 
 
 
@@ -263,6 +271,11 @@ If you encounter an issue or find any bugs, post it in the [support](https://sha
 
 
 == Changelog ==
+
+= 4.1.2 – Nov 10, 2026 =
+* Fixed: Exported CSV cells that spreadsheet apps could run as formulas.
+* Fixed: Commas, quotes, and line breaks in testimonial fields breaking the exported CSV columns.
+* Fixed: PHP 8.1+ deprecation notice on the dashboard Help page.
 
 = 4.1.1 – Nov 03, 2026 =
 * Fixed: Security hardening for front-end testimonial submissions, reviewer photo uploads and testimonial output.

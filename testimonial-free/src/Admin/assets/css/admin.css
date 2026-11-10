@@ -908,33 +908,6 @@ a.sp_testimonial_block_edit_button {
   margin: 0 0 0 8px;
 }
 
-/* Admin offer banner */
-#shapedplugin-offer-banner {
-  padding: 0;
-  border: 0;
-  line-height: 0;
-  background: transparent;
-}
-
-#shapedplugin-offer-banner a:focus {
-  outline: 0;
-  box-shadow: none;
-}
-
-#shapedplugin-offer-banner .notice-dismiss:focus {
-  outline: 0;
-  box-shadow: none;
-}
-
-#shapedplugin-offer-banner button.shapedplugin-offer-banner-dismiss:before {
-  color: #fff;
-  font-size: 22px;
-}
-
-#shapedplugin-offer-banner button.shapedplugin-offer-banner-dismiss:hover:before {
-  color: #f30808;
-}
-
 .spftestimonial-field-border .spftestimonial--input input[type="number"] {
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;

@@ -12,7 +12,7 @@
  * Plugin Name:     Real Testimonials
  * Plugin URI:      https://realtestimonials.io/?ref=1
  * Description:     Real Testimonials is a responsive and customizable testimonial plugin for WordPress. Easily collect customer reviews and video testimonials with review forms, display them in beautiful layouts, and publishing—all in just a few minutes.
- * Version:         4.1.1
+ * Version:         4.1.2
  * Requires at least: 6.3
  * Requires PHP:      7.4
  * Author:          ShapedPlugin LLC
@@ -30,7 +30,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 require_once __DIR__ . '/vendor/autoload.php';
 
 define( 'SP_TFREE_NAME', 'Real Testimonials' );
-define( 'SP_TFREE_VERSION', '4.1.1' );
+define( 'SP_TFREE_VERSION', '4.1.2' );
 define( 'SP_RT_PLUGIN_PATH', plugin_dir_path( __FILE__ ) );
 define( 'SP_RT_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
 define( 'SP_TFREE_PATH', SP_RT_PLUGIN_PATH . 'src/' );
@@ -63,13 +63,22 @@ function is_testimonial_pro_active() {
  * @return void
  */
 function sp_testimonial_free() {
-	if ( ! defined( 'SHAPEDPLIUGIN_OFFER_BANNER_LOADED' ) ) {
-		define( 'SHAPEDPLIUGIN_OFFER_BANNER_LOADED', true );
-
+	if ( is_admin() ) {
 		/**
-		 * The file is responsible for generating admin offer banner.
+		 * Shared ShapedPlugin BFCM notice. Only one notice renders even when
+		 * several ShapedPlugin free plugins are active.
 		 */
-		ShapedPlugin\TestimonialFree\Admin\Views\Notices\ShapedPlugin_Offer_Banner::instance();
+		require_once SP_TFREE_PATH . 'Admin/Views/Notices/shapedplugin-bfcm-notice.php';
+
+		ShapedPlugin_BFCM_Notice_2026::register(
+			array(
+				'slug'       => 'testimonial-free',
+				'name'       => 'Real Testimonials Pro',
+				'image'      => SP_TFREE_URL . 'Admin/assets/images/offer-banner/bfcm-notice-2026.webp',
+				'link'       => 'https://realtestimonials.io/pricing/?utm_source=dashboard&utm_medium=rt_dealbutton&utm_campaign=bfcm26',
+				'post_types' => array( 'spt_testimonial', 'spt_shortcodes', 'spt_testimonial_form' ),
+			)
+		);
 	}
 
 	new ShapedPlugin\TestimonialFree\Includes\TestimonialFree();

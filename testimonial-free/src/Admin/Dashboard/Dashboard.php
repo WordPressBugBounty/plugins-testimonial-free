@@ -508,6 +508,24 @@ class Dashboard {
 	}
 
 	/**
+	 * Pick the best available icon URL from a plugins_api() `icons` array.
+	 *
+	 * WordPress.org omits the `2x` key for plugins that ship only a 1x or SVG icon.
+	 *
+	 * @param array $icons Icon URLs keyed by size (`2x`, `1x`, `svg`, `default`).
+	 * @return string Icon URL, or an empty string when none is available.
+	 */
+	private static function pick_plugin_icon( $icons ) {
+		foreach ( array( '2x', '1x', 'svg', 'default' ) as $size ) {
+			if ( ! empty( $icons[ $size ] ) && is_string( $icons[ $size ] ) ) {
+				return $icons[ $size ];
+			}
+		}
+
+		return '';
+	}
+
+	/**
 	 * Method sp_real_plugins_info_api_help_page function.
 	 *
 	 * @return void
@@ -556,7 +574,7 @@ class Dashboard {
 							'rating'            => $pl['rating'],
 							'num_ratings'       => $pl['num_ratings'],
 							'short_description' => $pl['short_description'],
-							'icons'             => $pl['icons']['2x'],
+							'icons'             => self::pick_plugin_icon( isset( $pl['icons'] ) ? $pl['icons'] : array() ),
 						);
 					}
 				}
@@ -570,7 +588,8 @@ class Dashboard {
 			array_multisort( $no_of_active_installs, SORT_DESC, $plugins_arr );
 			foreach ( $plugins_arr as $plugin ) {
 				$plugin_slug = $plugin['slug'];
-				$plugin_icon = $plugin['icons'];
+				// Older cached entries may hold null when the plugin has no 2x icon.
+				$plugin_icon = isset( $plugin['icons'] ) && is_string( $plugin['icons'] ) ? $plugin['icons'] : '';
 				if ( isset( self::$plugins[ $plugin_slug ] ) ) {
 					$plugin_file = self::$plugins[ $plugin_slug ];
 				} else {
@@ -589,7 +608,9 @@ class Dashboard {
 							<h3>
 								<a class="thickbox" title="<?php echo esc_attr( $plugin['name'] ); ?>" href="<?php echo esc_url( $details_link ); ?>">
 									<?php echo esc_html( $plugin['name'] ); ?>
-									<img src="<?php echo esc_url( $plugin_icon ); ?>" class="plugin-icon" />
+									<?php if ( '' !== $plugin_icon ) : ?>
+										<img src="<?php echo esc_url( $plugin_icon ); ?>" class="plugin-icon" />
+									<?php endif; ?>
 								</a>
 							</h3>
 						</div>

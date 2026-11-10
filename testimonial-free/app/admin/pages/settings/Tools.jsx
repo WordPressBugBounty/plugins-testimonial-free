@@ -38,37 +38,60 @@ const csvCell = (value) => {
 	return JSON.stringify(value).replace(/"/g, "'").replace(/,/g, "|");
 };
 
+// Spreadsheet apps run a cell starting with one of these as a formula (CSV injection).
+const FORMULA_TRIGGER = /^[=+\-@\t\r]/;
+// The apostrophe added on export to keep such a cell as text; removed again on import.
+const ESCAPED_FORMULA = /^'(?=[=+\-@\t\r])/;
+
+// One CSV field: formula-neutralized, then quoted per RFC 4180 so commas,
+// quotes and line breaks in a visitor-submitted value cannot leave the cell.
+const csvField = (value) => {
+	if (value === undefined || value === null || value === "" || value === false) {
+		return "";
+	}
+	let text = String(value);
+	if (FORMULA_TRIGGER.test(text)) {
+		text = `'${text}`;
+	}
+	return `"${text.replace(/"/g, '""')}"`;
+};
+
+// Undo csvField()'s formula escape on an imported value.
+const unescapeCsvField = (value) => ("string" === typeof value ? value.replace(ESCAPED_FORMULA, "") : value);
+
 // Build the classic CSV string from the exported testimonials payload.
 const buildTestimonialsCsv = (payload) => {
 	const rows = (payload?.shortcode || []).map((item) => {
 		const meta = item.meta || {};
 		const opts = meta.sp_tpro_meta_options || {};
 		return [
-			payload?.metadata?.version || "",
-			payload?.metadata?.date || "",
-			item.all_testimonial || "",
-			JSON.stringify(item.title ?? "") || "",
-			item.original_id || "",
+			payload?.metadata?.version,
+			payload?.metadata?.date,
+			item.all_testimonial,
+			item.title,
+			item.original_id,
 			item.category ? csvCell(item.category) : "",
-			item.content ? JSON.stringify(item.content) : "",
-			item.image || "",
-			meta._edit_last || "",
-			meta._edit_lock || "",
-			meta._thumbnail_id || "",
+			item.content,
+			item.image,
+			meta._edit_last,
+			meta._edit_lock,
+			meta._thumbnail_id,
 			opts.tpro_company_logo ? csvCell(opts.tpro_company_logo) : "",
-			opts.tpro_name || "",
-			opts.tpro_email || "",
-			JSON.stringify(opts.tpro_designation ?? "") || "",
-			JSON.stringify(opts.tpro_company_name ?? "") || "",
-			JSON.stringify(opts.tpro_location ?? "") || "",
-			JSON.stringify(opts.tpro_country ?? "") || "",
-			JSON.stringify(opts.tpro_phone ?? "") || "",
-			JSON.stringify(opts.tpro_website ?? "") || "",
-			JSON.stringify(opts.tpro_video_url ?? "") || "",
-			opts.tpro_rating || "",
+			opts.tpro_name,
+			opts.tpro_email,
+			opts.tpro_designation,
+			opts.tpro_company_name,
+			opts.tpro_location,
+			opts.tpro_country,
+			opts.tpro_phone,
+			opts.tpro_website,
+			opts.tpro_video_url,
+			opts.tpro_rating,
 			opts.testimonial_extra_fields ? csvCell(opts.testimonial_extra_fields) : "",
 			opts.tpro_social_profiles ? csvCell(opts.tpro_social_profiles) : "",
-		].join(",");
+		]
+			.map(csvField)
+			.join(",");
 	});
 	return `${CSV_HEADER}\n${rows.join("\n")}\n`;
 };
@@ -101,7 +124,7 @@ const csvToObjects = (csv) => {
 	for (let i = 1; i < rows.length - 1; i++) {
 		const obj = {};
 		for (let k = 0; k < rows[0].length && k < rows[i].length; k++) {
-			obj[rows[0][k]] = rows[i][k];
+			obj[rows[0][k]] = unescapeCsvField(rows[i][k]);
 		}
 		objects.push(obj);
 	}

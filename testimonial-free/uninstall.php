@@ -48,6 +48,7 @@ if ( $testimonial_data_remove ) {
 	// Delete offer banner related option keys.
 	delete_option( 'shapedplugin_offer_banner_dismissed_black_friday_2025' );
 	delete_option( 'shapedplugin_offer_banner_dismissed_new_year_2026' );
+	delete_option( 'shapedplugin_bfcm_2026_dismissed' );
 
 	// Admin notice state.
 	delete_option( 'sp_real_blocks_promo_notice_dismissed' );
